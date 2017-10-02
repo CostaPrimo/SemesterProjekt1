@@ -1,4 +1,4 @@
-package Temp_Folder;
+package temp;
 
 import java.util.Scanner;
 //import java.util.StringTokenizer; ikke i brug indtil videre
