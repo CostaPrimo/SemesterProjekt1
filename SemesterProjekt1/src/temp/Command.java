@@ -1,4 +1,4 @@
-package Temp_Folder;
+package temp;
 
 /** 
  * @author  Michael Kolling and David J. Barnes
