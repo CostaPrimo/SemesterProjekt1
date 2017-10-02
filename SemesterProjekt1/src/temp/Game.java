@@ -1,4 +1,4 @@
-package Temp_Folder;
+package temp;
 
 
 // Creating public "game" class 
