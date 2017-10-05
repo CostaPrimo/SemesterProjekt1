@@ -15,29 +15,42 @@ public class Game
 //    Creating a conctructor called "createRoom" where we name all the rooms and give them a description
     private void createRooms()
     {
-        Room outside, theatre, pub, lab, office;
+        Room home, downtown, gamestop, merchant, scrapyardentrance, scrapyardmiddle, scrapyardwest, scrapyardeast, scrapyardsouth ;
       
-        outside = new Room("outside the main entrance of the university");
-        theatre = new Room("in a lecture theatre");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        home = new Room("Home sweet home");
+        downtown = new Room("Downtown connects the two shops");
+        gamestop = new Room("Welcome to gamestop");
+        merchant = new Room("You buying or selling");
+        scrapyardentrance = new Room("Entrance to the scrapyard");
+        scrapyardmiddle = new Room("Center of the scrapyard");
+        scrapyardwest = new Room("West part of the scrapyard");
+        scrapyardeast = new Room("East part of the scrapyard");
+        scrapyardsouth = new Room("South part of the scrapyard");
+        
         
 //      Setting all the available exits from each of the rooms above
-        outside.setExit("east", theatre);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
-
-        theatre.setExit("west", outside);
-
-        pub.setExit("east", outside);
-
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
-
-        office.setExit("west", lab);
+        home.setExit("south", downtown);
         
-        currentRoom = outside;
+        downtown.setExit("north", home);
+        downtown.setExit("east", merchant);
+        downtown.setExit("west",gamestop);
+        downtown.setExit("south", scrapyardentrance);
+        
+        merchant.setExit("west", downtown);
+        gamestop.setExit("east", downtown);
+        
+        scrapyardentrance.setExit("north",downtown);
+        scrapyardentrance.setExit("east", scrapyardeast);
+        scrapyardentrance.setExit("west", scrapyardwest);
+        scrapyardentrance.setExit("south", scrapyardmiddle);
+        
+        scrapyardeast.setExit("west", scrapyardentrance);
+        scrapyardwest.setExit("east", scrapyardentrance);
+        scrapyardmiddle.setExit("north", scrapyardentrance);
+        scrapyardmiddle.setExit("south", scrapyardsouth);
+
+       
+        currentRoom = home;
     }
 //  Creating a constructor for the end message using boolean when game is finished
     public void play() 
