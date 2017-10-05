@@ -49,4 +49,8 @@ public class Parser
     {
         commands.showAll();
     }
+    
+    public String returnString(){
+        return reader.next();
+    }
 }

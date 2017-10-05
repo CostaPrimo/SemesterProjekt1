@@ -29,6 +29,7 @@ public class Game
         
         
 //      Setting all the available exits from each of the rooms above
+
         home.setExit("downtown", downtown);
         
         downtown.setExit("home", home);
@@ -112,7 +113,7 @@ public class Game
     {
         //If the command doesnt have a second word it ask for more arguments
         if(!command.hasSecondWord()) {
-            System.out.println("WHERE DU YOU WANT TO GO? NORTH, EAST, WEST or SOÙTH");
+            System.out.println("WHERE DU YOU WANT TO GO?");
             return;
         }
 
