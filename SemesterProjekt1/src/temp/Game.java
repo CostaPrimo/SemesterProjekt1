@@ -62,15 +62,15 @@ public class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Thank you for playing.  Good bye.");
+        System.out.println("FINALLY DONE");
     }
-//  Creating a method for a welcome message when starting the game and adding in a "help" command
+//  Creating a method for a welcome message when starting the game and adding in a commandS
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
-        System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
+        System.out.println("THIS IS THE SCRAPYARD GAME");
+        System.out.println("A WORLD OF SCRAP, FUN, AND ADVENTURES");
+        System.out.println("Type '" + CommandWord.HELP + "' IF YOU DONT KNOW WHAT TO DO");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
@@ -83,7 +83,7 @@ public class Game
         CommandWord commandWord = command.getCommandWord();
 
         if(commandWord == CommandWord.UNKNOWN) {
-            System.out.println("I don't know what you mean...");
+            System.out.println("YOU CANT DO THAT");
             return false;
         }
 
@@ -101,10 +101,10 @@ public class Game
 //  Making a method that prints our help messages when using the command "printHelp"
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("WHAT??!");
+        System.out.println("DONT YOU UNDERSTAND");
         System.out.println();
-        System.out.println("Your command words are:");
+        System.out.println("USE THE COMMANDS: ");
         parser.showCommands();
     }
 //Creating a method goRoom along with a Command variable named command
@@ -112,7 +112,7 @@ public class Game
     {
         //If the command doesnt have a second word it ask for more arguments
         if(!command.hasSecondWord()) {
-            System.out.println("Go where?");
+            System.out.println("WHERE DU YOU WANT TO GO? NORTH, EAST, WEST or SOÙTH");
             return;
         }
 
@@ -122,7 +122,7 @@ public class Game
 
         //If there isnt an exit defined for the given direction he program will let you know
         if (nextRoom == null) {
-            System.out.println("There is no door!");
+            System.out.println("TRY ANOTHER DIRECTION");
         }
         //If there is an exit in that given directionn set the CurrentRoom as nextRoom and print out room description
         else {
@@ -136,7 +136,7 @@ public class Game
     {
         //if there is a second word the program makes sure that you want to quit the game and not a room
         if(command.hasSecondWord()) {
-            System.out.println("Quit what?");
+            System.out.println("ARE YOU SURE YOU WANT TO QUIT THE GAME?");
             return false;
         }
         //otherwise the method returns true which ends the game loop.
