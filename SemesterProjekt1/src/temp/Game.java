@@ -17,37 +17,37 @@ public class Game
     {
         Room home, downtown, gamestop, merchant, scrapyardentrance, scrapyardmiddle, scrapyardwest, scrapyardeast, scrapyardsouth ;
       
-        home = new Room("Home sweet home");
-        downtown = new Room("Downtown connects the two shops");
-        gamestop = new Room("Welcome to gamestop");
-        merchant = new Room("You buying or selling");
-        scrapyardentrance = new Room("Entrance to the scrapyard");
-        scrapyardmiddle = new Room("Center of the scrapyard");
-        scrapyardwest = new Room("West part of the scrapyard");
-        scrapyardeast = new Room("East part of the scrapyard");
-        scrapyardsouth = new Room("South part of the scrapyard");
+        home = new Room("at your home");
+        downtown = new Room("at downtown");
+        gamestop = new Room("at gamestop");
+        merchant = new Room("at the merchant");
+        scrapyardentrance = new Room("at the entrance to the scrapyard");
+        scrapyardmiddle = new Room("at the center of the scrapyard");
+        scrapyardwest = new Room("at the west part of the scrapyard");
+        scrapyardeast = new Room("at the east part of the scrapyard");
+        scrapyardsouth = new Room("at the south part of the scrapyard");
         
         
 //      Setting all the available exits from each of the rooms above
-        home.setExit("south", downtown);
+        home.setExit("downtown", downtown);
         
-        downtown.setExit("north", home);
-        downtown.setExit("east", merchant);
-        downtown.setExit("west",gamestop);
-        downtown.setExit("south", scrapyardentrance);
+        downtown.setExit("home", home);
+        downtown.setExit("merchant", merchant);
+        downtown.setExit("gamestop",gamestop);
+        downtown.setExit("scrapyardentrance", scrapyardentrance);
         
-        merchant.setExit("west", downtown);
-        gamestop.setExit("east", downtown);
+        merchant.setExit("downtown", downtown);
+        gamestop.setExit("downtown", downtown);
         
-        scrapyardentrance.setExit("north",downtown);
-        scrapyardentrance.setExit("east", scrapyardeast);
-        scrapyardentrance.setExit("west", scrapyardwest);
-        scrapyardentrance.setExit("south", scrapyardmiddle);
+        scrapyardentrance.setExit("downtown",downtown);
+        scrapyardentrance.setExit("scrapyardyeast", scrapyardeast);
+        scrapyardentrance.setExit("scrapyardwest", scrapyardwest);
+        scrapyardentrance.setExit("scrapyardmiddle", scrapyardmiddle);
         
-        scrapyardeast.setExit("west", scrapyardentrance);
-        scrapyardwest.setExit("east", scrapyardentrance);
-        scrapyardmiddle.setExit("north", scrapyardentrance);
-        scrapyardmiddle.setExit("south", scrapyardsouth);
+        scrapyardeast.setExit("scrapyardentrance", scrapyardentrance);
+        scrapyardwest.setExit("scrapyardentrance", scrapyardentrance);
+        scrapyardmiddle.setExit("scrapyardentrance", scrapyardentrance);
+        scrapyardmiddle.setExit("scrapyardsouth", scrapyardsouth);
 
        
         currentRoom = home;
@@ -70,7 +70,7 @@ public class Game
         System.out.println();
         System.out.println("THIS IS THE SCRAPYARD GAME");
         System.out.println("A WORLD OF SCRAP, FUN, AND ADVENTURES");
-        System.out.println("Type '" + CommandWord.HELP + "' IF YOU DONT KNOW WHAT TO DO");
+        System.out.println("TYPE '" + CommandWord.HELP + "' IF YOU DONT KNOW WHAT TO DO");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
@@ -122,7 +122,7 @@ public class Game
 
         //If there isnt an exit defined for the given direction he program will let you know
         if (nextRoom == null) {
-            System.out.println("TRY ANOTHER DIRECTION");
+            System.out.println("CANT GO THAT WAY");
         }
         //If there is an exit in that given directionn set the CurrentRoom as nextRoom and print out room description
         else {
