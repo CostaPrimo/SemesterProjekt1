@@ -16,10 +16,10 @@ public class Challenge {
    private String userSelect1;
    public Challenge(){
     multipleChoice = new String[10];
-    multipleChoice[0] = "What does Simon love?";
-    multipleChoice[1] = "Question 2";
-    multipleChoice[2] = "What is question 3?";
-    multipleChoice[3] = "What does Simon like?";
+    multipleChoice[0] = "Question 1?";
+    multipleChoice[1] = "Question 2?";
+    multipleChoice[2] = "Question 3?";
+    multipleChoice[3] = "Question 4?";
     multipleChoice[4] = "test";
     multipleChoice[5] = "test";
     multipleChoice[6] = "test";
@@ -37,32 +37,32 @@ public class Challenge {
         int attempts = 2;
         if(userSelect1==multipleChoice[0]){      
             System.out.println(multipleChoice[0]);           
-            System.out.println("A: Kebab");
-            System.out.println("B: Titties");
-            System.out.println("C: Coffee");
-            System.out.println("D: blub");
-            System.out.println("");
+            System.out.println("A: Answer 1");
+            System.out.println("B: Answer 2");
+            System.out.println("C: Answer 3");
+            System.out.println("D: Answer 4");
+
             
             while (iscorrect == false && attempts>0){
                 String uselect1 = ind.returnString();
                 switch(uselect1.toUpperCase()){
                     case "A":
-                        uselect1 = "Kebab";
+                        uselect1 = "Answer 1";
                         System.out.println(uselect1 + " Is Incorrect\nTry again!");
                         attempts--;               
                         break;
                     case "B":
-                        uselect1 = "Titties";
+                        uselect1 = "Answer 2";
                         System.out.println(uselect1 + " Is Correct\n");
                         iscorrect = true;
                         break;
                     case "C":
-                        uselect1 = "Coffee";
+                        uselect1 = "Answer 3";
                         System.out.println(uselect1 + " Is Incorrect\nTry again!\n");
                         attempts--;
                         break;
                     case "D":
-                        uselect1 = "blub";
+                        uselect1 = "Answer 4";
                         System.out.println(uselect1 + " Is Incorrect\nTry again!\n");
                         attempts--;
                         break;
@@ -76,10 +76,10 @@ public class Challenge {
                 }
             }
             if (iscorrect == true){
-                    System.out.println("YOU ARE AMAZING");
+                    System.out.println("CORRECT! ");
                 }
                 else if (iscorrect == false){
-                    System.out.println("YOU SUCK");
+                    System.out.println("INCORRECT! ");
                 }
         }
   

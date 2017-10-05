@@ -84,7 +84,8 @@ public class Game
         CommandWord commandWord = command.getCommandWord();
 
         if(commandWord == CommandWord.UNKNOWN) {
-            System.out.println("YOU CANT DO THAT");
+            System.out.println("YOU CANT DO THAT \nTRY: ");
+            parser.showCommands();
             return false;
         }
 
