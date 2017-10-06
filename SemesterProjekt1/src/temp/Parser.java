@@ -1,7 +1,7 @@
 package temp;
 
 import java.util.Scanner;
-//import java.util.StringTokenizer; ikke i brug indtil videre
+//import java.util.StringTokenizer; not in use so far
 
 /**
  * @author  Michael Kolling and David J. Barnes
@@ -9,18 +9,18 @@ import java.util.Scanner;
  */
 public class Parser 
 {
-//    vores 2 variabler
+//    The two variables in our class
     private CommandWords commands;
     private Scanner reader;
 
-//    vores no arg metode som defaulter vores variabler.
+//    The no arg constructer which creates our default parser
     public Parser() 
     {
-//        Commands laver et objekt fra CommandWords klassen og Reader er vores scanner.
+//        Commands creates and object from the CommandWords class & reader is our scanner.
         commands = new CommandWords();
         reader = new Scanner(System.in);
     }
-//vores getter til at hente en command
+//The getter to get a command
     public Command getCommand() 
     {
         String inputLine;
@@ -28,12 +28,11 @@ public class Parser
         String word2 = null;
 
         System.out.print("> ");
-//     her laver vi vores string inputline til at den skal have input fra brugeren
+//     Here we make a string to store our input from the user.
         inputLine = reader.nextLine();
 
-//        her laver vi en ny scanner og tjekker om den får input 
-//        og derefter sætter word1 til det ord vi skrev
-//        samme med word2
+//        Here we create a new scanner which has the input from the string we just made.her laver vi en ny scanner og tjekker om den får input 
+//        And the we set word 1 and word 2 to the input we gave it.
         Scanner tokenizer = new Scanner(inputLine);
         if(tokenizer.hasNext()) {
             word1 = tokenizer.next();
@@ -41,15 +40,15 @@ public class Parser
                 word2 = tokenizer.next();
             }
         }
-//        her returner vi word 1 og 2
+//        And then we return word 1 and word 2.
         return new Command(commands.getCommandWord(word1), word2);
     }
-// her viser vi alle commands
+// This method shows all the commands we have.
     public void showCommands()
     {
         commands.showAll();
     }
-    
+    // this method we use to be able to use our scanner in other classes so we dont have to import it everytime.
     public String returnString(){
         return reader.next();
     }
