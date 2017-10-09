@@ -10,7 +10,20 @@ public class Game
     public Game() 
     {
         createRooms();
+        createItems();
+        createInventories();
         parser = new Parser();
+    }
+    private void createItems(){
+        Item GPU, RAM, CPU;
+        GPU = new Item("GTX 550ti", 600, 300);
+        RAM = new Item("DDR3 4 GB", 500, 250);
+        CPU = new Item("i9 5 GHz", 7000, 3500);
+    }
+    
+    private void createInventories(){
+        Inventory playerinventory;
+        playerinventory = new Inventory();
     }
 //    Creating a conctructor called "createRoom" where we name all the rooms and give them a description
     private void createRooms()
