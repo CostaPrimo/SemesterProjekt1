@@ -5,10 +5,10 @@ package temp;
  * @version 2006.03.30
  */
 
-/**
-* Enum definere konstanterne GO, QUIT, HELP og UNKNOWN 
-*(de er konstante da de er med stort)
-* til variablerne go, quit, help og ?.
+/** 
+* Enum define the constants GO, QUIT, HELP and UNKNOWN
+* (they are constant as they are written with capitel leters)
+* for the variables go, quit, help and?
 */
 
 public enum CommandWord
@@ -16,8 +16,8 @@ public enum CommandWord
     GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?");
     
     /**
-     * CommandWord linjen bliver lavet til en string, benævnt commandString.
-     * this. bruges for at referer til de overnævnte variabler i constructoren.
+     * CommandWord line addresed as a string, named commandString.
+     * this. is used to referer to the variables in the constructor.
      */
     private String commandString;
     
@@ -26,7 +26,7 @@ public enum CommandWord
         this.commandString = commandString;
     }
     /**
-     * constructoren retunere string værdierne når commandString hentes.  
+     * The constructor returns the string value when commandString is referenced.  
      */
     public String toString()
     {
