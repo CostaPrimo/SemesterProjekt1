@@ -6,6 +6,10 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private Inventory inventoryPlayer;
+    Item JGPU, NGPU, RGPU, EGPU, LGPU;
+    Item JRAM, NRAM, RRAM, ERAM, LRAM;
+    Item JCPU, NCPU, RCPU, ECPU, LCPU;
         
     public Game() 
     {
@@ -15,15 +19,26 @@ public class Game
         parser = new Parser();
     }
     private void createItems(){
-        Item GPU, RAM, CPU;
-        GPU = new Item("GTX 550ti", 600, 300);
-        RAM = new Item("DDR3 4 GB", 500, 250);
-        CPU = new Item("i9 5 GHz", 7000, 3500);
+        JGPU = new Item("GTX 550ti", "junk", 600, 300);
+        NGPU = new Item("GTX 760", "normal", 900, 600);
+        RGPU = new Item("GTX 960", "rare", 1500, 1000);
+        EGPU = new Item("GTX 1070", "epic", 600, 300);
+        LGPU = new Item("GTX Titan XP", "legendary", 600, 300);
+        JRAM = new Item("DDR 512 MB","junk", 500, 250);
+        NRAM = new Item("DDR2 2 GB","normal", 500, 250);
+        RRAM = new Item("DDR3 4 GB","rare", 500, 250);
+        ERAM = new Item("DDR3 8 GB","epic", 500, 250);
+        LRAM = new Item("DDR4 16 GB","legendary", 500, 250);
+        JCPU = new Item("i3 1.8 GHz", "junk", 7000, 3500);
+        NCPU = new Item("i5 2.5 GHz", "normal", 7000, 3500);
+        RCPU = new Item("i7 3.7 GHz", "rare", 7000, 3500);
+        ECPU = new Item("Threadripper 4 GHz", "epic", 7000, 3500);
+        LCPU = new Item("i9 6 GHz", "legendary", 7000, 3500);
+     
     }
     
     private void createInventories(){
-        Inventory playerinventory;
-        playerinventory = new Inventory();
+        inventoryPlayer = new Inventory();
     }
 //    Creating a conctructor called "createRoom" where we name all the rooms and give them a description
     private void createRooms()
@@ -111,7 +126,15 @@ public class Game
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
+        else if (commandWord == CommandWord.DROP){
+            dropItem(command);
+        }
+        else if (commandWord == CommandWord.PICKUP){
+            addItem(command);
+        }
         return wantToQuit;
+        
+        
     }
 //  Making a method that prints our help messages when using the command "printHelp"
     private void printHelp() 
@@ -157,6 +180,25 @@ public class Game
         //otherwise the method returns true which ends the game loop.
         else {
             return true;
+        }
+    }
+    
+    private void dropItem(Command command){
+        
+        if(!command.hasSecondWord()) {
+            System.out.println("Which item do you want to drop?" + "\n" + inventoryPlayer.showPlayerInventory());
+        }
+        else{
+        inventoryPlayer.dropItem(Integer.parseInt(command.getSecondWord()));
+        }
+    }
+    private void addItem(Command command){
+        
+        if(!command.hasSecondWord()) {
+            System.out.println("Which item do you want to add?" + "\n" + inventoryPlayer.showPlayerInventory());
+        }
+        else{
+        inventoryPlayer.addItem(RCPU);
         }
     }
 }

@@ -6,17 +6,22 @@ package temp;
  */
 public class Item {
     //Creating variables for the Item class
-    private String Name;
+    private String Name, rarity;
 //    private String Description;
-    private int Buyprice;
-    private int Sellprice;
+    private int Buyprice, Sellprice;
 //    private int score;
     
     //Creating a contructor for the Item class
-    public Item(String name, int bp, int sp){
+    public Item(String name, String rarity, int bp, int sp){
         this.Name = name;
         this.Buyprice = bp;
         this.Sellprice = sp;
+        this.rarity = rarity;
+    }
+    
+    
+    public String getName(){
+        return this.Name;
     }
     //Method for getting the BuyPrice of an Item
     public int getBuyPrice(){
@@ -26,6 +31,17 @@ public class Item {
     public int getSellPrice(){
         return this.Sellprice;
     }
+    
+    //Method for getting the rarity of an Item
+    
+    //public String getRarity(){
+        
+   //}
+    
+    //Setting rarity for the items
+    
+    
+    
     
 //    public void getDescription(){
 //        

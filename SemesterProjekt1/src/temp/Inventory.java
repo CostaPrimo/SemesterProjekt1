@@ -1,5 +1,6 @@
 package temp;
 import java.util.ArrayList;
+import java.util.Arrays;
 /**
  *
  * @author Gruppe 20
@@ -9,6 +10,8 @@ public class Inventory {
     private ArrayList<Item> inventoryPlayer;
     private ArrayList<Item> inventoryHouse;
     private ArrayList<Item> inventoryRoom;
+    //Creating a string for our roomtype called rarity
+    private String rarity;
     //Creating integer for maximum storage
     private int maxStorage;
     
@@ -18,7 +21,36 @@ public class Inventory {
     inventoryPlayer = new ArrayList<Item>();
     
     }
-    //Creates a method for adding items to the player inventory.
+    
+    //Creating arg constructor for room, which defines the room type
+    
+    public Inventory(String rarity){
+        inventoryRoom = new ArrayList<Item>();
+        switch(rarity.toLowerCase()){
+                    case "junk":
+                        this.rarity = rarity;
+                        this.maxStorage = 3;
+                        break;
+                    case "normal":
+                        this.rarity = rarity;
+                        this.maxStorage = 2;
+                        break;
+                    case "rare":
+                        this.rarity = rarity;
+                        this.maxStorage = 2;
+                        break;
+                    case "epic":
+                        this.rarity = rarity;
+                        this.maxStorage = 1;
+                        break;
+                    case "legendary":
+                        this.rarity = rarity;
+                        this.maxStorage = 1;
+                        break;
+        }
+        
+    }
+    //Creates a method for adding items to the player inventory
     public void addItem(Item item){
         //The item is only added if the inventory isnt full
         if (inventoryPlayer.size()<maxStorage){
@@ -33,7 +65,7 @@ public class Inventory {
     public void dropItem(int i){
         //The method only accepts numbers within the size of the inventory
         if(inventoryPlayer.size()>=i){
-            inventoryPlayer.remove(i);
+            inventoryPlayer.remove(i-1);
         }
         else{
             System.out.println("Cant drop item thats not in your inventory");
@@ -62,6 +94,18 @@ public class Inventory {
         else{
             System.out.println("This item is not in your storage!");
         }
+    }
+    
+    public String showPlayerInventory(){
+        
+        String contains = "";
+        int count = 1;
+        for(int i = 0; i < inventoryPlayer.size();i++)
+        {
+            contains += count + ": " + inventoryPlayer.get(i).getName() + "\n";
+           count++;
+        }
+        return contains;
     }
     
 }
