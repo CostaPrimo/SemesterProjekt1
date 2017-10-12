@@ -23,6 +23,7 @@ public class Inventory {
         //The item is only added if the inventory isnt full
         if (inventoryPlayer.size()<maxStorage){
             inventoryPlayer.add(item);
+            System.out.println("Item added");
         }
         else {
             System.out.println("Your inventory is full");

@@ -7,7 +7,7 @@ package temp;
 
 /**
  *
- * @author Simon
+ * @author Gruppe 20
  */
 public class Challenge {
     //Creating a string array
