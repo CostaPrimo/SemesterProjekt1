@@ -1,5 +1,5 @@
 package temp;
-
+import java.util.ArrayList;
 
 // Creating public "game" class 
 public class Game 
@@ -10,13 +10,25 @@ public class Game
     Item JGPU, NGPU, RGPU, EGPU, LGPU;
     Item JRAM, NRAM, RRAM, ERAM, LRAM;
     Item JCPU, NCPU, RCPU, ECPU, LCPU;
-        
+    ArrayList<Item> junk, normal, rare, epic, legendary;
+    
     public Game() 
     {
         createRooms();
-        createItems();
         createInventories();
+        createItemList();
+        createItems();
         parser = new Parser();
+    }
+    
+    private void createItemList(){
+        junk = new ArrayList <>();
+        normal = new ArrayList <>();
+        rare = new ArrayList <>();
+        epic = new ArrayList <>();
+        legendary = new ArrayList <>();
+        
+        
     }
     private void createItems(){
         JGPU = new Item("GTX 550ti", "junk", 600, 400);
@@ -35,6 +47,11 @@ public class Game
         ECPU = new Item("Threadripper 4 GHz", "epic", 5000, 3300);
         LCPU = new Item("i9 6 GHz", "legendary", 7000, 4600);
      
+        junk.add(JGPU); junk.add(JRAM); junk.add(JCPU);
+        normal.add(NGPU); normal.add(NRAM); normal.add(NCPU);
+        rare.add(RGPU); rare.add(RRAM); rare.add(RCPU);
+        epic.add(EGPU); epic.add(ERAM); epic.add(ECPU);
+        legendary.add(LGPU); legendary.add(LRAM); legendary.add(LCPU);
     }
     
     private void createInventories(){
@@ -169,16 +186,150 @@ public class Game
             System.out.println(currentRoom.getLongDescription());
             if (currentRoom.getShortDescription() == "at the center of the scrapyard"){
                 inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
+                //<editor-fold defaultstate="collapsed" desc="Center">
+                
+
+                if (inventoryRoom.getRarity() == "junk"){
+                    for (int i = 0; i <  inventoryRoom.getMaxStorageRoom(); i++){
+                        int random = (int) (Math.random()*3);
+                        inventoryRoom.roomAddItem(junk.get(random));
+                    }
+                }
+                else if (inventoryRoom.getRarity() == "normal"){
+                    for (int i = 0; i <  inventoryRoom.getMaxStorageRoom(); i++){
+                        int random = (int) (Math.random()*3);
+                        inventoryRoom.roomAddItem(normal.get(random));
+                    }
+                }
+                else if (inventoryRoom.getRarity() == "rare"){
+                    for (int i = 0; i <  inventoryRoom.getMaxStorageRoom(); i++){
+                        int random = (int) (Math.random()*3);
+                        inventoryRoom.roomAddItem(rare.get(random));
+                    }
+                }
+                else if (inventoryRoom.getRarity() == "epic"){
+                    for (int i = 0; i <  inventoryRoom.getMaxStorageRoom(); i++){
+                        int random = (int) (Math.random()*3);
+                        inventoryRoom.roomAddItem(epic.get(random));
+                    }
+                }
+                else if (inventoryRoom.getRarity() == "legendary"){
+                    for (int i = 0; i <  inventoryRoom.getMaxStorageRoom(); i++){
+                        int random = (int) (Math.random()*3);
+                        inventoryRoom.roomAddItem(legendary.get(random));
+                    }
+                }
             }
+            //</editor-fold>
             else if (currentRoom.getShortDescription() == "at the east part of the scrapyard"){
                 inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
+                //<editor-fold defaultstate="collapsed" desc="east">
+                
+                if (inventoryRoom.getRarity() == "junk"){
+                    for (int i = 0; i <  inventoryRoom.getMaxStorageRoom(); i++){
+                        int random = (int) (Math.random()*3);
+                        inventoryRoom.roomAddItem(junk.get(random));
+                    }
+                }
+                else if (inventoryRoom.getRarity() == "normal"){
+                    for (int i = 0; i <  inventoryRoom.getMaxStorageRoom(); i++){
+                        int random = (int) (Math.random()*3);
+                        inventoryRoom.roomAddItem(normal.get(random));
+                    }
+                }
+                else if (inventoryRoom.getRarity() == "rare"){
+                    for (int i = 0; i <  inventoryRoom.getMaxStorageRoom(); i++){
+                        int random = (int) (Math.random()*3);
+                        inventoryRoom.roomAddItem(rare.get(random));
+                    }
+                }
+                else if (inventoryRoom.getRarity() == "epic"){
+                    for (int i = 0; i <  inventoryRoom.getMaxStorageRoom(); i++){
+                        int random = (int) (Math.random()*3);
+                        inventoryRoom.roomAddItem(epic.get(random));
+                    }
+                }
+                else if (inventoryRoom.getRarity() == "legendary"){
+                    for (int i = 0; i <  inventoryRoom.getMaxStorageRoom(); i++){
+                        int random = (int) (Math.random()*3);
+                        inventoryRoom.roomAddItem(legendary.get(random));
+                    }
+                }
+                
             }
+            //</editor-fold>
             else if (currentRoom.getShortDescription() == "at the south part of the scrapyard"){
                 inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
+                //<editor-fold defaultstate="collapsed" desc="south">
+                
+                if (inventoryRoom.getRarity() == "junk"){
+                    for (int i = 0; i <  inventoryRoom.getMaxStorageRoom(); i++){
+                        int random = (int) (Math.random()*3);
+                        inventoryRoom.roomAddItem(junk.get(random));
+                    }
+                }
+                else if (inventoryRoom.getRarity() == "normal"){
+                    for (int i = 0; i <  inventoryRoom.getMaxStorageRoom(); i++){
+                        int random = (int) (Math.random()*3);
+                        inventoryRoom.roomAddItem(normal.get(random));
+                    }
+                }
+                else if (inventoryRoom.getRarity() == "rare"){
+                    for (int i = 0; i <  inventoryRoom.getMaxStorageRoom(); i++){
+                        int random = (int) (Math.random()*3);
+                        inventoryRoom.roomAddItem(rare.get(random));
+                    }
+                }
+                else if (inventoryRoom.getRarity() == "epic"){
+                    for (int i = 0; i <  inventoryRoom.getMaxStorageRoom(); i++){
+                        int random = (int) (Math.random()*3);
+                        inventoryRoom.roomAddItem(epic.get(random));
+                    }
+                }
+                else if (inventoryRoom.getRarity() == "legendary"){
+                    for (int i = 0; i <  inventoryRoom.getMaxStorageRoom(); i++){
+                        int random = (int) (Math.random()*3);
+                        inventoryRoom.roomAddItem(legendary.get(random));
+                    }
+                }
             }
+            //</editor-fold>
             else if (currentRoom.getShortDescription() == "at the west part of the scrapyard"){
                 inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
+                //<editor-fold defaultstate="collapsed" desc="west">
+                
+                if (inventoryRoom.getRarity() == "junk"){
+                    for (int i = 0; i <  inventoryRoom.getMaxStorageRoom(); i++){
+                        int random = (int) (Math.random()*3);
+                        inventoryRoom.roomAddItem(junk.get(random));
+                    }
+                }
+                else if (inventoryRoom.getRarity() == "normal"){
+                    for (int i = 0; i <  inventoryRoom.getMaxStorageRoom(); i++){
+                        int random = (int) (Math.random()*3);
+                        inventoryRoom.roomAddItem(normal.get(random));
+                    }
+                }
+                else if (inventoryRoom.getRarity() == "rare"){
+                    for (int i = 0; i <  inventoryRoom.getMaxStorageRoom(); i++){
+                        int random = (int) (Math.random()*3);
+                        inventoryRoom.roomAddItem(rare.get(random));
+                    }
+                }
+                else if (inventoryRoom.getRarity() == "epic"){
+                    for (int i = 0; i <  inventoryRoom.getMaxStorageRoom(); i++){
+                        int random = (int) (Math.random()*3);
+                        inventoryRoom.roomAddItem(epic.get(random));
+                    }
+                }
+                else if (inventoryRoom.getRarity() == "legendary"){
+                    for (int i = 0; i <  inventoryRoom.getMaxStorageRoom(); i++){
+                        int random = (int) (Math.random()*3);
+                        inventoryRoom.roomAddItem(legendary.get(random));
+                    }
+                }
             }
+            //</editor-fold>
             else { 
                 inventoryRoom.emptyRoom();
             }

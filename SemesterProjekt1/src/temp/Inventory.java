@@ -12,11 +12,14 @@ public class Inventory {
     //Creating a string for our roomtype called rarity
     private String rarity;
     //Creating integer for maximum storage
-    private int maxStorage;
+    private int maxStoragePlayer;
+    //Max Storage will be determined later
+    //private int maxStorageHouse; //unlimted
+    private int maxStorageRoom;
     
     //No-args contructor for player inventory
     public Inventory() {
-    maxStorage = 3;
+    maxStoragePlayer = 3;
     inventoryPlayer = new ArrayList<Item>();
     
     }
@@ -53,27 +56,27 @@ public class Inventory {
         switch (rarity.toLowerCase()){
                     case "junk":
                         this.rarity = rarity;
-                        this.maxStorage = 3;
+                        this.maxStorageRoom = 3;
                         break;
                     case "normal":
                         this.rarity = rarity;
-                        this.maxStorage = 2;
+                        this.maxStorageRoom = 2;
                         break;
                     case "rare":
                         this.rarity = rarity;
-                        this.maxStorage = 2;
+                        this.maxStorageRoom = 2;
                         break;
                     case "epic":
                         this.rarity = rarity;
-                        this.maxStorage = 1;
+                        this.maxStorageRoom = 1;
                         break;
                     case "legendary":
                         this.rarity = rarity;
-                        this.maxStorage = 1;
+                        this.maxStorageRoom = 1;
                         break;
                     default:
                         this.rarity = "junk";
-                        this.maxStorage = 3;
+                        this.maxStorageRoom = 3;
                         break;
                         
         }
@@ -83,34 +86,37 @@ public class Inventory {
         switch (rarity.toLowerCase()){
                     case "junk":
                         this.rarity = rarity;
-                        this.maxStorage = 3;
+                        this.maxStorageRoom = 3;
                         break;
                     case "normal":
                         this.rarity = rarity;
-                        this.maxStorage = 2;
+                        this.maxStorageRoom = 2;
                         break;
                     case "rare":
                         this.rarity = rarity;
-                        this.maxStorage = 2;
+                        this.maxStorageRoom = 2;
                         break;
                     case "epic":
                         this.rarity = rarity;
-                        this.maxStorage = 1;
+                        this.maxStorageRoom = 1;
                         break;
                     case "legendary":
                         this.rarity = rarity;
-                        this.maxStorage = 1;
+                        this.maxStorageRoom = 1;
                         break;
                     default:
                         this.rarity = "junk";
-                        this.maxStorage = 3;
+                        this.maxStorageRoom = 3;
                         break;
         }
+    }
+    public String getRarity(){
+        return this.rarity;
     }
     //Creates a method for adding items to the player inventory
     public void addItem(Item item){
         //The item is only added if the inventory isnt full
-        if (inventoryPlayer.size()<maxStorage){
+        if (inventoryPlayer.size()<maxStoragePlayer){
             inventoryPlayer.add(item);
             System.out.println("Item added");
         }
@@ -144,12 +150,35 @@ public class Inventory {
     public void housePickItem(Item item){
         //The item is only added to the player inventory if its contained within the house storage, the recieved item is removed from the house storage
         if (inventoryHouse.contains(item)==true){
-            inventoryPlayer.add(inventoryHouse.get(inventoryHouse.indexOf(item)));
-            inventoryHouse.remove(inventoryHouse.indexOf(item));
-            System.out.println("Item picked up");
+            if (inventoryPlayer.size() < maxStoragePlayer){
+                inventoryPlayer.add(inventoryHouse.get(inventoryHouse.indexOf(item)));
+                inventoryHouse.remove(inventoryHouse.indexOf(item));
+                System.out.println("Item picked up");
+            }
+            else{
+                System.out.println("Your inventory is full");
+            }
         }
         else{
             System.out.println("This item is not in your storage!");
+        }
+    }
+    //Method for adding an item to the room inventory from the randomizer
+    public void roomAddItem(Item item){
+        if (inventoryRoom.size() < this.getMaxStorageRoom()){
+            inventoryRoom.add(item);
+        }
+    }
+    public void roomPickItem(Item item){
+        if (inventoryRoom.contains(item)==true){
+            if (inventoryPlayer.size() < maxStoragePlayer){
+                inventoryPlayer.add(inventoryRoom.get(inventoryRoom.indexOf(item)));
+                inventoryRoom.remove(inventoryRoom.indexOf(item));
+                System.out.println("Item picked up");
+            }
+            else{
+                System.out.println("Your inventory is full");
+            }
         }
     }
     
@@ -167,5 +196,12 @@ public class Inventory {
     
     public void emptyRoom(){
         inventoryRoom.clear();
+    }
+
+    /**
+     * @return the maxStorageRoom
+     */
+    public int getMaxStorageRoom() {
+        return maxStorageRoom;
     }
 }
