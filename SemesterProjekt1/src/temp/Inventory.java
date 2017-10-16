@@ -1,6 +1,5 @@
 package temp;
 import java.util.ArrayList;
-import java.util.Arrays;
 /**
  *
  * @author Gruppe 20
@@ -21,12 +20,37 @@ public class Inventory {
     inventoryPlayer = new ArrayList<Item>();
     
     }
-    
+    //Creating a rarity randomizer
+    public String roomRamdomizer() {
+        int randomNum = (int)(1+Math.random()*1000);
+        String rarity;
+        //junk
+        if (randomNum >= 1 && randomNum <= 500) {
+            rarity = "junk"; 
+        }
+        //normal
+        else if (randomNum >= 501 && randomNum <= 800) {
+            rarity = "normal";
+        }
+        //rare
+        else if (randomNum >= 801 && randomNum <= 930) {
+            rarity = "rare";
+        }
+        //epic
+        else if (randomNum >= 931 && randomNum <= 995) {
+            rarity = "epic";
+        }
+        //legendary
+        else{
+             rarity = "legendary";
+        }
+        return rarity;
+    }
     //Creating arg constructor for room, which defines the room type
     
     public Inventory(String rarity){
         inventoryRoom = new ArrayList<Item>();
-        switch(rarity.toLowerCase()){
+        switch (rarity.toLowerCase()){
                     case "junk":
                         this.rarity = rarity;
                         this.maxStorage = 3;
@@ -47,8 +71,41 @@ public class Inventory {
                         this.rarity = rarity;
                         this.maxStorage = 1;
                         break;
+                    default:
+                        this.rarity = "junk";
+                        this.maxStorage = 3;
+                        break;
+                        
         }
         
+    }
+    public void setRarity(String rarity){
+        switch (rarity.toLowerCase()){
+                    case "junk":
+                        this.rarity = rarity;
+                        this.maxStorage = 3;
+                        break;
+                    case "normal":
+                        this.rarity = rarity;
+                        this.maxStorage = 2;
+                        break;
+                    case "rare":
+                        this.rarity = rarity;
+                        this.maxStorage = 2;
+                        break;
+                    case "epic":
+                        this.rarity = rarity;
+                        this.maxStorage = 1;
+                        break;
+                    case "legendary":
+                        this.rarity = rarity;
+                        this.maxStorage = 1;
+                        break;
+                    default:
+                        this.rarity = "junk";
+                        this.maxStorage = 3;
+                        break;
+        }
     }
     //Creates a method for adding items to the player inventory
     public void addItem(Item item){
@@ -108,4 +165,7 @@ public class Inventory {
         return contains;
     }
     
+    public void emptyRoom(){
+        inventoryRoom.clear();
+    }
 }

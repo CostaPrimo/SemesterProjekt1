@@ -6,7 +6,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    private Inventory inventoryPlayer;
+    private Inventory inventoryPlayer, inventoryRoom;
     Item JGPU, NGPU, RGPU, EGPU, LGPU;
     Item JRAM, NRAM, RRAM, ERAM, LRAM;
     Item JCPU, NCPU, RCPU, ECPU, LCPU;
@@ -19,26 +19,27 @@ public class Game
         parser = new Parser();
     }
     private void createItems(){
-        JGPU = new Item("GTX 550ti", "junk", 600, 300);
+        JGPU = new Item("GTX 550ti", "junk", 600, 400);
         NGPU = new Item("GTX 760", "normal", 900, 600);
         RGPU = new Item("GTX 960", "rare", 1500, 1000);
-        EGPU = new Item("GTX 1070", "epic", 600, 300);
-        LGPU = new Item("GTX Titan XP", "legendary", 600, 300);
-        JRAM = new Item("DDR 512 MB","junk", 500, 250);
-        NRAM = new Item("DDR2 2 GB","normal", 500, 250);
-        RRAM = new Item("DDR3 4 GB","rare", 500, 250);
-        ERAM = new Item("DDR3 8 GB","epic", 500, 250);
-        LRAM = new Item("DDR4 16 GB","legendary", 500, 250);
-        JCPU = new Item("i3 1.8 GHz", "junk", 7000, 3500);
-        NCPU = new Item("i5 2.5 GHz", "normal", 7000, 3500);
-        RCPU = new Item("i7 3.7 GHz", "rare", 7000, 3500);
-        ECPU = new Item("Threadripper 4 GHz", "epic", 7000, 3500);
-        LCPU = new Item("i9 6 GHz", "legendary", 7000, 3500);
+        EGPU = new Item("GTX 1070", "epic", 3500, 2300);
+        LGPU = new Item("GTX Titan XP", "legendary", 8000, 4000);
+        JRAM = new Item("DDR 512 MB","junk", 50, 30);
+        NRAM = new Item("DDR2 2 GB","normal", 100, 50);
+        RRAM = new Item("DDR3 4 GB","rare", 300, 150);
+        ERAM = new Item("DDR3 8 GB","epic", 1000, 500);
+        LRAM = new Item("DDR4 16 GB","legendary", 2000, 1000);
+        JCPU = new Item("i3 1.8 GHz", "junk", 600, 400);
+        NCPU = new Item("i5 2.5 GHz", "normal", 1200, 800);
+        RCPU = new Item("i7 3.7 GHz", "rare", 3000, 2000);
+        ECPU = new Item("Threadripper 4 GHz", "epic", 5000, 3300);
+        LCPU = new Item("i9 6 GHz", "legendary", 7000, 4600);
      
     }
     
     private void createInventories(){
         inventoryPlayer = new Inventory();
+        inventoryRoom = new Inventory("junk");
     }
 //    Creating a conctructor called "createRoom" where we name all the rooms and give them a description
     private void createRooms()
@@ -166,6 +167,22 @@ public class Game
         else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
+            if (currentRoom.getShortDescription() == "at the center of the scrapyard"){
+                inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
+            }
+            else if (currentRoom.getShortDescription() == "at the east part of the scrapyard"){
+                inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
+            }
+            else if (currentRoom.getShortDescription() == "at the south part of the scrapyard"){
+                inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
+            }
+            else if (currentRoom.getShortDescription() == "at the west part of the scrapyard"){
+                inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
+            }
+            else { 
+                inventoryRoom.emptyRoom();
+            }
+           
         }
     }
 
