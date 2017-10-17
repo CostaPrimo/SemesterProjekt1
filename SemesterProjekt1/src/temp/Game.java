@@ -1,5 +1,6 @@
 package temp;
 import java.util.ArrayList;
+import javafx.scene.chart.Chart;
 
 // Creating public "game" class 
 public class Game 
@@ -153,6 +154,9 @@ public class Game
         }
         else if (commandWord == CommandWord.INSPECT){
             inspectRoom(command);
+        }
+        else if (commandWord == CommandWord.STORE){
+            storeItems(command);
         }
         return wantToQuit;
         
@@ -374,8 +378,22 @@ public class Game
             System.out.println("Which item do you want to add?" + "\n" + inventoryRoom.showRoomInventory());
         }
         else{
-            int i = Integer.parseInt(command.getSecondWord());
-            inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i-1));
+            char [] charArray = command.getSecondWord().toCharArray();
+            if (charArray.length>1){
+                System.out.println("Please only enter 1 character");
+            }
+            else if (Character.isLetter(charArray[0])){
+                System.out.println("Please only enter numbers");
+            }
+            else {
+                int i = Integer.parseInt(command.getSecondWord());
+                if(i>0 && i<=inventoryRoom.getMaxStorageRoom()){
+                    inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i-1));
+                }
+                else{
+                    System.out.println("There's no items there");
+                }
+            }
         }
     }
     private void inspectRoom(Command command){
@@ -386,6 +404,14 @@ public class Game
         else{
             
             System.out.println("The item(s) you found in the room are:" + "\n" + inventoryRoom.showRoomInventory());
+        }
+    }
+    private void storeItems(Command command) {
+        if(!command.hasSecondWord()){
+            System.out.println("Which item do you wish to store?" + "\n" + inventoryRoom.showPlayerInventory());
+        }
+        else{
+            //inventoryRoom.houseAddItem(Integer.parseInt(command.getSecondWord()));
         }
     }
 }

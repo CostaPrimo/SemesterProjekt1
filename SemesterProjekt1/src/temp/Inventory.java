@@ -53,6 +53,7 @@ public class Inventory {
     
     public Inventory(String rarity){
         inventoryRoom = new ArrayList<Item>();
+        inventoryHouse = new ArrayList<Item>();
         maxStoragePlayer = 3;
         inventoryPlayer = new ArrayList<Item>();
         switch (rarity.toLowerCase()){
