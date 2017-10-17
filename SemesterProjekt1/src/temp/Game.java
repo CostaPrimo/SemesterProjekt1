@@ -76,25 +76,26 @@ public class Game
         
 //      Setting all the available exits from each of the rooms above
 
-        home.setExit("downtown", downtown);
+        home.setExit("south", downtown);
         
-        downtown.setExit("home", home);
-        downtown.setExit("merchant", merchant);
-        downtown.setExit("gamestop",gamestop);
-        downtown.setExit("scrapyardentrance", scrapyardentrance);
+        downtown.setExit("north", home);
+        downtown.setExit("east", merchant);
+        downtown.setExit("west",gamestop);
+        downtown.setExit("south", scrapyardentrance);
         
-        merchant.setExit("downtown", downtown);
-        gamestop.setExit("downtown", downtown);
+        merchant.setExit("west", downtown);
+        gamestop.setExit("east", downtown);
         
-        scrapyardentrance.setExit("downtown",downtown);
-        scrapyardentrance.setExit("scrapyardyeast", scrapyardeast);
-        scrapyardentrance.setExit("scrapyardwest", scrapyardwest);
-        scrapyardentrance.setExit("scrapyardmiddle", scrapyardmiddle);
+        scrapyardentrance.setExit("north",downtown);
+        scrapyardentrance.setExit("south", scrapyardmiddle);
         
-        scrapyardeast.setExit("scrapyardentrance", scrapyardentrance);
-        scrapyardwest.setExit("scrapyardentrance", scrapyardentrance);
-        scrapyardmiddle.setExit("scrapyardentrance", scrapyardentrance);
-        scrapyardmiddle.setExit("scrapyardsouth", scrapyardsouth);
+        scrapyardeast.setExit("west", scrapyardmiddle);
+        scrapyardwest.setExit("east", scrapyardmiddle);
+        scrapyardsouth.setExit("north", scrapyardmiddle);
+        scrapyardmiddle.setExit("north", scrapyardentrance);
+        scrapyardmiddle.setExit("south", scrapyardsouth);
+        scrapyardmiddle.setExit("east", scrapyardeast);
+        scrapyardmiddle.setExit("west", scrapyardwest);
 
        
         currentRoom = home;
@@ -150,6 +151,9 @@ public class Game
         else if (commandWord == CommandWord.PICKUP){
             addItem(command);
         }
+        else if (commandWord == CommandWord.INSPECT){
+            inspectRoom(command);
+        }
         return wantToQuit;
         
         
@@ -185,6 +189,7 @@ public class Game
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
             if (currentRoom.getShortDescription() == "at the center of the scrapyard"){
+                inventoryRoom.emptyRoom();
                 inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
                 //<editor-fold defaultstate="collapsed" desc="Center">
                 
@@ -222,6 +227,7 @@ public class Game
             }
             //</editor-fold>
             else if (currentRoom.getShortDescription() == "at the east part of the scrapyard"){
+                inventoryRoom.emptyRoom();
                 inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
                 //<editor-fold defaultstate="collapsed" desc="east">
                 
@@ -259,6 +265,7 @@ public class Game
             }
             //</editor-fold>
             else if (currentRoom.getShortDescription() == "at the south part of the scrapyard"){
+                inventoryRoom.emptyRoom();
                 inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
                 //<editor-fold defaultstate="collapsed" desc="south">
                 
@@ -295,6 +302,7 @@ public class Game
             }
             //</editor-fold>
             else if (currentRoom.getShortDescription() == "at the west part of the scrapyard"){
+                inventoryRoom.emptyRoom();
                 inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
                 //<editor-fold defaultstate="collapsed" desc="west">
                 
@@ -354,19 +362,30 @@ public class Game
     private void dropItem(Command command){
         
         if(!command.hasSecondWord()) {
-            System.out.println("Which item do you want to drop?" + "\n" + inventoryPlayer.showPlayerInventory());
+            System.out.println("Which item do you want to drop?" + "\n" + inventoryRoom.showPlayerInventory());
         }
         else{
-        inventoryPlayer.dropItem(Integer.parseInt(command.getSecondWord()));
+        inventoryRoom.dropItem(Integer.parseInt(command.getSecondWord()));
         }
     }
     private void addItem(Command command){
         
         if(!command.hasSecondWord()) {
-            System.out.println("Which item do you want to add?" + "\n" + inventoryPlayer.showPlayerInventory());
+            System.out.println("Which item do you want to add?" + "\n" + inventoryRoom.showRoomInventory());
         }
         else{
-        inventoryPlayer.addItem(RCPU);
+            int i = Integer.parseInt(command.getSecondWord());
+            inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i-1));
+        }
+    }
+    private void inspectRoom(Command command){
+        
+        if(command.hasSecondWord()) {
+            System.out.println("You dont need a second word");
+        }
+        else{
+            
+            System.out.println("The item(s) you found in the room are:" + "\n" + inventoryRoom.showRoomInventory());
         }
     }
 }

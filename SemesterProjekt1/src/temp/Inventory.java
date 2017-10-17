@@ -19,8 +19,8 @@ public class Inventory {
     
     //No-args contructor for player inventory
     public Inventory() {
-    maxStoragePlayer = 3;
-    inventoryPlayer = new ArrayList<Item>();
+//    maxStoragePlayer = 3;
+//    inventoryPlayer = new ArrayList<Item>();
     
     }
     //Creating a rarity randomizer
@@ -53,6 +53,8 @@ public class Inventory {
     
     public Inventory(String rarity){
         inventoryRoom = new ArrayList<Item>();
+        maxStoragePlayer = 3;
+        inventoryPlayer = new ArrayList<Item>();
         switch (rarity.toLowerCase()){
                     case "junk":
                         this.rarity = rarity;
@@ -116,7 +118,7 @@ public class Inventory {
     //Creates a method for adding items to the player inventory
     public void addItem(Item item){
         //The item is only added if the inventory isnt full
-        if (inventoryPlayer.size()<maxStoragePlayer){
+        if (inventoryPlayer.size()<getMaxStoragePlayer()){
             inventoryPlayer.add(item);
             System.out.println("Item added");
         }
@@ -150,7 +152,7 @@ public class Inventory {
     public void housePickItem(Item item){
         //The item is only added to the player inventory if its contained within the house storage, the recieved item is removed from the house storage
         if (inventoryHouse.contains(item)==true){
-            if (inventoryPlayer.size() < maxStoragePlayer){
+            if (inventoryPlayer.size() < getMaxStoragePlayer()){
                 inventoryPlayer.add(inventoryHouse.get(inventoryHouse.indexOf(item)));
                 inventoryHouse.remove(inventoryHouse.indexOf(item));
                 System.out.println("Item picked up");
@@ -189,6 +191,18 @@ public class Inventory {
         for(int i = 0; i < inventoryPlayer.size();i++)
         {
             contains += count + ": " + inventoryPlayer.get(i).getName() + "\n";
+            count++;
+        }
+        return contains;
+    }
+    
+    public String showRoomInventory(){
+        
+        String contains = "";
+        int count = 1;
+        for(int i = 0; i < inventoryRoom.size();i++)
+        {
+            contains += count + ": " + inventoryRoom.get(i).getName() + "\n";
            count++;
         }
         return contains;
@@ -203,5 +217,15 @@ public class Inventory {
      */
     public int getMaxStorageRoom() {
         return maxStorageRoom;
+    }
+
+    /**
+     * @return the maxStoragePlayer
+     */
+    public int getMaxStoragePlayer() {
+        return maxStoragePlayer;
+    }
+    public Item getRoomItem(int i) {
+        return inventoryRoom.get(i);
     }
 }

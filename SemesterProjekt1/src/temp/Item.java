@@ -32,17 +32,6 @@ public class Item {
         return this.Sellprice;
     }
     
-    //Method for getting the rarity of an Item
-    
-    //public String getRarity(){
-        
-   //}
-    
-    //Setting rarity for the items
-    
-    
-    
-    
 //    public void getDescription(){
 //        
 //    }

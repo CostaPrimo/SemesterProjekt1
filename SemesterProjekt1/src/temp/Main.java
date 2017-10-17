@@ -15,7 +15,7 @@ public class Main {
         temp.addItem(CPU);
         temp.addItem(CPU);
         temp.addItem(CPU);
-        */
+        
         
         System.out.println(temp.showPlayerInventory());
         System.out.println("test");
@@ -24,7 +24,7 @@ public class Main {
         System.out.println(temp.showPlayerInventory());
         System.out.println("test");
         //c.selectAnswer(0, p);
-        
+        */
         //Actual serious stuff
         Game game = new Game();
         game.play();       
