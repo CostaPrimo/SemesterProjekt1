@@ -66,7 +66,7 @@ public class Inventory {
         switch (rarity.toLowerCase()){
                     case "junk":
                         this.rarity = rarity;
-                        this.maxStorageRoom = 3;
+                        this.maxStorageRoom = 3; 
                         break;
                     case "normal":
                         this.rarity = rarity;
@@ -85,15 +85,15 @@ public class Inventory {
                         this.maxStorageRoom = 1;
                         break;
                     default:
-                        this.rarity = "junk";
-                        this.maxStorageRoom = 3;
+                        this.rarity = "nothing";
+                        this.maxStorageRoom = 0; //Show the new one I created and how/why it worked. - REMOVE AFTER
                         break;
                         
         }
         
     }
     public void setRarity(String rarity){
-        switch (rarity.toLowerCase()){
+        switch (rarity.toLowerCase()){ //Why do we have one with and WITHOUT lowercase. Why not just this one?
                     case "junk":
                         this.rarity = rarity;
                         this.maxStorageRoom = 3;
@@ -115,8 +115,8 @@ public class Inventory {
                         this.maxStorageRoom = 1;
                         break;
                     default:
-                        this.rarity = "junk";
-                        this.maxStorageRoom = 3;
+                        this.rarity = "nothing"; //Show the new one I created and how/why it worked. - REMOVE AFTER
+                        this.maxStorageRoom = 0;
                         break;
         }
     }

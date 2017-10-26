@@ -57,7 +57,7 @@ public class Game
     
     private void createInventories(){
         inventoryPlayer = new Inventory();
-        inventoryRoom = new Inventory("junk");
+        inventoryRoom = new Inventory("nothing"); //Why do we set a default value here?? It broke the game because no rarity room = junk = 3 storage
         inventoryHouse = new Inventory();
         inventoryTotal = new Inventory();
     }
@@ -374,7 +374,16 @@ public class Game
             System.out.println("Which item do you want to drop?" + "\n" + inventoryRoom.showPlayerInventory());
         }
         else{
+            char[] charArray = command.getSecondWord().toCharArray();
+            if (charArray.length>1){
+                System.out.println("Please only enter 1 character");
+            }
+            else if (!Character.isDigit(charArray[0])){
+                System.out.println("Please only enter numbers");
+            }
+            else{
         inventoryRoom.dropItem(Integer.parseInt(command.getSecondWord()));
+            }
         }
     }
     private void addItem(Command command){
@@ -387,11 +396,12 @@ public class Game
             if (charArray.length>1){
                 System.out.println("Please only enter 1 character");
             }
-            else if (Character.isLetter(charArray[0])){
+            else if (!Character.isDigit(charArray[0])){
                 System.out.println("Please only enter numbers");
             }
             else {
                 int i = Integer.parseInt(command.getSecondWord());
+                
                 if(i>0 && i<=inventoryRoom.getMaxStorageRoom()){
                     inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i-1));
                 }
@@ -421,7 +431,7 @@ public class Game
             if (charArray.length>1){
                 System.out.println("Please only enter 1 character");
             }
-            else if (Character.isLetter(charArray[0])){
+            else if (!Character.isDigit(charArray[0])){
                 System.out.println("Please only enter numbers");
             }
             else {
@@ -445,13 +455,13 @@ public class Game
             if (charArray.length>1){
                 System.out.println("Please only enter 1 character");
             }
-            else if (Character.isLetter(charArray[0])){
+            else if (!Character.isDigit(charArray[0])){
                 System.out.println("Please only enter numbers");
             }
             else {
                 
             }
-            
+    
 //            else {
 //                int i = Integer.parseInt(command.getSecondWord());
 //                if (i> 0 && i <= inventoryRoom.getInventoryPlayerSize()) {
@@ -464,5 +474,8 @@ public class Game
             
             
         }
-    
+    // Trying to think if I can create a input validation method instead of retyping
+   // private String inputTester(Command command){
+        
+    //}
 }
