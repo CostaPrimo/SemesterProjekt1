@@ -9,6 +9,9 @@ public class Inventory {
     private ArrayList<Item> inventoryPlayer;
     private ArrayList<Item> inventoryHouse;
     private ArrayList<Item> inventoryRoom;
+    private ArrayList<Item> inventoryComputer;
+    private ArrayList<Item> inventoryTotal;
+    
     //Creating a string for our roomtype called rarity
     private String rarity;
     //Creating integer for maximum storage
@@ -16,6 +19,7 @@ public class Inventory {
     //Max Storage will be determined later
     //private int maxStorageHouse; //unlimted
     private int maxStorageRoom;
+    private int maxStorageComputer;
     
     //No-args contructor for player inventory
     public Inventory() {
@@ -56,6 +60,9 @@ public class Inventory {
         inventoryHouse = new ArrayList<Item>();
         maxStoragePlayer = 3;
         inventoryPlayer = new ArrayList<Item>();
+        inventoryComputer = new ArrayList<Item>();
+        maxStorageComputer = 3;
+        inventoryTotal = new ArrayList<Item>();
         switch (rarity.toLowerCase()){
                     case "junk":
                         this.rarity = rarity;
@@ -208,7 +215,29 @@ public class Inventory {
         }
         return contains;
     }
-    
+    public String showHouseInventory(){
+        
+        String contains = "";
+        int count = 1;
+        for(int i = 0; i < inventoryHouse.size();i++){
+            contains += count + ": " + inventoryHouse.get(i).getName() + "\n";
+            count++;
+        }
+        return contains;
+    }
+    public String showInventoryTotal(){
+        String contains = "";
+        int count = 1;
+        for(int i = 0; i < inventoryTotal.size();i++){
+            contains += count + ": " + inventoryTotal.get(i).getName() + "\n";
+            count++;
+        
+    }
+    return contains;
+    }
+    //public Item getTotalInventory(){
+        //return ;
+    //}
     public void emptyRoom(){
         inventoryRoom.clear();
     }
@@ -228,5 +257,19 @@ public class Inventory {
     }
     public Item getRoomItem(int i) {
         return inventoryRoom.get(i);
+    }
+    
+    public Item getPlayerItem(int i){
+        return inventoryPlayer.get(i-1);
+        
+    }
+    
+    public int getInventoryPlayerSize(){
+        return inventoryPlayer.size();
+    }
+    
+    public void buildInventoryTotal(){
+        inventoryTotal.addAll(inventoryPlayer);
+        inventoryTotal.addAll(inventoryHouse);
     }
 }

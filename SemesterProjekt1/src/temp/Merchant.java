@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package temp;
 
 /**
  *
- * @author Simon
+ * @author Nikolaj Frank-Jensen
  */
-class Game {
-
-    void play() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+public class Merchant extends NPC {
+    
+    public Merchant(String name, String description) {
+        super(name, description);
     }
     
 }

@@ -7,7 +7,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    private Inventory inventoryPlayer, inventoryRoom;
+    private Inventory inventoryPlayer, inventoryRoom, inventoryHouse, inventoryTotal;
     Item JGPU, NGPU, RGPU, EGPU, LGPU;
     Item JRAM, NRAM, RRAM, ERAM, LRAM;
     Item JCPU, NCPU, RCPU, ECPU, LCPU;
@@ -58,6 +58,8 @@ public class Game
     private void createInventories(){
         inventoryPlayer = new Inventory();
         inventoryRoom = new Inventory("junk");
+        inventoryHouse = new Inventory();
+        inventoryTotal = new Inventory();
     }
 //    Creating a conctructor called "createRoom" where we name all the rooms and give them a description
     private void createRooms()
@@ -157,6 +159,9 @@ public class Game
         }
         else if (commandWord == CommandWord.STORE){
             storeItems(command);
+        }
+        else if (commandWord == CommandWord.BUILD) {
+            buildComputer (command);
         }
         return wantToQuit;
         
@@ -411,7 +416,53 @@ public class Game
             System.out.println("Which item do you wish to store?" + "\n" + inventoryRoom.showPlayerInventory());
         }
         else{
-            //inventoryRoom.houseAddItem(Integer.parseInt(command.getSecondWord()));
+            
+            char [] charArray = command.getSecondWord().toCharArray();        
+            if (charArray.length>1){
+                System.out.println("Please only enter 1 character");
+            }
+            else if (Character.isLetter(charArray[0])){
+                System.out.println("Please only enter numbers");
+            }
+            else {
+                int i = Integer.parseInt(command.getSecondWord());
+                if (i> 0 && i <= inventoryRoom.getInventoryPlayerSize()) {
+                    inventoryRoom.houseAddItem(inventoryRoom.getPlayerItem(Integer.parseInt(command.getSecondWord())));
+                }
+                else {
+                    System.out.println("Item not found");
+                    }
+            }
         }
     }
+    private void buildComputer (Command command){
+        if (!command.hasSecondWord()){
+            inventoryRoom.buildInventoryTotal();
+            System.out.println("Which item do you want to build into your computer?" + "\n" + inventoryRoom.showInventoryTotal() );
+        }
+        else{
+            char [] charArray = command.getSecondWord().toCharArray();
+            if (charArray.length>1){
+                System.out.println("Please only enter 1 character");
+            }
+            else if (Character.isLetter(charArray[0])){
+                System.out.println("Please only enter numbers");
+            }
+            else {
+                
+            }
+            
+//            else {
+//                int i = Integer.parseInt(command.getSecondWord());
+//                if (i> 0 && i <= inventoryRoom.getInventoryPlayerSize()) {
+//                    inventoryRoom.houseAddItem(inventoryRoom.getPlayerItem(Integer.parseInt(command.getSecondWord())));
+//                }
+//                else {
+//                    System.out.println("Item not found");
+//                    }
+            }
+            
+            
+        }
+    
 }
