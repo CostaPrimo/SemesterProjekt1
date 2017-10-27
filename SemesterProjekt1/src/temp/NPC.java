@@ -15,6 +15,22 @@ public class NPC {
         this.description = description;
         
     }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+    
+    
     
     
     
