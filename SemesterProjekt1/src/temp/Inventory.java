@@ -191,7 +191,17 @@ public class Inventory {
             }
         }
     }
-    
+    public void computerAddItem(Item item){
+        if(inventoryTotal.contains(item)==true){
+            if(inventoryComputer.size() < maxStorageComputer){
+                inventoryComputer.add(inventoryTotal.get(inventoryTotal.indexOf(item)));
+                System.out.println("Item added to computer");
+            }
+            else{
+                System.out.println("Stop being a pleb and get a larger motherboard");
+            }
+        }
+    }
     public String showPlayerInventory(){
         
         String contains = "";
@@ -268,8 +278,20 @@ public class Inventory {
         return inventoryPlayer.size();
     }
     
+    public Item getInventoryTotalItem(int i){
+        return inventoryTotal.get(i-1);
+    }
+    
     public void buildInventoryTotal(){
         inventoryTotal.addAll(inventoryPlayer);
         inventoryTotal.addAll(inventoryHouse);
+    }
+    
+    public Item getComputerItem(int i){
+        return inventoryComputer.get(i);
+    }
+    
+    public int getInventoryComputerSize(){
+        return inventoryComputer.size();
     }
 }

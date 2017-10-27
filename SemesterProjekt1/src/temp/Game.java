@@ -7,12 +7,12 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    private Inventory inventoryPlayer, inventoryRoom, inventoryHouse, inventoryTotal;
+    private Inventory inventoryRoom;
     Item JGPU, NGPU, RGPU, EGPU, LGPU;
     Item JRAM, NRAM, RRAM, ERAM, LRAM;
     Item JCPU, NCPU, RCPU, ECPU, LCPU;
     ArrayList<Item> junk, normal, rare, epic, legendary;
-    
+    private int score = 0;
     public Game() 
     {
         createRooms();
@@ -56,10 +56,9 @@ public class Game
     }
     
     private void createInventories(){
-        inventoryPlayer = new Inventory();
+        
         inventoryRoom = new Inventory("nothing"); //Why do we set a default value here?? It broke the game because no rarity room = junk = 3 storage
-        inventoryHouse = new Inventory();
-        inventoryTotal = new Inventory();
+        
     }
 //    Creating a conctructor called "createRoom" where we name all the rooms and give them a description
     private void createRooms()
@@ -161,7 +160,8 @@ public class Game
             storeItems(command);
         }
         else if (commandWord == CommandWord.BUILD) {
-            buildComputer (command);
+            wantToQuit = buildComputer(command);
+            
         }
         return wantToQuit;
         
@@ -422,32 +422,38 @@ public class Game
         }
     }
     private void storeItems(Command command) {
-        if(!command.hasSecondWord()){
-            System.out.println("Which item do you wish to store?" + "\n" + inventoryRoom.showPlayerInventory());
-        }
-        else{
-            
-            char [] charArray = command.getSecondWord().toCharArray();        
-            if (charArray.length>1){
-                System.out.println("Please only enter 1 character");
+        if(currentRoom.getShortDescription() == "at your home"){
+            if(!command.hasSecondWord()){
+                System.out.println("Which item do you wish to store?" + "\n" + inventoryRoom.showPlayerInventory());
             }
-            else if (!Character.isDigit(charArray[0])){
-                System.out.println("Please only enter numbers");
-            }
-            else {
-                int i = Integer.parseInt(command.getSecondWord());
-                if (i> 0 && i <= inventoryRoom.getInventoryPlayerSize()) {
-                    inventoryRoom.houseAddItem(inventoryRoom.getPlayerItem(Integer.parseInt(command.getSecondWord())));
+            else{
+
+                char [] charArray = command.getSecondWord().toCharArray();        
+                if (charArray.length>1){
+                    System.out.println("Please only enter 1 character");
+                }
+                else if (!Character.isDigit(charArray[0])){
+                    System.out.println("Please only enter numbers");
                 }
                 else {
-                    System.out.println("Item not found");
+                    int i = Integer.parseInt(command.getSecondWord());
+                    if (i> 0 && i <= inventoryRoom.getInventoryPlayerSize()) {
+                        inventoryRoom.houseAddItem(inventoryRoom.getPlayerItem(Integer.parseInt(command.getSecondWord())));
                     }
+                    else {
+                        System.out.println("Item not found");
+                        }
+                }
             }
         }
+        else{
+            System.out.println("You need to be at home.... to store an item in your home");
+        }
     }
-    private void buildComputer (Command command){
+    private boolean buildComputer (Command command){
+        inventoryRoom.buildInventoryTotal();
+        if(currentRoom.getShortDescription() == "at your home"){
         if (!command.hasSecondWord()){
-            inventoryRoom.buildInventoryTotal();
             System.out.println("Which item do you want to build into your computer?" + "\n" + inventoryRoom.showInventoryTotal() );
         }
         else{
@@ -458,24 +464,35 @@ public class Game
             else if (!Character.isDigit(charArray[0])){
                 System.out.println("Please only enter numbers");
             }
-            else {
-                
-            }
-    
-//            else {
-//                int i = Integer.parseInt(command.getSecondWord());
-//                if (i> 0 && i <= inventoryRoom.getInventoryPlayerSize()) {
-//                    inventoryRoom.houseAddItem(inventoryRoom.getPlayerItem(Integer.parseInt(command.getSecondWord())));
-//                }
-//                else {
-//                    System.out.println("Item not found");
-//                    }
-            }
             
+            else {
+                int i = Integer.parseInt(command.getSecondWord());
+                if (i> 0 && i <= inventoryRoom.getInventoryPlayerSize()) {
+                    inventoryRoom.computerAddItem(inventoryRoom.getInventoryTotalItem(Integer.parseInt(command.getSecondWord())));
+                    if(inventoryRoom.getInventoryComputerSize() == 3){
+                        for(int j = 0; j < inventoryRoom.getInventoryComputerSize();j++){
+                            score += inventoryRoom.getComputerItem(j).getBuyPrice();
+                            System.out.println("Your added item is " + inventoryRoom.getComputerItem(j).getName() + " with the value of " + inventoryRoom.getComputerItem(j).getBuyPrice());
+                        }
+                        System.out.println("Your total score is " + score);
+                        return true;
+                    }
+                }
+                else {
+                    System.out.println("Item not found");
+                    
+                    }
+            }
             
         }
+        }
+        else{
+            System.out.println("You need to be at home in order to build your PC");
+        }
+        return false;
     // Trying to think if I can create a input validation method instead of retyping
    // private String inputTester(Command command){
         
     //}
+    }
 }
