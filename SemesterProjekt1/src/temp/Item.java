@@ -23,16 +23,15 @@ public class Item {
     public String getName(){
         return this.Name;
     }
+    
+    
     //Method for getting the BuyPrice of an Item
     public int getBuyPrice(){
         return this.Buyprice;
     }
+    
     //Method for getting the SellPrice of an Item
     public int getSellPrice(){
         return this.Sellprice;
     }
-    
-//    public void getDescription(){
-//        
-//    }
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package temp;
 
 import java.util.ArrayList;
@@ -14,16 +9,21 @@ import java.util.Collection;
  */
 public class Merchant extends NPC {
     private ArrayList<Item>inventoryMerchant;
+    
     public Merchant(String name, String description) {
         super(name, description);
         inventoryMerchant = new ArrayList<>();
     }
-    public void addItem(Item item){
-        inventoryMerchant.add(item);
-    }
+   
+    
     public void addAllItems(Collection allItems){
         inventoryMerchant.addAll(allItems);
     }
+    
+    public void addItem(Item item){
+        inventoryMerchant.add(item);
+    }
+    
     
     public String showMerchantInventory(){
         String contains = "";
@@ -35,7 +35,8 @@ public class Merchant extends NPC {
         return contains;
     }
     
-   public Item getItemMerchant(int i){
-       return inventoryMerchant.get(i-1);
-   }
+    
+    public Item getItemMerchant(int i){
+        return inventoryMerchant.get(i-1);
+    }
 }

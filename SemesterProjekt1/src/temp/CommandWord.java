@@ -11,9 +11,8 @@ package temp;
 * for the variables go, quit, help and?
 */
 
-public enum CommandWord
-{
-    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), DROP("drop"),PICKUP("pickup"), INSPECT("inspect"), STORE("store"), BUILD("build"), BUY("buy"),SELL("sell");
+public enum CommandWord{
+    GO("go"), INSPECT("inspect"), PICKUP("pickup"), DROP("drop"), STORE("store"), BUILD("build"), BUY("buy"), SELL("sell"), QUIT("quit"), HELP("help"), UNKNOWN("?");
     
     /**
      * CommandWord line addresed as a string, named commandString.
@@ -21,15 +20,14 @@ public enum CommandWord
      */
     private String commandString;
     
-    CommandWord(String commandString)
-    {
+    CommandWord(String commandString){
         this.commandString = commandString;
     }
+    
     /**
      * The constructor returns the string value when commandString is referenced.  
      */
-    public String toString()
-    {
+    public String toString(){
         return commandString;
     }
 }

@@ -14,15 +14,15 @@ public class Parser
     private Scanner reader;
 
 //    The no arg constructer which creates our default parser
-    public Parser() 
-    {
+    public Parser(){
 //        Commands creates and object from the CommandWords class & reader is our scanner.
         commands = new CommandWords();
         reader = new Scanner(System.in);
     }
-//The getter to get a command
-    public Command getCommand() 
-    {
+
+
+    //The getter to get a command
+    public Command getCommand(){
         String inputLine;
         String word1 = null;
         String word2 = null;
@@ -43,11 +43,14 @@ public class Parser
 //        And then we return word 1 and word 2.
         return new Command(commands.getCommandWord(word1), word2);
     }
-// This method shows all the commands we have.
-    public void showCommands()
-    {
+
+
+    // This method shows all the commands we have.
+    public void showCommands(){
         commands.showAll();
     }
+    
+    
     // this method we use to be able to use our scanner in other classes so we dont have to import it everytime.
     public String returnString(){
         return reader.next();
