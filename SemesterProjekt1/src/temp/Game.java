@@ -150,7 +150,57 @@ public class Game {
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
-
+    
+    private boolean catchUserInput(Command command){
+        char[] charArray = command.getSecondWord().toCharArray();
+            
+        if (charArray.length>1){
+            System.out.println("Please only enter 1 character");
+            return false;
+        }
+        else if (!Character.isDigit(charArray[0])){
+            System.out.println("Please only enter numbers");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    
+    private void setRoomRarity(Inventory inventory){
+        if (inventory.getRarity() == "junk") {
+            for (int i = 0; i < inventory.getMaxStorageRoom(); i++) {
+                int random = (int) (Math.random() * 3);
+                inventory.roomAddItem(junk.get(random));
+            }
+        } 
+        else if (inventory.getRarity() == "normal") {
+            for (int i = 0; i < inventory.getMaxStorageRoom(); i++) {
+                int random = (int) (Math.random() * 3);
+                inventory.roomAddItem(normal.get(random));
+            }
+        } 
+        else if (inventory.getRarity() == "rare") {
+            for (int i = 0; i < inventory.getMaxStorageRoom(); i++) {
+                int random = (int) (Math.random() * 3);
+                inventory.roomAddItem(rare.get(random));
+            }
+        } 
+        else if (inventory.getRarity() == "epic") {
+            for (int i = 0; i < inventory.getMaxStorageRoom(); i++) {
+                int random = (int) (Math.random() * 3);
+                inventory.roomAddItem(epic.get(random));
+            }
+        } 
+        else if (inventory.getRarity() == "legendary") {
+            for (int i = 0; i < inventory.getMaxStorageRoom(); i++) {
+                int random = (int) (Math.random() * 3);
+                inventory.roomAddItem(legendary.get(random));
+            }
+        }
+    }
+    
+    
 //  Creating a boolean that prints a message when an unknown command occurs
     private boolean processCommand(Command command) {
         boolean wantToQuit = false;
@@ -213,64 +263,50 @@ public class Game {
         }
     }
     
-    public void buyItem(Command command) {
+    private void buyItem(Command command) {
         if (currentRoom.getShortDescription() == "at the merchant") {
             if (!command.hasSecondWord()) {
                 System.out.println("Which item would you like to buy? Specifiy number please " + merchantShop.showMerchantInventory());
             }
             else{
-                char[] charArray = command.getSecondWord().toCharArray();
-            
-                if (charArray.length>1){
-                    System.out.println("Please only enter 1 character");
-                }
-                else if (!Character.isDigit(charArray[0])){
-                    System.out.println("Please only enter numbers");
-                }
-                else if (inventoryRoom.getInventoryPlayerSize() < 3){
-                    if(score >= merchantShop.getItemMerchant(Integer.parseInt(command.getSecondWord())).getBuyPrice()){
-                    inventoryRoom.addItem(merchantShop.getItemMerchant(Integer.parseInt(command.getSecondWord())));
-                    score -= merchantShop.getItemMerchant(Integer.parseInt(command.getSecondWord())).getBuyPrice();
-                    System.out.println("Item bought");
+                if(catchUserInput(command)!=false){
+                    if (inventoryRoom.getInventoryPlayerSize() < 3){
+                        if(score >= merchantShop.getItemMerchant(Integer.parseInt(command.getSecondWord())).getBuyPrice()){
+                        inventoryRoom.addItem(merchantShop.getItemMerchant(Integer.parseInt(command.getSecondWord())));
+                        score -= merchantShop.getItemMerchant(Integer.parseInt(command.getSecondWord())).getBuyPrice();
+                        System.out.println("Item bought");
+                        }
+                        else{
+                            System.out.println("Need more money");
+                        }
                     }
                     else{
-                        System.out.println("Need more money");
+                        System.out.println("You do not have enough space in your inventory");
                     }
                 }
-                else{
-                    System.out.println("You do not have enough space in your inventory");
-                }
             }
-            
         }
         else if (currentRoom.getShortDescription() == "at gamestop") {
             if (!command.hasSecondWord()) {
                 System.out.println("Which item would you like to buy? Specifiy number please " + merchantGamestop.showMerchantInventory());
             }
             else{
-                char[] charArray = command.getSecondWord().toCharArray();
-            
-                if (charArray.length>1){
-                    System.out.println("Please only enter 1 character");
-                }
-                else if (!Character.isDigit(charArray[0])){
-                    System.out.println("Please only enter numbers");
-                }
-                else if (inventoryRoom.getInventoryPlayerSize() < 3){
-                    if(score >= merchantGamestop.getItemMerchant(Integer.parseInt(command.getSecondWord())).getBuyPrice()){
-                    inventoryRoom.addItem(merchantGamestop.getItemMerchant(Integer.parseInt(command.getSecondWord())));
-                    score -= merchantGamestop.getItemMerchant(Integer.parseInt(command.getSecondWord())).getBuyPrice();
-                    System.out.println("Item bought");
+                if(catchUserInput(command)!=false){
+                    if (inventoryRoom.getInventoryPlayerSize() < 3){
+                        if(score >= merchantGamestop.getItemMerchant(Integer.parseInt(command.getSecondWord())).getBuyPrice()){
+                            inventoryRoom.addItem(merchantGamestop.getItemMerchant(Integer.parseInt(command.getSecondWord())));
+                            score -= merchantGamestop.getItemMerchant(Integer.parseInt(command.getSecondWord())).getBuyPrice();
+                            System.out.println("Item bought");
+                        }
+                        else{
+                            System.out.println("Need more money");
+                        }
                     }
                     else{
-                        System.out.println("Need more money");
+                        System.out.println("You do not have enough space in your inventory");
                     }
                 }
-                else{
-                    System.out.println("You do not have enough space in your inventory");
-                }
             }
-            
         }
         else{
             System.out.println("There is nothing to buy here");
@@ -317,132 +353,23 @@ public class Game {
             if (currentRoom.getShortDescription() == "at the center of the scrapyard") {
                 inventoryRoom.emptyRoom();
                 inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
-                //<editor-fold defaultstate="collapsed" desc="Center">
-
-                if (inventoryRoom.getRarity() == "junk") {
-                    for (int i = 0; i < inventoryRoom.getMaxStorageRoom(); i++) {
-                        int random = (int) (Math.random() * 3);
-                        inventoryRoom.roomAddItem(junk.get(random));
-                    }
-                } else if (inventoryRoom.getRarity() == "normal") {
-                    for (int i = 0; i < inventoryRoom.getMaxStorageRoom(); i++) {
-                        int random = (int) (Math.random() * 3);
-                        inventoryRoom.roomAddItem(normal.get(random));
-                    }
-                } else if (inventoryRoom.getRarity() == "rare") {
-                    for (int i = 0; i < inventoryRoom.getMaxStorageRoom(); i++) {
-                        int random = (int) (Math.random() * 3);
-                        inventoryRoom.roomAddItem(rare.get(random));
-                    }
-                } else if (inventoryRoom.getRarity() == "epic") {
-                    for (int i = 0; i < inventoryRoom.getMaxStorageRoom(); i++) {
-                        int random = (int) (Math.random() * 3);
-                        inventoryRoom.roomAddItem(epic.get(random));
-                    }
-                } else if (inventoryRoom.getRarity() == "legendary") {
-                    for (int i = 0; i < inventoryRoom.getMaxStorageRoom(); i++) {
-                        int random = (int) (Math.random() * 3);
-                        inventoryRoom.roomAddItem(legendary.get(random));
-                    }
-                }
-            } //</editor-fold>
+                setRoomRarity(inventoryRoom);               
+            }
             else if (currentRoom.getShortDescription() == "at the east part of the scrapyard") {
                 inventoryRoom.emptyRoom();
                 inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
-                //<editor-fold defaultstate="collapsed" desc="east">
-
-                if (inventoryRoom.getRarity() == "junk") {
-                    for (int i = 0; i < inventoryRoom.getMaxStorageRoom(); i++) {
-                        int random = (int) (Math.random() * 3);
-                        inventoryRoom.roomAddItem(junk.get(random));
-                    }
-                } else if (inventoryRoom.getRarity() == "normal") {
-                    for (int i = 0; i < inventoryRoom.getMaxStorageRoom(); i++) {
-                        int random = (int) (Math.random() * 3);
-                        inventoryRoom.roomAddItem(normal.get(random));
-                    }
-                } else if (inventoryRoom.getRarity() == "rare") {
-                    for (int i = 0; i < inventoryRoom.getMaxStorageRoom(); i++) {
-                        int random = (int) (Math.random() * 3);
-                        inventoryRoom.roomAddItem(rare.get(random));
-                    }
-                } else if (inventoryRoom.getRarity() == "epic") {
-                    for (int i = 0; i < inventoryRoom.getMaxStorageRoom(); i++) {
-                        int random = (int) (Math.random() * 3);
-                        inventoryRoom.roomAddItem(epic.get(random));
-                    }
-                } else if (inventoryRoom.getRarity() == "legendary") {
-                    for (int i = 0; i < inventoryRoom.getMaxStorageRoom(); i++) {
-                        int random = (int) (Math.random() * 3);
-                        inventoryRoom.roomAddItem(legendary.get(random));
-                    }
-                }
-
-            } //</editor-fold>
+                setRoomRarity(inventoryRoom);
+            }
             else if (currentRoom.getShortDescription() == "at the south part of the scrapyard") {
                 inventoryRoom.emptyRoom();
                 inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
-                //<editor-fold defaultstate="collapsed" desc="south">
-
-                if (inventoryRoom.getRarity() == "junk") {
-                    for (int i = 0; i < inventoryRoom.getMaxStorageRoom(); i++) {
-                        int random = (int) (Math.random() * 3);
-                        inventoryRoom.roomAddItem(junk.get(random));
-                    }
-                } else if (inventoryRoom.getRarity() == "normal") {
-                    for (int i = 0; i < inventoryRoom.getMaxStorageRoom(); i++) {
-                        int random = (int) (Math.random() * 3);
-                        inventoryRoom.roomAddItem(normal.get(random));
-                    }
-                } else if (inventoryRoom.getRarity() == "rare") {
-                    for (int i = 0; i < inventoryRoom.getMaxStorageRoom(); i++) {
-                        int random = (int) (Math.random() * 3);
-                        inventoryRoom.roomAddItem(rare.get(random));
-                    }
-                } else if (inventoryRoom.getRarity() == "epic") {
-                    for (int i = 0; i < inventoryRoom.getMaxStorageRoom(); i++) {
-                        int random = (int) (Math.random() * 3);
-                        inventoryRoom.roomAddItem(epic.get(random));
-                    }
-                } else if (inventoryRoom.getRarity() == "legendary") {
-                    for (int i = 0; i < inventoryRoom.getMaxStorageRoom(); i++) {
-                        int random = (int) (Math.random() * 3);
-                        inventoryRoom.roomAddItem(legendary.get(random));
-                    }
-                }
-            } //</editor-fold>
+                setRoomRarity(inventoryRoom);
+            }
             else if (currentRoom.getShortDescription() == "at the west part of the scrapyard") {
                 inventoryRoom.emptyRoom();
                 inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
-                //<editor-fold defaultstate="collapsed" desc="west">
-
-                if (inventoryRoom.getRarity() == "junk") {
-                    for (int i = 0; i < inventoryRoom.getMaxStorageRoom(); i++) {
-                        int random = (int) (Math.random() * 3);
-                        inventoryRoom.roomAddItem(junk.get(random));
-                    }
-                } else if (inventoryRoom.getRarity() == "normal") {
-                    for (int i = 0; i < inventoryRoom.getMaxStorageRoom(); i++) {
-                        int random = (int) (Math.random() * 3);
-                        inventoryRoom.roomAddItem(normal.get(random));
-                    }
-                } else if (inventoryRoom.getRarity() == "rare") {
-                    for (int i = 0; i < inventoryRoom.getMaxStorageRoom(); i++) {
-                        int random = (int) (Math.random() * 3);
-                        inventoryRoom.roomAddItem(rare.get(random));
-                    }
-                } else if (inventoryRoom.getRarity() == "epic") {
-                    for (int i = 0; i < inventoryRoom.getMaxStorageRoom(); i++) {
-                        int random = (int) (Math.random() * 3);
-                        inventoryRoom.roomAddItem(epic.get(random));
-                    }
-                } else if (inventoryRoom.getRarity() == "legendary") {
-                    for (int i = 0; i < inventoryRoom.getMaxStorageRoom(); i++) {
-                        int random = (int) (Math.random() * 3);
-                        inventoryRoom.roomAddItem(legendary.get(random));
-                    }
-                }
-            } //</editor-fold>
+                setRoomRarity(inventoryRoom);
+            }
             else if (currentRoom.getShortDescription() == "at the merchant") {
                 System.out.println("Mohammed: Welcome to my store, I have special prize just for you my friend take a look ");
                 System.out.println("Mohammed shows you the following items");
@@ -535,13 +462,16 @@ public class Game {
         if (currentRoom.getShortDescription() == "at your home") {
             if (!command.hasSecondWord()) {
                 System.out.println("Which item do you want to build into your computer?" + "\n" + inventoryRoom.showInventoryTotal());
-            } else {
+            } 
+            else {
                 char[] charArray = command.getSecondWord().toCharArray();
                 if (charArray.length > 1) {
                     System.out.println("Please only enter 1 character");
-                } else if (!Character.isDigit(charArray[0])) {
+                } 
+                else if (!Character.isDigit(charArray[0])) {
                     System.out.println("Please only enter numbers");
-                } else {
+                } 
+                else {
                     int i = Integer.parseInt(command.getSecondWord());
                     if (i > 0 && i <= inventoryRoom.getInventoryPlayerSize()) {
                         inventoryRoom.computerAddItem(inventoryRoom.getInventoryTotalItem(Integer.parseInt(command.getSecondWord())));
@@ -554,9 +484,9 @@ public class Game {
                             System.out.println("Your total score is " + score);
                             return true;
                         }
-                    } else {
+                    } 
+                    else {
                         System.out.println("Item not found");
-
                     }
                 }
 
