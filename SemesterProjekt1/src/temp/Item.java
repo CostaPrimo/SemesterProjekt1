@@ -7,9 +7,8 @@ package temp;
 public class Item {
     //Creating variables for the Item class
     private String Name, rarity;
-//    private String Description;
     private int Buyprice, Sellprice;
-//    private int score;
+    private boolean tooHeavy;
     
     //Creating a contructor for the Item class
     public Item(String name, String rarity, int bp, int sp){
@@ -17,6 +16,11 @@ public class Item {
         this.Buyprice = bp;
         this.Sellprice = sp;
         this.rarity = rarity;
+    }
+    
+    public Item(String name){
+        this.Name = name;
+        this.tooHeavy = true;
     }
     
     

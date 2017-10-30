@@ -34,12 +34,12 @@ public class Room
         
     
         //The getExitString method is created.
-    private String getExitString(){
+    public String getExitString(){
         //Exits are printed out using the hashmap, it loops through all exits and adds it to a returnstring until all exits have been printed.
-        String returnString = "Exits:";
+        String returnString = "Exits: ";
         Set<String> keys = exits.keySet();
         for(String exit : keys) {
-            returnString += " " + exit + ".";
+            returnString += exit + " ";
         }
         return returnString;
     }

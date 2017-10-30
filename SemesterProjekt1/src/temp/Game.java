@@ -10,26 +10,30 @@ public class Game {
     private Room currentRoom;
     private Inventory inventoryRoom;
     private Merchant merchantGamestop, merchantShop;
+    private Rat rat;
     Item JGPU, NGPU, RGPU, EGPU, LGPU;
     Item JRAM, NRAM, RRAM, ERAM, LRAM;
     Item JCPU, NCPU, RCPU, ECPU, LCPU;
     Item newspaper;
+    Item burntCar, BFS, scrap, container, washingMachine, blockbuster, IBMserver, scooter;
+    Room home, downtown, gamestop, merchant, scrapyardentrance, scrapyardmiddle, scrapyardwest, scrapyardeast, scrapyardsouth;
     ArrayList<Item> junk, normal, rare, epic, legendary;
     private int score = 1000;
 
     
     public Game() {
         createRooms();
-        createMerchants();
+        createNPCs();
         createInventories();
         createItemList();
         createItems();
         parser = new Parser();
     }
 
-    private void createMerchants() {
+    private void createNPCs() {
         merchantGamestop = new Merchant("Mr. MountainDew", "Your nemisis who works at GameStop");
         merchantShop = new Merchant("Mohammed", "Illegal immigrant from Afghanistan");
+        rat = new Rat("Svend", "Dank", scrapyardsouth);
     }
 
     private void createItemList() {
@@ -57,19 +61,35 @@ public class Game {
         ECPU = new Item("Threadripper 4 GHz", "epic", 5000, 3300);
         LCPU = new Item("i9 6 GHz", "legendary", 7000, 4600);
         newspaper = new Item("GameMagazine", "normal", 1000, 10);
+        BFS = new Item("BIG FUCKING STONE!");
+        scooter = new Item("an old scooter");
+        container = new Item("an empty container");
+        blockbuster = new Item("an old abandoned Blockbuster?");
+        washingMachine = new Item("a Siemens washing machine");
+        IBMserver = new Item("a fried IBM server (it's still burning)");
+        scrap = new Item("a pile of scrap");
+        burntCar = new Item("a burnt car");
 
         junk.add(JGPU);
         junk.add(JRAM);
         junk.add(JCPU);
+        junk.add(BFS);
+        junk.add(scrap);
+        junk.add(container);
         normal.add(NGPU);
         normal.add(NRAM);
         normal.add(NCPU);
+        normal.add(washingMachine);
+        normal.add(scooter);
         rare.add(RGPU);
         rare.add(RRAM);
         rare.add(RCPU);
+        rare.add(IBMserver);
+        rare.add(burntCar);
         epic.add(EGPU);
         epic.add(ERAM);
         epic.add(ECPU);
+        epic.add(blockbuster);
         legendary.add(LGPU);
         legendary.add(LRAM);
         legendary.add(LCPU);
@@ -77,7 +97,6 @@ public class Game {
         merchantGamestop.addAllItems(normal);
         merchantGamestop.addAllItems(rare);
         merchantGamestop.addAllItems(epic);
-        merchantGamestop.addAllItems(legendary);
         merchantShop.addItem(newspaper);
 
     }
@@ -90,8 +109,6 @@ public class Game {
 
     //Creating a conctructor called "createRoom" where we name all the rooms and give them a description
     private void createRooms() {
-        Room home, downtown, gamestop, merchant, scrapyardentrance, scrapyardmiddle, scrapyardwest, scrapyardeast, scrapyardsouth;
-
         home = new Room("at your home");
         downtown = new Room("at downtown");
         gamestop = new Room("at gamestop");
@@ -349,6 +366,8 @@ public class Game {
         } //If there is an exit in that given directionn set the CurrentRoom as nextRoom and print out room description
         else {
             currentRoom = nextRoom;
+            ratMove();
+            
             System.out.println(currentRoom.getLongDescription());
             if (currentRoom.getShortDescription() == "at the center of the scrapyard") {
                 inventoryRoom.emptyRoom();
@@ -380,6 +399,7 @@ public class Game {
                 System.out.println(merchantGamestop.showMerchantInventory());
             } else {
                 inventoryRoom.emptyRoom();
+                inventoryRoom.setRarity("nothing");
             }
 
         }
@@ -398,12 +418,24 @@ public class Game {
     //Making a method that prints our help messages when using the command "printHelp"
     private void printHelp() {
         System.out.println("WHAT??!");
-        System.out.println("DONT YOU UNDERSTAND");
-        System.out.println();
+        System.out.println("DONT YOU UNDERSTAND\n");
         System.out.println("USE THE COMMANDS: ");
         parser.showCommands();
     }
 
+    private void ratMove(){
+        String[] temp;
+        double random;
+        System.out.println("The rat is " + rat.getCurrentRoom().getShortDescription());
+        temp = rat.getCurrentRoom().getExitString().split(" ");
+        random = (Math.random()*temp.length);
+        if ((int)random == 0){
+            random++;
+        }
+        rat.setCurrentRoom(rat.getCurrentRoom().getExit(temp[(int)random]));
+        System.out.println("The rat is now " + rat.getCurrentRoom().getShortDescription());
+    }
+    
     public void sellItem(Command command){
         if(currentRoom.getShortDescription() == "at gamestop" || currentRoom.getShortDescription() == "at the merchant"){
             if(!command.hasSecondWord()){
