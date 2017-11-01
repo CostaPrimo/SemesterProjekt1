@@ -12,7 +12,7 @@ package temp;
 */
 
 public enum CommandWord{
-    GO("go"), INSPECT("inspect"), PICKUP("pickup"), DROP("drop"), STORE("store"), BUILD("build"), BUY("buy"), SELL("sell"), QUIT("quit"), HELP("help"), UNKNOWN("?");
+    GO("go"), INSPECT("inspect"), PICKUP("pickup"), DROP("drop"), STORE("store"), BUILD("build"), BUY("buy"), SELL("sell"), QUIT("quit"), HELP("help"), UNKNOWN("?"), USE("use"), WALLET("wallet");
     
     /**
      * CommandWord line addresed as a string, named commandString.

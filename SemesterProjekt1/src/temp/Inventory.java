@@ -285,7 +285,7 @@ public class Inventory {
     public int getMaxStoragePlayer() {
         return maxStoragePlayer;
     }
-    
+
     
     public Item getComputerItem(int i){
         return inventoryComputer.get(i);

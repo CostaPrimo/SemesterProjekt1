@@ -38,4 +38,11 @@ public class Item {
     public int getSellPrice(){
         return this.Sellprice;
     }
+
+    /**
+     * @return the tooHeavy
+     */
+    public boolean isTooHeavy() {
+        return tooHeavy;
+    }
 }
