@@ -179,7 +179,7 @@ public class Inventory {
                         this.maxStorageRoom = 1;
                         break;
                     default:
-                        this.rarity = "nothing"; //Show the new one I created and how/why it worked. - REMOVE AFTER
+                        this.rarity = "nothing"; 
                         this.maxStorageRoom = 0;
                         break;
         }
@@ -272,6 +272,9 @@ public class Inventory {
         return inventoryPlayer.size();
     }
     
+    public int getInventoryTotalSize(){
+        return inventoryTotal.size();
+    }
     /**
      * @return the maxStorageRoom
      */

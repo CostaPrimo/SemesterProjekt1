@@ -15,9 +15,9 @@ public class Game {
     Item JGPU, NGPU, RGPU, EGPU, LGPU;
     Item JRAM, NRAM, RRAM, ERAM, LRAM;
     Item JCPU, NCPU, RCPU, ECPU, LCPU;
-    Item newspaper, ratPoison, crowBar;
+    Item gameMagazine, ratPoison, crowBar;
     Item burntCar, BFS, scrap, container, washingMachine, blockbuster, IBMserver, scooter;
-    Room home, downtown, gamestop, merchant, scrapyardentrance, scrapyardmiddle, scrapyardwest, scrapyardeast, scrapyardsouth;
+    Room home, downtown, gamestop, merchant, scrapyardentrance, scrapyardmiddle, scrapyardwest, scrapyardeast, scrapyardsouth, scrapyardsoutheast, scrapyardsouthwest;
     ArrayList<Item> junk, normal, rare, epic, legendary, CPU, GPU, RAM;
     private int score = 1000;
     private int scoreToBeat = 9499;
@@ -50,22 +50,22 @@ public class Game {
     }
 
     private void createItems() {
-        JGPU = new Item("GTX 550ti", "junk", 600, 400);
-        NGPU = new Item("GTX 760", "normal", 900, 600);
-        RGPU = new Item("GTX 960", "rare", 1500, 1000);
-        EGPU = new Item("GTX 1070", "epic", 3500, 2300);
-        LGPU = new Item("GTX Titan XP", "legendary", 8000, 4000);
-        JRAM = new Item("DDR 512 MB", "junk", 50, 30);
-        NRAM = new Item("DDR2 2 GB", "normal", 100, 50);
-        RRAM = new Item("DDR3 4 GB", "rare", 300, 150);
-        ERAM = new Item("DDR3 8 GB", "epic", 1000, 500);
-        LRAM = new Item("DDR4 16 GB", "legendary", 2000, 1000);
-        JCPU = new Item("i3 1.8 GHz", "junk", 600, 400);
-        NCPU = new Item("i5 2.5 GHz", "normal", 1200, 800);
-        RCPU = new Item("i7 3.7 GHz", "rare", 3000, 2000);
-        ECPU = new Item("Threadripper 4 GHz", "epic", 5000, 3300);
-        LCPU = new Item("i9 6 GHz", "legendary", 7000, 4600);
-        newspaper = new Item("GameMagazine", "normal", 1000, 10);
+        JGPU = new Item("GTX 550ti", "junk", 600, 200);
+        NGPU = new Item("GTX 760", "normal", 900, 300);
+        RGPU = new Item("GTX 960", "rare", 1500, 500);
+        EGPU = new Item("GTX 1070", "epic", 3500, 1200);
+        LGPU = new Item("GTX Titan XP", "legendary", 8000, 2500);
+        JRAM = new Item("DDR 512 MB", "junk", 50, 20);
+        NRAM = new Item("DDR2 2 GB", "normal", 100, 30);
+        RRAM = new Item("DDR3 4 GB", "rare", 300, 100);
+        ERAM = new Item("DDR3 8 GB", "epic", 1000, 300);
+        LRAM = new Item("DDR4 16 GB", "legendary", 2000, 650);
+        JCPU = new Item("i3 1.8 GHz", "junk", 600, 200);
+        NCPU = new Item("i5 2.5 GHz", "normal", 1200, 400);
+        RCPU = new Item("i7 3.7 GHz", "rare", 3000, 1000);
+        ECPU = new Item("Threadripper 4 GHz", "epic", 5000, 1800);
+        LCPU = new Item("i9 6 GHz", "legendary", 7000, 2300);
+        gameMagazine = new Item("GameMagazine", "normal", 150, 10);
         BFS = new Item("BIG FUCKING STONE!");
         scooter = new Item("an old scooter");
         container = new Item("an empty container");
@@ -74,8 +74,8 @@ public class Game {
         IBMserver = new Item("a fried IBM server (it's still burning)");
         scrap = new Item("a pile of scrap");
         burntCar = new Item("a burnt car");
-        ratPoison = new Item("ratpoison", "normal", 500, 5);
-        crowBar = new Item("crowbar", "normal", 500, 5);
+        ratPoison = new Item("ratpoison", "normal", 500, 100);
+        crowBar = new Item("crowbar", "normal", 500, 100);
 
         junk.add(JGPU);
         junk.add(JRAM);
@@ -100,7 +100,7 @@ public class Game {
         legendary.add(LGPU);
         legendary.add(LRAM);
         legendary.add(LCPU);
-        merchantShop.addItem(newspaper);
+        merchantShop.addItem(gameMagazine);
         merchantShop.addItem(crowBar);
         merchantShop.addItem(ratPoison);
         merchantGamestop.addItem(JGPU);
@@ -149,6 +149,8 @@ public class Game {
         scrapyardwest = new Room("at the west part of the scrapyard");
         scrapyardeast = new Room("at the east part of the scrapyard");
         scrapyardsouth = new Room("at the south part of the scrapyard");
+        scrapyardsoutheast = new Room("at the southeast part of the scrapyard");
+        scrapyardsouthwest = new Room("at the southwest part of the scrapyard");
 
 //      Setting all the available exits from each of the rooms above
         home.setExit("south", downtown);
@@ -165,8 +167,16 @@ public class Game {
         scrapyardentrance.setExit("south", scrapyardmiddle);
 
         scrapyardeast.setExit("west", scrapyardmiddle);
+        scrapyardeast.setExit("south", scrapyardsoutheast);
+        scrapyardwest.setExit("south", scrapyardsouthwest);
         scrapyardwest.setExit("east", scrapyardmiddle);
         scrapyardsouth.setExit("north", scrapyardmiddle);
+        scrapyardsouth.setExit("east", scrapyardsoutheast);
+        scrapyardsouth.setExit("west", scrapyardsouthwest);
+        scrapyardsoutheast.setExit("north", scrapyardeast);
+        scrapyardsoutheast.setExit("west", scrapyardsouth);
+        scrapyardsouthwest.setExit("north", scrapyardwest);
+        scrapyardsouthwest.setExit("east", scrapyardsouth);
         scrapyardmiddle.setExit("north", scrapyardentrance);
         scrapyardmiddle.setExit("south", scrapyardsouth);
         scrapyardmiddle.setExit("east", scrapyardeast);
@@ -455,6 +465,16 @@ public class Game {
                 inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
                 setRoomRarity(inventoryRoom);
             }
+            else if (currentRoom.getShortDescription() == "at the southeast part of the scrapyard") {
+                inventoryRoom.emptyRoom();
+                inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
+                setRoomRarity(inventoryRoom);
+            }
+            else if (currentRoom.getShortDescription() == "at the southwest part of the scrapyard") {
+                inventoryRoom.emptyRoom();
+                inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
+                setRoomRarity(inventoryRoom);
+            }
             else if (currentRoom.getShortDescription() == "at the west part of the scrapyard") {
                 inventoryRoom.emptyRoom();
                 inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
@@ -506,10 +526,16 @@ public class Game {
             random++;
         }
         rat.setCurrentRoom(rat.getCurrentRoom().getExit(temp[(int)random]));
+        if(rat.getCurrentRoom().getShortDescription() == "at the entrance to the scrapyard"){
+            rat.setCurrentRoom(scrapyardmiddle);
+            
+        }
+        System.out.println("The rat is at " + rat.getCurrentRoom().getShortDescription());
         if(rat.getCurrentRoom()==currentRoom){
             System.out.println("The rat is in this room");
         }
     }
+    
     
     public void sellItem(Command command){
         if(currentRoom.getShortDescription() == "at gamestop" || currentRoom.getShortDescription() == "at the merchant"){
@@ -577,8 +603,20 @@ public class Game {
                 int i = Integer.parseInt(command.getSecondWord());
                 if (inventoryRoom.getInventoryPlayerSize() >= i){
                     Item useableitem = inventoryRoom.getPlayerItem(i);
-                    if (useableitem==newspaper){
-                        System.out.println("You used newspaper");
+                    if (useableitem==gameMagazine){
+                        System.out.println("Opening the Magazine you read the following:\n");
+                        System.out.println("GameMagazine 13.37th. edition ’17. 150 kr.");
+                        System.out.println("Rumors of people rushing to the local scrapyard, you won’t believe what they found!!!\n");
+                        System.out.println("Reportings of people rushing toward the scrapyard in order to find valuable items, has just been confirmed."
+                                + "\nOld aswell as new computer parts are scattered all over the huge scrapyard just a few minutes away from downtown.\n");
+                        System.out.println("According to the people we interviewed, there seems to be a difference in the quality aswell as year produced of the parts."
+                                + "\nSome parts date back to as early as the start of the 90’ies. And some look brand new."
+                                + "\nThe rare part however, as way more rare to find, which means only those who really look well might have a chance of finding a very valuable part.\n");
+                        System.out.println("One of the people we interviewed said the following:\n");
+                        System.out.println("“Yeah, I just got back from the scrapyard, and oh gees, look at these shiny parts."
+                                + "\nI hit the jackpot, the two new GPU’s should easily be able to run Crysis on the highest settings, and if not, I can just go to the local GameStop and sell the parts I found."
+                                + "\nBeware of the mutant rats though, I noticed a couple of them guarding some of the parts I wanted to pick and saw a poor guy get his WHOLE arm bit off. “\n");
+                        System.out.println("We recommend that everyone who thinks about going scavenging for parts equip themselves with rat poison which can be bought in Ali’s shop.");
                     }
                     else if (useableitem==ratPoison){
                         if(currentRoom==rat.getCurrentRoom() && rat.getIsDead()==false){
@@ -592,6 +630,7 @@ public class Game {
                     else if (useableitem==crowBar){
                         System.out.println("You used crowbar and unlocked the scrapyard!");
                     }
+                    
                 }
                 else{
                     System.out.println("Cannot use item you dont have");
@@ -615,19 +654,70 @@ public class Game {
         if (currentRoom.getShortDescription() == "at your home") {
             if (!command.hasSecondWord()) {
                 while (inventoryRoom.getInventoryComputerSize() != 3){
-                    System.out.println("Which item do you want to build into your computer?" + "\n" + inventoryRoom.showInventoryTotal());
-                    String temp = parser.returnString() + "";
-                    char[] charArray = temp.toCharArray();
-                    if (charArray.length > 1) {
-                        System.out.println("Please only enter 1 character");
-                    } 
-                    else if (!Character.isDigit(charArray[0])) {
-                        System.out.println("Please only enter numbers");
+                    if(inventoryRoom.getInventoryComputerSize()==0){
+                        System.out.println("Please insert a CPU for the first slot" + "\n" + inventoryRoom.showInventoryTotal());
+                        String temp = parser.returnString() + "";
+                        char[] charArray = temp.toCharArray();
+                        if (charArray.length > 1) {
+                            System.out.println("Please only enter 1 character");
+                        } 
+                        else if (!Character.isDigit(charArray[0])) {
+                            System.out.println("Please only enter numbers");
+                        }
+                        else {
+                            int i = Integer.parseInt(temp);
+                            if (i > 0 && i <= inventoryRoom.getInventoryTotalSize()) {
+                                if(CPU.contains(inventoryRoom.getInventoryTotalItem(i))){
+                                    inventoryRoom.computerAddItem(inventoryRoom.getInventoryTotalItem(i));
+                                }
+                                else{
+                                    System.out.println("Please add a CPU in this slot");
+                                }
+                            }
+                        }
                     }
-                    else {
-                        int i = Integer.parseInt(temp);
-                        if (i > 0 && i <= inventoryRoom.getInventoryPlayerSize()) {
-                        inventoryRoom.computerAddItem(inventoryRoom.getInventoryTotalItem(Integer.parseInt(temp)));
+                    else if(inventoryRoom.getInventoryComputerSize()==1){
+                        System.out.println("Please insert a GPU for the second slot" + "\n" + inventoryRoom.showInventoryTotal());
+                        String temp = parser.returnString() + "";
+                        char[] charArray = temp.toCharArray();
+                        if (charArray.length > 1) {
+                            System.out.println("Please only enter 1 character");
+                        } 
+                        else if (!Character.isDigit(charArray[0])) {
+                            System.out.println("Please only enter numbers");
+                        }
+                        else {
+                            int i = Integer.parseInt(temp);
+                            if (i > 0 && i <= inventoryRoom.getInventoryTotalSize()) {
+                                if(GPU.contains(inventoryRoom.getInventoryTotalItem(i))){
+                                    inventoryRoom.computerAddItem(inventoryRoom.getInventoryTotalItem(i));
+                                }
+                                else{
+                                    System.out.println("Please add a GPU in this slot");
+                                }
+                            }
+                        }
+                    }
+                    else if(inventoryRoom.getInventoryComputerSize()==2){
+                        System.out.println("Please insert a RAM for the third slot" + "\n" + inventoryRoom.showInventoryTotal());
+                        String temp = parser.returnString() + "";
+                        char[] charArray = temp.toCharArray();
+                        if (charArray.length > 1) {
+                            System.out.println("Please only enter 1 character");
+                        } 
+                        else if (!Character.isDigit(charArray[0])) {
+                            System.out.println("Please only enter numbers");
+                        }
+                        else {
+                            int i = Integer.parseInt(temp);
+                            if (i > 0 && i <= inventoryRoom.getInventoryTotalSize()) {
+                                if(RAM.contains(inventoryRoom.getInventoryTotalItem(i))){
+                                    inventoryRoom.computerAddItem(inventoryRoom.getInventoryTotalItem(i));
+                                }
+                                else{
+                                    System.out.println("Please add RAM in this slot");
+                                }
+                            }
                         }
                     }
                 }
