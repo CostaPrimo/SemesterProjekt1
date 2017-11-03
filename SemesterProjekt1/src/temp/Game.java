@@ -10,6 +10,8 @@ public class Game {
     private Parser parser;
     private Room currentRoom;
     private Inventory inventoryRoom;
+    private String tempParserName;
+    private Player player1;
     private Merchant merchantGamestop, merchantShop;
     private Rat rat;
     Item JGPU, NGPU, RGPU, EGPU, LGPU;
@@ -19,17 +21,20 @@ public class Game {
     Item burntCar, BFS, scrap, container, washingMachine, blockbuster, IBMserver, scooter;
     Room home, downtown, gamestop, merchant, scrapyardentrance, scrapyardmiddle, scrapyardwest, scrapyardeast, scrapyardsouth, scrapyardsoutheast, scrapyardsouthwest;
     ArrayList<Item> junk, normal, rare, epic, legendary, CPU, GPU, RAM;
-    private int score = 1000;
+    private int score = 1100;
     private int scoreToBeat = 9499;
+    
 
     
     public Game() {
         createRooms();
         createNPCs();
+        parser = new Parser();
+        createPlayerName();
+        createPlayer();
         createInventories();
         createItemList();
         createItems();
-        parser = new Parser();
     }
 
     private void createNPCs() {
@@ -75,7 +80,7 @@ public class Game {
         scrap = new Item("a pile of scrap");
         burntCar = new Item("a burnt car");
         ratPoison = new Item("ratpoison", "normal", 500, 100);
-        crowBar = new Item("crowbar", "normal", 500, 100);
+        crowBar = new Item("crowbar", "normal", 450, 100);
 
         junk.add(JGPU);
         junk.add(JRAM);
@@ -145,7 +150,7 @@ public class Game {
         gamestop = new Room("at gamestop");
         merchant = new Room("at the merchant");
         scrapyardentrance = new Room("at the entrance to the scrapyard");
-        scrapyardmiddle = new Room("at the center of the scrapyard");
+        scrapyardmiddle = new Room("at the center of the scrapyard", true);
         scrapyardwest = new Room("at the west part of the scrapyard");
         scrapyardeast = new Room("at the east part of the scrapyard");
         scrapyardsouth = new Room("at the south part of the scrapyard");
@@ -185,9 +190,18 @@ public class Game {
         currentRoom = home;
     }
 
+    private void createPlayerName(){
+        System.out.println("Please enter your name");
+        tempParserName = parser.returnString();
+    }
     
+    private void createPlayer(){
+         player1 = new Player(tempParserName);
+         System.out.println(player1.getName());
+    }
 //  Creating a constructor for the end message using boolean when game is finished
     public void play() {
+        
         printWelcome();
 
         boolean finished = false;
@@ -205,6 +219,7 @@ public class Game {
         System.out.println("THIS IS THE SCRAPYARD GAME");
         System.out.println("A WORLD OF SCRAP, FUN, AND ADVENTURES");
         System.out.println("TYPE '" + CommandWord.HELP + "' IF YOU DONT KNOW WHAT TO DO");
+        System.out.println("For an optional tutorial, please buy a game magazine found in a store");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
@@ -323,32 +338,35 @@ public class Game {
             if(catchUserInput(command)!=false){
                 int i = Integer.parseInt(command.getSecondWord());
                 if(currentRoom!=rat.getCurrentRoom()){
-                    if(inventoryRoom.getRoomItem(i-1).isTooHeavy()!=true){
-
-                        if (i > 0 && i <= inventoryRoom.getMaxStorageRoom()) {
+                    if (i > 0 && i <= inventoryRoom.getMaxStorageRoom()) {
+                        if(inventoryRoom.getRoomItem(i-1).isTooHeavy()!=true){
                             inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i - 1));
-                        } 
+                            System.out.println("Item picked up");
+                        }
                         else {
-                            System.out.println("There's no items there"); 
+                            System.out.println("Item is too heavy to pickup");
                         }
                     }
                     else {
-                        System.out.println("Item is too heavy to pickup");
+                        System.out.println("There's no items there"); 
                     }
                 }
                 else if (currentRoom==rat.getCurrentRoom() && rat.getIsDead()==true){
-                    if(inventoryRoom.getRoomItem(i-1).isTooHeavy()!=true){
+                    
 
-                        if (i > 0 && i <= inventoryRoom.getMaxStorageRoom()) {
+                    if (i > 0 && i <= inventoryRoom.getMaxStorageRoom()) {
+                        if(inventoryRoom.getRoomItem(i-1).isTooHeavy()!=true){
                             inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i - 1));
-                        } 
+                            System.out.println("Item picked up");
+                        }
                         else {
-                            System.out.println("There's no items there"); 
+                            System.out.println("Item is too heavy to pickup");
                         }
                     }
                     else {
-                        System.out.println("Item is too heavy to pickup");
+                        System.out.println("There's no items there"); 
                     }
+                    
                 }
                 else{
                     System.out.println("Kill the rats to pickup items!");
@@ -424,6 +442,7 @@ public class Game {
             } 
             else {
                 inventoryRoom.dropItem(Integer.parseInt(command.getSecondWord()));
+                System.out.println("Item dropped");
             }
         }
     }
@@ -445,56 +464,61 @@ public class Game {
             System.out.println("CANT GO THAT WAY");
         } //If there is an exit in that given directionn set the CurrentRoom as nextRoom and print out room description
         else {
-            currentRoom = nextRoom;
-            if (rat.getIsDead()!=true){
-                ratMove();
+            if(nextRoom.getIsLocked()){
+                System.out.println("This room is locked, you need to break the lock first");
             }
-            System.out.println(currentRoom.getLongDescription());
-            if (currentRoom.getShortDescription() == "at the center of the scrapyard") {
-                inventoryRoom.emptyRoom();
-                inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
-                setRoomRarity(inventoryRoom);               
-            }
-            else if (currentRoom.getShortDescription() == "at the east part of the scrapyard") {
-                inventoryRoom.emptyRoom();
-                inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
-                setRoomRarity(inventoryRoom);
-            }
-            else if (currentRoom.getShortDescription() == "at the south part of the scrapyard") {
-                inventoryRoom.emptyRoom();
-                inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
-                setRoomRarity(inventoryRoom);
-            }
-            else if (currentRoom.getShortDescription() == "at the southeast part of the scrapyard") {
-                inventoryRoom.emptyRoom();
-                inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
-                setRoomRarity(inventoryRoom);
-            }
-            else if (currentRoom.getShortDescription() == "at the southwest part of the scrapyard") {
-                inventoryRoom.emptyRoom();
-                inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
-                setRoomRarity(inventoryRoom);
-            }
-            else if (currentRoom.getShortDescription() == "at the west part of the scrapyard") {
-                inventoryRoom.emptyRoom();
-                inventoryRoom.setRarity(inventoryRoom.roomRamdomizer());
-                setRoomRarity(inventoryRoom);
-            }
-            else if (currentRoom.getShortDescription() == "at the merchant") {
-                System.out.println("Ali: Welcome to my store, I have special prize just for you my friend take a look ");
-                System.out.println("Ali shows you the following items");
-                System.out.println(merchantShop.showMerchantInventory());
-            } 
-            else if (currentRoom.getShortDescription() == "at gamestop") {
-                System.out.println("Mr. MountainDew: Hey, hows your pc doing? Oh wait... nvm. I broke it");
-                System.out.println("Mr. MountainDew shows you the following items");
-                System.out.println(merchantGamestop.showMerchantInventory());
-            } 
-            else {
-                inventoryRoom.emptyRoom();
-                inventoryRoom.setRarity("nothing");
-            }
+            else{
+                currentRoom = nextRoom;
+                if (rat.getIsDead()!=true){
+                    ratMove();
+                }
+                System.out.println(currentRoom.getLongDescription());
+                if (currentRoom.getShortDescription() == "at the center of the scrapyard") {
+                    inventoryRoom.emptyRoom();
+                    inventoryRoom.setRarity(inventoryRoom.roomRandomizer());
+                    setRoomRarity(inventoryRoom);               
+                }
+                else if (currentRoom.getShortDescription() == "at the east part of the scrapyard") {
+                    inventoryRoom.emptyRoom();
+                    inventoryRoom.setRarity(inventoryRoom.roomRandomizer());
+                    setRoomRarity(inventoryRoom);
+                }
+                else if (currentRoom.getShortDescription() == "at the south part of the scrapyard") {
+                    inventoryRoom.emptyRoom();
+                    inventoryRoom.setRarity(inventoryRoom.roomRandomizer());
+                    setRoomRarity(inventoryRoom);
+                }
+                else if (currentRoom.getShortDescription() == "at the southeast part of the scrapyard") {
+                    inventoryRoom.emptyRoom();
+                    inventoryRoom.setRarity(inventoryRoom.roomRandomizer());
+                    setRoomRarity(inventoryRoom);
+                }
+                else if (currentRoom.getShortDescription() == "at the southwest part of the scrapyard") {
+                    inventoryRoom.emptyRoom();
+                    inventoryRoom.setRarity(inventoryRoom.roomRandomizer());
+                    setRoomRarity(inventoryRoom);
+                }
+                else if (currentRoom.getShortDescription() == "at the west part of the scrapyard") {
+                    inventoryRoom.emptyRoom();
+                    inventoryRoom.setRarity(inventoryRoom.roomRandomizer());
+                    setRoomRarity(inventoryRoom);
+                }
+                else if (currentRoom.getShortDescription() == "at the merchant") {
+                    System.out.println("Ali: Welcome to my store, I have special prize just for you my friend take a look ");
+                    System.out.println("Ali shows you the following items");
+                    System.out.println(merchantShop.showMerchantInventory());
+                } 
+                else if (currentRoom.getShortDescription() == "at gamestop") {
+                    System.out.println("Mr. MountainDew: Hey, hows your pc doing? Oh wait... nvm. I broke it");
+                    System.out.println("Mr. MountainDew shows you the following items");
+                    System.out.println(merchantGamestop.showMerchantInventory());
+                } 
+                else {
+                    inventoryRoom.emptyRoom();
+                    inventoryRoom.setRarity("nothing");
+                }
 
+            }
         }
     }
     
@@ -617,20 +641,26 @@ public class Game {
                                 + "\nI hit the jackpot, the two new GPU’s should easily be able to run Crysis on the highest settings, and if not, I can just go to the local GameStop and sell the parts I found."
                                 + "\nBeware of the mutant rats though, I noticed a couple of them guarding some of the parts I wanted to pick and saw a poor guy get his WHOLE arm bit off. “\n");
                         System.out.println("We recommend that everyone who thinks about going scavenging for parts equip themselves with rat poison which can be bought in Ali’s shop.");
+                        System.out.println("However, reportings say that the police has locked the scrapyard to keep scavengers away. Proceed with caution");
                     }
                     else if (useableitem==ratPoison){
                         if(currentRoom==rat.getCurrentRoom() && rat.getIsDead()==false){
                             rat.setIsDead(true);
-                            System.out.println("You used ratpoison and killed the rat!");
+                            System.out.println("You used all your ratpoison and killed the rat!");
+                            inventoryRoom.dropItem(i);
                         }
                         else{
                             System.out.println("There is no rat in this room");
                         }
                     }
                     else if (useableitem==crowBar){
-                        System.out.println("You used crowbar and unlocked the scrapyard!");
+                        if(currentRoom.getShortDescription() == "at the entrance to the scrapyard"){
+                        System.out.println("You used crowbar and smashed the lock");
+                        currentRoom.getExit("south").setIsLocked(false);
+                        inventoryRoom.dropItem(i);
+                        System.out.println("Your crowbar broke");
+                        }
                     }
-                    
                 }
                 else{
                     System.out.println("Cannot use item you dont have");

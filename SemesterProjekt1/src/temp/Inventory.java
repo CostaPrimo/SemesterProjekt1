@@ -66,7 +66,6 @@ public class Inventory {
         //The item is only added if the inventory isnt full
         if (inventoryPlayer.size()<getMaxStoragePlayer()){
             inventoryPlayer.add(item);
-            System.out.println("Item added");
         }
         else {
             System.out.println("Your inventory is full");
@@ -191,7 +190,7 @@ public class Inventory {
     }
     
     //Creating a rarity randomizer
-    public String roomRamdomizer() {
+    public String roomRandomizer() {
         int randomNum = (int)(1+Math.random()*1000);
         String rarity;
         //junk

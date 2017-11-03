@@ -18,13 +18,21 @@ public class Room
         //Defining datatypes.
     private String description;
     private HashMap<String, Room> exits;
+    private boolean isLocked;
         // Making our constructor that takes a string argument called description. The argument is renamed to this.decsription.
         // exits is constructed and is defined as a new hashmap object
     public Room(String description){
         this.description = description;
         exits = new HashMap<String, Room>();
     }
-        
+    
+        public Room(String description, boolean isLocked){
+        this.description = description;
+        this.isLocked = isLocked;
+        exits = new HashMap<String, Room>();
+    }
+      
+    
     
         //Creating a setExit method which takes a String argument named direction and a Room object named neighbor 
     public void setExit(String direction, Room neighbor){
@@ -59,4 +67,19 @@ public class Room
     public Room getExit(String direction){
         return exits.get(direction);
     }
+
+    /**
+     * @return the isLocked
+     */
+    public boolean getIsLocked() {
+        return isLocked;
+    }
+
+    /**
+     * @param isLocked the isLocked to set
+     */
+    public void setIsLocked(boolean isLocked) {
+        this.isLocked = isLocked;
+    }
+    
 }
