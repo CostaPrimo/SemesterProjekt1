@@ -3,14 +3,14 @@ package temp;
 import java.util.ArrayList;
 import javafx.scene.chart.Chart;
 import javafx.scene.control.PopupControl;
-
+import java.util.Scanner;
 // Creating public "game" class 
 public class Game {
 
     private Parser parser;
     private Room currentRoom;
     private Inventory inventoryRoom;
-    private String tempParserName;
+    private String Playername;
     private Player player1;
     private Merchant merchantGamestop, merchantShop;
     private Rat rat;
@@ -23,18 +23,19 @@ public class Game {
     ArrayList<Item> junk, normal, rare, epic, legendary, CPU, GPU, RAM;
     private int score = 1100;
     private int scoreToBeat = 9499;
+    private Scanner nameInputTest = new Scanner(System.in);
     
 
     
     public Game() {
         createRooms();
         createNPCs();
-        parser = new Parser();
         createPlayerName();
         createPlayer();
         createInventories();
         createItemList();
         createItems();
+        parser = new Parser();
     }
 
     private void createNPCs() {
@@ -192,11 +193,11 @@ public class Game {
 
     private void createPlayerName(){
         System.out.println("Please enter your name");
-        tempParserName = parser.returnString();
+        Playername = nameInputTest.next();
     }
     
     private void createPlayer(){
-         player1 = new Player(tempParserName);
+         player1 = new Player(Playername);
          System.out.println(player1.getName());
     }
 //  Creating a constructor for the end message using boolean when game is finished

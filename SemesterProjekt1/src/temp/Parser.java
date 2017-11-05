@@ -31,7 +31,7 @@ public class Parser
 //     Here we make a string to store our input from the user.
         inputLine = reader.nextLine();
 
-//        Here we create a new scanner which has the input from the string we just made.her laver vi en ny scanner og tjekker om den får input 
+//        Here we create a new scanner which has the input from the string we just made.
 //        And the we set word 1 and word 2 to the input we gave it.
         Scanner tokenizer = new Scanner(inputLine);
         if(tokenizer.hasNext()) {
