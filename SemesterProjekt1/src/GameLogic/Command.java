@@ -1,4 +1,4 @@
-package temp;
+package GameLogic;
 
 /** 
  * @author  Michael Kolling and David J. Barnes

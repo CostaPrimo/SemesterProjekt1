@@ -1,4 +1,4 @@
-package temp;
+package GameLogic;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -12,7 +12,7 @@ package temp;
 */
 
 public enum CommandWord{
-    GO("go"), INSPECT("inspect"), PICKUP("pickup"), DROP("drop"), STORE("store"), BUILD("build"), BUY("buy"), SELL("sell"), QUIT("quit"), HELP("help"), UNKNOWN("?"), USE("use"), WALLET("wallet");
+    GO("go"), INSPECT("inspect"), PICKUP("pickup"), DROP("drop"), STORE("store"), BUILD("build"), BUY("buy"), SELL("sell"), QUIT("quit"), HELP("help"), UNKNOWN("?"), USE("use"), WALLET("wallet"), SLEEP("sleep");
     
     /**
      * CommandWord line addresed as a string, named commandString.

@@ -1,4 +1,4 @@
-package temp;
+package GameLogic;
 import java.util.ArrayList;
 /**
  *
@@ -293,6 +293,9 @@ public class Inventory {
         return inventoryComputer.get(i);
     }
     
+    public Item getHouseitem(int i){
+        return inventoryHouse.get(i-1);
+    }
     public Item getInventoryTotalItem(int i){
         return inventoryTotal.get(i-1);
     }

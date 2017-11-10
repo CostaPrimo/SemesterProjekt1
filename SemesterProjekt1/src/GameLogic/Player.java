@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package temp;
+package GameLogic;
 
 /**
  *
@@ -14,7 +14,7 @@ public class Player {
     private String name = "";
     private int score = 1500;
     private int timeToken = 14;
-    
+    private int dayToken = 7;
     public Player(String name){
         this.name = name;
     }
@@ -59,6 +59,20 @@ public class Player {
      */
     public void setTimeToken(int timeToken) {
         this.timeToken = timeToken;
+    }
+
+    /**
+     * @return the dayToken
+     */
+    public int getDayToken() {
+        return dayToken;
+    }
+
+    /**
+     * @param dayToken the dayToken to set
+     */
+    public void setDayToken(int dayToken) {
+        this.dayToken = dayToken;
     }
     
 }
