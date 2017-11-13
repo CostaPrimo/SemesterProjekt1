@@ -19,7 +19,7 @@ public class Challenge {
     multipleChoice[4] = "test";
     multipleChoice[5] = "test";
     multipleChoice[6] = "test";
-    multipleChoice[7] = "test";
+    multipleChoice[7] = "What is the name of the shopkeeper who sell crowbars, rat poison and other sorts of items?";
     multipleChoice[8] = "test";
     multipleChoice[9] = "test";
     
@@ -27,16 +27,16 @@ public class Challenge {
    }
    
    
-   public void selectAnswer(int i, Parser ind){
+   public boolean selectAnswer(int i, Parser ind){
         userSelect1 = multipleChoice[i];
         boolean iscorrect = false;
         int attempts = 2;
-        if(userSelect1==multipleChoice[0]){      
-            System.out.println(multipleChoice[0]);           
-            System.out.println("A: Answer 1");
-            System.out.println("B: Answer 2");
-            System.out.println("C: Answer 3");
-            System.out.println("D: Answer 4");
+        if(userSelect1==multipleChoice[7]){      
+            System.out.println(multipleChoice[7]);           
+            System.out.println("A: Ludoman");
+            System.out.println("B: Ali");
+            System.out.println("C: Mr. Mountain Dew");
+            System.out.println("D: Mohammed");
 
             
             while (iscorrect == false && attempts>0){
@@ -73,12 +73,15 @@ public class Challenge {
             }
             if (iscorrect == true){
                     System.out.println("CORRECT! ");
-                }
-                else if (iscorrect == false){
-                    System.out.println("INCORRECT! ");
-                }
+                    return true;
+            }
+            else{
+                System.out.println("INCORRECT! ");
+                return false;
+            }
         }
-  
+        return false;
+        
    }
            
 }

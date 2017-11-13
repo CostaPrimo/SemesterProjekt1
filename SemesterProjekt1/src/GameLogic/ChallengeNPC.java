@@ -12,10 +12,12 @@ package GameLogic;
 public class ChallengeNPC extends NPC {
     private boolean isActive;
     private Room currentRoom;
+    private Challenge challenge;
     public ChallengeNPC(String name, String description, Room room) {
         super(name, description);
         isActive = false;
         currentRoom = room;
+        challenge = new Challenge();
     }
 
     /**
@@ -30,6 +32,11 @@ public class ChallengeNPC extends NPC {
      */
     public void setIsActive(boolean isActive) {
         this.isActive = isActive;
+    }
+    
+    public boolean getQuestion(int i, Parser ind){
+        return challenge.selectAnswer(i, ind);
+        
     }
 
     /**

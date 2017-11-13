@@ -509,7 +509,16 @@ public class Game {
                     if(player1.getDayToken() == 7){
                         valutaMan.setIsActive(true);
                         if(currentRoom == valutaMan.getCurrentRoom()){
-                            System.out.println("EEEEY GAMBLE YOUR STUFF");
+                          System.out.println("Valutaman approaches you and gives you the following question");
+                          if (valutaMan.getQuestion(player1.getDayToken(), parser)){
+                              System.out.println("Ludoman is proud of you and doubles your money");
+                              player1.setScore(player1.getScore()*2);
+                          }
+                          else{
+                              System.out.println("Ludoman is dissapointed and steals half your money");
+                              player1.setScore(player1.getScore()/2);
+                          }
+                          
                         }
                     }
                     else{
