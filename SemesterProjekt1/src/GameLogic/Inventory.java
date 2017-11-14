@@ -78,7 +78,7 @@ public class Inventory {
     }
     
     public void computerAddItem(Item item){
-        if(inventoryTotal.contains(item)==true){
+        if(inventoryTotal.contains(item)){
             if(inventoryComputer.size() < maxStorageComputer){
                 inventoryComputer.add(inventoryTotal.get(inventoryTotal.indexOf(item)));
                 System.out.println("Item added to computer");
@@ -90,13 +90,15 @@ public class Inventory {
     }
     
     //Method for removing an item from the player inventory
-    public void dropItem(int i){
+    public boolean dropItem(int i){
         //The method only accepts numbers within the size of the inventory
         if(inventoryPlayer.size()>=i){
             inventoryPlayer.remove(i-1);
+            return true;
         }
         else{
             System.out.println("Cant drop item thats not in your inventory");
+            return false;
         }
     }
     
@@ -107,7 +109,7 @@ public class Inventory {
     //Method for adding an item from the player inventory to the house storage
     public void houseAddItem(Item item){
         //The item is only added to the house storage if its contained within the player inventory, the stored item is removed from the player inventory
-        if (inventoryPlayer.contains(item)==true){
+        if (inventoryPlayer.contains(item)){
             inventoryHouse.add(inventoryPlayer.get(inventoryPlayer.indexOf(item)));
             inventoryPlayer.remove(inventoryPlayer.indexOf(item));
             System.out.println("Item stored");
@@ -120,7 +122,7 @@ public class Inventory {
     //Method for adding an item from the house storage to the player inventory
     public void housePickItem(Item item){
         //The item is only added to the player inventory if its contained within the house storage, the recieved item is removed from the house storage
-        if (inventoryHouse.contains(item)==true){
+        if (inventoryHouse.contains(item)){
             if (inventoryPlayer.size() < getMaxStoragePlayer()){
                 inventoryPlayer.add(inventoryHouse.get(inventoryHouse.indexOf(item)));
                 inventoryHouse.remove(inventoryHouse.indexOf(item));
@@ -143,7 +145,7 @@ public class Inventory {
     }
     
     public void roomPickItem(Item item){
-        if (inventoryRoom.contains(item)==true){
+        if (inventoryRoom.contains(item)){
             if (inventoryPlayer.size() < maxStoragePlayer){
                 inventoryPlayer.add(inventoryRoom.get(inventoryRoom.indexOf(item)));
                 inventoryRoom.remove(inventoryRoom.indexOf(item));

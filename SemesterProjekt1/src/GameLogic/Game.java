@@ -1,6 +1,7 @@
 package GameLogic;
 
 import java.util.ArrayList;
+import java.util.Locale; //I need help with using this.
 import javafx.scene.chart.Chart;
 import javafx.scene.control.PopupControl;
 import java.util.Scanner;
@@ -24,7 +25,6 @@ public class Game {
     ArrayList<Item> junk, normal, rare, epic, legendary, CPU, GPU, RAM;
     private int scoreToBeat = 9499;
     private Scanner nameInputTest = new Scanner(System.in);
-    
 
     
     public Game() {
@@ -220,24 +220,30 @@ public class Game {
     
 //  Creating a method for a welcome message when starting the game and adding in a commandS
     private void printWelcome() {
-        System.out.println();
         System.out.println("THIS IS THE SCRAPYARD GAME");
         System.out.println("A WORLD OF SCRAP, FUN, AND ADVENTURES");
-        System.out.println("TYPE '" + CommandWord.HELP + "' IF YOU DONT KNOW WHAT TO DO");
-        System.out.println("For an optional tutorial, please buy a game magazine found in a store");
-        System.out.println();
+        System.out.println("TYPE '" + CommandWord.HELP + "' IF YOU DON'T KNOW WHAT TO DO");
+        System.out.println("For an optional tutorial, please buy a game magazine found in a store\n");
         System.out.println(currentRoom.getLongDescription());
     }
     
     private boolean catchUserInput(Command command){
         char[] charArray = command.getSecondWord().toCharArray();
             
-        if (charArray.length>1){
-            System.out.println("Please only enter 1 character");
+        if (charArray.length>2){
+            System.out.println("Please only enter at most 2 characters");
             return false;
         }
         else if (!Character.isDigit(charArray[0])){
             System.out.println("Please only enter numbers");
+            return false;
+        }
+        else if(charArray.length == 2 && !Character.isDigit(charArray[1])){
+            System.out.println("Please only enter numbers");
+            return false;
+        }
+        else if (charArray[0] == '0'){
+            System.out.println("No zeroes please");
             return false;
         }
         else{
@@ -355,13 +361,12 @@ public class Game {
                 System.out.println("Which item do you want to add?" + "\n" + inventoryRoom.showRoomInventory());
             } 
             else {
-                if(catchUserInput(command)!=false){
+                if(catchUserInput(command)){
                     int i = Integer.parseInt(command.getSecondWord());
                     if(currentRoom!=rat.getCurrentRoom()){
                         if (i > 0 && i <= inventoryRoom.getMaxStorageRoom()) {
                             if(inventoryRoom.getRoomItem(i-1).isTooHeavy()!=true){
                                 inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i - 1));
-                                System.out.println("Item picked up");
                             }
                             else {
                                 System.out.println("Item is too heavy to pickup");
@@ -371,13 +376,12 @@ public class Game {
                             System.out.println("There's no items there"); 
                         }
                     }
-                    else if (currentRoom==rat.getCurrentRoom() && rat.getIsDead()==true){
+                    else if (currentRoom==rat.getCurrentRoom() && rat.getIsDead()){
 
 
                         if (i > 0 && i <= inventoryRoom.getMaxStorageRoom()) {
                             if(inventoryRoom.getRoomItem(i-1).isTooHeavy()!=true){
                                 inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i - 1));
-                                System.out.println("Item picked up");
                             }
                             else {
                                 System.out.println("Item is too heavy to pickup");
@@ -398,44 +402,54 @@ public class Game {
     private void buyItem(Command command) {
         if (currentRoom.getShortDescription() == "at the merchant") {
             if (!command.hasSecondWord()) {
-                System.out.println("Which item would you like to buy? Specifiy number please " + merchantShop.showMerchantInventory());
+                System.out.println("Which item would you like to buy? Specifiy number please\n" + merchantShop.showMerchantInventory());
             }
             else{
-                if(catchUserInput(command)!=false){
-                    if (inventoryRoom.getInventoryPlayerSize() < 3){
-                        if(player1.getScore() >= merchantShop.getItemMerchant(Integer.parseInt(command.getSecondWord())).getBuyPrice()){
-                        inventoryRoom.addItem(merchantShop.getItemMerchant(Integer.parseInt(command.getSecondWord())));
-                        player1.setScore(player1.getScore()-merchantShop.getItemMerchant(Integer.parseInt(command.getSecondWord())).getBuyPrice());
-                        System.out.println("Item bought");
+                if(catchUserInput(command)){
+                    if(Integer.parseInt(command.getSecondWord()) <= 4){
+                        if (inventoryRoom.getInventoryPlayerSize() < 3){
+                            if(player1.getScore() >= merchantShop.getItemMerchant(Integer.parseInt(command.getSecondWord())).getBuyPrice()){
+                            inventoryRoom.addItem(merchantShop.getItemMerchant(Integer.parseInt(command.getSecondWord())));
+                            player1.setScore(player1.getScore()-merchantShop.getItemMerchant(Integer.parseInt(command.getSecondWord())).getBuyPrice());
+                            System.out.println("Item bought");
+                            }
+                            else{
+                                System.out.println("Need more money");
+                            }
                         }
                         else{
-                            System.out.println("Need more money");
+                            System.out.println("You do not have enough space in your inventory");
                         }
                     }
                     else{
-                        System.out.println("You do not have enough space in your inventory");
+                        System.out.println("This item does not exist");
                     }
                 }
             }
         }
         else if (currentRoom.getShortDescription() == "at gamestop") {
             if (!command.hasSecondWord()) {
-                System.out.println("Which item would you like to buy? Specifiy number please " + merchantGamestop.showMerchantInventory());
+                System.out.println("Which item would you like to buy? Specifiy number please\n" + merchantGamestop.showMerchantInventory());
             }
             else{
-                if(catchUserInput(command)!=false){
-                    if (inventoryRoom.getInventoryPlayerSize() < 3){
-                        if(player1.getScore() >= merchantGamestop.getItemMerchant(Integer.parseInt(command.getSecondWord())).getBuyPrice()){
-                            inventoryRoom.addItem(merchantGamestop.getItemMerchant(Integer.parseInt(command.getSecondWord())));
-                            player1.setScore(player1.getScore()-merchantGamestop.getItemMerchant(Integer.parseInt(command.getSecondWord())).getBuyPrice());
-                            System.out.println("Item bought");
+                if(catchUserInput(command)){
+                    if(Integer.parseInt(command.getSecondWord()) <= 12){
+                        if (inventoryRoom.getInventoryPlayerSize() < 3){
+                            if(player1.getScore() >= merchantGamestop.getItemMerchant(Integer.parseInt(command.getSecondWord())).getBuyPrice()){
+                                inventoryRoom.addItem(merchantGamestop.getItemMerchant(Integer.parseInt(command.getSecondWord())));
+                                player1.setScore(player1.getScore()-merchantGamestop.getItemMerchant(Integer.parseInt(command.getSecondWord())).getBuyPrice());
+                                System.out.println("Item bought");
+                            }
+                            else{
+                                System.out.println("Need more money");
+                            }
                         }
                         else{
-                            System.out.println("Need more money");
+                            System.out.println("You do not have enough space in your inventory");
                         }
                     }
                     else{
-                        System.out.println("You do not have enough space in your inventory");
+                        System.out.println("This item does noot exist");
                     }
                 }
             }
@@ -453,16 +467,10 @@ public class Game {
             System.out.println("Which item do you want to drop?" + "\n" + inventoryRoom.showPlayerInventory());
         } 
         else {
-            char[] charArray = command.getSecondWord().toCharArray();
-            if (charArray.length > 1) {
-                System.out.println("Please only enter 1 character");
-            } 
-            else if (!Character.isDigit(charArray[0])) {
-                System.out.println("Please only enter numbers");
-            } 
-            else {
-                inventoryRoom.dropItem(Integer.parseInt(command.getSecondWord()));
+            if(catchUserInput(command)){
+                if(inventoryRoom.dropItem(Integer.parseInt(command.getSecondWord()))==true) {
                 System.out.println("Item dropped");
+                }
             }
         }
     }
@@ -591,9 +599,7 @@ public class Game {
     
     //Making a method that prints our help messages when using the command "printHelp"
     private void printHelp() {
-        System.out.println("WHAT??!");
-        System.out.println("DONT YOU UNDERSTAND\n");
-        System.out.println("USE THE COMMANDS: ");
+        System.out.println("Please use the following commands:");
         parser.showCommands();
     }
 
@@ -623,18 +629,13 @@ public class Game {
                 System.out.println("Which item would you like to sell?"+"\n" + inventoryRoom.showPlayerInventory());
             }
             else{
-                char[] charArray = command.getSecondWord().toCharArray();
-            
-                if (charArray.length>1){
-                    System.out.println("Please only enter 1 character");
-                }
-                else if (!Character.isDigit(charArray[0])){
-                    System.out.println("Please only enter numbers");
-                }
-                else{
+                if(catchUserInput(command)){
                     if(inventoryRoom.getInventoryPlayerSize() >= Integer.parseInt(command.getSecondWord()) && Integer.parseInt(command.getSecondWord()) > 0 ){
                         player1.setScore(player1.getScore()+ inventoryRoom.getPlayerItem(Integer.parseInt(command.getSecondWord())).getSellPrice());
                         inventoryRoom.dropItem(Integer.parseInt(command.getSecondWord()));
+                    }
+                    else{
+                        System.out.println("You do not have that item");
                     }
                 }
             }
@@ -696,7 +697,7 @@ public class Game {
             System.out.println("What item do you want to use?");
         }
         else{
-            if(catchUserInput(command)!=false){
+            if(catchUserInput(command)){
                 int i = Integer.parseInt(command.getSecondWord());
                 if (inventoryRoom.getInventoryPlayerSize() >= i){
                     Item useableitem = inventoryRoom.getPlayerItem(i);
