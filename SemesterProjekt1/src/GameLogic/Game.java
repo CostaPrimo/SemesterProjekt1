@@ -534,9 +534,6 @@ public class Game {
                         inventoryRoom.setRarity(inventoryRoom.roomRandomizer());
                         setRoomRarity(inventoryRoom);               
                     }
-                    else if (currentRoom.getShortDescription() == "at your home"){
-                        player1.setTimeToken(14);
-                    }
                     else if (currentRoom.getShortDescription() == "at the east part of the scrapyard") {
                         inventoryRoom.emptyRoom();
                         inventoryRoom.setRarity(inventoryRoom.roomRandomizer());
