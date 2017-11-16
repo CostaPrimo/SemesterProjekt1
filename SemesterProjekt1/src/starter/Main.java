@@ -1,4 +1,6 @@
-package GameLogic;
+package starter;
+
+import business.Game;
 
 public class Main {
 

@@ -1,4 +1,4 @@
-package GameLogic;
+package business;
 
 import java.util.Scanner;
 //import java.util.StringTokenizer; not in use so far

@@ -1,4 +1,4 @@
-package GameLogic;
+package business;
 
 import java.util.ArrayList;
 import java.util.Locale; //I need help with using this.
@@ -30,6 +30,7 @@ public class Game {
     public Game() {
         createRooms();
         createNPCs();
+        nameInputTest.locale();
         createPlayerName();
         createPlayer();
         createInventories();

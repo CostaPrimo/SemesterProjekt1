@@ -1,4 +1,4 @@
-package GameLogic;
+package business;
         // Importing Hashmap and Set which are both datastructures. 
         // Set won't allow duplicates, and hashmap maps keys and values.
         // Iterator is an iterator in a collection to go through data.

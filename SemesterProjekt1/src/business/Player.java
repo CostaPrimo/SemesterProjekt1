@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GameLogic;
+package business;
 
 /**
  *
@@ -15,6 +15,7 @@ public class Player {
     private int score = 1500;
     private int timeToken = 14;
     private int dayToken = 7;
+    private boolean hasWon = false;
     public Player(String name){
         this.name = name;
     }
@@ -32,7 +33,9 @@ public class Player {
     public void setName(String name) {
         this.name = name;
     }
-
+    public boolean getHasWon(){
+        return hasWon;
+    }
     /**
      * @return the score
      */

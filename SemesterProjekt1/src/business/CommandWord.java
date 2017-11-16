@@ -1,4 +1,4 @@
-package GameLogic;
+package business;
 
 /**
  * @author Michael Kolling and David J. Barnes
