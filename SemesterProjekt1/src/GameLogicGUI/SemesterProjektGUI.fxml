@@ -10,14 +10,14 @@
    <children>
       <ImageView fitHeight="545.0" fitWidth="555.0" layoutX="3.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="182.0" fitWidth="249.0" layoutX="569.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="GoNorthButton" layoutX="239.0" layoutY="6.0" mnemonicParsing="false" onAction="#goNorthButtonHandler" text="Go North" />
-      <Button fx:id="GoWestButton" layoutY="257.0" mnemonicParsing="false" onAction="#GoWestButtonHandler" text="Go West" />
-      <Button fx:id="goSouthButton" layoutX="239.0" layoutY="510.0" mnemonicParsing="false" onAction="#GoSouthButtonHandler" text="Go South" />
-      <Button fx:id="GoEastButton" layoutX="477.0" layoutY="257.0" mnemonicParsing="false" onAction="#GoEastButtonHandler" text="Go East" />
+      <Button fx:id="GoNorthButton" layoutX="255.0" layoutY="25.0" mnemonicParsing="false" onAction="#goNorthButtonHandler" text="Go North" />
+      <Button fx:id="GoWestButton" layoutX="38.0" layoutY="289.0" mnemonicParsing="false" onAction="#GoWestButtonHandler" text="Go West" />
+      <Button fx:id="goSouthButton" layoutX="254.0" layoutY="494.0" mnemonicParsing="false" onAction="#GoSouthButtonHandler" text="Go South" />
+      <Button fx:id="GoEastButton" layoutX="477.0" layoutY="289.0" mnemonicParsing="false" onAction="#GoEastButtonHandler" text="Go East" />
       <Button layoutX="717.0" layoutY="494.0" mnemonicParsing="false" text="Inventory" />
-      <Button layoutX="566.0" layoutY="494.0" mnemonicParsing="false" text="Inspect" />
+      <Button layoutX="574.0" layoutY="494.0" mnemonicParsing="false" text="Inspect" />
       <TextArea fx:id="TextAreaStatus" layoutX="566.0" layoutY="194.0" prefHeight="276.0" prefWidth="234.0" />
       <Button layoutY="-1.0" mnemonicParsing="false" text="Menu" />
-      <Label layoutX="489.0" layoutY="11.0" text="Money" />
+      <Label layoutX="512.0" layoutY="30.0" text="Money" />
    </children>
 </Pane>
