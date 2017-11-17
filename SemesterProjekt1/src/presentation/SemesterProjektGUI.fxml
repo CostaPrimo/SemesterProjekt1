@@ -11,11 +11,12 @@
 
 <StackPane prefHeight="694.0" prefWidth="1006.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.SemesterProjektGUIController">
    <children>
-      <Pane prefHeight="654.0" prefWidth="955.0">
+      <Pane fx:id="TopPane" prefHeight="654.0" prefWidth="955.0">
          <children>
             <Button fx:id="InventoryButton" layoutX="814.0" layoutY="649.0" mnemonicParsing="false" text="Inventory" />
             <Button fx:id="MenuButton" layoutY="-1.0" mnemonicParsing="false" text="Menu" />
             <Button fx:id="InspectButton" layoutX="679.0" layoutY="649.0" mnemonicParsing="false" text="Inspect" />
+            <Label fx:id="MoneyLabel" layoutX="486.0" layoutY="6.0" text="Money" />
          </children>
       </Pane>
       <Pane fx:id="DowntownPane" layoutX="26.0" layoutY="57.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="974.0">
@@ -28,14 +29,13 @@
             </ImageView>
             <ImageView fx:id="MinimapView1" fitHeight="182.0" fitWidth="249.0" layoutX="569.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Pictures/galactic_earth_4k_8k-1920x1080.jpg" />
+                  <Image url="@galactic_earth_4k_8k-1920x1080.jpg" />
                </image>
             </ImageView>
             <Button fx:id="GoNorthButton1" layoutX="240.0" layoutY="6.0" mnemonicParsing="false" onAction="#goNorthButtonHandler" text="Go North" />
             <Button fx:id="GoWestButton1" layoutX="3.0" layoutY="257.0" mnemonicParsing="false" onAction="#GoWestButtonHandler" text="Go West" />
             <Button fx:id="goSouthButton1" layoutX="239.0" layoutY="510.0" mnemonicParsing="false" onAction="#GoSouthButtonHandler" text="Go South" />
             <Button fx:id="GoEastButton1" layoutX="488.0" layoutY="257.0" mnemonicParsing="false" onAction="#GoEastButtonHandler" text="Go East" />
-            <Label fx:id="MoneyLabel1" layoutX="474.0" layoutY="34.0" text="Money" />
          </children>
       </Pane>
       <Pane fx:id="HomePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="974.0">
@@ -55,7 +55,6 @@
             <Button fx:id="GoWestButton" layoutX="3.0" layoutY="257.0" mnemonicParsing="false" onAction="#GoWestButtonHandler" text="Go West" />
             <Button fx:id="goSouthButton" layoutX="239.0" layoutY="510.0" mnemonicParsing="false" onAction="#GoSouthButtonHandler" onMouseClicked="#goSouthButtonClicked" text="Go South" />
             <Button fx:id="GoEastButton" layoutX="488.0" layoutY="257.0" mnemonicParsing="false" onAction="#GoEastButtonHandler" text="Go East" />
-            <Label fx:id="MoneyLabel" layoutX="474.0" layoutY="34.0" text="Money" />
          </children>
          <StackPane.margin>
             <Insets />
