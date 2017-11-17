@@ -57,8 +57,6 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private Button GoEastButton1;
     @FXML
-    private Label MoneyLabel1;
-    @FXML
     private Pane HomePane;
     @FXML
     private ImageView MapView;
@@ -66,6 +64,10 @@ public class SemesterProjektGUIController implements Initializable {
     private ImageView MinimapView;
     @FXML
     private Label MoneyLabel;
+    @FXML
+    private Pane TopPane;
+    @FXML
+    private Button jdfds;
 
     /**
      * Initializes the controller class.
@@ -77,10 +79,9 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void goNorthButtonHandler(ActionEvent event) {
-        if (DowntownPane.isVisible() == true){
             DowntownPane.setVisible(false);
             HomePane.setVisible(true);
-        }
+        
     }
 
     @FXML
@@ -91,9 +92,8 @@ public class SemesterProjektGUIController implements Initializable {
     private void GoSouthButtonHandler(ActionEvent event) {
         
         HomePane.setVisible(false);
-        
-        MoneyLabel.setText("HEJ");
-        goSouthButton.setText("test");
+        TopPane.setVisible(true);
+        MoneyLabel.setText("Hello");
     }
 
     @FXML
