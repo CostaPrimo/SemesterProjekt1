@@ -10,5 +10,5 @@ package acquaintance;
  * @author Kim Christensen
  */
 public interface IBusiness {
-    
+    void injectData(IData dataLayer);
 }
