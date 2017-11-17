@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane prefHeight="694.0" prefWidth="1006.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameLogicGUI.SemesterProjektGUIController">
+<StackPane prefHeight="694.0" prefWidth="1006.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.SemesterProjektGUIController">
    <children>
       <Pane prefHeight="654.0" prefWidth="955.0">
          <children>
@@ -23,7 +23,7 @@
             <TextArea fx:id="TextAreaStatus1" editable="false" layoutX="600.0" layoutY="173.0" prefHeight="274.0" prefWidth="223.0" />
             <ImageView fx:id="MapView1" fitHeight="314.0" fitWidth="555.0" layoutX="3.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Pictures/Nikolajs%20billeder/DSC_0006.JPG" />
+                  <Image url="@DSC_0006.JPG" />
                </image>
             </ImageView>
             <ImageView fx:id="MinimapView1" fitHeight="182.0" fitWidth="249.0" layoutX="569.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
@@ -43,12 +43,12 @@
             <TextArea fx:id="TextAreaStatus" editable="false" layoutX="600.0" layoutY="173.0" prefHeight="274.0" prefWidth="223.0" />
             <ImageView fx:id="MapView" fitHeight="314.0" fitWidth="555.0" layoutX="3.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Pictures/space_flight_sky_stars_82970_1920x1080.jpg" />
+                  <Image url="@space_flight_sky_stars_82970_1920x1080.jpg" />
                </image>
             </ImageView>
             <ImageView fx:id="MinimapView" fitHeight="182.0" fitWidth="249.0" layoutX="569.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Pictures/galactic_earth_4k_8k-1920x1080.jpg" />
+                  <Image url="@galactic_earth_4k_8k-1920x1080.jpg" />
                </image>
             </ImageView>
             <Button fx:id="GoNorthButton" layoutX="240.0" layoutY="6.0" mnemonicParsing="false" onAction="#goNorthButtonHandler" text="Go North" />

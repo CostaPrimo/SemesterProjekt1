@@ -11,7 +11,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -30,6 +34,38 @@ public class SemesterProjektGUIController implements Initializable {
     private Button GoEastButton;
     @FXML
     private TextArea TextAreaStatus;
+    @FXML
+    private Button InventoryButton;
+    @FXML
+    private Button MenuButton;
+    @FXML
+    private Button InspectButton;
+    @FXML
+    private Pane DowntownPane;
+    @FXML
+    private TextArea TextAreaStatus1;
+    @FXML
+    private ImageView MapView1;
+    @FXML
+    private ImageView MinimapView1;
+    @FXML
+    private Button GoNorthButton1;
+    @FXML
+    private Button GoWestButton1;
+    @FXML
+    private Button goSouthButton1;
+    @FXML
+    private Button GoEastButton1;
+    @FXML
+    private Label MoneyLabel1;
+    @FXML
+    private Pane HomePane;
+    @FXML
+    private ImageView MapView;
+    @FXML
+    private ImageView MinimapView;
+    @FXML
+    private Label MoneyLabel;
 
     /**
      * Initializes the controller class.
@@ -41,7 +77,10 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void goNorthButtonHandler(ActionEvent event) {
-        
+        if (DowntownPane.isVisible() == true){
+            DowntownPane.setVisible(false);
+            HomePane.setVisible(true);
+        }
     }
 
     @FXML
@@ -50,10 +89,19 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void GoSouthButtonHandler(ActionEvent event) {
+        
+        HomePane.setVisible(false);
+        
+        MoneyLabel.setText("HEJ");
+        goSouthButton.setText("test");
     }
 
     @FXML
     private void GoEastButtonHandler(ActionEvent event) {
+    }
+
+    @FXML
+    private void goSouthButtonClicked(MouseEvent event) {
     }
     
 }
