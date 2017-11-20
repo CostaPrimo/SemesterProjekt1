@@ -2,15 +2,15 @@ package starter;
 
 import acquaintance.IBusiness;
 import acquaintance.IData;
-import acquaintance.IPresentation;
 import business.BusinessFacade;
-import business.Game;
+import business.BusinessFacade;
 import data.DataFacade;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import acquaintance.IUI;
 
 public class Main extends Application{
     
@@ -22,7 +22,7 @@ public class Main extends Application{
         IData data = new DataFacade();
         IBusiness business = new BusinessFacade();
         business.injectData(data);
-        IPresentation controller = (IPresentation)loader.getController();
+        IUI controller = (IUI)loader.getController();
         controller.injectBusiness(business);
         
         

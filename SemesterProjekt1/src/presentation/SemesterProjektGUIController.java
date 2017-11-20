@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package presentation;
-import business.Game;
+import business.BusinessFacade;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -23,8 +23,8 @@ import javafx.scene.layout.StackPane;
  *
  * @author Kim Christensen
  */
-public class SemesterProjektGUIController implements Initializable {
-Game game = new Game();
+public class SemesterProjektGUIController implements Initializable {  
+BusinessFacade game = new BusinessFacade();
     @FXML
     private Button goSouthButton;
     @FXML

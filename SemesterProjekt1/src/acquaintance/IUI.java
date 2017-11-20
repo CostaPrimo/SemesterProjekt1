@@ -9,6 +9,7 @@ package acquaintance;
  *
  * @author Kim Christensen
  */
-public interface IPresentation {
+public interface IUI {
     void injectBusiness(IBusiness businessLayer);
+    void startApplication(String[] args);
 }
