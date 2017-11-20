@@ -1,7 +1,6 @@
 package data;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -31,10 +30,9 @@ public class Highscore {
         }
     }
     
-    
-    public String save(){
+    public String save(String scores){
         try{
-            scoreWriter.write("test\n");
+            scoreWriter.write(scores);
             scoreWriter.close();
             return "Game Saved";
         }
