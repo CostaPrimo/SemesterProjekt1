@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package presentation;
-
+import business.Game;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,6 +16,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 /**
  * FXML Controller class
@@ -23,7 +24,7 @@ import javafx.scene.layout.Pane;
  * @author Kim Christensen
  */
 public class SemesterProjektGUIController implements Initializable {
-
+Game game = new Game();
     @FXML
     private Button goSouthButton;
     @FXML
@@ -74,14 +75,12 @@ public class SemesterProjektGUIController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        game.play();
     }    
 
     @FXML
     private void goNorthButtonHandler(ActionEvent event) {
-            DowntownPane.setVisible(false);
-            HomePane.setVisible(true);
-        
+           HomePane.toFront();
     }
 
     @FXML
@@ -90,10 +89,8 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void GoSouthButtonHandler(ActionEvent event) {
-        
-        HomePane.setVisible(false);
-        TopPane.setVisible(true);
-        MoneyLabel.setText("Hello");
+       
+       
     }
 
     @FXML
@@ -102,6 +99,7 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void goSouthButtonClicked(MouseEvent event) {
+        DowntownPane.toFront();
     }
     
 }

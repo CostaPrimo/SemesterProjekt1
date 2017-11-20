@@ -1,5 +1,6 @@
 package business;
 
+import data.Player;
 import java.util.ArrayList;
 import java.util.Locale; //I need help with using this.
 import javafx.scene.chart.Chart;
