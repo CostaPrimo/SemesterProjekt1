@@ -21,8 +21,8 @@ public interface IBusiness {
     void goRoom();
     void inspectRoom();
     void printHelp();
-    void sellItem();
-    void storeItems();
+    void sellItem(int itemNumber);
+    void storeItems(int itemNumber);
     void use(int itemNumber);
     void wallet();
     //boolean buildComputer();

@@ -593,16 +593,9 @@ public class BusinessFacade implements IBusiness {
             }
         }
     }
-    
-    private void inspectRoom(Command command) {
-
-        if (command.hasSecondWord()) {
-            System.out.println("You dont need a second word");
-        } 
-        else {
-
-            System.out.println("The item(s) you found in the room are:" + "\n" + inventoryRoom.showRoomInventory());
-        }
+    @Override
+    public void inspectRoom() {
+        inventoryRoom.showRoomInventory();
     }
     
     //Making a method that prints our help messages when using the command "printHelp"
@@ -630,23 +623,20 @@ public class BusinessFacade implements IBusiness {
         }
     }
     
-    
-    public void sellItem(Command command){
+    @Override
+    public void sellItem(int itemNumber){
+        
         if(currentRoom.getShortDescription() == "at gamestop" || currentRoom.getShortDescription() == "at the merchant"){
-            if(!command.hasSecondWord()){
-                System.out.println("Which item would you like to sell?"+"\n" + inventoryRoom.showPlayerInventory());
-            }
-            else{
-                if(catchUserInput(command)){
-                    if(inventoryRoom.getInventoryPlayerSize() >= Integer.parseInt(command.getSecondWord()) && Integer.parseInt(command.getSecondWord()) > 0 ){
-                        player1.setScore(player1.getScore()+ inventoryRoom.getPlayerItem(Integer.parseInt(command.getSecondWord())).getSellPrice());
-                        inventoryRoom.dropItem(Integer.parseInt(command.getSecondWord()));
+            
+                    if(inventoryRoom.getInventoryPlayerSize() >= itemNumber && itemNumber > 0 ){
+                        player1.setScore(player1.getScore()+ inventoryRoom.getPlayerItem(itemNumber).getSellPrice());
+                        inventoryRoom.dropItem(itemNumber);
                     }
                     else{
                         System.out.println("You do not have that item");
                     }
-                }
-            }
+                
+            
         }
         else{
             System.out.println("Can't sell here");
@@ -670,7 +660,8 @@ public class BusinessFacade implements IBusiness {
             System.out.println("you can only sleep at home");
         }
     }
-    private void storeItems(int itemNumber) {
+    @Override
+    public void storeItems(int itemNumber) {
         if (currentRoom.getShortDescription() == "at your home") {
             int i = itemNumber;
             inventoryRoom.houseAddItem(inventoryRoom.getPlayerItem(i));
