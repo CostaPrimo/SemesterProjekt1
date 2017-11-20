@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package presentation;
+import acquaintance.IBusiness;
 import business.BusinessFacade;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,7 +25,6 @@ import javafx.scene.layout.StackPane;
  * @author Kim Christensen
  */
 public class SemesterProjektGUIController implements Initializable {  
-BusinessFacade game = new BusinessFacade();
     @FXML
     private Button goSouthButton;
     @FXML
@@ -70,17 +70,20 @@ BusinessFacade game = new BusinessFacade();
     @FXML
     private Button jdfds;
 
+    private IBusiness game;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        game.play();
+        game = UI.getInstance().getBusiness();
+        
     }    
 
     @FXML
     private void goNorthButtonHandler(ActionEvent event) {
            HomePane.toFront();
+           
     }
 
     @FXML

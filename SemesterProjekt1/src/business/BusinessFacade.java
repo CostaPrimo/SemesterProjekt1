@@ -485,12 +485,7 @@ public class BusinessFacade implements IBusiness {
     
     //Creating a method goRoom along with a Command variable named command
     private void goRoom(Command command) {
-        //If the command doesnt have a second word it ask for more arguments
-        if (!command.hasSecondWord()) {
-            System.out.println("WHERE DU YOU WANT TO GO?");
-            return;
-        }
-
+        
         //creating a string named direction which is then used to define nextRoom with the getExit method
         String direction = command.getSecondWord();
         Room nextRoom = currentRoom.getExit(direction);

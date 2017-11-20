@@ -5,11 +5,13 @@
  */
 package data;
 
+import acquaintance.IPlayer;
+
 /**
  *
  * @author Kim
  */
-public class Player {
+public class Player implements IPlayer {
     
     private String name = "";
     private int score = 1500;
