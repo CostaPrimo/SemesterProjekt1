@@ -29,7 +29,7 @@
             </ImageView>
             <ImageView fx:id="MinimapView1" fitHeight="182.0" fitWidth="249.0" layoutX="569.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@galactic_earth_4k_8k-1920x1080.jpg" />
+                  <Image url="@MiniMap_DownTown.png" />
                </image>
             </ImageView>
             <Button fx:id="GoNorthButton1" layoutX="240.0" layoutY="6.0" mnemonicParsing="false" onAction="#goNorthButtonHandler" text="Go North" />
@@ -48,7 +48,7 @@
             </ImageView>
             <ImageView fx:id="MinimapView" fitHeight="182.0" fitWidth="249.0" layoutX="569.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@galactic_earth_4k_8k-1920x1080.jpg" />
+                  <Image url="@MiniMap_Home.png" />
                </image>
             </ImageView>
             <Button fx:id="GoNorthButton" layoutX="240.0" layoutY="6.0" mnemonicParsing="false" onAction="#goNorthButtonHandler" text="Go North" />
