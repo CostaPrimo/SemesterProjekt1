@@ -25,7 +25,7 @@ public class UI extends Application implements IUI {
     
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("SemesterprojektGUI.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("SemesterProjektGUI.fxml"));
         Scene scene = new Scene(root);
         
         primaryStage.setScene(scene);

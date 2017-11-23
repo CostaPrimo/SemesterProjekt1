@@ -215,15 +215,9 @@ public class BusinessFacade implements IBusiness {
 //  Creating a constructor for the end message using boolean when game is finished
     @Override
     public void play() {
-        
         printWelcome();
-
         boolean finished = false;
-        while (!finished) {
-            Command command = parser.getCommand();
-            finished = processCommand(command);
-        }
-        System.out.println("FINALLY DONE");
+        System.out.println("Thanks for playing the game");
     }
 
     
@@ -293,201 +287,144 @@ public class BusinessFacade implements IBusiness {
     
     
 //  Creating a boolean that prints a message when an unknown command occurs
+//    @Override
+//    private boolean processCommand(Command command) {
+//        boolean wantToQuit = false;
+//
+//        CommandWord commandWord = command.getCommandWord();
+//
+//        if (commandWord == CommandWord.UNKNOWN) {
+//            System.out.println("YOU CANT DO THAT \nTRY: ");
+//            parser.showCommands();
+//            return false;
+//        }
+//
+//        if (commandWord == CommandWord.HELP) {
+//            printHelp();
+//        } 
+//        else if (commandWord == CommandWord.GO) {
+//            goRoom(command);
+//        } 
+//        else if (commandWord == CommandWord.QUIT) {
+//            wantToQuit = quit(command);
+//        } 
+//        else if (commandWord == CommandWord.DROP) {
+//            dropItem(command);
+//        } 
+//        else if (commandWord == CommandWord.PICKUP) {
+//            addItem(command);
+//        } 
+//        else if (commandWord == CommandWord.INSPECT) {
+//            inspectRoom(command);
+//        } 
+//        else if (commandWord == CommandWord.STORE) {
+//            storeItems(command);
+//        } 
+//        else if (commandWord == CommandWord.BUILD) {
+//            wantToQuit = buildComputer(command);
+//        } 
+//        else if (commandWord == CommandWord.BUY) {
+//            buyItem(command);
+//        } 
+//        else if (commandWord == CommandWord.SELL){
+//            sellItem(command);
+//        }
+//        else if (commandWord == commandWord.USE){
+//            use(command);
+//        }
+//        else if (commandWord == commandWord.WALLET){
+//            wallet(command);
+//        }
+//        else if (commandWord == commandWord.SLEEP){
+//            sleep(command);
+//        }
+//          
+//        
+//        return wantToQuit;
+//
+//    }
+
     @Override
-    private boolean processCommand(Command command) {
-        boolean wantToQuit = false;
-
-        CommandWord commandWord = command.getCommandWord();
-
-        if (commandWord == CommandWord.UNKNOWN) {
-            System.out.println("YOU CANT DO THAT \nTRY: ");
-            parser.showCommands();
-            return false;
-        }
-
-        if (commandWord == CommandWord.HELP) {
-            printHelp();
-        } 
-        else if (commandWord == CommandWord.GO) {
-            goRoom(command);
-        } 
-        else if (commandWord == CommandWord.QUIT) {
-            wantToQuit = quit(command);
-        } 
-        else if (commandWord == CommandWord.DROP) {
-            dropItem(command);
-        } 
-        else if (commandWord == CommandWord.PICKUP) {
-            addItem(command);
-        } 
-        else if (commandWord == CommandWord.INSPECT) {
-            inspectRoom(command);
-        } 
-        else if (commandWord == CommandWord.STORE) {
-            storeItems(command);
-        } 
-        else if (commandWord == CommandWord.BUILD) {
-            wantToQuit = buildComputer(command);
-        } 
-        else if (commandWord == CommandWord.BUY) {
-            buyItem(command);
-        } 
-        else if (commandWord == CommandWord.SELL){
-            sellItem(command);
-        }
-        else if (commandWord == commandWord.USE){
-            use(command);
-        }
-        else if (commandWord == commandWord.WALLET){
-            wallet(command);
-        }
-        else if (commandWord == commandWord.SLEEP){
-            sleep(command);
-        }
-          
-        
-        return wantToQuit;
-
-    }
-
-    
-    private void addItem(Command command) {
+    public void addItem(int itemNumber) {
         if(currentRoom.getShortDescription()=="at your home"){
-            if(!command.hasSecondWord()){
-                System.out.println("Which item do you want to pick up");
-                System.out.println(inventoryRoom.showHouseInventory());
-            }
-            else{
-                if(catchUserInput(command)){
-                    int i = Integer.parseInt(command.getSecondWord());
-                    inventoryRoom.housePickItem(inventoryRoom.getHouseitem(i));
-                }
-            }
+            int i = itemNumber;
+            inventoryRoom.housePickItem(inventoryRoom.getHouseitem(i));
         }
         else{
-            if (!command.hasSecondWord()) {
-                System.out.println("Which item do you want to add?" + "\n" + inventoryRoom.showRoomInventory());
-            } 
-            else {
-                if(catchUserInput(command)){
-                    int i = Integer.parseInt(command.getSecondWord());
-                    if(currentRoom!=rat.getCurrentRoom()){
-                        if (i > 0 && i <= inventoryRoom.getMaxStorageRoom()) {
-                            if(inventoryRoom.getRoomItem(i-1).isTooHeavy()!=true){
-                                inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i - 1));
-                            }
-                            else {
-                                System.out.println("Item is too heavy to pickup");
-                            }
-                        }
-                        else {
-                            System.out.println("There's no items there"); 
-                        }
+            int i = itemNumber;
+            if(currentRoom!=rat.getCurrentRoom()){
+                if (i > 0 && i <= inventoryRoom.getMaxStorageRoom()) {
+                    if(inventoryRoom.getRoomItem(i-1).isTooHeavy()!=true){
+                        inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i - 1));
                     }
-                    else if (currentRoom==rat.getCurrentRoom() && rat.getIsDead()){
-
-
-                        if (i > 0 && i <= inventoryRoom.getMaxStorageRoom()) {
-                            if(inventoryRoom.getRoomItem(i-1).isTooHeavy()!=true){
-                                inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i - 1));
-                            }
-                            else {
-                                System.out.println("Item is too heavy to pickup");
-                            }
-                        }
-                        else {
-                            System.out.println("There's no items there"); 
-                        }
-
-                    }
-                    else{
-                        System.out.println("Kill the rats to pickup items!");
-                    }
-                }      
-            }
-        }
-    }
-    private void buyItem(Command command) {
-        if (currentRoom.getShortDescription() == "at the merchant") {
-            if (!command.hasSecondWord()) {
-                System.out.println("Which item would you like to buy? Specifiy number please\n" + merchantShop.showMerchantInventory());
-            }
-            else{
-                if(catchUserInput(command)){
-                    if(Integer.parseInt(command.getSecondWord()) <= 4){
-                        if (inventoryRoom.getInventoryPlayerSize() < 3){
-                            if(player1.getScore() >= merchantShop.getItemMerchant(Integer.parseInt(command.getSecondWord())).getBuyPrice()){
-                            inventoryRoom.addItem(merchantShop.getItemMerchant(Integer.parseInt(command.getSecondWord())));
-                            player1.setScore(player1.getScore()-merchantShop.getItemMerchant(Integer.parseInt(command.getSecondWord())).getBuyPrice());
-                            System.out.println("Item bought");
-                            }
-                            else{
-                                System.out.println("Need more money");
-                            }
-                        }
-                        else{
-                            System.out.println("You do not have enough space in your inventory");
-                        }
-                    }
-                    else{
-                        System.out.println("This item does not exist");
+                    else {
+                        System.out.println("Item is too heavy to pickup");
                     }
                 }
             }
-        }
-        else if (currentRoom.getShortDescription() == "at gamestop") {
-            if (!command.hasSecondWord()) {
-                System.out.println("Which item would you like to buy? Specifiy number please\n" + merchantGamestop.showMerchantInventory());
-            }
-            else{
-                if(catchUserInput(command)){
-                    if(Integer.parseInt(command.getSecondWord()) <= 12){
-                        if (inventoryRoom.getInventoryPlayerSize() < 3){
-                            if(player1.getScore() >= merchantGamestop.getItemMerchant(Integer.parseInt(command.getSecondWord())).getBuyPrice()){
-                                inventoryRoom.addItem(merchantGamestop.getItemMerchant(Integer.parseInt(command.getSecondWord())));
-                                player1.setScore(player1.getScore()-merchantGamestop.getItemMerchant(Integer.parseInt(command.getSecondWord())).getBuyPrice());
-                                System.out.println("Item bought");
-                            }
-                            else{
-                                System.out.println("Need more money");
-                            }
-                        }
-                        else{
-                            System.out.println("You do not have enough space in your inventory");
-                        }
+            else if (currentRoom==rat.getCurrentRoom() && rat.getIsDead()){
+                if (i > 0 && i <= inventoryRoom.getMaxStorageRoom()) {
+                    if(inventoryRoom.getRoomItem(i-1).isTooHeavy()!=true){
+                        inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i - 1));
                     }
-                    else{
-                        System.out.println("This item does noot exist");
+                    else {
+                        System.out.println("Item is too heavy to pickup");
                     }
                 }
             }
-        }
-        else{
-            System.out.println("There is nothing to buy here");
-        }
-            
-        
+            else{
+                System.out.println("Kill the rats to pickup items!");
+            }
+        }      
     }
     
-    private void dropItem(Command command) {
-
-        if (!command.hasSecondWord()) {
-            System.out.println("Which item do you want to drop?" + "\n" + inventoryRoom.showPlayerInventory());
-        } 
-        else {
-            if(catchUserInput(command)){
-                if(inventoryRoom.dropItem(Integer.parseInt(command.getSecondWord()))==true) {
-                System.out.println("Item dropped");
+    @Override
+    public void buyItem(int itemNumber) {
+        if (currentRoom.getShortDescription() == "at the merchant") {
+            if (inventoryRoom.getInventoryPlayerSize() < 3){
+                if(player1.getScore() >= merchantShop.getItemMerchant(itemNumber).getBuyPrice()){
+                    inventoryRoom.addItem(merchantShop.getItemMerchant(itemNumber));
+                    player1.setScore(player1.getScore()-merchantShop.getItemMerchant(itemNumber).getBuyPrice());
+                    System.out.println("Item bought");
+                    }
+                else{
+                    System.out.println("Need more money");
+                    }
                 }
+            else{
+                System.out.println("You do not have enough space in your inventory");
+                }
+            }
+        else if (currentRoom.getShortDescription() == "at gamestop") {
+            if (inventoryRoom.getInventoryPlayerSize() < 3){
+                if(player1.getScore() >= merchantGamestop.getItemMerchant(itemNumber).getBuyPrice()){
+                    inventoryRoom.addItem(merchantGamestop.getItemMerchant(itemNumber));
+                    player1.setScore(player1.getScore()-merchantGamestop.getItemMerchant(itemNumber).getBuyPrice());
+                    System.out.println("Item bought");
+                }
+                else{
+                    System.out.println("Need more money");
+                }
+            }
+            else{
+                System.out.println("You do not have enough space in your inventory");
             }
         }
     }
+    @Override
+    public void dropItem(int itemNumber) {
+        inventoryRoom.dropItem(itemNumber); 
+        System.out.println("Item dropped");
+    }
+        
+    
     
     //Creating a method goRoom along with a Command variable named command
-    private void goRoom(Command command) {
+    @Override
+    public void goRoom(String direction2) {
         
         //creating a string named direction which is then used to define nextRoom with the getExit method
-        String direction = command.getSecondWord();
+        String direction = direction2;
         Room nextRoom = currentRoom.getExit(direction);
 
         //If there isnt an exit defined for the given direction he program will let you know
@@ -637,18 +574,13 @@ public class BusinessFacade implements IBusiness {
             System.out.println("Can't sell here");
         }
     }
-
-    private void sleep(Command command){
+    @Override
+    public void sleep(){
         if(currentRoom.getShortDescription()=="at your home"){
-            if(command.hasSecondWord()){
-                System.out.println("No second word please");
-            }
-            else{
-                player1.setDayToken(player1.getDayToken()-1);
-                player1.setTimeToken(14);
-                if(rat.getIsDead()){
-                    rat.setIsDead(false);
-                }
+            player1.setDayToken(player1.getDayToken()-1);
+            player1.setTimeToken(14);
+            if(rat.getIsDead()){
+                rat.setIsDead(false);
             }
         }
         else{

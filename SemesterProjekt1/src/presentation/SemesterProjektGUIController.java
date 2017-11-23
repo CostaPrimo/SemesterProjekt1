@@ -103,6 +103,7 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private void goSouthButtonClicked(MouseEvent event) {
         DowntownPane.toFront();
+        game.goRoom("south");
     }
     
 }
