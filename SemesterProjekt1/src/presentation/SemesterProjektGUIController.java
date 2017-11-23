@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -43,14 +44,6 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private Button InspectButton;
     @FXML
-    private Pane DowntownPane;
-    @FXML
-    private TextArea TextAreaStatus1;
-    @FXML
-    private ImageView MapView1;
-    @FXML
-    private ImageView MinimapView1;
-    @FXML
     private Pane HomePane;
     @FXML
     private ImageView MapView;
@@ -58,36 +51,54 @@ public class SemesterProjektGUIController implements Initializable {
     private ImageView MinimapView;
     @FXML
     private Label MoneyLabel;
-    @FXML
-    private Pane TopPane;
-
     private IBusiness game;
+    @FXML
+    private Label CurrentRoomLabel;
     /**
      * Initializes the controller class.
      */
+    Image image1 = new Image(getClass().getResource("space_flight_sky_stars_82970_1920x1080.jpg").toExternalForm());
+    Image image2 = new Image(getClass().getResource("downtown us.png").toExternalForm());
+    Image image3 = new Image(getClass().getResource("yard entrance låst ms.png").toExternalForm());
+    Image image4 = new Image(getClass().getResource("yard entrance åben ms.png").toExternalForm());
+    @FXML
+    private Button UseButton;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
+        
     }    
 
     @FXML
-    private void GoNorthButtonClicked(MouseEvent event) {
-        game.goRoom("north");
+    private void GoButtonHandler(ActionEvent event) {
+        if(event.getSource() == GoNorthButton){
+            game.goRoom("north");
+        }
+        else if(event.getSource()== GoEastButton){
+            game.goRoom("east");
+        }
+        else if (event.getSource() == GoWestButton){
+            game.goRoom("west");
+        }
+        else if (event.getSource() == goSouthButton){
+            game.goRoom("south");
+        }
+        if(game.getCurrentRoom().getShortDescription() == "at downtown"){
+            MapView.setImage(image2);
+        }
+        else if (game.getCurrentRoom().getShortDescription() == "at your home"){
+            MapView.setImage(image1);
+        }
+        else if (game.getCurrentRoom().getShortDescription()== "at the entrance to the scrapyard"){
+            MapView.setImage(image3);
+        }
+        else if (game.getCurrentRoom().getShortDescription() == "at the entrance to the scrapyard" && game.getCurrentRoom().getIsLocked()==false){
+            MapView.setImage(image4);
+        }
     }
 
     @FXML
-    private void GoWestButtonClicked(MouseEvent event) {
-        game.goRoom("west");
-    }
-
-    @FXML
-    private void GoEastButtonClicked(MouseEvent event) {
-        game.goRoom("east");
-    }
-    
-    @FXML
-    private void GoSouthButtonClicked(MouseEvent event) {
-        DowntownPane.toFront();
-        game.goRoom("south");
+    private void UseButtonHandler(ActionEvent event) {
+        game.use(0);
     }
 }

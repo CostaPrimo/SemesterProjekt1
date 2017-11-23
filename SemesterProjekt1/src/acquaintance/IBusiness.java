@@ -27,6 +27,7 @@ public interface IBusiness {
     void storeItems(int itemNumber);
     void use(int itemNumber);
     void wallet();
+    Room getCurrentRoom();
     void setCurrentRoom(Room currentRoom);
     //boolean buildComputer();
     boolean quit();
