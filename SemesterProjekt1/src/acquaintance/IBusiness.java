@@ -5,10 +5,12 @@
  */
 package acquaintance;
 
+import business.Room;
+
 
 /**
  *
- * @author Kim Christensen
+ * @author Gruppe 20
  */
 public interface IBusiness {
     void injectData(IData dataLayer);
@@ -25,6 +27,7 @@ public interface IBusiness {
     void storeItems(int itemNumber);
     void use(int itemNumber);
     void wallet();
+    void setCurrentRoom(Room currentRoom);
     //boolean buildComputer();
     boolean quit();
 }

@@ -8,8 +8,7 @@ import java.util.HashMap;
 
 
 /**
- * @author  Michael Kolling and David J. Barnes
- * @version 2006.03.30
+ * @author  Gruppe 20
  */
 
         //Our public class is named Room.

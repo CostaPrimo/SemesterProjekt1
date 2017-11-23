@@ -200,7 +200,7 @@ public class BusinessFacade implements IBusiness {
         scrapyardmiddle.setExit("east", scrapyardeast);
         scrapyardmiddle.setExit("west", scrapyardwest);
 
-        currentRoom = home;
+        setCurrentRoom(home);
     }
 
     private void createPlayerName(){
@@ -227,7 +227,7 @@ public class BusinessFacade implements IBusiness {
         System.out.println("A WORLD OF SCRAP, FUN, AND ADVENTURES");
         System.out.println("TYPE '" + CommandWord.HELP + "' IF YOU DON'T KNOW WHAT TO DO");
         System.out.println("For an optional tutorial, please buy a game magazine found in a store\n");
-        System.out.println(currentRoom.getLongDescription());
+        System.out.println(getCurrentRoom().getLongDescription());
     }
     private boolean catchUserInput(Command command){
         char[] charArray = command.getSecondWord().toCharArray();
@@ -346,13 +346,13 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void addItem(int itemNumber) {
-        if(currentRoom.getShortDescription()=="at your home"){
+        if(getCurrentRoom().getShortDescription()=="at your home"){
             int i = itemNumber;
             inventoryRoom.housePickItem(inventoryRoom.getHouseitem(i));
         }
         else{
             int i = itemNumber;
-            if(currentRoom!=rat.getCurrentRoom()){
+            if(getCurrentRoom()!=rat.getCurrentRoom()){
                 if (i > 0 && i <= inventoryRoom.getMaxStorageRoom()) {
                     if(inventoryRoom.getRoomItem(i-1).isTooHeavy()!=true){
                         inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i - 1));
@@ -362,7 +362,7 @@ public class BusinessFacade implements IBusiness {
                     }
                 }
             }
-            else if (currentRoom==rat.getCurrentRoom() && rat.getIsDead()){
+            else if (getCurrentRoom()==rat.getCurrentRoom() && rat.getIsDead()){
                 if (i > 0 && i <= inventoryRoom.getMaxStorageRoom()) {
                     if(inventoryRoom.getRoomItem(i-1).isTooHeavy()!=true){
                         inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i - 1));
@@ -380,7 +380,7 @@ public class BusinessFacade implements IBusiness {
     
     @Override
     public void buyItem(int itemNumber) {
-        if (currentRoom.getShortDescription() == "at the merchant") {
+        if (getCurrentRoom().getShortDescription() == "at the merchant") {
             if (inventoryRoom.getInventoryPlayerSize() < 3){
                 if(player1.getScore() >= merchantShop.getItemMerchant(itemNumber).getBuyPrice()){
                     inventoryRoom.addItem(merchantShop.getItemMerchant(itemNumber));
@@ -395,7 +395,7 @@ public class BusinessFacade implements IBusiness {
                 System.out.println("You do not have enough space in your inventory");
                 }
             }
-        else if (currentRoom.getShortDescription() == "at gamestop") {
+        else if (getCurrentRoom().getShortDescription() == "at gamestop") {
             if (inventoryRoom.getInventoryPlayerSize() < 3){
                 if(player1.getScore() >= merchantGamestop.getItemMerchant(itemNumber).getBuyPrice()){
                     inventoryRoom.addItem(merchantGamestop.getItemMerchant(itemNumber));
@@ -425,7 +425,7 @@ public class BusinessFacade implements IBusiness {
         
         //creating a string named direction which is then used to define nextRoom with the getExit method
         String direction = direction2;
-        Room nextRoom = currentRoom.getExit(direction);
+        Room nextRoom = getCurrentRoom().getExit(direction);
 
         //If there isnt an exit defined for the given direction he program will let you know
         if (nextRoom == null) {
@@ -438,7 +438,7 @@ public class BusinessFacade implements IBusiness {
             else{
                 if (player1.getTimeToken() <= 0){
                     System.out.println("you have no moves left today");
-                    currentRoom = home;
+                    setCurrentRoom(home);
                     player1.setTimeToken(14);
                     System.out.println("You wake up at home but you've been robbed half your money");
                     player1.setDayToken(player1.getDayToken()-1);
@@ -448,15 +448,15 @@ public class BusinessFacade implements IBusiness {
                     }
                 }
                 else{
-                    if(rat.getCurrentRoom()==currentRoom && rat.getIsDead()!=true){
+                    if(rat.getCurrentRoom()==getCurrentRoom() && rat.getIsDead()!=true){
                         System.out.println("The rat attacked you!");
                         player1.setTimeToken(player1.getTimeToken()-2);
                     }
-                    currentRoom = nextRoom;
+                    setCurrentRoom(nextRoom);
                     player1.setTimeToken(player1.getTimeToken()-1);
                     if(player1.getDayToken() == 7){
                         valutaMan.setIsActive(true);
-                        if(currentRoom == valutaMan.getCurrentRoom()){
+                        if(getCurrentRoom() == valutaMan.getCurrentRoom()){
                           System.out.println("Valutaman approaches you and gives you the following question");
                           if (valutaMan.getQuestion(player1.getDayToken(), parser)){
                               System.out.println("Ludoman is proud of you and doubles your money");
@@ -476,43 +476,43 @@ public class BusinessFacade implements IBusiness {
                     if (rat.getIsDead()!=true){
                         ratMove();
                     }
-                    System.out.println(currentRoom.getLongDescription());
-                    if (currentRoom.getShortDescription() == "at the center of the scrapyard") {
+                    System.out.println(getCurrentRoom().getLongDescription());
+                    if (getCurrentRoom().getShortDescription() == "at the center of the scrapyard") {
                         inventoryRoom.emptyRoom();
                         inventoryRoom.setRarity(inventoryRoom.roomRandomizer());
                         setRoomRarity(inventoryRoom);               
                     }
-                    else if (currentRoom.getShortDescription() == "at the east part of the scrapyard") {
+                    else if (getCurrentRoom().getShortDescription() == "at the east part of the scrapyard") {
                         inventoryRoom.emptyRoom();
                         inventoryRoom.setRarity(inventoryRoom.roomRandomizer());
                         setRoomRarity(inventoryRoom);
                     }
-                    else if (currentRoom.getShortDescription() == "at the south part of the scrapyard") {
+                    else if (getCurrentRoom().getShortDescription() == "at the south part of the scrapyard") {
                         inventoryRoom.emptyRoom();
                         inventoryRoom.setRarity(inventoryRoom.roomRandomizer());
                         setRoomRarity(inventoryRoom);
                     }
-                    else if (currentRoom.getShortDescription() == "at the southeast part of the scrapyard") {
+                    else if (getCurrentRoom().getShortDescription() == "at the southeast part of the scrapyard") {
                         inventoryRoom.emptyRoom();
                         inventoryRoom.setRarity(inventoryRoom.roomRandomizer());
                         setRoomRarity(inventoryRoom);
                     }
-                    else if (currentRoom.getShortDescription() == "at the southwest part of the scrapyard") {
+                    else if (getCurrentRoom().getShortDescription() == "at the southwest part of the scrapyard") {
                         inventoryRoom.emptyRoom();
                         inventoryRoom.setRarity(inventoryRoom.roomRandomizer());
                         setRoomRarity(inventoryRoom);
                     }
-                    else if (currentRoom.getShortDescription() == "at the west part of the scrapyard") {
+                    else if (getCurrentRoom().getShortDescription() == "at the west part of the scrapyard") {
                         inventoryRoom.emptyRoom();
                         inventoryRoom.setRarity(inventoryRoom.roomRandomizer());
                         setRoomRarity(inventoryRoom);
                     }
-                    else if (currentRoom.getShortDescription() == "at the merchant") {
+                    else if (getCurrentRoom().getShortDescription() == "at the merchant") {
                         System.out.println("Ali: Welcome to my store, I have special prize just for you my friend take a look ");
                         System.out.println("Ali shows you the following items");
                         System.out.println(merchantShop.showMerchantInventory());
                     } 
-                    else if (currentRoom.getShortDescription() == "at gamestop") {
+                    else if (getCurrentRoom().getShortDescription() == "at gamestop") {
                         System.out.println("Mr. MountainDew: Hey, hows your pc doing? Oh wait... nvm. I broke it");
                         System.out.println("Mr. MountainDew shows you the following items");
                         System.out.println(merchantGamestop.showMerchantInventory());
@@ -550,7 +550,7 @@ public class BusinessFacade implements IBusiness {
             
         }
         System.out.println("The rat is at " + rat.getCurrentRoom().getShortDescription());
-        if(rat.getCurrentRoom()==currentRoom){
+        if(rat.getCurrentRoom()==getCurrentRoom()){
             System.out.println("The rat is in this room");
         }
     }
@@ -558,7 +558,7 @@ public class BusinessFacade implements IBusiness {
     @Override
     public void sellItem(int itemNumber){
         
-        if(currentRoom.getShortDescription() == "at gamestop" || currentRoom.getShortDescription() == "at the merchant"){
+        if(getCurrentRoom().getShortDescription() == "at gamestop" || getCurrentRoom().getShortDescription() == "at the merchant"){
             
                     if(inventoryRoom.getInventoryPlayerSize() >= itemNumber && itemNumber > 0 ){
                         player1.setScore(player1.getScore()+ inventoryRoom.getPlayerItem(itemNumber).getSellPrice());
@@ -576,7 +576,7 @@ public class BusinessFacade implements IBusiness {
     }
     @Override
     public void sleep(){
-        if(currentRoom.getShortDescription()=="at your home"){
+        if(getCurrentRoom().getShortDescription()=="at your home"){
             player1.setDayToken(player1.getDayToken()-1);
             player1.setTimeToken(14);
             if(rat.getIsDead()){
@@ -589,7 +589,7 @@ public class BusinessFacade implements IBusiness {
     }
     @Override
     public void storeItems(int itemNumber) {
-        if (currentRoom.getShortDescription() == "at your home") {
+        if (getCurrentRoom().getShortDescription() == "at your home") {
             int i = itemNumber;
             inventoryRoom.houseAddItem(inventoryRoom.getPlayerItem(i));
         } 
@@ -619,10 +619,10 @@ public class BusinessFacade implements IBusiness {
                 System.out.println("However, reportings say that the police has locked the scrapyard to keep scavengers away. Proceed with caution");
             }
             else if (useableitem==ratPoison){
-                if(currentRoom==rat.getCurrentRoom() && rat.getIsDead()==false){
+                if(getCurrentRoom()==rat.getCurrentRoom() && rat.getIsDead()==false){
                     if(player1.getTimeToken() <= 0 ){
                         System.out.println("you have no moves left");
-                        currentRoom = home;
+                        setCurrentRoom(home);
                         System.out.println("You wake up at home but you've been robbed half your money");
                         player1.setScore(player1.getScore()/2);
                         player1.setTimeToken(14);
@@ -643,10 +643,10 @@ public class BusinessFacade implements IBusiness {
                 }
             }
             else if (useableitem==crowBar){
-                if(currentRoom.getShortDescription() == "at the entrance to the scrapyard"){
+                if(getCurrentRoom().getShortDescription() == "at the entrance to the scrapyard"){
                     if(player1.getTimeToken() <= 0){
                         System.out.println("you have no moves left");
-                        currentRoom = home;
+                        setCurrentRoom(home);
                         System.out.println("You wake up at home but you've been robbed half your money");
                         player1.setScore(player1.getScore()/2);
                         player1.setTimeToken(14);
@@ -657,7 +657,7 @@ public class BusinessFacade implements IBusiness {
                     }
                     else{
                         System.out.println("You used crowbar and smashed the lock");
-                        currentRoom.getExit("south").setIsLocked(false);
+                        getCurrentRoom().getExit("south").setIsLocked(false);
                         inventoryRoom.dropItem(i);
                         System.out.println("Your crowbar broke");
                         player1.setTimeToken(player1.getTimeToken()-1);
@@ -779,5 +779,19 @@ public class BusinessFacade implements IBusiness {
     @Override
     public boolean quit() {
         return true;
+    }
+
+    /**
+     * @return the currentRoom
+     */
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
+    /**
+     * @param currentRoom the currentRoom to set
+     */
+    public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
     }
 }

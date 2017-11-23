@@ -6,6 +6,7 @@
 package presentation;
 import acquaintance.IBusiness;
 import business.BusinessFacade;
+import business.Room;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -50,14 +51,6 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private ImageView MinimapView1;
     @FXML
-    private Button GoNorthButton1;
-    @FXML
-    private Button GoWestButton1;
-    @FXML
-    private Button goSouthButton1;
-    @FXML
-    private Button GoEastButton1;
-    @FXML
     private Pane HomePane;
     @FXML
     private ImageView MapView;
@@ -67,8 +60,6 @@ public class SemesterProjektGUIController implements Initializable {
     private Label MoneyLabel;
     @FXML
     private Pane TopPane;
-    @FXML
-    private Button jdfds;
 
     private IBusiness game;
     /**
@@ -77,33 +68,26 @@ public class SemesterProjektGUIController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
-        
     }    
 
     @FXML
-    private void goNorthButtonHandler(ActionEvent event) {
-           HomePane.toFront();
-           
+    private void GoNorthButtonClicked(MouseEvent event) {
+        game.goRoom("north");
     }
 
     @FXML
-    private void GoWestButtonHandler(ActionEvent event) {
+    private void GoWestButtonClicked(MouseEvent event) {
+        game.goRoom("west");
     }
 
     @FXML
-    private void GoSouthButtonHandler(ActionEvent event) {
-       
-       
+    private void GoEastButtonClicked(MouseEvent event) {
+        game.goRoom("east");
     }
-
+    
     @FXML
-    private void GoEastButtonHandler(ActionEvent event) {
-    }
-
-    @FXML
-    private void goSouthButtonClicked(MouseEvent event) {
+    private void GoSouthButtonClicked(MouseEvent event) {
         DowntownPane.toFront();
         game.goRoom("south");
     }
-    
 }
