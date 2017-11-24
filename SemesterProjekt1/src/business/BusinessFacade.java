@@ -787,6 +787,10 @@ public class BusinessFacade implements IBusiness {
     public Room getCurrentRoom() {
         return currentRoom;
     }
+    @Override
+    public ArrayList<Item> getItemMerchant(){
+        return merchantShop.getInventoryMerchant();
+    }
 
     /**
      * @param currentRoom the currentRoom to set

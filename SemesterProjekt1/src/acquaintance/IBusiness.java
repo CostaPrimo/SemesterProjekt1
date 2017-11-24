@@ -5,7 +5,9 @@
  */
 package acquaintance;
 
+import business.Item;
 import business.Room;
+import java.util.ArrayList;
 
 
 /**
@@ -29,6 +31,7 @@ public interface IBusiness {
     void wallet();
     Room getCurrentRoom();
     void setCurrentRoom(Room currentRoom);
+    ArrayList<Item> getItemMerchant();
     //boolean buildComputer();
     boolean quit();
 }

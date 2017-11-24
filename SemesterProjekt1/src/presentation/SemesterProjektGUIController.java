@@ -6,16 +6,21 @@
 package presentation;
 import acquaintance.IBusiness;
 import business.BusinessFacade;
+import business.Item;
 import business.Rat;
 import business.Room;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,8 +33,9 @@ import javafx.scene.layout.StackPane;
  *
  * @author Kim Christensen
  */
-public class SemesterProjektGUIController implements Initializable {  
-    private Button goSouthButton;
+public class SemesterProjektGUIController implements Initializable {
+    @FXML
+    private Button GoSouthButton;
     @FXML
     private Button GoNorthButton;
     @FXML
@@ -53,6 +59,8 @@ public class SemesterProjektGUIController implements Initializable {
     private IBusiness game;
     @FXML
     private Label CurrentRoomLabel;
+    
+   // private ObservableList<Item> itemName;
     /**
      * Initializes the controller class.
      */
@@ -72,7 +80,6 @@ public class SemesterProjektGUIController implements Initializable {
     Image minimapScrapyardSouthImage = new Image(getClass().getResource("MiniMap_ScrapyardSouth.png").toExternalForm());
     Image minimapScrapyardSouthWestImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthWest.png").toExternalForm());
     Image minimapScrapyardSouthEastImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthEast.png").toExternalForm());
-
     @FXML
     private Button UseButton;
     @FXML
@@ -80,13 +87,11 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private Pane MapPane;
     @FXML
-    private Button GoSouthButton;
-    @FXML
     private Pane MenuPane;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
-        
+        //this.itemName = FXCollections.observableArrayList();
     }    
 
     @FXML
@@ -121,6 +126,7 @@ public class SemesterProjektGUIController implements Initializable {
         }
         else if (game.getCurrentRoom().getShortDescription() == "at the merchant"){
             MinimapView.setImage(minimapMerchantImage);
+            MoneyLabel.setText(game.getItemMerchant().get(0).getName());
         }
         else if (game.getCurrentRoom().getShortDescription() == "at gamestop"){
             MinimapView.setImage(minimapGamestopImage);

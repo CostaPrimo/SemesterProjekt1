@@ -17,19 +17,19 @@ public class Merchant extends NPC {
    
     
     public void addAllItems(Collection allItems){
-        inventoryMerchant.addAll(allItems);
+        getInventoryMerchant().addAll(allItems);
     }
     
     public void addItem(Item item){
-        inventoryMerchant.add(item);
+        getInventoryMerchant().add(item);
     }
     
     
     public String showMerchantInventory(){
         String contains = "";
         int count = 1;
-        for(int i = 0; i < inventoryMerchant.size();i++){
-            contains += count + ": " + inventoryMerchant.get(i).getName() + "\n";
+        for(int i = 0; i < getInventoryMerchant().size();i++){
+            contains += count + ": " + getInventoryMerchant().get(i).getName() + "\n";
             count++;
         }
         return contains;
@@ -37,6 +37,13 @@ public class Merchant extends NPC {
     
     
     public Item getItemMerchant(int i){
-        return inventoryMerchant.get(i-1);
+        return getInventoryMerchant().get(i-1);
+    }
+
+    /**
+     * @return the inventoryMerchant
+     */
+    public ArrayList<Item> getInventoryMerchant() {
+        return inventoryMerchant;
     }
 }
