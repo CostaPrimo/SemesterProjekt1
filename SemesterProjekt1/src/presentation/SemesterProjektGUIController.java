@@ -6,6 +6,7 @@
 package presentation;
 import acquaintance.IBusiness;
 import business.BusinessFacade;
+import business.Rat;
 import business.Room;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -59,6 +60,19 @@ public class SemesterProjektGUIController implements Initializable {
     Image image2 = new Image(getClass().getResource("downtown us.png").toExternalForm());
     Image image3 = new Image(getClass().getResource("yard entrance låst ms.png").toExternalForm());
     Image image4 = new Image(getClass().getResource("yard entrance åben ms.png").toExternalForm());
+    
+    Image minimapHomeImage = new Image(getClass().getResource("MiniMap_Home.png").toExternalForm());
+    Image minimapDowntownImage = new Image(getClass().getResource("MiniMap_DownTown.png").toExternalForm());
+    Image minimapGamestopImage = new Image(getClass().getResource("MiniMap_GameStop.png").toExternalForm());
+    Image minimapMerchantImage = new Image(getClass().getResource("MiniMap_Merchant.png").toExternalForm());
+    Image minimapScrapyardEntranceImage = new Image(getClass().getResource("MiniMap_ScrapyardEntrance.png").toExternalForm());
+    Image minimapScrapyardMiddleImage = new Image(getClass().getResource("MiniMap_ScrapyardMiddle.png").toExternalForm());
+    Image minimapScrapyardWestImage = new Image(getClass().getResource("MiniMap_ScrapyardWest.png").toExternalForm());
+    Image minimapScrapyardEastImage = new Image(getClass().getResource("MiniMap_ScrapyardEast.png").toExternalForm());
+    Image minimapScrapyardSouthImage = new Image(getClass().getResource("MiniMap_ScrapyardSouth.png").toExternalForm());
+    Image minimapScrapyardSouthWestImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthWest.png").toExternalForm());
+    Image minimapScrapyardSouthEastImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthEast.png").toExternalForm());
+
     @FXML
     private Button UseButton;
     @FXML
@@ -86,24 +100,48 @@ public class SemesterProjektGUIController implements Initializable {
         else if (event.getSource() == GoWestButton){
             game.goRoom("west");
         }
-        else if (event.getSource() == goSouthButton){
+        else if (event.getSource() == GoSouthButton){
             game.goRoom("south");
         }
         if(game.getCurrentRoom().getShortDescription() == "at downtown"){
             MapView.setImage(image2);
+            MinimapView.setImage(minimapDowntownImage);
         }
         else if (game.getCurrentRoom().getShortDescription() == "at your home"){
             MapView.setImage(image1);
+            MinimapView.setImage(minimapHomeImage);
         }
         else if (game.getCurrentRoom().getShortDescription()== "at the entrance to the scrapyard"){
             MapView.setImage(image3);
+            MinimapView.setImage(minimapScrapyardEntranceImage);
         }
         else if (game.getCurrentRoom().getShortDescription() == "at the entrance to the scrapyard" && game.getCurrentRoom().getIsLocked()==false){
             MapView.setImage(image4);
+            MinimapView.setImage(minimapScrapyardEntranceImage);
         }
         else if (game.getCurrentRoom().getShortDescription() == "at the merchant"){
-            
-              
+            MinimapView.setImage(minimapMerchantImage);
+        }
+        else if (game.getCurrentRoom().getShortDescription() == "at gamestop"){
+            MinimapView.setImage(minimapGamestopImage);
+        }
+        else if (game.getCurrentRoom().getShortDescription() == "at the center of the scrapyard"){
+            MinimapView.setImage(minimapScrapyardMiddleImage);
+        }
+        else if (game.getCurrentRoom().getShortDescription() == "at the west part of the scrapyard"){
+            MinimapView.setImage(minimapScrapyardWestImage);
+        }
+        else if (game.getCurrentRoom().getShortDescription() == "at the east part of the scrapyard"){
+            MinimapView.setImage(minimapScrapyardEastImage);
+        }
+        else if (game.getCurrentRoom().getShortDescription() == "at the south part of the scrapyard"){
+            MinimapView.setImage(minimapScrapyardSouthImage);
+        }
+        else if (game.getCurrentRoom().getShortDescription() == "at the southeast part of the scrapyard"){
+            MinimapView.setImage(minimapScrapyardSouthEastImage);
+        }
+        else if (game.getCurrentRoom().getShortDescription() == "at the southwest part of the scrapyard"){
+            MinimapView.setImage(minimapScrapyardSouthWestImage);
         }
     }
 
