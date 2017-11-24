@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,7 +28,6 @@ import javafx.scene.layout.StackPane;
  * @author Kim Christensen
  */
 public class SemesterProjektGUIController implements Initializable {  
-    @FXML
     private Button goSouthButton;
     @FXML
     private Button GoNorthButton;
@@ -43,8 +43,6 @@ public class SemesterProjektGUIController implements Initializable {
     private Button MenuButton;
     @FXML
     private Button InspectButton;
-    @FXML
-    private Pane HomePane;
     @FXML
     private ImageView MapView;
     @FXML
@@ -63,6 +61,14 @@ public class SemesterProjektGUIController implements Initializable {
     Image image4 = new Image(getClass().getResource("yard entrance åben ms.png").toExternalForm());
     @FXML
     private Button UseButton;
+    @FXML
+    private ListView<?> StoreListView;
+    @FXML
+    private Pane MapPane;
+    @FXML
+    private Button GoSouthButton;
+    @FXML
+    private Pane MenuPane;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
@@ -94,6 +100,10 @@ public class SemesterProjektGUIController implements Initializable {
         }
         else if (game.getCurrentRoom().getShortDescription() == "at the entrance to the scrapyard" && game.getCurrentRoom().getIsLocked()==false){
             MapView.setImage(image4);
+        }
+        else if (game.getCurrentRoom().getShortDescription() == "at the merchant"){
+            
+              
         }
     }
 
