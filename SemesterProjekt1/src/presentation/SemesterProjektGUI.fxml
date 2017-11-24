@@ -18,8 +18,8 @@
    <center>
       <GridPane prefHeight="723.0" prefWidth="993.0" BorderPane.alignment="CENTER">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1001.0" minWidth="10.0" prefWidth="662.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="456.0" minWidth="10.0" prefWidth="444.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1001.0" minWidth="10.0" prefWidth="600.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="456.0" minWidth="10.0" prefWidth="313.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -27,22 +27,22 @@
          <children>
             <StackPane prefHeight="694.0" prefWidth="550.0">
                <children>
-                  <Pane prefHeight="200.0" prefWidth="200.0">
+                  <Pane prefHeight="200.0" prefWidth="200.0" visible="false">
                      <children>
                         <ListView fx:id="StoreListView" layoutX="113.0" layoutY="179.0" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </Pane>
-                  <Pane fx:id="MapPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" visible="false">
+                  <Pane fx:id="MapPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0">
                      <children>
-                        <ImageView fx:id="MapView" fitHeight="314.0" fitWidth="555.0" layoutX="3.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="MapView" fitHeight="600.0" fitWidth="600.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@space_flight_sky_stars_82970_1920x1080.jpg" />
+                              <Image url="@downtown%20us.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="GoNorthButton" layoutX="240.0" layoutY="6.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go North" />
-                        <Button fx:id="GoWestButton" layoutX="3.0" layoutY="257.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go West" />
-                        <Button fx:id="GoSouthButton" layoutX="239.0" layoutY="510.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go South" />
-                        <Button fx:id="GoEastButton" layoutX="488.0" layoutY="257.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go East" />
+                        <Button fx:id="GoNorthButton" layoutX="259.0" layoutY="1.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go North" />
+                        <Button fx:id="GoWestButton" layoutY="273.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go West" />
+                        <Button fx:id="GoSouthButton" layoutX="259.0" layoutY="573.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go South" />
+                        <Button fx:id="GoEastButton" layoutX="524.0" layoutY="273.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go East" />
                      </children>
                      <StackPane.margin>
                         <Insets />
@@ -50,18 +50,18 @@
                   </Pane>
                </children>
             </StackPane>
-            <Pane fx:id="MenuPane" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+            <Pane fx:id="MenuPane" prefHeight="602.0" prefWidth="388.0" GridPane.columnIndex="1">
                <children>
-                  <Button fx:id="UseButton" layoutX="22.0" layoutY="470.0" mnemonicParsing="false" onAction="#UseButtonHandler" text="Crowbar test" />
-                  <Button fx:id="InventoryButton" layoutX="233.0" layoutY="470.0" mnemonicParsing="false" text="Inventory" />
-                  <Button fx:id="MenuButton" layoutX="289.0" layoutY="-1.0" mnemonicParsing="false" text="Menu" />
-                  <Label fx:id="CurrentRoomLabel" layoutX="253.0" layoutY="39.0" text="CurrentRoom" />
-                  <Button fx:id="InspectButton" layoutX="140.0" layoutY="470.0" mnemonicParsing="false" text="Inspect" />
-                  <Label fx:id="MoneyLabel" layoutX="52.0" layoutY="76.0" text="Money" />
-                  <TextArea fx:id="TextAreaStatus" editable="false" layoutX="74.0" layoutY="203.0" prefHeight="246.0" prefWidth="200.0" />
-                  <ImageView fx:id="MinimapView" fitHeight="182.0" fitWidth="249.0" layoutX="139.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="UseButton" layoutX="5.0" layoutY="470.0" mnemonicParsing="false" onAction="#UseButtonHandler" text="Crowbar test" />
+                  <Button fx:id="InventoryButton" layoutX="216.0" layoutY="470.0" mnemonicParsing="false" text="Inventory" />
+                  <Button fx:id="MenuButton" layoutX="253.0" layoutY="4.0" mnemonicParsing="false" text="Menu" />
+                  <Label fx:id="CurrentRoomLabel" layoutX="221.0" layoutY="51.0" text="CurrentRoom" />
+                  <Button fx:id="InspectButton" layoutX="123.0" layoutY="470.0" mnemonicParsing="false" text="Inspect" />
+                  <Label fx:id="MoneyLabel" layoutX="20.0" layoutY="4.0" text="Money" />
+                  <TextArea fx:id="TextAreaStatus" editable="false" layoutX="57.0" layoutY="210.0" prefHeight="246.0" prefWidth="200.0" />
+                  <ImageView fx:id="MinimapView" fitHeight="170.0" fitWidth="160.0" layoutX="77.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@MiniMap_Home.png" />
+                        <Image url="@MiniMap_DownTown.png" />
                      </image>
                   </ImageView>
                </children>
