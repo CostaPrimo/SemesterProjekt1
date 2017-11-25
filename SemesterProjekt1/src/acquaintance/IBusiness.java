@@ -32,6 +32,7 @@ public interface IBusiness {
     Room getCurrentRoom();
     void setCurrentRoom(Room currentRoom);
     ArrayList<Item> getItemMerchant();
+    ArrayList<Item> getItemPlayer();
     //boolean buildComputer();
     boolean quit();
 }

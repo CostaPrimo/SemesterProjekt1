@@ -37,7 +37,7 @@ public class Merchant extends NPC {
     
     
     public Item getItemMerchant(int i){
-        return getInventoryMerchant().get(i-1);
+        return getInventoryMerchant().get(i);
     }
 
     /**

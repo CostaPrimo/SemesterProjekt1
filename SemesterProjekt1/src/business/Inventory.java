@@ -64,8 +64,8 @@ public class Inventory {
     //Creates a method for adding items to the player inventory
     public void addItem(Item item){
         //The item is only added if the inventory isnt full
-        if (inventoryPlayer.size()<getMaxStoragePlayer()){
-            inventoryPlayer.add(item);
+        if (getInventoryPlayer().size()<getMaxStoragePlayer()){
+            getInventoryPlayer().add(item);
         }
         else {
             System.out.println("Your inventory is full");
@@ -73,7 +73,7 @@ public class Inventory {
     }
     
     public void buildInventoryTotal(){
-        inventoryTotal.addAll(inventoryPlayer);
+        inventoryTotal.addAll(getInventoryPlayer());
         inventoryTotal.addAll(inventoryHouse);
     }
     
@@ -92,8 +92,8 @@ public class Inventory {
     //Method for removing an item from the player inventory
     public boolean dropItem(int i){
         //The method only accepts numbers within the size of the inventory
-        if(inventoryPlayer.size()>=i){
-            inventoryPlayer.remove(i-1);
+        if(getInventoryPlayer().size()>=i){
+            getInventoryPlayer().remove(i);
             return true;
         }
         else{
@@ -109,9 +109,9 @@ public class Inventory {
     //Method for adding an item from the player inventory to the house storage
     public void houseAddItem(Item item){
         //The item is only added to the house storage if its contained within the player inventory, the stored item is removed from the player inventory
-        if (inventoryPlayer.contains(item)){
-            inventoryHouse.add(inventoryPlayer.get(inventoryPlayer.indexOf(item)));
-            inventoryPlayer.remove(inventoryPlayer.indexOf(item));
+        if (getInventoryPlayer().contains(item)){
+            inventoryHouse.add(getInventoryPlayer().get(getInventoryPlayer().indexOf(item)));
+            getInventoryPlayer().remove(getInventoryPlayer().indexOf(item));
             System.out.println("Item stored");
         }
         else{
@@ -123,8 +123,8 @@ public class Inventory {
     public void housePickItem(Item item){
         //The item is only added to the player inventory if its contained within the house storage, the recieved item is removed from the house storage
         if (inventoryHouse.contains(item)){
-            if (inventoryPlayer.size() < getMaxStoragePlayer()){
-                inventoryPlayer.add(inventoryHouse.get(inventoryHouse.indexOf(item)));
+            if (getInventoryPlayer().size() < getMaxStoragePlayer()){
+                getInventoryPlayer().add(inventoryHouse.get(inventoryHouse.indexOf(item)));
                 inventoryHouse.remove(inventoryHouse.indexOf(item));
                 System.out.println("Item picked up");
             }
@@ -146,8 +146,8 @@ public class Inventory {
     
     public void roomPickItem(Item item){
         if (inventoryRoom.contains(item)){
-            if (inventoryPlayer.size() < maxStoragePlayer){
-                inventoryPlayer.add(inventoryRoom.get(inventoryRoom.indexOf(item)));
+            if (getInventoryPlayer().size() < maxStoragePlayer){
+                getInventoryPlayer().add(inventoryRoom.get(inventoryRoom.indexOf(item)));
                 inventoryRoom.remove(inventoryRoom.indexOf(item));
                 System.out.println("Item picked up");
             }
@@ -222,9 +222,9 @@ public class Inventory {
         
         String contains = "";
         int count = 1;
-        for(int i = 0; i < inventoryPlayer.size();i++)
+        for(int i = 0; i < getInventoryPlayer().size();i++)
         {
-            contains += count + ": " + inventoryPlayer.get(i).getName() + "\n";
+            contains += count + ": " + getInventoryPlayer().get(i).getName() + "\n";
             count++;
         }
         return contains;
@@ -270,7 +270,7 @@ public class Inventory {
     }
     
     public int getInventoryPlayerSize(){
-        return inventoryPlayer.size();
+        return getInventoryPlayer().size();
     }
     
     public int getInventoryTotalSize(){
@@ -296,17 +296,24 @@ public class Inventory {
     }
     
     public Item getHouseitem(int i){
-        return inventoryHouse.get(i-1);
+        return inventoryHouse.get(i);
     }
     public Item getInventoryTotalItem(int i){
-        return inventoryTotal.get(i-1);
+        return inventoryTotal.get(i);
     }
     
     public Item getPlayerItem(int i){
-        return inventoryPlayer.get(i-1);
+        return getInventoryPlayer().get(i);
     }
     
     public Item getRoomItem(int i) {
         return inventoryRoom.get(i);
+    }
+
+    /**
+     * @return the inventoryPlayer
+     */
+    public ArrayList<Item> getInventoryPlayer() {
+        return inventoryPlayer;
     }
 }

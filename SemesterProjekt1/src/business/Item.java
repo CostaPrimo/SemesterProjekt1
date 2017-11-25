@@ -46,5 +46,9 @@ public class Item {
         return tooHeavy;
     }
     
-    
+    @Override
+	public String toString()
+	{
+		return "Name " + Name + " BuyPrice " + Buyprice + " SellPrice" + Sellprice;
+	}
 }

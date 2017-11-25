@@ -355,7 +355,7 @@ public class BusinessFacade implements IBusiness {
             if(getCurrentRoom()!=rat.getCurrentRoom()){
                 if (i > 0 && i <= inventoryRoom.getMaxStorageRoom()) {
                     if(inventoryRoom.getRoomItem(i-1).isTooHeavy()!=true){
-                        inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i - 1));
+                        inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i));
                     }
                     else {
                         System.out.println("Item is too heavy to pickup");
@@ -364,8 +364,8 @@ public class BusinessFacade implements IBusiness {
             }
             else if (getCurrentRoom()==rat.getCurrentRoom() && rat.getIsDead()){
                 if (i > 0 && i <= inventoryRoom.getMaxStorageRoom()) {
-                    if(inventoryRoom.getRoomItem(i-1).isTooHeavy()!=true){
-                        inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i - 1));
+                    if(inventoryRoom.getRoomItem(i).isTooHeavy()!=true){
+                        inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i));
                     }
                     else {
                         System.out.println("Item is too heavy to pickup");
@@ -560,8 +560,9 @@ public class BusinessFacade implements IBusiness {
         
         if(getCurrentRoom().getShortDescription() == "at gamestop" || getCurrentRoom().getShortDescription() == "at the merchant"){
             
-                    if(inventoryRoom.getInventoryPlayerSize() >= itemNumber && itemNumber > 0 ){
+                    if(inventoryRoom.getInventoryPlayerSize() >= itemNumber){
                         player1.setScore(player1.getScore()+ inventoryRoom.getPlayerItem(itemNumber).getSellPrice());
+                        System.out.println("Item" + inventoryRoom.getPlayerItem(itemNumber).getName() + "sold");
                         inventoryRoom.dropItem(itemNumber);
                     }
                     else{
@@ -797,5 +798,9 @@ public class BusinessFacade implements IBusiness {
      */
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
+    }
+    @Override
+    public ArrayList<Item> getItemPlayer(){
+        return inventoryRoom.getInventoryPlayer();
     }
 }

@@ -11,6 +11,7 @@ import business.Rat;
 import business.Room;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -89,15 +90,31 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private Button UseButton;
     @FXML
-    private ListView<?> StoreListView;
-    @FXML
     private Pane MapPane;
     @FXML
     private Pane MenuPane;
+    @FXML
+    private Pane MerchantsPane;
+    @FXML
+    private ListView<Item> MerchantListViewBuy;
+    private ObservableList<Item> merchantItems;
+    private ObservableList<Item> playerInventory;
+    @FXML
+    private Button BuyItemsButton;
+    @FXML
+    private Button ExitStoreButton;
+    @FXML
+    private ListView<Item> MerchantListViewSell;
+    @FXML
+    private Button SellitemsButton;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
-        //this.itemName = FXCollections.observableArrayList();
+        this.merchantItems = FXCollections.observableArrayList(game.getItemMerchant());
+        this.playerInventory = FXCollections.observableArrayList(game.getItemPlayer());
+        MerchantListViewBuy.setItems(merchantItems);
+        MerchantListViewSell.setItems(playerInventory);
+        
     }    
 
     @FXML
@@ -122,7 +139,7 @@ public class SemesterProjektGUIController implements Initializable {
             MapView.setImage(image1);
             MinimapView.setImage(minimapHomeImage);
         }
-        else if (game.getCurrentRoom().getShortDescription()== "at the entrance to the scrapyard"){
+        else if (game.getCurrentRoom().getShortDescription()== "at the entrance to the scrapyard" && game.getCurrentRoom().getIsLocked() == true){//Næste rum ikke current
             MapView.setImage(mapEntranceLockedImage);
             MinimapView.setImage(minimapScrapyardEntranceImage);
         }
@@ -132,7 +149,7 @@ public class SemesterProjektGUIController implements Initializable {
         }
         else if (game.getCurrentRoom().getShortDescription() == "at the merchant"){
             MinimapView.setImage(minimapMerchantImage);
-            MoneyLabel.setText(game.getItemMerchant().get(0).getName());
+            MerchantsPane.toFront();
         }
         else if (game.getCurrentRoom().getShortDescription() == "at gamestop"){
             MinimapView.setImage(minimapGamestopImage);
@@ -165,5 +182,34 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private void UseButtonHandler(ActionEvent event) {
         game.use(0);
+        playerInventory.setAll(game.getItemPlayer());
+    }
+
+    @FXML
+    private void BuyItemsButtonHandler(ActionEvent event) {
+        //MerchantListView.getSelectionModel().getSelectedIndices();
+        if(MerchantListViewBuy.getSelectionModel().isSelected(1)){
+            game.buyItem(1);
+            playerInventory.setAll(game.getItemPlayer());
+        }
+    }
+
+    @FXML
+    private void ExitStoreButtonHandler(ActionEvent event) {
+        if(game.getCurrentRoom().getShortDescription() == "at the merchant"){
+            game.goRoom("west");
+        }
+        else{
+            game.goRoom("east");
+        }
+        MapPane.toFront();
+    }
+
+    @FXML
+    private void SellitemsButtonHandler(ActionEvent event) {
+        if(MerchantListViewSell.getSelectionModel().isSelected(0)){
+            game.sellItem(0);
+            playerInventory.setAll(game.getItemPlayer());
+        }
     }
 }
