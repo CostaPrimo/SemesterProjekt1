@@ -98,6 +98,7 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private ListView<Item> MerchantListViewBuy;
     private ObservableList<Item> merchantItems;
+    private ObservableList<Item> gamestopItems;
     private ObservableList<Item> playerInventory;
     @FXML
     private Button BuyItemsButton;
@@ -110,13 +111,10 @@ public class SemesterProjektGUIController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
-        this.merchantItems = FXCollections.observableArrayList(game.getItemMerchant());
         this.playerInventory = FXCollections.observableArrayList(game.getItemPlayer());
-        MerchantListViewBuy.setItems(merchantItems);
         MerchantListViewSell.setItems(playerInventory);
-        
-    }    
-
+        MoneyLabel.setText(Integer.toString(game.wallet()));
+    }   
     @FXML
     private void GoButtonHandler(ActionEvent event) {
         if(event.getSource() == GoNorthButton){
@@ -131,13 +129,13 @@ public class SemesterProjektGUIController implements Initializable {
         else if (event.getSource() == GoSouthButton){
             game.goRoom("south");
         }
-        if(game.getCurrentRoom().getShortDescription() == "at downtown"){
-            MapView.setImage(mapDowntownMSImage);
-            MinimapView.setImage(minimapDowntownImage);
-        }
-        else if (game.getCurrentRoom().getShortDescription() == "at your home"){
+        if(game.getCurrentRoom().getShortDescription() == "at your home"){
             MapView.setImage(image1);
             MinimapView.setImage(minimapHomeImage);
+        }
+        else if (game.getCurrentRoom().getShortDescription() == "at downtown"){
+            MapView.setImage(mapDowntownMSImage);
+            MinimapView.setImage(minimapDowntownImage);
         }
         else if (game.getCurrentRoom().getShortDescription()== "at the entrance to the scrapyard" && game.getCurrentRoom().getIsLocked() == true){//Næste rum ikke current
             MapView.setImage(mapEntranceLockedImage);
@@ -149,10 +147,15 @@ public class SemesterProjektGUIController implements Initializable {
         }
         else if (game.getCurrentRoom().getShortDescription() == "at the merchant"){
             MinimapView.setImage(minimapMerchantImage);
+            this.merchantItems = FXCollections.observableArrayList(game.getItemMerchant());
+            MerchantListViewBuy.setItems(merchantItems);
             MerchantsPane.toFront();
         }
         else if (game.getCurrentRoom().getShortDescription() == "at gamestop"){
             MinimapView.setImage(minimapGamestopImage);
+            this.gamestopItems = FXCollections.observableArrayList(game.getItemGamestop());
+            MerchantListViewBuy.setItems(gamestopItems);
+            MerchantsPane.toFront();
         }
         else if (game.getCurrentRoom().getShortDescription() == "at the center of the scrapyard"){
             MinimapView.setImage(minimapScrapyardMiddleImage);
@@ -188,9 +191,11 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private void BuyItemsButtonHandler(ActionEvent event) {
         //MerchantListView.getSelectionModel().getSelectedIndices();
-        if(MerchantListViewBuy.getSelectionModel().isSelected(1)){
-            game.buyItem(1);
+        for (int i= MerchantListViewBuy.getSelectionModel().getSelectedIndex(); i<12; i++){
+            game.buyItem(i);
             playerInventory.setAll(game.getItemPlayer());
+            MoneyLabel.setText(Integer.toString(game.wallet()));
+            break;
         }
     }
 
@@ -198,18 +203,23 @@ public class SemesterProjektGUIController implements Initializable {
     private void ExitStoreButtonHandler(ActionEvent event) {
         if(game.getCurrentRoom().getShortDescription() == "at the merchant"){
             game.goRoom("west");
+            MinimapView.setImage(minimapDowntownImage);
         }
         else{
             game.goRoom("east");
+            MinimapView.setImage(minimapDowntownImage);
+            
         }
         MapPane.toFront();
     }
 
     @FXML
     private void SellitemsButtonHandler(ActionEvent event) {
-        if(MerchantListViewSell.getSelectionModel().isSelected(0)){
-            game.sellItem(0);
+        for (int i= MerchantListViewSell.getSelectionModel().getSelectedIndex(); i<12; i++){
+            game.sellItem(i);
             playerInventory.setAll(game.getItemPlayer());
+            MoneyLabel.setText(Integer.toString(game.wallet()));
+            break;
         }
     }
 }

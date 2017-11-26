@@ -28,11 +28,12 @@ public interface IBusiness {
     void sleep();
     void storeItems(int itemNumber);
     void use(int itemNumber);
-    void wallet();
+    int wallet();
     Room getCurrentRoom();
     void setCurrentRoom(Room currentRoom);
     ArrayList<Item> getItemMerchant();
     ArrayList<Item> getItemPlayer();
+    ArrayList<Item> getItemGamestop();
     //boolean buildComputer();
     boolean quit();
 }

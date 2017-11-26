@@ -673,8 +673,8 @@ public class BusinessFacade implements IBusiness {
         }
     }
     @Override
-    public void wallet(){
-        System.out.println("You have " + player1.getScore() + "$$$");
+    public int wallet(){
+        return this.player1.getScore();
     }
     
     
@@ -802,5 +802,9 @@ public class BusinessFacade implements IBusiness {
     @Override
     public ArrayList<Item> getItemPlayer(){
         return inventoryRoom.getInventoryPlayer();
+    }
+    @Override
+    public ArrayList<Item> getItemGamestop(){
+        return merchantGamestop.getInventoryMerchant();
     }
 }
