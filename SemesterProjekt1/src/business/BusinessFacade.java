@@ -353,8 +353,8 @@ public class BusinessFacade implements IBusiness {
         else{
             int i = itemNumber;
             if(getCurrentRoom()!=rat.getCurrentRoom()){
-                if (i > 0 && i <= inventoryRoom.getMaxStorageRoom()) {
-                    if(inventoryRoom.getRoomItem(i-1).isTooHeavy()!=true){
+                if (i >= 0 && i <= inventoryRoom.getMaxStorageRoom()) {
+                    if(inventoryRoom.getRoomItem(i).isTooHeavy()!=true){
                         inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i));
                     }
                     else {
@@ -806,5 +806,9 @@ public class BusinessFacade implements IBusiness {
     @Override
     public ArrayList<Item> getItemGamestop(){
         return merchantGamestop.getInventoryMerchant();
+    }
+    @Override
+    public ArrayList<Item> getItemRoom(){
+        return inventoryRoom.getInventoryRoom();
     }
 }

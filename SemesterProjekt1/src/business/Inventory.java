@@ -316,4 +316,7 @@ public class Inventory {
     public ArrayList<Item> getInventoryPlayer() {
         return inventoryPlayer;
     }
+    public ArrayList<Item> getInventoryRoom(){
+        return inventoryRoom;
+    }
 }

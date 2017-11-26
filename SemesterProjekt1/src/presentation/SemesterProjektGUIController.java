@@ -100,6 +100,7 @@ public class SemesterProjektGUIController implements Initializable {
     private ObservableList<Item> merchantItems;
     private ObservableList<Item> gamestopItems;
     private ObservableList<Item> playerInventory;
+    private ObservableList<Item> roomInventory;
     @FXML
     private Button BuyItemsButton;
     @FXML
@@ -108,11 +109,26 @@ public class SemesterProjektGUIController implements Initializable {
     private ListView<Item> MerchantListViewSell;
     @FXML
     private Button SellitemsButton;
+    @FXML
+    private Pane InspectPane;
+    @FXML
+    private ListView<Item> PlayerInventoryListview;
+    @FXML
+    private ListView<Item> RoomInventoryListview;
+    @FXML
+    private Button PickupButton;
+    @FXML
+    private Button DropButton;
+    @FXML
+    private Button CloseButton;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
         this.playerInventory = FXCollections.observableArrayList(game.getItemPlayer());
+        this.roomInventory = FXCollections.observableArrayList(game.getItemRoom());
         MerchantListViewSell.setItems(playerInventory);
+        RoomInventoryListview.setItems(roomInventory);
+        PlayerInventoryListview.setItems(playerInventory);
         MoneyLabel.setText(Integer.toString(game.wallet()));
     }   
     @FXML
@@ -221,5 +237,39 @@ public class SemesterProjektGUIController implements Initializable {
             MoneyLabel.setText(Integer.toString(game.wallet()));
             break;
         }
+    }
+
+    @FXML
+    private void InspectButtonHandler(ActionEvent event) {
+        roomInventory.setAll(game.getItemRoom());
+        playerInventory.setAll(game.getItemPlayer());
+        InspectPane.toFront();
+        
+        
+        
+    }
+
+    @FXML
+    private void PickupButtonHandler(ActionEvent event) {
+        for(int i= RoomInventoryListview.getSelectionModel().getSelectedIndex(); i<3; i++){
+            game.addItem(i);
+            roomInventory.setAll(game.getItemRoom());
+            playerInventory.setAll(game.getItemPlayer());
+            break;
+        }
+    }
+
+    @FXML
+    private void DropButtonHandler(ActionEvent event) {
+        for(int i= PlayerInventoryListview.getSelectionModel().getSelectedIndex(); i<3; i++){
+            game.dropItem(i);
+            playerInventory.setAll(game.getItemPlayer());
+            break;
+        }
+    }
+
+    @FXML
+    private void CloseButtonHandler(ActionEvent event) {
+        MapPane.toFront();
     }
 }

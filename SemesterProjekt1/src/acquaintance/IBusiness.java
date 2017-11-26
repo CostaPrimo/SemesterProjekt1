@@ -34,6 +34,7 @@ public interface IBusiness {
     ArrayList<Item> getItemMerchant();
     ArrayList<Item> getItemPlayer();
     ArrayList<Item> getItemGamestop();
+    ArrayList<Item> getItemRoom();
     //boolean buildComputer();
     boolean quit();
 }
