@@ -48,8 +48,6 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private Button InventoryButton;
     @FXML
-    private Button MenuButton;
-    @FXML
     private Button InspectButton;
     @FXML
     private ImageView MapView;
@@ -129,7 +127,7 @@ public class SemesterProjektGUIController implements Initializable {
         MerchantListViewSell.setItems(playerInventory);
         RoomInventoryListview.setItems(roomInventory);
         PlayerInventoryListview.setItems(playerInventory);
-        MoneyLabel.setText(Integer.toString(game.wallet()));
+        MoneyLabel.setText("Money: " + (Integer.toString(game.wallet())));
     }   
     @FXML
     private void GoButtonHandler(ActionEvent event) {
