@@ -319,4 +319,13 @@ public class Inventory {
     public ArrayList<Item> getInventoryRoom(){
         return inventoryRoom;
     }
+    public ArrayList<Item> getInventoryTotal(){
+        inventoryTotal.clear();
+        inventoryTotal.addAll(inventoryPlayer);
+        inventoryTotal.addAll(inventoryHouse);
+        return inventoryTotal;
+    }
+    public ArrayList<Item> getInventoryComputer(){
+        return inventoryComputer;
+    }
 }

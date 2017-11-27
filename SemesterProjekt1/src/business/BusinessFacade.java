@@ -677,103 +677,54 @@ public class BusinessFacade implements IBusiness {
         return this.player1.getScore();
     }
     
+    @Override
+    public void addParts(int itemNumber) {
+        int i = itemNumber;
+        if(inventoryRoom.getInventoryComputerSize()==0){
+            System.out.println("Please insert a CPU for the first slot" + "\n" + inventoryRoom.showInventoryTotal());
+            if(CPU.contains(inventoryRoom.getInventoryTotalItem(i))){
+                inventoryRoom.computerAddItem(inventoryRoom.getInventoryTotalItem(i));
+            }
+            else{
+                System.out.println("Please add a CPU in this slot");
+            }
+        }
+        else if(inventoryRoom.getInventoryComputerSize()==1){
+            System.out.println("Please insert a GPU for the second slot" + "\n" + inventoryRoom.showInventoryTotal());
+            if(GPU.contains(inventoryRoom.getInventoryTotalItem(i))){
+                inventoryRoom.computerAddItem(inventoryRoom.getInventoryTotalItem(i));
+            }
+            else{
+                System.out.println("Please add a GPU in this slot");
+            }
+        }
+        else if(inventoryRoom.getInventoryComputerSize()==2){
+            System.out.println("Please insert a RAM for the third slot" + "\n" + inventoryRoom.showInventoryTotal());
+            if(RAM.contains(inventoryRoom.getInventoryTotalItem(i))){
+                inventoryRoom.computerAddItem(inventoryRoom.getInventoryTotalItem(i));
+                    }
+        else{
+            System.out.println("Please add RAM in this slot");
+        }
+    } 
+}
+    public boolean buildComputer(){
+        player1.setScore(0);
+        for (int j = 0; j < inventoryRoom.getInventoryComputerSize(); j++) {
+            player1.setScore(player1.getScore() + inventoryRoom.getComputerItem(j).getBuyPrice());
+            System.out.println("Your added item is " + inventoryRoom.getComputerItem(j).getName() + " with the value of " + inventoryRoom.getComputerItem(j).getBuyPrice());
+        }
+        System.out.println("Your total score is " + player1.getScore());
+        if(player1.getScore()>scoreToBeat){
+            System.out.println("You won the game!");
+        }
+        else{
+            System.out.println("Your computer is not better than Mr.MountainDew's pc");
+            System.out.println("You lose!");
+        }
+        return true;
+    }
     
-//    private boolean buildComputer(Command command) {
-//        if (currentRoom.getShortDescription() == "at your home") {
-//            if (!command.hasSecondWord()) {
-//                inventoryRoom.buildInventoryTotal();
-//                while (inventoryRoom.getInventoryComputerSize() != 3){
-//                    if(inventoryRoom.getInventoryComputerSize()==0){
-//                        System.out.println("Please insert a CPU for the first slot" + "\n" + inventoryRoom.showInventoryTotal());
-//                        String temp = parser.returnString() + "";
-//                        char[] charArray = temp.toCharArray();
-//                        if (charArray.length > 1) {
-//                            System.out.println("Please only enter 1 character");
-//                        } 
-//                        else if (!Character.isDigit(charArray[0])) {
-//                            System.out.println("Please only enter numbers");
-//                        }
-//                        else {
-//                            int i = Integer.parseInt(temp);
-//                            if (i > 0 && i <= inventoryRoom.getInventoryTotalSize()) {
-//                                if(CPU.contains(inventoryRoom.getInventoryTotalItem(i))){
-//                                    inventoryRoom.computerAddItem(inventoryRoom.getInventoryTotalItem(i));
-//                                }
-//                                else{
-//                                    System.out.println("Please add a CPU in this slot");
-//                                }
-//                            }
-//                        }
-//                    }
-//                    else if(inventoryRoom.getInventoryComputerSize()==1){
-//                        System.out.println("Please insert a GPU for the second slot" + "\n" + inventoryRoom.showInventoryTotal());
-//                        String temp = parser.returnString() + "";
-//                        char[] charArray = temp.toCharArray();
-//                        if (charArray.length > 1) {
-//                            System.out.println("Please only enter 1 character");
-//                        } 
-//                        else if (!Character.isDigit(charArray[0])) {
-//                            System.out.println("Please only enter numbers");
-//                        }
-//                        else {
-//                            int i = Integer.parseInt(temp);
-//                            if (i > 0 && i <= inventoryRoom.getInventoryTotalSize()) {
-//                                if(GPU.contains(inventoryRoom.getInventoryTotalItem(i))){
-//                                    inventoryRoom.computerAddItem(inventoryRoom.getInventoryTotalItem(i));
-//                                }
-//                                else{
-//                                    System.out.println("Please add a GPU in this slot");
-//                                }
-//                            }
-//                        }
-//                    }
-//                    else if(inventoryRoom.getInventoryComputerSize()==2){
-//                        System.out.println("Please insert a RAM for the third slot" + "\n" + inventoryRoom.showInventoryTotal());
-//                        String temp = parser.returnString() + "";
-//                        char[] charArray = temp.toCharArray();
-//                        if (charArray.length > 1) {
-//                            System.out.println("Please only enter 1 character");
-//                        } 
-//                        else if (!Character.isDigit(charArray[0])) {
-//                            System.out.println("Please only enter numbers");
-//                        }
-//                        else {
-//                            int i = Integer.parseInt(temp);
-//                            if (i > 0 && i <= inventoryRoom.getInventoryTotalSize()) {
-//                                if(RAM.contains(inventoryRoom.getInventoryTotalItem(i))){
-//                                    inventoryRoom.computerAddItem(inventoryRoom.getInventoryTotalItem(i));
-//                                }
-//                                else{
-//                                    System.out.println("Please add RAM in this slot");
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//                player1.setScore(0);
-//                for (int j = 0; j < inventoryRoom.getInventoryComputerSize(); j++) {
-//                    player1.setScore(player1.getScore() + inventoryRoom.getComputerItem(j).getBuyPrice());
-//                    System.out.println("Your added item is " + inventoryRoom.getComputerItem(j).getName() + " with the value of " + inventoryRoom.getComputerItem(j).getBuyPrice());
-//                }
-//                System.out.println("Your total score is " + player1.getScore());
-//                if(player1.getScore()>scoreToBeat){
-//                    System.out.println("You won the game!");
-//                }
-//                else{
-//                    System.out.println("Your computer is not better than Mr.MountainDew's pc");
-//                    System.out.println("You lose!");
-//                }
-//                return true;
-//            } 
-//            else {
-//                System.out.println("You dont need to write a second word");
-//            }
-//        }
-//        else {
-//            System.out.println("You need to be at home in order to build your PC");
-//        }
-//        return false;
-//    }
 
     
     //Creating a method that return a boolean for quitting the game, the method makes use of a Command variable named command
@@ -810,5 +761,13 @@ public class BusinessFacade implements IBusiness {
     @Override
     public ArrayList<Item> getItemRoom(){
         return inventoryRoom.getInventoryRoom();
+    }
+    @Override
+    public ArrayList<Item> getInventoryTotal(){
+        return inventoryRoom.getInventoryTotal();
+    }
+    @Override
+    public ArrayList<Item> getInventoryComputer(){
+        return inventoryRoom.getInventoryComputer();
     }
 }

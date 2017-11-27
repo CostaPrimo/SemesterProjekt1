@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -99,6 +100,8 @@ public class SemesterProjektGUIController implements Initializable {
     private ObservableList<Item> gamestopItems;
     private ObservableList<Item> playerInventory;
     private ObservableList<Item> roomInventory;
+    private ObservableList<Item> inventoryTotal;
+    private ObservableList<Item> inventoryComputer;
     @FXML
     private Button BuyItemsButton;
     @FXML
@@ -119,14 +122,42 @@ public class SemesterProjektGUIController implements Initializable {
     private Button DropButton;
     @FXML
     private Button CloseButton;
+    @FXML
+    private MenuItem SaveButton;
+    @FXML
+    private MenuItem HelpButton;
+    @FXML
+    private MenuItem AboutButton;
+    @FXML
+    private MenuItem QuitButton;
+    @FXML
+    private Pane HomePane;
+    @FXML
+    private Button AddPartButton;
+    @FXML
+    private Button BuildComputerButton;
+    @FXML
+    private ListView<Item> TotalInventoryListView;
+    @FXML
+    private ListView<Item> BuildComputerListView;
+    @FXML
+    private Button CancelBuildButton;
+    @FXML
+    private Button BuildButton;
+    @FXML
+    private Button RemovePartButton;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
         this.playerInventory = FXCollections.observableArrayList(game.getItemPlayer());
         this.roomInventory = FXCollections.observableArrayList(game.getItemRoom());
+        this.inventoryTotal = FXCollections.observableArrayList(game.getInventoryTotal());
+        this.inventoryComputer = FXCollections.observableArrayList(game.getInventoryComputer());
         MerchantListViewSell.setItems(playerInventory);
         RoomInventoryListview.setItems(roomInventory);
         PlayerInventoryListview.setItems(playerInventory);
+        TotalInventoryListView.setItems(inventoryTotal);
+        BuildComputerListView.setItems(inventoryComputer);
         MoneyLabel.setText("Money: " + (Integer.toString(game.wallet())));
     }   
     @FXML
@@ -142,6 +173,12 @@ public class SemesterProjektGUIController implements Initializable {
         }
         else if (event.getSource() == GoSouthButton){
             game.goRoom("south");
+        }
+        if(game.getCurrentRoom().getShortDescription() == "at your home"){
+            BuildButton.setVisible(true);
+        } 
+        else {
+            BuildButton.setVisible(false);
         }
         if(game.getCurrentRoom().getShortDescription() == "at your home"){
             MapView.setImage(image1);
@@ -262,4 +299,58 @@ public class SemesterProjektGUIController implements Initializable {
     private void CloseButtonHandler(ActionEvent event) {
         MapPane.toFront();
     }
+
+    @FXML
+    private void SaveButtonHandler(ActionEvent event) {
+    }
+
+    @FXML
+    private void HelpButtonHandler(ActionEvent event) {
+    }
+
+    @FXML
+    private void AboutButtonHandler(ActionEvent event) {
+    }
+
+//    @FXML
+//    private boolean QuitButtonHandler(ActionEvent event) {
+//       //  game.quit(true);
+//    //}
+
+    @FXML
+    private void AddPartHandler(ActionEvent event) {
+        int i= TotalInventoryListView.getSelectionModel().getSelectedIndex();
+        game.addParts(i);
+        inventoryTotal.setAll(game.getInventoryTotal());
+        inventoryComputer.setAll(game.getInventoryComputer());
+    }
+
+    @FXML
+    private void BuildComputerHandler(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void CancelBuildButtonHandler(ActionEvent event) {
+        MapPane.toFront();
+    }
+
+    @FXML
+    private void QuitButtonHandler(ActionEvent event) {
+    }
+
+    @FXML
+    private void BuildButtonHandler(ActionEvent event) {
+        inventoryTotal.setAll(game.getInventoryTotal());
+        inventoryComputer.setAll(game.getInventoryComputer());
+        HomePane.toFront();
+        
+    }
+
+    @FXML
+    private void RemovePartButtonHandler(ActionEvent event) {
+        inventoryTotal.setAll(game.getInventoryTotal());
+        inventoryComputer.setAll(game.getInventoryComputer());
+    }
+        
 }

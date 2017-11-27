@@ -47,6 +47,16 @@
                         <Button fx:id="CloseButton" layoutX="272.0" layoutY="427.0" mnemonicParsing="false" onAction="#CloseButtonHandler" text="Close" />
                      </children>
                   </Pane>
+                  <Pane fx:id="HomePane" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="AddPartButton" layoutX="138.0" layoutY="351.0" mnemonicParsing="false" onAction="#AddPartHandler" text="Add part" />
+                        <Button fx:id="BuildComputerButton" layoutX="238.0" layoutY="450.0" mnemonicParsing="false" onAction="#BuildComputerHandler" text="Build Computer" />
+                        <ListView fx:id="TotalInventoryListView" layoutX="77.0" layoutY="120.0" prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="BuildComputerListView" layoutX="331.0" layoutY="120.0" prefHeight="200.0" prefWidth="200.0" />
+                        <Button fx:id="CancelBuildButton" layoutX="268.0" layoutY="351.0" mnemonicParsing="false" onAction="#CancelBuildButtonHandler" text="Cancel" />
+                        <Button fx:id="RemovePartButton" layoutX="399.0" layoutY="351.0" mnemonicParsing="false" onAction="#RemovePartButtonHandler" text="Remove part" />
+                     </children>
+                  </Pane>
                   <Pane fx:id="MapPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0">
                      <children>
                         <ImageView fx:id="MapView" fitHeight="600.0" fitWidth="600.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
@@ -56,7 +66,7 @@
                         </ImageView>
                         <Button fx:id="GoNorthButton" layoutX="259.0" layoutY="1.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go North" />
                         <Button fx:id="GoWestButton" layoutY="273.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go West" />
-                        <Button fx:id="GoSouthButton" layoutX="259.0" layoutY="573.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go South" />
+                        <Button fx:id="GoSouthButton" layoutX="258.0" layoutY="571.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go South" />
                         <Button fx:id="GoEastButton" layoutX="524.0" layoutY="273.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go East" />
                      </children>
                   </Pane>
@@ -68,24 +78,26 @@
                     <menus>
                       <Menu mnemonicParsing="false" text="Menu">
                         <items>
-                              <MenuItem mnemonicParsing="false" text="Help" />
-                              <MenuItem mnemonicParsing="false" text="About" />
-                          <MenuItem mnemonicParsing="false" text="Quit" />
+                              <MenuItem fx:id="SaveButton" mnemonicParsing="false" onAction="#SaveButtonHandler" text="Save" />
+                              <MenuItem fx:id="HelpButton" mnemonicParsing="false" onAction="#HelpButtonHandler" text="Help" />
+                              <MenuItem fx:id="AboutButton" mnemonicParsing="false" onAction="#AboutButtonHandler" text="About" />
+                          <MenuItem fx:id="QuitButton" mnemonicParsing="false" onAction="#QuitButtonHandler" text="Quit" />
                         </items>
                       </Menu>
                     </menus>
                   </MenuBar>
-                  <Button fx:id="UseButton" layoutX="5.0" layoutY="470.0" mnemonicParsing="false" onAction="#UseButtonHandler" text="Crowbar test" />
+                  <Button fx:id="UseButton" layoutX="134.0" layoutY="470.0" mnemonicParsing="false" onAction="#UseButtonHandler" text="Use" />
                   <Button fx:id="InventoryButton" layoutX="216.0" layoutY="470.0" mnemonicParsing="false" text="Inventory" />
                   <Label fx:id="CurrentRoomLabel" layoutX="14.0" layoutY="49.0" text="CurrentRoom" />
-                  <Button fx:id="InspectButton" layoutX="123.0" layoutY="470.0" mnemonicParsing="false" onAction="#InspectButtonHandler" text="Inspect" />
-                  <Label fx:id="MoneyLabel" layoutX="14.0" layoutY="531.0" text="Money" />
+                  <Button fx:id="InspectButton" layoutX="25.0" layoutY="470.0" mnemonicParsing="false" onAction="#InspectButtonHandler" text="Inspect" />
+                  <Label fx:id="MoneyLabel" layoutY="6.0" text="Money" />
                   <TextArea fx:id="TextAreaStatus" editable="false" layoutX="57.0" layoutY="210.0" prefHeight="246.0" prefWidth="200.0" />
                   <ImageView fx:id="MinimapView" fitHeight="170.0" fitWidth="160.0" layoutX="77.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@MiniMap_Home.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="BuildButton" layoutX="26.0" layoutY="522.0" mnemonicParsing="false" onAction="#BuildButtonHandler" text="Build" />
                </children>
             </Pane>
          </children>
