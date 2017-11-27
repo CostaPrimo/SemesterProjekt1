@@ -5,13 +5,9 @@
  */
 package presentation;
 import acquaintance.IBusiness;
-import business.BusinessFacade;
-import business.Item;
-import business.Rat;
-import business.Room;
+import acquaintance.IItem;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,14 +17,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 
 /**
  * FXML Controller class
@@ -95,27 +87,27 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private Pane MerchantsPane;
     @FXML
-    private ListView<Item> MerchantListViewBuy;
-    private ObservableList<Item> merchantItems;
-    private ObservableList<Item> gamestopItems;
-    private ObservableList<Item> playerInventory;
-    private ObservableList<Item> roomInventory;
-    private ObservableList<Item> inventoryTotal;
-    private ObservableList<Item> inventoryComputer;
+    private ListView<IItem> MerchantListViewBuy;
+    private ObservableList<IItem> merchantItems;
+    private ObservableList<IItem> gamestopItems;
+    private ObservableList<IItem> playerInventory;
+    private ObservableList<IItem> roomInventory;
+    private ObservableList<IItem> inventoryTotal;
+    private ObservableList<IItem> inventoryComputer;
     @FXML
     private Button BuyItemsButton;
     @FXML
     private Button ExitStoreButton;
     @FXML
-    private ListView<Item> MerchantListViewSell;
+    private ListView<IItem> MerchantListViewSell;
     @FXML
     private Button SellitemsButton;
     @FXML
     private Pane InspectPane;
     @FXML
-    private ListView<Item> PlayerInventoryListview;
+    private ListView<IItem> PlayerInventoryListview;
     @FXML
-    private ListView<Item> RoomInventoryListview;
+    private ListView<IItem> RoomInventoryListview;
     @FXML
     private Button PickupButton;
     @FXML
@@ -137,9 +129,9 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private Button BuildComputerButton;
     @FXML
-    private ListView<Item> TotalInventoryListView;
+    private ListView<IItem> TotalInventoryListView;
     @FXML
-    private ListView<Item> BuildComputerListView;
+    private ListView<IItem> BuildComputerListView;
     @FXML
     private Button CancelBuildButton;
     @FXML
@@ -337,6 +329,7 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void QuitButtonHandler(ActionEvent event) {
+        System.exit(0);
     }
 
     @FXML

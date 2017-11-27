@@ -1,4 +1,5 @@
 package business;
+import acquaintance.IItem;
 import java.util.ArrayList;
 /**
  *
@@ -6,11 +7,11 @@ import java.util.ArrayList;
  */
 public class Inventory {
     //Creating Arraylists for different Inventories/Storage units
-    private ArrayList<Item> inventoryPlayer;
-    private ArrayList<Item> inventoryHouse;
-    private ArrayList<Item> inventoryRoom;
-    private ArrayList<Item> inventoryComputer;
-    private ArrayList<Item> inventoryTotal;
+    private ArrayList<IItem> inventoryPlayer;
+    private ArrayList<IItem> inventoryHouse;
+    private ArrayList<IItem> inventoryRoom;
+    private ArrayList<IItem> inventoryComputer;
+    private ArrayList<IItem> inventoryTotal;
     
     //Creating a string for our roomtype called rarity
     private String rarity;
@@ -22,11 +23,11 @@ public class Inventory {
     
     //Creating arg constructor for room, which defines the room type
     public Inventory(String rarity){
-        inventoryComputer = new ArrayList<Item>();
-        inventoryHouse = new ArrayList<Item>();
-        inventoryPlayer = new ArrayList<Item>();
-        inventoryRoom = new ArrayList<Item>();
-        inventoryTotal = new ArrayList<Item>();
+        inventoryComputer = new ArrayList<IItem>();
+        inventoryHouse = new ArrayList<IItem>();
+        inventoryPlayer = new ArrayList<IItem>();
+        inventoryRoom = new ArrayList<IItem>();
+        inventoryTotal = new ArrayList<IItem>();
         maxStorageComputer = 3;
         maxStoragePlayer = 3;
         
@@ -62,7 +63,7 @@ public class Inventory {
     
     
     //Creates a method for adding items to the player inventory
-    public void addItem(Item item){
+    public void addItem(IItem item){
         //The item is only added if the inventory isnt full
         if (getInventoryPlayer().size()<getMaxStoragePlayer()){
             getInventoryPlayer().add(item);
@@ -77,7 +78,7 @@ public class Inventory {
         inventoryTotal.addAll(inventoryHouse);
     }
     
-    public void computerAddItem(Item item){
+    public void computerAddItem(IItem item){
         if(inventoryTotal.contains(item)){
             if(inventoryComputer.size() < maxStorageComputer){
                 inventoryComputer.add(inventoryTotal.get(inventoryTotal.indexOf(item)));
@@ -107,7 +108,7 @@ public class Inventory {
     }
     
     //Method for adding an item from the player inventory to the house storage
-    public void houseAddItem(Item item){
+    public void houseAddItem(IItem item){
         //The item is only added to the house storage if its contained within the player inventory, the stored item is removed from the player inventory
         if (getInventoryPlayer().contains(item)){
             inventoryHouse.add(getInventoryPlayer().get(getInventoryPlayer().indexOf(item)));
@@ -120,7 +121,7 @@ public class Inventory {
     }
     
     //Method for adding an item from the house storage to the player inventory
-    public void housePickItem(Item item){
+    public void housePickItem(IItem item){
         //The item is only added to the player inventory if its contained within the house storage, the recieved item is removed from the house storage
         if (inventoryHouse.contains(item)){
             if (getInventoryPlayer().size() < getMaxStoragePlayer()){
@@ -138,13 +139,13 @@ public class Inventory {
     }
     
     //Method for adding an item to the room inventory from the randomizer
-    public void roomAddItem(Item item){
+    public void roomAddItem(IItem item){
         if (inventoryRoom.size() < this.getMaxStorageRoom()){
             inventoryRoom.add(item);
         }
     }
     
-    public void roomPickItem(Item item){
+    public void roomPickItem(IItem item){
         if (inventoryRoom.contains(item)){
             if (getInventoryPlayer().size() < maxStoragePlayer){
                 getInventoryPlayer().add(inventoryRoom.get(inventoryRoom.indexOf(item)));
@@ -291,41 +292,41 @@ public class Inventory {
     }
 
     
-    public Item getComputerItem(int i){
+    public IItem getComputerItem(int i){
         return inventoryComputer.get(i);
     }
     
-    public Item getHouseitem(int i){
+    public IItem getHouseitem(int i){
         return inventoryHouse.get(i);
     }
-    public Item getInventoryTotalItem(int i){
+    public IItem getInventoryTotalItem(int i){
         return inventoryTotal.get(i);
     }
     
-    public Item getPlayerItem(int i){
+    public IItem getPlayerItem(int i){
         return getInventoryPlayer().get(i);
     }
     
-    public Item getRoomItem(int i) {
+    public IItem getRoomItem(int i) {
         return inventoryRoom.get(i);
     }
 
     /**
      * @return the inventoryPlayer
      */
-    public ArrayList<Item> getInventoryPlayer() {
+    public ArrayList<IItem> getInventoryPlayer() {
         return inventoryPlayer;
     }
-    public ArrayList<Item> getInventoryRoom(){
+    public ArrayList<IItem> getInventoryRoom(){
         return inventoryRoom;
     }
-    public ArrayList<Item> getInventoryTotal(){
+    public ArrayList<IItem> getInventoryTotal(){
         inventoryTotal.clear();
         inventoryTotal.addAll(inventoryPlayer);
         inventoryTotal.addAll(inventoryHouse);
         return inventoryTotal;
     }
-    public ArrayList<Item> getInventoryComputer(){
+    public ArrayList<IItem> getInventoryComputer(){
         return inventoryComputer;
     }
 }

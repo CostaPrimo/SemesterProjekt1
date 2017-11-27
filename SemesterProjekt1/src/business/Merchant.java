@@ -1,5 +1,6 @@
 package business;
 
+import acquaintance.IItem;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -8,11 +9,11 @@ import java.util.Collection;
  * @author Gruppe 20
  */
 public class Merchant extends NPC {
-    private ArrayList<Item>inventoryMerchant;
+    private ArrayList<IItem>inventoryMerchant;
     
     public Merchant(String name, String description) {
         super(name, description);
-        inventoryMerchant = new ArrayList<>();
+        inventoryMerchant = new ArrayList<IItem>();
     }
    
     
@@ -36,14 +37,14 @@ public class Merchant extends NPC {
     }
     
     
-    public Item getItemMerchant(int i){
+    public IItem getItemMerchant(int i){
         return getInventoryMerchant().get(i);
     }
 
     /**
      * @return the inventoryMerchant
      */
-    public ArrayList<Item> getInventoryMerchant() {
+    public ArrayList<IItem> getInventoryMerchant() {
         return inventoryMerchant;
     }
 }

@@ -5,7 +5,6 @@
  */
 package acquaintance;
 
-import business.Item;
 import business.Room;
 import java.util.ArrayList;
 
@@ -31,12 +30,12 @@ public interface IBusiness {
     int wallet();
     Room getCurrentRoom();
     void setCurrentRoom(Room currentRoom);
-    ArrayList<Item> getItemMerchant();
-    ArrayList<Item> getItemPlayer();
-    ArrayList<Item> getItemGamestop();
-    ArrayList<Item> getItemRoom();
-    ArrayList<Item> getInventoryTotal();
-    ArrayList<Item> getInventoryComputer();
+    ArrayList<IItem> getItemMerchant();
+    ArrayList<IItem> getItemPlayer();
+    ArrayList<IItem> getItemGamestop();
+    ArrayList<IItem> getItemRoom();
+    ArrayList<IItem> getInventoryTotal();
+    ArrayList<IItem> getInventoryComputer();
     void addParts(int itemNumber);
     boolean quit();
 }

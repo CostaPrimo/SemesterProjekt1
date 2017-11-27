@@ -1,5 +1,5 @@
 package business;
-
+import acquaintance.IItem;
 import acquaintance.IBusiness;
 import acquaintance.IData;
 import data.Player;
@@ -602,7 +602,7 @@ public class BusinessFacade implements IBusiness {
     public void use(int itemNumber){
         int i = itemNumber;
 
-            Item useableitem = inventoryRoom.getPlayerItem(i);
+            IItem useableitem = inventoryRoom.getPlayerItem(i);
             if (useableitem==gameMagazine){
                 System.out.println("Opening the Magazine you read the following:\n");
                 System.out.println("GameMagazine 13.37th. edition ’17. 150 kr.");
@@ -740,7 +740,7 @@ public class BusinessFacade implements IBusiness {
         return currentRoom;
     }
     @Override
-    public ArrayList<Item> getItemMerchant(){
+    public ArrayList<IItem> getItemMerchant(){
         return merchantShop.getInventoryMerchant();
     }
 
@@ -751,23 +751,23 @@ public class BusinessFacade implements IBusiness {
         this.currentRoom = currentRoom;
     }
     @Override
-    public ArrayList<Item> getItemPlayer(){
+    public ArrayList<IItem> getItemPlayer(){
         return inventoryRoom.getInventoryPlayer();
     }
     @Override
-    public ArrayList<Item> getItemGamestop(){
+    public ArrayList<IItem> getItemGamestop(){
         return merchantGamestop.getInventoryMerchant();
     }
     @Override
-    public ArrayList<Item> getItemRoom(){
+    public ArrayList<IItem> getItemRoom(){
         return inventoryRoom.getInventoryRoom();
     }
     @Override
-    public ArrayList<Item> getInventoryTotal(){
+    public ArrayList<IItem> getInventoryTotal(){
         return inventoryRoom.getInventoryTotal();
     }
     @Override
-    public ArrayList<Item> getInventoryComputer(){
+    public ArrayList<IItem> getInventoryComputer(){
         return inventoryRoom.getInventoryComputer();
     }
 }

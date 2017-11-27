@@ -1,10 +1,12 @@
 package business;
 
+import acquaintance.IItem;
+
 /**
  *
  * @author Gruppe 20
  */
-public class Item {
+public class Item implements IItem {
     //Creating variables for the Item class
     private String Name, rarity;
     private int Buyprice, Sellprice;
