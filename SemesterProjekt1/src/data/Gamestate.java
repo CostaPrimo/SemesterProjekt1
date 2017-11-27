@@ -1,7 +1,7 @@
 package data;
 
 import org.json.JSONObject;
-import org.json.JSONWriter;
+import org.json.JSONStringer;
 import org.json.JSONException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,58 +12,63 @@ import java.io.IOException;
 public class Gamestate {
     private JSONObject savestate;
     private FileWriter writer;
-    private JSONWriter savewriter;
+    private JSONStringer savewriter;
 
     
     public static void main(String[] args){
-        Gamestate test = new Gamestate();
         Player temp = new Player("john");
-        test.save(temp);
+        Gamestate test = new Gamestate(temp);
+        test.save();
     }
     
-    public Gamestate() {
+    public Gamestate(Player player) {
         try{
-            this.writer = new FileWriter("src/data/saveState.json");
-            this.savewriter = new JSONWriter(writer);
+            this.writer = new FileWriter("src/data/gamesave.json");
+            this.savewriter = new JSONStringer();
         }
         catch(IOException ex){
             System.out.println("git gut\n"+ex);
         }
         
         this.savestate = new JSONObject()
-                .put("player", new JSONObject())
-                    .put("playerName", "null")
-                    .put("currentRoom", "null")
-                    .put("score", 1500)
-                    .put("timeToken", 14)
-                    .put("dayToken", 7)
-                    .put("hasWon", false)
-                .put("invetories", new JSONObject())
-                    .put("inventoryHouse", "test")
-                    .put("invetoryRoom", "test")
-                    .put("iventoryPlayer", "test")
-                .put("rat", new JSONObject())
-                    .put("currentRoom", "null")
-                    .put("isDead", false)
-                .put("scrapyardCenter", new JSONObject())
-                    .put("isLocked", true);
+                /*
+                .put("playerName", "null")
+                .put("currentRoom", "null")
+                .put("score", 1500)
+                .put("timeToken", 14)
+                */
+                .put("player", player)
+                .put("dayToken", 7)
+                .put("hasWon", false)
+                .put("inventoryHouse", "test")
+                .put("invetoryRoom", "test")
+                .put("iventoryPlayer", "test")
+                .put("currentRoom", "null")
+                .put("isDead", false)
+                .put("isLocked", true);
         
                 
     }
     
-    private void save(Player player){
+    private void save(){
         try{
             //savestate.write(writer);
-            
-            this.savewriter
-                .object()
-                    .key("player")
-                    .value(123)
-                .endObject();
+            this.writer.write(
+                this.savewriter
+                    .object()
+                        .key("savestate")
+                        .value(savestate)
+                    .endObject()
+            .toString());
+            this.writer.close();
+            System.out.println("success");
             
         }
         catch(JSONException ex){
-            System.out.println("Fail");
+            System.out.println("Fail\n"+ex);
+        }
+        catch(IOException ex){
+            System.out.println("Fail\n"+ex);
         }
     }
 }
