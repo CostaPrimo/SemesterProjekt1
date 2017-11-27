@@ -205,12 +205,10 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private void BuyItemsButtonHandler(ActionEvent event) {
         //MerchantListView.getSelectionModel().getSelectedIndices();
-        for (int i= MerchantListViewBuy.getSelectionModel().getSelectedIndex(); i<12; i++){
+        int i= MerchantListViewBuy.getSelectionModel().getSelectedIndex();
             game.buyItem(i);
             playerInventory.setAll(game.getItemPlayer());
             MoneyLabel.setText(Integer.toString(game.wallet()));
-            break;
-        }
     }
 
     @FXML
@@ -229,12 +227,10 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void SellitemsButtonHandler(ActionEvent event) {
-        for (int i= MerchantListViewSell.getSelectionModel().getSelectedIndex(); i<12; i++){
+        int i= MerchantListViewSell.getSelectionModel().getSelectedIndex();
             game.sellItem(i);
             playerInventory.setAll(game.getItemPlayer());
             MoneyLabel.setText(Integer.toString(game.wallet()));
-            break;
-        }
     }
 
     @FXML
@@ -249,21 +245,17 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void PickupButtonHandler(ActionEvent event) {
-        for(int i= RoomInventoryListview.getSelectionModel().getSelectedIndex(); i<3; i++){
+        int i= RoomInventoryListview.getSelectionModel().getSelectedIndex();
             game.addItem(i);
             roomInventory.setAll(game.getItemRoom());
             playerInventory.setAll(game.getItemPlayer());
-            break;
-        }
     }
 
     @FXML
     private void DropButtonHandler(ActionEvent event) {
-        for(int i= PlayerInventoryListview.getSelectionModel().getSelectedIndex(); i<3; i++){
+        int i= PlayerInventoryListview.getSelectionModel().getSelectedIndex();
             game.dropItem(i);
             playerInventory.setAll(game.getItemPlayer());
-            break;
-        }
     }
 
     @FXML
