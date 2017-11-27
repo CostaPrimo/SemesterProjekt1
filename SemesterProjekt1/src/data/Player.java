@@ -18,6 +18,7 @@ public class Player implements IPlayer {
     private int timeToken = 14;
     private int dayToken = 7;
     private boolean hasWon = false;
+    
     public Player(String name){
         this.name = name;
     }
