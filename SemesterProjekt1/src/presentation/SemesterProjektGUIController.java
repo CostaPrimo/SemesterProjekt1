@@ -152,6 +152,8 @@ public class SemesterProjektGUIController implements Initializable {
     private Button AddToHomeButton;
     @FXML
     private Button AddToPlayerInventoryButton;
+    @FXML
+    private ListView<IItem> PlayerInventoryListview2;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
@@ -162,6 +164,7 @@ public class SemesterProjektGUIController implements Initializable {
         MerchantListViewSell.setItems(playerInventory);
         RoomInventoryListview.setItems(roomInventory);
         PlayerInventoryListview.setItems(playerInventory);
+        PlayerInventoryListview2.setItems(playerInventory);
         TotalInventoryListView.setItems(inventoryTotal);
         BuildComputerListView.setItems(inventoryComputer);
         MoneyLabel.setText("Money: " + (Integer.toString(game.wallet())));
@@ -297,7 +300,7 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void DropButtonHandler(ActionEvent event) {
-        int i= PlayerInventoryListview.getSelectionModel().getSelectedIndex();
+        int i= PlayerInventoryListview2.getSelectionModel().getSelectedIndex();
             game.dropItem(i);
             playerInventory.setAll(game.getItemPlayer());
     }
