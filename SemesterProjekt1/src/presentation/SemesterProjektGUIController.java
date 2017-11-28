@@ -59,8 +59,10 @@ public class SemesterProjektGUIController implements Initializable {
     Image image1 = new Image(getClass().getResource("space_flight_sky_stars_82970_1920x1080.jpg").toExternalForm());
     Image mapDowntoImage = new Image(getClass().getResource("downtown us.png").toExternalForm());
     Image mapDowntownMSImage = new Image(getClass().getResource("downtown ms.png").toExternalForm());
+    Image mapMerchantImage = new Image(getClass().getResource("merachan ms.png").toExternalForm());
     Image mapEntranceLockedImage = new Image(getClass().getResource("yard entrance låst ms.png").toExternalForm());
     Image mapEntranceOpenImage = new Image(getClass().getResource("yard entrance åben ms.png").toExternalForm());
+    Image mapMiddleImage = new Image (getClass().getResource("yard middle ms.png").toExternalForm());
     Image mapSouthImage = new Image(getClass().getResource("yard south ms.png").toExternalForm());
     Image mapNorthEastImage = new Image(getClass().getResource("yard northeast ms.png").toExternalForm());
     Image mapNorthWestImage = new Image(getClass().getResource("yard northvest ms.png").toExternalForm());
@@ -217,6 +219,7 @@ public class SemesterProjektGUIController implements Initializable {
         }
         else if (game.getCurrentRoom().getShortDescription() == "at the merchant"){
             MinimapView.setImage(minimapMerchantImage);
+            MapView.setImage(mapMerchantImage);
             this.merchantItems = FXCollections.observableArrayList(game.getItemMerchant());
             MerchantListViewBuy.setItems(merchantItems);
             MerchantsPane.toFront();
@@ -228,6 +231,7 @@ public class SemesterProjektGUIController implements Initializable {
             MerchantsPane.toFront();
         }
         else if (game.getCurrentRoom().getShortDescription() == "at the center of the scrapyard"){
+            MapView.setImage(mapMiddleImage);
             MinimapView.setImage(minimapScrapyardMiddleImage);
         }
         else if (game.getCurrentRoom().getShortDescription() == "at the west part of the scrapyard"){
