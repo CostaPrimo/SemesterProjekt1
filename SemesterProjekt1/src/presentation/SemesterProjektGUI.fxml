@@ -27,7 +27,7 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <StackPane prefHeight="694.0" prefWidth="550.0">
+            <StackPane fx:id="Stackpane" prefHeight="694.0" prefWidth="550.0">
                <children>
                   <Pane fx:id="HomeStoragePane" prefHeight="200.0" prefWidth="200.0">
                      <children>

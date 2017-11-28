@@ -21,6 +21,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 /**
  * FXML Controller class
@@ -160,6 +161,8 @@ public class SemesterProjektGUIController implements Initializable {
     private Button HomeStorageButton;
     @FXML
     private Button SleepButton;
+    @FXML
+    private StackPane Stackpane;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
@@ -330,10 +333,20 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private void DropButtonHandler(ActionEvent event) {
         String output;
-        int i= PlayerInventoryListview2.getSelectionModel().getSelectedIndex();
+        int i;
+        System.out.println(Stackpane.getChildren());
+        if(Stackpane.getChildren().get(5) == InspectPane){
+            i= PlayerInventoryListview2.getSelectionModel().getSelectedIndex();
             output = game.dropItem(i);
             TextAreaStatus.appendText(output + "\n");
             playerInventory.setAll(game.getItemPlayer());
+        }
+        if(Stackpane.getChildren().get(5) == InventoryPane){
+            i = PlayerInventoryListview.getSelectionModel().getSelectedIndex();
+            output = game.dropItem(i);
+            TextAreaStatus.appendText(output + "\n");
+            playerInventory.setAll(game.getItemPlayer());
+        }
     }
 
     @FXML
