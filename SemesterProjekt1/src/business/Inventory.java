@@ -64,14 +64,16 @@ public class Inventory implements IInventory {
     
     
     //Creates a method for adding items to the player inventory
-    public void addItem(IItem item){
+    public String addItem(IItem item){
+        String output = "";
         //The item is only added if the inventory isnt full
         if (getInventoryPlayer().size()<getMaxStoragePlayer()){
             getInventoryPlayer().add(item);
         }
         else {
-            System.out.println("Your inventory is full");
+            output = "Your inventory is full";
         }
+        return output;
     }
     
 //    public void buildInventoryTotal(){
@@ -79,23 +81,28 @@ public class Inventory implements IInventory {
 //        inventoryTotal.addAll(getInventoryHouse());
 //    }
     
-    public void computerAddItem(IItem item){
+    public String computerAddItem(IItem item){
+        String output = "";
         if(inventoryTotal.contains(item)){
             if(inventoryComputer.size() < maxStorageComputer){
                 inventoryComputer.add(inventoryTotal.get(inventoryTotal.indexOf(item)));
                 getInventoryPlayer().remove(item);
                 getInventoryHouse().remove(item);
-                System.out.println("Item added to computer");
+                output = "Item added to computer";
             }
             else{
-                System.out.println("Stop being a pleb and get a larger motherboard");
+                output = "Stop being a pleb and get a larger motherboard";
             }
         }
+        return output;
     }
     
-    public void computerRemoveItem(IItem item){
+    public String computerRemoveItem(IItem item){
+        String output;
         inventoryHouse.add(inventoryComputer.get(inventoryComputer.indexOf(item)));
         getInventoryComputer().remove(item);
+        output = "Item removed from computer and put back into your house storage";
+        return output;
     }
     
     //Method for removing an item from the player inventory
@@ -116,34 +123,38 @@ public class Inventory implements IInventory {
     }
     
     //Method for adding an item from the player inventory to the house storage
-    public void houseAddItem(IItem item){
+    public String houseAddItem(IItem item){
         //The item is only added to the house storage if its contained within the player inventory, the stored item is removed from the player inventory
+        String output = "";
         if (getInventoryPlayer().contains(item)){
             getInventoryHouse().add(getInventoryPlayer().get(getInventoryPlayer().indexOf(item)));
             getInventoryPlayer().remove(getInventoryPlayer().indexOf(item));
-            System.out.println("Item stored");
+            output = "Item stored";
         }
         else{
-            System.out.println("This item is not in your inventory!");
+            output = "This item is not in your inventory!";
         }
+        return output;
     }
     
     //Method for adding an item from the house storage to the player inventory
-    public void housePickItem(IItem item){
+    public String housePickItem(IItem item){
+        String output = "";
         //The item is only added to the player inventory if its contained within the house storage, the recieved item is removed from the house storage
         if (getInventoryHouse().contains(item)){
             if (getInventoryPlayer().size() < getMaxStoragePlayer()){
                 getInventoryPlayer().add(getInventoryHouse().get(getInventoryHouse().indexOf(item)));
                 getInventoryHouse().remove(getInventoryHouse().indexOf(item));
-                System.out.println("Item picked up");
+                output = "Item picked up";
             }
             else{
-                System.out.println("Your inventory is full");
+                output = "Your inventory is full";
             }
         }
         else{
-            System.out.println("This item is not in your storage!");
+            output = "This item is not in your storage!";
         }
+        return output;
     }
     
     //Method for adding an item to the room inventory from the randomizer
@@ -153,17 +164,19 @@ public class Inventory implements IInventory {
         }
     }
     
-    public void roomPickItem(IItem item){
+    public String roomPickItem(IItem item){
+        String output = "";
         if (inventoryRoom.contains(item)){
             if (getInventoryPlayer().size() < maxStoragePlayer){
                 getInventoryPlayer().add(inventoryRoom.get(inventoryRoom.indexOf(item)));
                 inventoryRoom.remove(inventoryRoom.indexOf(item));
-                System.out.println("Item picked up");
+                output = "Item picked up";
             }
             else{
-                System.out.println("Your inventory is full");
+                output = "Your inventory is full";
             }
         }
+        return output;
     }
     
     public void setRarity(String rarity){

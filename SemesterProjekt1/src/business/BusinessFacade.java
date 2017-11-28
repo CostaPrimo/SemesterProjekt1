@@ -221,12 +221,12 @@ public class BusinessFacade implements IBusiness {
 
     
 //  Creating a method for a welcome message when starting the game and adding in a commands
-    public void printWelcome() {
-        System.out.println("THIS IS THE SCRAPYARD GAME");
-        System.out.println("A WORLD OF SCRAP, FUN, AND ADVENTURES");
-        System.out.println("TYPE '" + CommandWord.HELP + "' IF YOU DON'T KNOW WHAT TO DO");
-        System.out.println("For an optional tutorial, please buy a game magazine found in a store\n");
-        System.out.println(getCurrentRoom().getLongDescription());
+    public String printWelcome() {
+        String output;
+        output = "THIS IS THE SCRAPYARD GAME\nA WORLD OF SCRAP, FUN, AND ADVENTURES\n Click the help button if you don't know what to do\n"
+                + "For an optional tutorial, please buy a game magazine found in a store\n";
+        output += (getCurrentRoom().getLongDescription());
+        return output;
     }
     private boolean catchUserInput(Command command){
         char[] charArray = command.getSecondWord().toCharArray();
@@ -344,54 +344,57 @@ public class BusinessFacade implements IBusiness {
 //    }
 
     @Override
-    public void addItem(int itemNumber) {
+    public String addItem(int itemNumber) {
+        String output = "";
         if(getCurrentRoom().getShortDescription()=="at your home"){
             int i = itemNumber;
-            inventoryRoom.housePickItem(inventoryRoom.getHouseitem(i));
+            output = inventoryRoom.housePickItem(inventoryRoom.getHouseitem(i));
         }
         else{
             int i = itemNumber;
             if(getCurrentRoom()!=rat.getCurrentRoom()){
                 if (i >= 0 && i <= inventoryRoom.getMaxStorageRoom()) {
                     if(inventoryRoom.getRoomItem(i).isTooHeavy()!=true){
-                        inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i));
+                        output = inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i));
                     }
                     else {
-                        System.out.println("Item is too heavy to pickup");
+                        output = "Item is too heavy to pickup";
                     }
                 }
             }
             else if (getCurrentRoom()==rat.getCurrentRoom() && rat.getIsDead()){
-                if (i > 0 && i <= inventoryRoom.getMaxStorageRoom()) {
+                if (i >= 0 && i <= inventoryRoom.getMaxStorageRoom()) {
                     if(inventoryRoom.getRoomItem(i).isTooHeavy()!=true){
-                        inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i));
+                        output = inventoryRoom.roomPickItem(inventoryRoom.getRoomItem(i));
                     }
                     else {
-                        System.out.println("Item is too heavy to pickup");
+                        output = "Item is too heavy to pickup";
                     }
                 }
             }
             else{
-                System.out.println("Kill the rats to pickup items!");
+                output = "Kill the rats to pickup items!";
             }
-        }      
+        }
+        return output;
     }
     
     @Override
-    public void buyItem(int itemNumber) {
+    public String buyItem(int itemNumber) {
+        String output = "";
         if (getCurrentRoom().getShortDescription() == "at the merchant") {
             if (inventoryRoom.getInventoryPlayerSize() < 3){
                 if(player1.getScore() >= merchantShop.getItemMerchant(itemNumber).getBuyPrice()){
                     inventoryRoom.addItem(merchantShop.getItemMerchant(itemNumber));
                     player1.setScore(player1.getScore()-merchantShop.getItemMerchant(itemNumber).getBuyPrice());
-                    System.out.println("Item bought");
+                    output = "Item bought";
                     }
                 else{
-                    System.out.println("Need more money");
+                    output = "Need more money";
                     }
                 }
             else{
-                System.out.println("You do not have enough space in your inventory");
+                output = "You do not have enough space in your inventory";
                 }
             }
         else if (getCurrentRoom().getShortDescription() == "at gamestop") {
@@ -399,47 +402,50 @@ public class BusinessFacade implements IBusiness {
                 if(player1.getScore() >= merchantGamestop.getItemMerchant(itemNumber).getBuyPrice()){
                     inventoryRoom.addItem(merchantGamestop.getItemMerchant(itemNumber));
                     player1.setScore(player1.getScore()-merchantGamestop.getItemMerchant(itemNumber).getBuyPrice());
-                    System.out.println("Item bought");
+                    output = "Item bought";
                 }
                 else{
-                    System.out.println("Need more money");
+                    output = "Need more money";
                 }
             }
             else{
-                System.out.println("You do not have enough space in your inventory");
+                output = "You do not have enough space in your inventory";
             }
         }
+        return output;
     }
     @Override
-    public void dropItem(int itemNumber) {
+    public String dropItem(int itemNumber) {
+        String output;
         inventoryRoom.dropItem(itemNumber); 
-        System.out.println("Item dropped");
+        output = "Item dropped";
+        return output;
     }
         
     
     
     //Creating a method goRoom along with a Command variable named command
     @Override
-    public void goRoom(String direction2) {
+    public String goRoom(String direction2) {
         
         //creating a string named direction which is then used to define nextRoom with the getExit method
         String direction = direction2;
+        String output = "";
         Room nextRoom = getCurrentRoom().getExit(direction);
 
         //If there isnt an exit defined for the given direction he program will let you know
         if (nextRoom == null) {
-            System.out.println("CANT GO THAT WAY");
+            output = "CANT GO THAT WAY";
         } //If there is an exit in that given directionn set the CurrentRoom as nextRoom and print out room description
         else {
             if(nextRoom.getIsLocked()){
-                System.out.println("This room is locked, you need to break the lock first");
+                output = "This room is locked, you need to break the lock first";
             }
             else{
                 if (player1.getTimeToken() <= 0){
-                    System.out.println("you have no moves left today");
+                    output = "you have no moves left today\nYou wake up at home but you've been robbed half your money ";
                     setCurrentRoom(home);
                     player1.setTimeToken(20);
-                    System.out.println("You wake up at home but you've been robbed half your money");
                     player1.setDayToken(player1.getDayToken()-1);
                     player1.setScore(player1.getScore()/2);
                     if(rat.getIsDead()){
@@ -448,21 +454,33 @@ public class BusinessFacade implements IBusiness {
                 }
                 else{
                     if(rat.getCurrentRoom()==getCurrentRoom() && rat.getIsDead()!=true){
-                        System.out.println("The rat attacked you!");
+                        output = "The rat attacked you!\n";
                         player1.setTimeToken(player1.getTimeToken()-2);
                     }
                     setCurrentRoom(nextRoom);
+                    if(direction2 == "north"){
+                        output += "You went north\n";
+                    }
+                    else if(direction2 == "south"){
+                        output += "You went south\n";
+                    }
+                    else if (direction2 == "east"){
+                        output += "You went east\n";
+                    }
+                    else if (direction2 == "west"){
+                        output += "You went west\n";
+                    }
                     player1.setTimeToken(player1.getTimeToken()-1);
                     if(player1.getDayToken() == 7){
                         valutaMan.setIsActive(true);
                         if(getCurrentRoom() == valutaMan.getCurrentRoom()){
-                          System.out.println("Valutaman approaches you and gives you the following question");
+                          output += "Valutaman approaches you and gives you the following question";
                           if (valutaMan.getQuestion(player1.getDayToken(), parser)){
-                              System.out.println("Ludoman is proud of you and doubles your money");
+                              output += "Ludoman is proud of you and doubles your money";
                               player1.setScore(player1.getScore()*2);
                           }
                           else{
-                              System.out.println("Ludoman is dissapointed and steals half your money");
+                              output += "Ludoman is dissapointed and steals half your money";
                               player1.setScore(player1.getScore()/2);
                           }
                           
@@ -473,7 +491,7 @@ public class BusinessFacade implements IBusiness {
                     }
                     System.out.println(player1.getTimeToken());
                     if (rat.getIsDead()!=true){
-                        ratMove();
+                        output+= ratMove();
                     }
                     System.out.println(getCurrentRoom().getLongDescription());
                     if (getCurrentRoom().getShortDescription() == "at the center of the scrapyard") {
@@ -507,14 +525,14 @@ public class BusinessFacade implements IBusiness {
                         setRoomRarity(inventoryRoom);
                     }
                     else if (getCurrentRoom().getShortDescription() == "at the merchant") {
-                        System.out.println("Ali: Welcome to my store, I have special prize just for you my friend take a look ");
-                        System.out.println("Ali shows you the following items");
-                        System.out.println(merchantShop.showMerchantInventory());
+                        output+= "Ali: Welcome to my store, I have special prize just for you my friend take a look\n";
+                        output+= "Ali shows you the following items";
+                        //System.out.println(merchantShop.showMerchantInventory());
                     } 
                     else if (getCurrentRoom().getShortDescription() == "at gamestop") {
-                        System.out.println("Mr. MountainDew: Hey, hows your pc doing? Oh wait... nvm. I broke it");
-                        System.out.println("Mr. MountainDew shows you the following items");
-                        System.out.println(merchantGamestop.showMerchantInventory());
+                        output+= "Mr. MountainDew: Hey, hows your pc doing? Oh wait... nvm. I broke it\n";
+                        output+= "Mr. MountainDew shows you the following items";
+                        //System.out.println(merchantGamestop.showMerchantInventory());
                     } 
                     else {
                         inventoryRoom.emptyRoom();
@@ -523,6 +541,7 @@ public class BusinessFacade implements IBusiness {
                 }
             }
         }
+        return output;
     }
     @Override
     public void inspectRoom() {
@@ -535,7 +554,8 @@ public class BusinessFacade implements IBusiness {
         parser.showCommands();
     }
 
-    public void ratMove(){
+    public String ratMove(){
+        String output = "";
         String[] temp;
         double random;
         temp = rat.getCurrentRoom().getExitString().split(" ");
@@ -548,20 +568,21 @@ public class BusinessFacade implements IBusiness {
             rat.setCurrentRoom(scrapyardmiddle);
             
         }
-        System.out.println("The rat is at " + rat.getCurrentRoom().getShortDescription());
+        output = "The rat is at " + rat.getCurrentRoom().getShortDescription();
         if(rat.getCurrentRoom()==getCurrentRoom()){
-            System.out.println("The rat is in this room");
+            output = "The rat is in this room";
         }
+        return output;
     }
     
     @Override
-    public void sellItem(int itemNumber){
-        
+    public String sellItem(int itemNumber){
+        String output = "";
         if(getCurrentRoom().getShortDescription() == "at gamestop" || getCurrentRoom().getShortDescription() == "at the merchant"){
             
                     if(inventoryRoom.getInventoryPlayerSize() >= itemNumber){
                         player1.setScore(player1.getScore()+ inventoryRoom.getPlayerItem(itemNumber).getSellPrice());
-                        System.out.println("Item" + inventoryRoom.getPlayerItem(itemNumber).getName() + "sold");
+                        output = inventoryRoom.getPlayerItem(itemNumber).getName() + " sold";
                         inventoryRoom.dropItem(itemNumber);
                     }
                     else{
@@ -571,14 +592,17 @@ public class BusinessFacade implements IBusiness {
             
         }
         else{
-            System.out.println("Can't sell here");
+            output = "Can't sell here";
         }
+        return output;
     }
     @Override
-    public void sleep(){
+    public String sleep(){
+        String output = "";
         if(getCurrentRoom().getShortDescription()=="at your home"){
             player1.setDayToken(player1.getDayToken()-1);
             player1.setTimeToken(30);
+            output = "You slept and woke up feeling refreshed";
             if(rat.getIsDead()){
                 rat.setIsDead(false);
             }
@@ -586,19 +610,23 @@ public class BusinessFacade implements IBusiness {
         else{
             System.out.println("you can only sleep at home");
         }
+        return output;
     }
     @Override
-    public void storeItems(int itemNumber) {
+    public String storeItems(int itemNumber) {
+        String output = "";
         if (getCurrentRoom().getShortDescription() == "at your home") {
             int i = itemNumber;
-            inventoryRoom.houseAddItem(inventoryRoom.getPlayerItem(i));
+            output = inventoryRoom.houseAddItem(inventoryRoom.getPlayerItem(i));
         } 
         else {
             System.out.println("You need to be at home.... to store an item in your home");
         }
+        return output;
     }
     @Override
-    public void use(int itemNumber){
+    public String use(int itemNumber){
+        String output = "";
         int i = itemNumber;
 
             IItem useableitem = inventoryRoom.getPlayerItem(i);
@@ -621,9 +649,9 @@ public class BusinessFacade implements IBusiness {
             else if (useableitem==ratPoison){
                 if(getCurrentRoom()==rat.getCurrentRoom() && rat.getIsDead()==false){
                     if(player1.getTimeToken() <= 0 ){
-                        System.out.println("you have no moves left");
+                        output = "you have no moves left";
                         setCurrentRoom(home);
-                        System.out.println("You wake up at home but you've been robbed half your money");
+                        output += "You wake up at home but you've been robbed half your money";
                         player1.setScore(player1.getScore()/2);
                         player1.setTimeToken(20);
                         player1.setDayToken(player1.getDayToken()-1);
@@ -633,21 +661,21 @@ public class BusinessFacade implements IBusiness {
                     }
                     else{
                         rat.setIsDead(true);
-                        System.out.println("You used all your ratpoison and killed the rat!");
+                        output = "You used all your ratpoison and killed the rat!";
                         inventoryRoom.dropItem(i);
                         player1.setTimeToken(player1.getTimeToken()-1);
                     }
                 }
                 else{
-                    System.out.println("There is no rat in this room");
+                    output = "There is no rat in this room";
                 }
             }
             else if (useableitem==crowBar){
                 if(getCurrentRoom().getShortDescription() == "at the entrance to the scrapyard"){
                     if(player1.getTimeToken() <= 0){
-                        System.out.println("you have no moves left");
+                        output = "you have no moves left";
                         setCurrentRoom(home);
-                        System.out.println("You wake up at home but you've been robbed half your money");
+                        output += "You wake up at home but you've been robbed half your money";
                         player1.setScore(player1.getScore()/2);
                         player1.setTimeToken(20);
                         player1.setDayToken(player1.getDayToken()-1);
@@ -656,20 +684,21 @@ public class BusinessFacade implements IBusiness {
                         }
                     }
                     else{
-                        System.out.println("You used crowbar and smashed the lock");
+                        output = "You used crowbar and smashed the lock";
                         getCurrentRoom().getExit("south").setIsLocked(false);
                         inventoryRoom.dropItem(i);
-                        System.out.println("Your crowbar broke");
+                        output += "Your crowbar broke";
                         player1.setTimeToken(player1.getTimeToken()-1);
                     }
                 }
             }
             else if (useableitem==monsterBullBooster){
-                System.out.println("You drank a MonsterBullBooster and gained more moves!");
+                output = "You drank a MonsterBullBooster and gained more moves!";
                 player1.setTimeToken(player1.getTimeToken()+4);
                 inventoryRoom.dropItem(i);
 
         }
+            return output;
     }
     @Override
     public int wallet(){
@@ -677,40 +706,44 @@ public class BusinessFacade implements IBusiness {
     }
     
     @Override
-    public void addParts(int itemNumber) {
+    public String addParts(int itemNumber) {
         int i = itemNumber;
+        String output = "";
         if(inventoryRoom.getInventoryComputerSize()==0){
-            System.out.println("Please insert a CPU for the first slot" + "\n" + inventoryRoom.showInventoryTotal());
+            output = "Please insert a CPU for the first slot" + "\n" + inventoryRoom.showInventoryTotal();
             if(CPU.contains(inventoryRoom.getInventoryTotalItem(i))){
-                inventoryRoom.computerAddItem(inventoryRoom.getInventoryTotalItem(i));
+                output = inventoryRoom.computerAddItem(inventoryRoom.getInventoryTotalItem(i));
             }
             else{
-                System.out.println("Please add a CPU in this slot");
+                output = "Please add a CPU in this slot";
             }
         }
         else if(inventoryRoom.getInventoryComputerSize()==1){
-            System.out.println("Please insert a GPU for the second slot" + "\n" + inventoryRoom.showInventoryTotal());
+            output = "Please insert a GPU for the second slot" + "\n" + inventoryRoom.showInventoryTotal();
             if(GPU.contains(inventoryRoom.getInventoryTotalItem(i))){
                 inventoryRoom.computerAddItem(inventoryRoom.getInventoryTotalItem(i));
             }
             else{
-                System.out.println("Please add a GPU in this slot");
+                output = "Please add a GPU in this slot";
             }
         }
         else if(inventoryRoom.getInventoryComputerSize()==2){
-            System.out.println("Please insert a RAM for the third slot" + "\n" + inventoryRoom.showInventoryTotal());
+            output = "Please insert a RAM for the third slot" + "\n" + inventoryRoom.showInventoryTotal();
             if(RAM.contains(inventoryRoom.getInventoryTotalItem(i))){
                 inventoryRoom.computerAddItem(inventoryRoom.getInventoryTotalItem(i));
                     }
         else{
-            System.out.println("Please add RAM in this slot");
+            output = "Please add RAM in this slot";
         }
-    } 
+    }
+        return output;
 }
     @Override
-    public void removeparts(int itemNumber){
+    public String removeparts(int itemNumber){
+        String output;
         int i = itemNumber;
-        inventoryRoom.computerRemoveItem(inventoryRoom.getComputerItem(i));
+        output = inventoryRoom.computerRemoveItem(inventoryRoom.getComputerItem(i));
+        return output;
     }
     @Override
     public boolean buildComputer(){
