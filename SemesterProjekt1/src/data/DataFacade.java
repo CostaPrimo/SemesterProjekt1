@@ -3,6 +3,8 @@ package data;
 import acquaintance.IData;
 import acquaintance.IInventory;
 import acquaintance.IPlayer;
+import acquaintance.IRat;
+import org.json.JSONObject;
 import java.util.Arrays;
 
 /**
@@ -12,8 +14,12 @@ import java.util.Arrays;
 public class DataFacade implements IData {
     Highscore highscorelist;
     Gamestate gameSave;
+    
     IPlayer player;
     IInventory inventory;
+    IRat rat;
+    
+    JSONObject savestate;
     
     @Override
     public void injectPlayer(IPlayer player){
@@ -23,6 +29,11 @@ public class DataFacade implements IData {
     @Override
     public void injectInventory(IInventory inventory){
         this.inventory = inventory;
+    }
+    
+    @Override
+    public void injectRat(IRat rat){
+        this.rat = rat;
     }
     
     private String sortScores(IPlayer player){
