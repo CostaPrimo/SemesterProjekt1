@@ -33,9 +33,9 @@
                      <children>
                         <ListView fx:id="PlayerInventoryListview1" layoutX="50.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" />
                         <ListView fx:id="HomeStorageListView" layoutX="350.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" />
-                        <Button fx:id="CloseButton1" layoutX="272.0" layoutY="445.0" mnemonicParsing="false" onAction="#CloseButtonHandler" text="Close" />
-                        <Button fx:id="AddToHomeButton" layoutX="69.0" layoutY="379.0" mnemonicParsing="false" text="Add to home storage" />
-                        <Button fx:id="AddToPlayerInventoryButton" layoutX="362.0" layoutY="379.0" mnemonicParsing="false" text="Add to player inventory" />
+                        <Button fx:id="CloseButton" layoutX="272.0" layoutY="445.0" mnemonicParsing="false" onAction="#CloseButtonHandler" text="Close" />
+                        <Button fx:id="AddToHomeButton" layoutX="69.0" layoutY="379.0" mnemonicParsing="false" onAction="#AddToHomeButtonHandler" text="Add to home storage" />
+                        <Button fx:id="AddToPlayerInventoryButton" layoutX="362.0" layoutY="379.0" mnemonicParsing="false" onAction="#AddToPlayerInventoryButtonHandler" text="Add to player inventory" />
                      </children>
                   </Pane>
                   <Pane fx:id="MerchantsPane" prefHeight="200.0" prefWidth="200.0">
@@ -114,6 +114,8 @@
                      </image>
                   </ImageView>
                   <Button fx:id="BuildButton" layoutX="26.0" layoutY="522.0" mnemonicParsing="false" onAction="#BuildButtonHandler" text="Build" />
+                  <Button fx:id="HomeStorageButton" layoutX="199.0" layoutY="522.0" mnemonicParsing="false" onAction="#HomeStorageButtonHandler" text="Home Storage" />
+                  <Button fx:id="SleepButton" layoutX="124.0" layoutY="522.0" mnemonicParsing="false" onAction="#SleepButtonHandler" text="Sleep" />
                </children>
             </Pane>
          </children>

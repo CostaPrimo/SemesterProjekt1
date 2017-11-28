@@ -94,6 +94,7 @@ public class SemesterProjektGUIController implements Initializable {
     private ObservableList<IItem> roomInventory;
     private ObservableList<IItem> inventoryTotal;
     private ObservableList<IItem> inventoryComputer;
+    private ObservableList<IItem> houseInventory;
     @FXML
     private Button BuyItemsButton;
     @FXML
@@ -143,17 +144,19 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private Pane HomeStoragePane;
     @FXML
-    private ListView<?> PlayerInventoryListview1;
+    private ListView<IItem> PlayerInventoryListview1;
     @FXML
-    private ListView<?> HomeStorageListView;
-    @FXML
-    private Button CloseButton1;
+    private ListView<IItem> HomeStorageListView;
     @FXML
     private Button AddToHomeButton;
     @FXML
     private Button AddToPlayerInventoryButton;
     @FXML
     private ListView<IItem> PlayerInventoryListview2;
+    @FXML
+    private Button HomeStorageButton;
+    @FXML
+    private Button SleepButton;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
@@ -161,9 +164,12 @@ public class SemesterProjektGUIController implements Initializable {
         this.roomInventory = FXCollections.observableArrayList(game.getItemRoom());
         this.inventoryTotal = FXCollections.observableArrayList(game.getInventoryTotal());
         this.inventoryComputer = FXCollections.observableArrayList(game.getInventoryComputer());
+        this.houseInventory = FXCollections.observableArrayList(game.getInventoryHouse());
         MerchantListViewSell.setItems(playerInventory);
         RoomInventoryListview.setItems(roomInventory);
+        HomeStorageListView.setItems(houseInventory);
         PlayerInventoryListview.setItems(playerInventory);
+        PlayerInventoryListview1.setItems(playerInventory);
         PlayerInventoryListview2.setItems(playerInventory);
         TotalInventoryListView.setItems(inventoryTotal);
         BuildComputerListView.setItems(inventoryComputer);
@@ -185,9 +191,13 @@ public class SemesterProjektGUIController implements Initializable {
         }
         if(game.getCurrentRoom().getShortDescription() == "at your home"){
             BuildButton.setVisible(true);
+            HomeStorageButton.setVisible(true);
+            SleepButton.setVisible(true);
         } 
         else {
             BuildButton.setVisible(false);
+            HomeStorageButton.setVisible(false);
+            SleepButton.setVisible(false);
         }
         if(game.getCurrentRoom().getShortDescription() == "at your home"){
             MapView.setImage(image1);
@@ -370,6 +380,34 @@ public class SemesterProjektGUIController implements Initializable {
     private void InventoryButtonHandler(ActionEvent event) {
         playerInventory.setAll(game.getItemPlayer());
         InventoryPane.toFront();
+    }
+
+    @FXML
+    private void HomeStorageButtonHandler(ActionEvent event) {
+        houseInventory.setAll(game.getInventoryHouse());
+        playerInventory.setAll(game.getItemPlayer());
+        HomeStoragePane.toFront();
+    }
+
+    @FXML
+    private void AddToHomeButtonHandler(ActionEvent event) {
+        int i= PlayerInventoryListview1.getSelectionModel().getSelectedIndex();
+        game.storeItems(i);
+        houseInventory.setAll(game.getInventoryHouse());
+        playerInventory.setAll(game.getItemPlayer());
+    }
+
+    @FXML
+    private void AddToPlayerInventoryButtonHandler(ActionEvent event) {
+        int i= HomeStorageListView.getSelectionModel().getSelectedIndex();
+        game.addItem(i);
+        playerInventory.setAll(game.getItemPlayer());
+        houseInventory.setAll(game.getInventoryHouse());
+    }
+
+    @FXML
+    private void SleepButtonHandler(ActionEvent event) {
+        game.sleep();
     }
         
 }
