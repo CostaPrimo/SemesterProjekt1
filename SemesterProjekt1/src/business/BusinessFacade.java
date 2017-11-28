@@ -2,7 +2,6 @@ package business;
 import acquaintance.IItem;
 import acquaintance.IBusiness;
 import acquaintance.IData;
-import data.Player;
 import java.util.ArrayList;
 import java.util.Locale; //I need help with using this.
 import javafx.scene.chart.Chart;
@@ -713,21 +712,27 @@ public class BusinessFacade implements IBusiness {
         int i = itemNumber;
         inventoryRoom.computerRemoveItem(inventoryRoom.getComputerItem(i));
     }
+    @Override
     public boolean buildComputer(){
-        player1.setScore(0);
-        for (int j = 0; j < inventoryRoom.getInventoryComputerSize(); j++) {
-            player1.setScore(player1.getScore() + inventoryRoom.getComputerItem(j).getBuyPrice());
-            System.out.println("Your added item is " + inventoryRoom.getComputerItem(j).getName() + " with the value of " + inventoryRoom.getComputerItem(j).getBuyPrice());
-        }
-        System.out.println("Your total score is " + player1.getScore());
-        if(player1.getScore()>scoreToBeat){
-            System.out.println("You won the game!");
+        if(inventoryRoom.getInventoryComputerSize()==3){
+            player1.setScore(0);
+            for (int j = 0; j < inventoryRoom.getInventoryComputerSize(); j++) {
+                player1.setScore(player1.getScore() + inventoryRoom.getComputerItem(j).getBuyPrice());
+                System.out.println("Your added item is " + inventoryRoom.getComputerItem(j).getName() + " with the value of " + inventoryRoom.getComputerItem(j).getBuyPrice());
+            }
+            System.out.println("Your total score is " + player1.getScore());
+            if(player1.getScore()>scoreToBeat){
+                System.out.println("You won the game!");
+            }
+            else{
+                System.out.println("Your computer is not better than Mr.MountainDew's pc");
+                System.out.println("You lose!");
+            }
         }
         else{
-            System.out.println("Your computer is not better than Mr.MountainDew's pc");
-            System.out.println("You lose!");
+            return false;
         }
-        return true;
+        return  true;
     }
     
 
