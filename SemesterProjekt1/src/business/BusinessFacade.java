@@ -438,7 +438,7 @@ public class BusinessFacade implements IBusiness {
                 if (player1.getTimeToken() <= 0){
                     System.out.println("you have no moves left today");
                     setCurrentRoom(home);
-                    player1.setTimeToken(14);
+                    player1.setTimeToken(20);
                     System.out.println("You wake up at home but you've been robbed half your money");
                     player1.setDayToken(player1.getDayToken()-1);
                     player1.setScore(player1.getScore()/2);
@@ -578,7 +578,7 @@ public class BusinessFacade implements IBusiness {
     public void sleep(){
         if(getCurrentRoom().getShortDescription()=="at your home"){
             player1.setDayToken(player1.getDayToken()-1);
-            player1.setTimeToken(14);
+            player1.setTimeToken(30);
             if(rat.getIsDead()){
                 rat.setIsDead(false);
             }
@@ -625,7 +625,7 @@ public class BusinessFacade implements IBusiness {
                         setCurrentRoom(home);
                         System.out.println("You wake up at home but you've been robbed half your money");
                         player1.setScore(player1.getScore()/2);
-                        player1.setTimeToken(14);
+                        player1.setTimeToken(20);
                         player1.setDayToken(player1.getDayToken()-1);
                         if(rat.getIsDead()){
                             rat.setIsDead(false);
@@ -649,7 +649,7 @@ public class BusinessFacade implements IBusiness {
                         setCurrentRoom(home);
                         System.out.println("You wake up at home but you've been robbed half your money");
                         player1.setScore(player1.getScore()/2);
-                        player1.setTimeToken(14);
+                        player1.setTimeToken(20);
                         player1.setDayToken(player1.getDayToken()-1);
                         if(rat.getIsDead()){
                             rat.setIsDead(false);

@@ -10,7 +10,7 @@ public class Player implements IPlayer {
     
     private String name = "";
     private int score = 1500;
-    private int timeToken = 14;
+    private int timeToken = 30;
     private int dayToken = 7;
     private boolean hasWon = false;
     
