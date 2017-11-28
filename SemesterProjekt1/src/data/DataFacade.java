@@ -1,6 +1,7 @@
 package data;
 
 import acquaintance.IData;
+import acquaintance.IPlayer;
 import java.util.Arrays;
 
 /**
@@ -9,9 +10,15 @@ import java.util.Arrays;
  */
 public class DataFacade implements IData {
     Highscore highscorelist;
-    Player player;
-        
-    private String sortScores(Player player){
+    Gamestate gameSave;
+    IPlayer player;
+    
+    @Override
+    public void injectPlayer(IPlayer player){
+        this.player = player;
+    }
+    
+    private String sortScores(IPlayer player){
         
         String newEntry = player.getName()+ " " + player.getScore()+"\n";
         String currentScores = highscorelist.load()+newEntry;
@@ -44,13 +51,19 @@ public class DataFacade implements IData {
         return newScores;
     }
     
-    private void saveHighscore(){
+    @Override
+    public void saveHighscore(){
         highscorelist.save(sortScores(player));
     }
     
-    private String loadHighscore(){
+    @Override
+    public String loadHighscore(){
         return highscorelist.load();
     }
    
+    @Override
+    public void saveGame(){
+        
+    }
     
 }

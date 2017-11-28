@@ -1,1 +1,1 @@
-{"test":{"invetoryRoom":"test","currentRoom":"null","inventoryHouse":"test","isLocked":true,"hasWon":false,"dayToken":7,"player":"data.Player@6d6f6e28","iventoryPlayer":"test","isDead":false}}
+{"savestate":{"invetoryRoom":"test","currentRoom":"null","inventoryHouse":"test","isLocked":true,"hasWon":false,"dayToken":7,"player":"business.Player@6d6f6e28","iventoryPlayer":"test","isDead":false}}

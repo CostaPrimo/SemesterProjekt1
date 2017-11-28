@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package data;
+package business;
 
 import acquaintance.IPlayer;
 
@@ -26,6 +21,7 @@ public class Player implements IPlayer {
     /**
      * @return the name
      */
+    @Override
     public String getName() {
         return name;
     }
@@ -36,12 +32,15 @@ public class Player implements IPlayer {
     public void setName(String name) {
         this.name = name;
     }
+    
     public boolean getHasWon(){
         return hasWon;
     }
+    
     /**
      * @return the score
      */
+    @Override
     public int getScore() {
         return score;
     }

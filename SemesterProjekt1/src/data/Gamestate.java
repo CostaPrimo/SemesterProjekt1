@@ -1,5 +1,6 @@
 package data;
 
+import business.Player;
 import org.json.JSONObject;
 import org.json.JSONStringer;
 import org.json.JSONException;
@@ -16,7 +17,7 @@ public class Gamestate {
 
     
     public static void main(String[] args){
-        Player temp = new Player("john");
+        Player temp = new Player("Bob");
         Gamestate test = new Gamestate(temp);
         test.save();
     }

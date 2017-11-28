@@ -26,7 +26,7 @@ public class Highscore {
             scoreReader = new BufferedReader(loadFile);
         }
         catch(IOException ex){
-            
+            System.out.println("Error: " + ex);
         }
     }
     

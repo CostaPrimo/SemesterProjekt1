@@ -10,5 +10,6 @@ package acquaintance;
  * @author Kim Christensen
  */
 public interface IPlayer {
-    
+    String getName();
+    int getScore();
 }

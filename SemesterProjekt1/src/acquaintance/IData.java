@@ -10,5 +10,9 @@ package acquaintance;
  * @author Kim Christensen
  */
 public interface IData {
+    void injectPlayer(IPlayer player);
+    void saveGame();
+    void saveHighscore();
+    String loadHighscore();
     
 }
