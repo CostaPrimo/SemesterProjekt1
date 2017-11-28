@@ -56,10 +56,11 @@ public class SemesterProjektGUIController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    Image image1 = new Image(getClass().getResource("space_flight_sky_stars_82970_1920x1080.jpg").toExternalForm());
+    Image mapHomeImage = new Image(getClass().getResource("home ms.png").toExternalForm());
     Image mapDowntoImage = new Image(getClass().getResource("downtown us.png").toExternalForm());
     Image mapDowntownMSImage = new Image(getClass().getResource("downtown ms.png").toExternalForm());
-    Image mapMerchantImage = new Image(getClass().getResource("merachan ms.png").toExternalForm());
+    Image mapMerchantImage = new Image(getClass().getResource("ali ms.png").toExternalForm());
+    Image mapGamestopImage = new Image(getClass().getResource("gamestop ms.png").toExternalForm());
     Image mapEntranceLockedImage = new Image(getClass().getResource("yard entrance låst ms.png").toExternalForm());
     Image mapEntranceOpenImage = new Image(getClass().getResource("yard entrance åben ms.png").toExternalForm());
     Image mapMiddleImage = new Image (getClass().getResource("yard middle ms.png").toExternalForm());
@@ -202,7 +203,7 @@ public class SemesterProjektGUIController implements Initializable {
             SleepButton.setVisible(false);
         }
         if(game.getCurrentRoom().getShortDescription() == "at your home"){
-            MapView.setImage(image1);
+            MapView.setImage(mapHomeImage);
             MinimapView.setImage(minimapHomeImage);
         }
         else if (game.getCurrentRoom().getShortDescription() == "at downtown"){
@@ -225,6 +226,7 @@ public class SemesterProjektGUIController implements Initializable {
             MerchantsPane.toFront();
         }
         else if (game.getCurrentRoom().getShortDescription() == "at gamestop"){
+            MapView.setImage(mapGamestopImage);
             MinimapView.setImage(minimapGamestopImage);
             this.gamestopItems = FXCollections.observableArrayList(game.getItemGamestop());
             MerchantListViewBuy.setItems(gamestopItems);

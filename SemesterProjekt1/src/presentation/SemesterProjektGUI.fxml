@@ -78,7 +78,7 @@
                      <children>
                         <ImageView fx:id="MapView" fitHeight="600.0" fitWidth="600.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@downtown%20us.png" />
+                              <Image url="@home%20ms.png" />
                            </image>
                         </ImageView>
                         <Button fx:id="GoNorthButton" layoutX="259.0" layoutY="1.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go North" />
