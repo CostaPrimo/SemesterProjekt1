@@ -140,6 +140,18 @@ public class SemesterProjektGUIController implements Initializable {
     private Button RemovePartButton;
     @FXML
     private Pane InventoryPane;
+    @FXML
+    private Pane HomeStoragePane;
+    @FXML
+    private ListView<?> PlayerInventoryListview1;
+    @FXML
+    private ListView<?> HomeStorageListView;
+    @FXML
+    private Button CloseButton1;
+    @FXML
+    private Button AddToHomeButton;
+    @FXML
+    private Button AddToPlayerInventoryButton;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
