@@ -210,7 +210,7 @@ public class SemesterProjektGUIController implements Initializable {
             MapView.setImage(mapDowntownMSImage);
             MinimapView.setImage(minimapDowntownImage);
         }
-        else if (game.getCurrentRoom().getShortDescription()== "at the entrance to the scrapyard" && game.getCurrentRoom().getIsLocked() == true){//Næste rum ikke current
+        else if (game.getCurrentRoom().getShortDescription()== "at the entrance to the scrapyard" && game.getCurrentRoom().getExit("south").getIsLocked() == true){
             MapView.setImage(mapEntranceLockedImage);
             MinimapView.setImage(minimapScrapyardEntranceImage);
         }
@@ -260,8 +260,11 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void UseButtonHandler(ActionEvent event) {
-         int i= PlayerInventoryListview.getSelectionModel().getSelectedIndex();
+        int i= PlayerInventoryListview.getSelectionModel().getSelectedIndex();
             game.use(i);
+        if (game.getCurrentRoom().getShortDescription() == "at the entrance to the scrapyard" && game.getCurrentRoom().getExit("south").getIsLocked() == false){
+            MapView.setImage(mapEntranceOpenImage);
+        }
         playerInventory.setAll(game.getItemPlayer());
     }
 
@@ -278,10 +281,12 @@ public class SemesterProjektGUIController implements Initializable {
     private void ExitStoreButtonHandler(ActionEvent event) {
         if(game.getCurrentRoom().getShortDescription() == "at the merchant"){
             game.goRoom("west");
+            MapView.setImage(mapDowntownMSImage);
             MinimapView.setImage(minimapDowntownImage);
         }
         else{
             game.goRoom("east");
+            MapView.setImage(mapDowntownMSImage);
             MinimapView.setImage(minimapDowntownImage);
             
         }
@@ -353,7 +358,7 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void BuildComputerHandler(ActionEvent event) {
-        
+        game.buildComputer();
     }
 
     @FXML
