@@ -60,9 +60,9 @@
                   <Pane fx:id="InventoryPane" prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <ListView fx:id="PlayerInventoryListview" layoutX="200.0" layoutY="169.0" prefHeight="200.0" prefWidth="200.0" />
-                        <Button fx:id="CloseButton1" layoutX="272.0" layoutY="398.0" mnemonicParsing="false" onAction="#CloseButtonHandler" text="Close" />
+                        <Button fx:id="CloseButton" layoutX="272.0" layoutY="398.0" mnemonicParsing="false" onAction="#CloseButtonHandler" text="Close" />
                         <Button fx:id="UseButton" layoutX="178.0" layoutY="398.0" mnemonicParsing="false" onAction="#UseButtonHandler" text="Use" />
-                        <Button fx:id="DropButton1" layoutX="373.0" layoutY="398.0" mnemonicParsing="false" onAction="#DropButtonHandler" text="Drop" />
+                        <Button fx:id="DropButton" layoutX="373.0" layoutY="398.0" mnemonicParsing="false" onAction="#DropButtonHandler" text="Drop" />
                      </children>
                   </Pane>
                   <Pane fx:id="MapPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0">
