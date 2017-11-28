@@ -51,6 +51,11 @@ public class Item implements IItem {
     @Override
 	public String toString()
 	{
-		return "Name " + Name + " BuyPrice " + Buyprice + " SellPrice" + Sellprice;
+            if(this.isTooHeavy()){
+                return Name;
+            }
+            else {
+		return Name + "  " + Buyprice+ ".- " + "/ " + Sellprice+ ".-";
+            }
 	}
 }
