@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 
-<BorderPane prefHeight="602.0" prefWidth="913.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.SemesterProjektGUIController">
+<BorderPane prefHeight="602.0" prefWidth="913.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.SemesterProjektGUIController">
    <center>
       <GridPane prefHeight="723.0" prefWidth="993.0" BorderPane.alignment="CENTER">
          <columnConstraints>
@@ -57,6 +57,14 @@
                         <Button fx:id="RemovePartButton" layoutX="399.0" layoutY="351.0" mnemonicParsing="false" onAction="#RemovePartButtonHandler" text="Remove part" />
                      </children>
                   </Pane>
+                  <Pane fx:id="InventoryPane" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="PlayerInventoryListview" layoutX="200.0" layoutY="169.0" prefHeight="200.0" prefWidth="200.0" />
+                        <Button fx:id="CloseButton1" layoutX="272.0" layoutY="398.0" mnemonicParsing="false" onAction="#CloseButtonHandler" text="Close" />
+                        <Button fx:id="UseButton" layoutX="178.0" layoutY="398.0" mnemonicParsing="false" onAction="#UseButtonHandler" text="Use" />
+                        <Button fx:id="DropButton1" layoutX="373.0" layoutY="398.0" mnemonicParsing="false" onAction="#DropButtonHandler" text="Drop" />
+                     </children>
+                  </Pane>
                   <Pane fx:id="MapPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0">
                      <children>
                         <ImageView fx:id="MapView" fitHeight="600.0" fitWidth="600.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
@@ -86,8 +94,7 @@
                       </Menu>
                     </menus>
                   </MenuBar>
-                  <Button fx:id="UseButton" layoutX="134.0" layoutY="470.0" mnemonicParsing="false" onAction="#UseButtonHandler" text="Use" />
-                  <Button fx:id="InventoryButton" layoutX="216.0" layoutY="470.0" mnemonicParsing="false" text="Inventory" />
+                  <Button fx:id="InventoryButton" layoutX="216.0" layoutY="470.0" mnemonicParsing="false" onAction="#InventoryButtonHandler" text="Inventory" />
                   <Label fx:id="CurrentRoomLabel" layoutX="14.0" layoutY="49.0" text="CurrentRoom" />
                   <Button fx:id="InspectButton" layoutX="25.0" layoutY="470.0" mnemonicParsing="false" onAction="#InspectButtonHandler" text="Inspect" />
                   <Label fx:id="MoneyLabel" layoutY="6.0" text="Money" />

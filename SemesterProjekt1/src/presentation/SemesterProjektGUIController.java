@@ -138,6 +138,8 @@ public class SemesterProjektGUIController implements Initializable {
     private Button BuildButton;
     @FXML
     private Button RemovePartButton;
+    @FXML
+    private Pane InventoryPane;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
@@ -227,7 +229,8 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void UseButtonHandler(ActionEvent event) {
-        game.use(0);
+         int i= PlayerInventoryListview.getSelectionModel().getSelectedIndex();
+            game.use(i);
         playerInventory.setAll(game.getItemPlayer());
     }
 
@@ -344,6 +347,12 @@ public class SemesterProjektGUIController implements Initializable {
     private void RemovePartButtonHandler(ActionEvent event) {
         inventoryTotal.setAll(game.getInventoryTotal());
         inventoryComputer.setAll(game.getInventoryComputer());
+    }
+
+    @FXML
+    private void InventoryButtonHandler(ActionEvent event) {
+        playerInventory.setAll(game.getItemPlayer());
+        InventoryPane.toFront();
     }
         
 }
