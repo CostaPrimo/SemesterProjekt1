@@ -1,6 +1,7 @@
 package data;
 
 import acquaintance.IData;
+import acquaintance.IInventory;
 import acquaintance.IPlayer;
 import java.util.Arrays;
 
@@ -12,10 +13,16 @@ public class DataFacade implements IData {
     Highscore highscorelist;
     Gamestate gameSave;
     IPlayer player;
+    IInventory inventory;
     
     @Override
     public void injectPlayer(IPlayer player){
         this.player = player;
+    }
+    
+    @Override
+    public void injectInventory(IInventory inventory){
+        this.inventory = inventory;
     }
     
     private String sortScores(IPlayer player){

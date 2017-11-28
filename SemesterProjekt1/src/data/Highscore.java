@@ -15,7 +15,6 @@ public class Highscore {
     
     //FileWriter saveFile;
     private FileWriter scoreWriter;
-    
     private FileReader loadFile;
     private BufferedReader scoreReader;    
 

@@ -33,6 +33,7 @@ public class Player implements IPlayer {
         this.name = name;
     }
     
+    @Override
     public boolean getHasWon(){
         return hasWon;
     }
@@ -55,6 +56,7 @@ public class Player implements IPlayer {
     /**
      * @return the timeToken
      */
+    @Override
     public int getTimeToken() {
         return timeToken;
     }
@@ -69,6 +71,7 @@ public class Player implements IPlayer {
     /**
      * @return the dayToken
      */
+    @Override
     public int getDayToken() {
         return dayToken;
     }

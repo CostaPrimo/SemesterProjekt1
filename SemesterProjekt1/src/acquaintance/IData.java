@@ -11,6 +11,7 @@ package acquaintance;
  */
 public interface IData {
     void injectPlayer(IPlayer player);
+    void injectInventory(IInventory inventory);
     void saveGame();
     void saveHighscore();
     String loadHighscore();
