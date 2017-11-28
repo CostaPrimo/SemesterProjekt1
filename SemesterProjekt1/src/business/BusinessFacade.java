@@ -708,6 +708,11 @@ public class BusinessFacade implements IBusiness {
         }
     } 
 }
+    @Override
+    public void removeparts(int itemNumber){
+        int i = itemNumber;
+        inventoryRoom.computerRemoveItem(inventoryRoom.getComputerItem(i));
+    }
     public boolean buildComputer(){
         player1.setScore(0);
         for (int j = 0; j < inventoryRoom.getInventoryComputerSize(); j++) {

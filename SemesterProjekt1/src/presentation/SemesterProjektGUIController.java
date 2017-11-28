@@ -345,6 +345,8 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void RemovePartButtonHandler(ActionEvent event) {
+        int i= BuildComputerListView.getSelectionModel().getSelectedIndex();
+        game.removeparts(i);
         inventoryTotal.setAll(game.getInventoryTotal());
         inventoryComputer.setAll(game.getInventoryComputer());
     }

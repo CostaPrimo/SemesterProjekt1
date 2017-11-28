@@ -73,21 +73,28 @@ public class Inventory {
         }
     }
     
-    public void buildInventoryTotal(){
-        inventoryTotal.addAll(getInventoryPlayer());
-        inventoryTotal.addAll(inventoryHouse);
-    }
+//    public void buildInventoryTotal(){
+//        inventoryTotal.addAll(getInventoryPlayer());
+//        inventoryTotal.addAll(getInventoryHouse());
+//    }
     
     public void computerAddItem(IItem item){
         if(inventoryTotal.contains(item)){
             if(inventoryComputer.size() < maxStorageComputer){
                 inventoryComputer.add(inventoryTotal.get(inventoryTotal.indexOf(item)));
+                getInventoryPlayer().remove(item);
+                getInventoryHouse().remove(item);
                 System.out.println("Item added to computer");
             }
             else{
                 System.out.println("Stop being a pleb and get a larger motherboard");
             }
         }
+    }
+    
+    public void computerRemoveItem(IItem item){
+        inventoryHouse.add(inventoryComputer.get(inventoryComputer.indexOf(item)));
+        getInventoryComputer().remove(item);
     }
     
     //Method for removing an item from the player inventory
@@ -111,7 +118,7 @@ public class Inventory {
     public void houseAddItem(IItem item){
         //The item is only added to the house storage if its contained within the player inventory, the stored item is removed from the player inventory
         if (getInventoryPlayer().contains(item)){
-            inventoryHouse.add(getInventoryPlayer().get(getInventoryPlayer().indexOf(item)));
+            getInventoryHouse().add(getInventoryPlayer().get(getInventoryPlayer().indexOf(item)));
             getInventoryPlayer().remove(getInventoryPlayer().indexOf(item));
             System.out.println("Item stored");
         }
@@ -123,10 +130,10 @@ public class Inventory {
     //Method for adding an item from the house storage to the player inventory
     public void housePickItem(IItem item){
         //The item is only added to the player inventory if its contained within the house storage, the recieved item is removed from the house storage
-        if (inventoryHouse.contains(item)){
+        if (getInventoryHouse().contains(item)){
             if (getInventoryPlayer().size() < getMaxStoragePlayer()){
-                getInventoryPlayer().add(inventoryHouse.get(inventoryHouse.indexOf(item)));
-                inventoryHouse.remove(inventoryHouse.indexOf(item));
+                getInventoryPlayer().add(getInventoryHouse().get(getInventoryHouse().indexOf(item)));
+                getInventoryHouse().remove(getInventoryHouse().indexOf(item));
                 System.out.println("Item picked up");
             }
             else{
@@ -247,8 +254,8 @@ public class Inventory {
         
         String contains = "";
         int count = 1;
-        for(int i = 0; i < inventoryHouse.size();i++){
-            contains += count + ": " + inventoryHouse.get(i).getName() + "\n";
+        for(int i = 0; i < getInventoryHouse().size();i++){
+            contains += count + ": " + getInventoryHouse().get(i).getName() + "\n";
             count++;
         }
         return contains;
@@ -297,7 +304,7 @@ public class Inventory {
     }
     
     public IItem getHouseitem(int i){
-        return inventoryHouse.get(i);
+        return getInventoryHouse().get(i);
     }
     public IItem getInventoryTotalItem(int i){
         return inventoryTotal.get(i);
@@ -323,10 +330,17 @@ public class Inventory {
     public ArrayList<IItem> getInventoryTotal(){
         inventoryTotal.clear();
         inventoryTotal.addAll(inventoryPlayer);
-        inventoryTotal.addAll(inventoryHouse);
+        inventoryTotal.addAll(getInventoryHouse());
         return inventoryTotal;
     }
     public ArrayList<IItem> getInventoryComputer(){
         return inventoryComputer;
+    }
+
+    /**
+     * @return the inventoryHouse
+     */
+    public ArrayList<IItem> getInventoryHouse() {
+        return inventoryHouse;
     }
 }

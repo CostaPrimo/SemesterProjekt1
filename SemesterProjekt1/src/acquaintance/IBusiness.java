@@ -37,5 +37,6 @@ public interface IBusiness {
     ArrayList<IItem> getInventoryTotal();
     ArrayList<IItem> getInventoryComputer();
     void addParts(int itemNumber);
+    void removeparts(int itemNumber);
     boolean quit();
 }
