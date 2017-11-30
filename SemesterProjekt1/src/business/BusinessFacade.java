@@ -821,4 +821,12 @@ public class BusinessFacade implements IBusiness {
     public Room getRatCurrentRoom(){
         return rat.getCurrentRoom();
     }
+    @Override
+    public int getDayToken(){
+        return this.player1.getDayToken();
+    }
+    @Override
+    public int getTimeToken(){
+        return this.player1.getTimeToken();
+    }
 }

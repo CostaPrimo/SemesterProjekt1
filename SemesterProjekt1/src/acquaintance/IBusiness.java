@@ -28,6 +28,8 @@ public interface IBusiness {
     String storeItems(int itemNumber);
     String use(int itemNumber);
     int wallet();
+    int getDayToken();
+    int getTimeToken();
     Room getCurrentRoom();
     Room getRatCurrentRoom();
     void setCurrentRoom(Room currentRoom);

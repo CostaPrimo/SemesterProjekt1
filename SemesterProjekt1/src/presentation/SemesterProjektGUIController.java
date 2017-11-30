@@ -6,9 +6,11 @@
 package presentation;
 import acquaintance.IBusiness;
 import acquaintance.IItem;
+import acquaintance.IPlayer;
 import business.Rat;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -184,6 +186,10 @@ public class SemesterProjektGUIController implements Initializable {
     private Button SleepButton;
     @FXML
     private StackPane Stackpane;
+    @FXML
+    private Label DayCounterLabel;
+    @FXML
+    private Label StepCounterLabel;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
@@ -205,6 +211,10 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private void GoButtonHandler(ActionEvent event) {
         String output = "";
+        GoNorthButton.setDisable(false);
+        GoWestButton.setDisable(false);
+        GoEastButton.setDisable(false);
+        GoSouthButton.setDisable(false);
         if(event.getSource() == GoNorthButton){
             output = game.goRoom("north");
             TextAreaStatus.appendText(output + "\n");
@@ -220,6 +230,18 @@ public class SemesterProjektGUIController implements Initializable {
         else if (event.getSource() == GoSouthButton){
             output = game.goRoom("south");
             TextAreaStatus.appendText(output + "\n");
+        }
+        if (game.getCurrentRoom().getExit("north") == null){
+            GoNorthButton.setDisable(true);
+        }
+        if (game.getCurrentRoom().getExit("east") == null){
+            GoEastButton.setDisable(true);
+        }
+        if (game.getCurrentRoom().getExit("west") == null){
+            GoWestButton.setDisable(true);
+        }
+        if (game.getCurrentRoom().getExit("south") == null){
+            GoSouthButton.setDisable(true);
         }
         if(game.getCurrentRoom().getShortDescription() == "at your home"){
             BuildButton.setVisible(true);
@@ -357,6 +379,9 @@ public class SemesterProjektGUIController implements Initializable {
                 MinimapView.setImage(minimapScrapyardSouthWestImage);
             }
         }
+        DayCounterLabel.setText(Integer.toString(game.getDayToken()));
+        StepCounterLabel.setText(Integer.toString(game.getTimeToken()));
+        MoneyLabel.setText(Integer.toString(game.wallet()));
     }
 
     @FXML
@@ -369,6 +394,8 @@ public class SemesterProjektGUIController implements Initializable {
             MapView.setImage(mapEntranceOpenImage);
         }
         playerInventory.setAll(game.getItemPlayer());
+        DayCounterLabel.setText(Integer.toString(game.getDayToken()));
+        StepCounterLabel.setText(Integer.toString(game.getTimeToken()));
     }
 
     @FXML
@@ -385,13 +412,23 @@ public class SemesterProjektGUIController implements Initializable {
     private void ExitStoreButtonHandler(ActionEvent event) {
         if(game.getCurrentRoom().getShortDescription() == "at the merchant"){
             game.goRoom("west");
+            GoNorthButton.setDisable(false);
+            GoSouthButton.setDisable(false);
+            GoEastButton.setDisable(false);
             MapView.setImage(mapDowntownMSImage);
             MinimapView.setImage(minimapDowntownImage);
+            DayCounterLabel.setText(Integer.toString(game.getDayToken()));
+            StepCounterLabel.setText(Integer.toString(game.getTimeToken()));
         }
         else{
             game.goRoom("east");
+            GoNorthButton.setDisable(false);
+            GoSouthButton.setDisable(false);
+            GoWestButton.setDisable(false);
             MapView.setImage(mapDowntownMSImage);
             MinimapView.setImage(minimapDowntownImage);
+            DayCounterLabel.setText(Integer.toString(game.getDayToken()));
+            StepCounterLabel.setText(Integer.toString(game.getTimeToken()));
         }
         MapPane.toFront();
     }
@@ -545,6 +582,8 @@ public class SemesterProjektGUIController implements Initializable {
         String output;
         output = game.sleep();
         TextAreaStatus.appendText(output + "\n");
+        DayCounterLabel.setText(Integer.toString(game.getDayToken()));
+        StepCounterLabel.setText(Integer.toString(game.getTimeToken()));
     }
         
 }
