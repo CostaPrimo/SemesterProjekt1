@@ -817,4 +817,8 @@ public class BusinessFacade implements IBusiness {
     public ArrayList<IItem> getInventoryHouse(){
         return inventoryRoom.getInventoryHouse();
     }
+    @Override
+    public Room getRatCurrentRoom(){
+        return rat.getCurrentRoom();
+    }
 }

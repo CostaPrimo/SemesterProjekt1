@@ -6,6 +6,7 @@
 package presentation;
 import acquaintance.IBusiness;
 import acquaintance.IItem;
+import business.Rat;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -82,6 +83,26 @@ public class SemesterProjektGUIController implements Initializable {
     Image minimapScrapyardSouthImage = new Image(getClass().getResource("MiniMap_ScrapyardSouth.png").toExternalForm());
     Image minimapScrapyardSouthWestImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthWest.png").toExternalForm());
     Image minimapScrapyardSouthEastImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthEast.png").toExternalForm());
+    Image minimapScrapyardMiddleRatSouthImage = new Image(getClass().getResource("MiniMap_ScrapyardMiddleRat3.png").toExternalForm());
+    Image minimapScrapyardMiddleRatWestImage = new Image(getClass().getResource("MiniMap_ScrapyardMiddleRat2.png").toExternalForm());
+    Image minimapScrapyardMiddleRatEastImage = new Image(getClass().getResource("MiniMap_ScrapyardMiddleRat1.png").toExternalForm());
+    Image minimapScrapyardMiddleRatMiddleImage = new Image(getClass().getResource("MiniMap_ScrapyardMiddleRat4.png").toExternalForm());
+    Image minimapScrapyardWestRatSouthImage = new Image(getClass().getResource("MiniMap_ScrapyardWestRat2.png").toExternalForm());
+    Image minimapScrapyardWestRatEastImage = new Image(getClass().getResource("MiniMap_ScrapyardWestRat1.png").toExternalForm());
+    Image minimapScrapyardWestRatWestImage = new Image(getClass().getResource("MiniMap_ScrapyardWestRat3.png").toExternalForm());
+    Image minimapScrapyardEastRatSouthImage = new Image(getClass().getResource("MiniMap_ScrapyardEastRat2.png").toExternalForm());
+    Image minimapScrapyardEastRatWestImage = new Image(getClass().getResource("MiniMap_ScrapyardEastRat1.png").toExternalForm());
+    Image minimapScrapyardEastRatEastImage = new Image(getClass().getResource("MiniMap_ScrapyardEastRat3.png").toExternalForm());
+    Image minimapScrapyardSouthRatNorthImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthRat3.png").toExternalForm());
+    Image minimapScrapyardSouthRatEastImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthRat1.png").toExternalForm());
+    Image minimapScrapyardSouthRatWestImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthRat2.png").toExternalForm());
+    Image minimapScrapyardSouthRatSouthImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthRat4.png").toExternalForm());
+    Image minimapScrapyardSouthEastRatNorthImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthEastRat3.png").toExternalForm());
+    Image minimapScrapyardSouthEastRatWestImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthEastRat2.png").toExternalForm());
+    Image minimapScrapyardSouthEastRatSouthEastImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthEastRat1.png").toExternalForm());
+    Image minimapScrapyardSouthWestRatNorthImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthWestRat2.png").toExternalForm());
+    Image minimapScrapyardSouthWestRatEastImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthWestRat1.png").toExternalForm());
+    Image minimapScrapyardSouthWestRatSouthWestImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthWestRat3.png").toExternalForm());
     @FXML
     private Button UseButton;
     @FXML
@@ -242,27 +263,99 @@ public class SemesterProjektGUIController implements Initializable {
         }
         else if (game.getCurrentRoom().getShortDescription() == "at the center of the scrapyard"){
             MapView.setImage(mapMiddleImage);
-            MinimapView.setImage(minimapScrapyardMiddleImage);
+            if(game.getRatCurrentRoom().getShortDescription() == "at the south part of the scrapyard"){
+                MinimapView.setImage(minimapScrapyardMiddleRatSouthImage);
+            }
+            else if (game.getRatCurrentRoom().getShortDescription() == "at the west part of the scrapyard"){
+                 MinimapView.setImage(minimapScrapyardMiddleRatWestImage);
+            }
+            else if (game.getRatCurrentRoom().getShortDescription() == "at the east part of the scrapyard"){
+                 MinimapView.setImage(minimapScrapyardMiddleRatEastImage);
+            }
+            else if (game.getRatCurrentRoom().getShortDescription() == "at the center of the scrapyard"){
+                MinimapView.setImage(minimapScrapyardMiddleRatMiddleImage);        
+            }
+            else{
+                MinimapView.setImage(minimapScrapyardMiddleImage);
+            }
         }
         else if (game.getCurrentRoom().getShortDescription() == "at the west part of the scrapyard"){
             MapView.setImage(mapNorthWestImage);
-            MinimapView.setImage(minimapScrapyardWestImage);
+            if(game.getRatCurrentRoom().getShortDescription() == "at the southwest part of the scrapyard"){
+                MinimapView.setImage(minimapScrapyardWestRatSouthImage);
+            }
+            else if (game.getRatCurrentRoom().getShortDescription() == "at the center of the scrapyard"){
+                MinimapView.setImage(minimapScrapyardWestRatEastImage);
+            }
+            else if (game.getRatCurrentRoom().getShortDescription() == "at the west part of the scrapyard"){
+                MinimapView.setImage(minimapScrapyardWestRatWestImage);
+            }
+            else{
+                MinimapView.setImage(minimapScrapyardWestImage);
+            }
         }
         else if (game.getCurrentRoom().getShortDescription() == "at the east part of the scrapyard"){
             MapView.setImage(mapNorthEastImage);
-            MinimapView.setImage(minimapScrapyardEastImage);
+            if(game.getRatCurrentRoom().getShortDescription() == "at the center of the scrapyard"){
+                MinimapView.setImage(minimapScrapyardEastRatWestImage);
+            }
+            else if (game.getRatCurrentRoom().getShortDescription() == "at the southeast part of the scrapyard"){
+                MinimapView.setImage(minimapScrapyardEastRatSouthImage);
+            }
+            else if (game.getRatCurrentRoom().getShortDescription() == "at the east part of the scrapyard"){
+                MinimapView.setImage(minimapScrapyardEastRatEastImage);
+            }
+            else{
+                MinimapView.setImage(minimapScrapyardEastImage);
+            }
         }
         else if (game.getCurrentRoom().getShortDescription() == "at the south part of the scrapyard"){
             MapView.setImage(mapSouthImage);
-            MinimapView.setImage(minimapScrapyardSouthImage);
+            if(game.getRatCurrentRoom().getShortDescription() == "at the center of the scrapyard"){
+                MinimapView.setImage(minimapScrapyardSouthRatNorthImage);
+            }
+            else if (game.getRatCurrentRoom().getShortDescription() == "at the southeast part of the scrapyard"){
+                MinimapView.setImage(minimapScrapyardSouthRatEastImage);
+            }
+            else if (game.getRatCurrentRoom().getShortDescription() == "at the southwest part of the scrapyard"){
+                MinimapView.setImage(minimapScrapyardSouthRatWestImage);
+            }
+            else if (game.getRatCurrentRoom().getShortDescription() == "at the south part of the scrapyard"){
+                MinimapView.setImage(minimapScrapyardSouthRatSouthImage);
+            }
+            else{
+                MinimapView.setImage(minimapScrapyardSouthImage);
+            }
         }
         else if (game.getCurrentRoom().getShortDescription() == "at the southeast part of the scrapyard"){
             MapView.setImage(mapSouthEastImage);
-            MinimapView.setImage(minimapScrapyardSouthEastImage);
+            if(game.getRatCurrentRoom().getShortDescription() == "at the east part of the scrapyard"){
+                 MinimapView.setImage(minimapScrapyardSouthEastRatNorthImage);
+            }
+            else if(game.getRatCurrentRoom().getShortDescription() == "at the south part of the scrapyard"){
+                MinimapView.setImage(minimapScrapyardSouthEastRatWestImage);
+            }
+            else if (game.getRatCurrentRoom().getShortDescription() == "at the southeast part of the scrapyard"){
+                MinimapView.setImage(minimapScrapyardSouthEastRatSouthEastImage);
+            }
+            else{
+                MinimapView.setImage(minimapScrapyardSouthEastImage);
+            }
         }
         else if (game.getCurrentRoom().getShortDescription() == "at the southwest part of the scrapyard"){
             MapView.setImage(mapSouthWestImage);
-            MinimapView.setImage(minimapScrapyardSouthWestImage);
+            if(game.getRatCurrentRoom().getShortDescription() == "at the west part of the scrapyard"){
+                MinimapView.setImage(minimapScrapyardSouthWestRatNorthImage);
+            }
+            else if(game.getRatCurrentRoom().getShortDescription() == "at the south part of the scrapyard"){
+                MinimapView.setImage(minimapScrapyardSouthWestRatEastImage);
+            }
+            else if (game.getRatCurrentRoom().getShortDescription() == "at the southwest part of the scrapyard"){
+                MinimapView.setImage(minimapScrapyardSouthWestRatSouthWestImage);
+            }
+            else{
+                MinimapView.setImage(minimapScrapyardSouthWestImage);
+            }
         }
     }
 

@@ -29,6 +29,7 @@ public interface IBusiness {
     String use(int itemNumber);
     int wallet();
     Room getCurrentRoom();
+    Room getRatCurrentRoom();
     void setCurrentRoom(Room currentRoom);
     ArrayList<IItem> getItemMerchant();
     ArrayList<IItem> getItemPlayer();
