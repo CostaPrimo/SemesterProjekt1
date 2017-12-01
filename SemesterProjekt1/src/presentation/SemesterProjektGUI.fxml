@@ -16,6 +16,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="602.0" prefWidth="913.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.SemesterProjektGUIController">
    <center>
@@ -28,23 +29,38 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Pane fx:id="IntroPane" prefHeight="602.0" prefWidth="907.0" visible="false" GridPane.columnSpan="2">
+            <Pane fx:id="IntroPane" prefHeight="602.0" prefWidth="907.0" GridPane.columnSpan="2">
                <children>
                   <ImageView fx:id="IntroScreen" fitHeight="602.0" fitWidth="913.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../Desktop/IntroPaneRS.jpeg" />
+                        <Image url="@images/IntroPaneRS.jpeg" />
                      </image>
                      <rotationAxis>
                         <Point3D x="1.0" y="1.0" z="1.0" />
                      </rotationAxis>
                   </ImageView>
+                  <Button fx:id="NewGameButton" layoutX="395.0" layoutY="214.0" mnemonicParsing="false" text="New game">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="393.0" layoutY="279.0" mnemonicParsing="false" text="Load game">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="393.0" layoutY="347.0" mnemonicParsing="false" text="Highscores">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
-            <Pane fx:id="OutroPane" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2">
+            <Pane fx:id="OutroPane" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnSpan="2">
                <children>
                   <ImageView fx:id="OutroScreen" fitHeight="602.0" fitWidth="913.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../Desktop/OutrOPic.jpg" />
+                        <Image url="@images/OutrOPic.jpg" />
                      </image>
                   </ImageView>
                </children>
