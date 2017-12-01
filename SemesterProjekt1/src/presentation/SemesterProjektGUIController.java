@@ -515,13 +515,13 @@ public class SemesterProjektGUIController implements Initializable {
         String output;
         int i;
         System.out.println(Stackpane.getChildren());
-        if(Stackpane.getChildren().get(5) == InspectPane){
+        if(Stackpane.getChildren().get(7) == InspectPane){
             i= PlayerInventoryListview2.getSelectionModel().getSelectedIndex();
             output = game.dropItem(i);
             TextAreaStatus.appendText(output + "\n");
             playerInventory.setAll(game.getItemPlayer());
         }
-        if(Stackpane.getChildren().get(5) == InventoryPane){
+        if(Stackpane.getChildren().get(7) == InventoryPane){
             TextAreaStatus.clear();
             i = PlayerInventoryListview.getSelectionModel().getSelectedIndex();
             output = game.dropItem(i);
