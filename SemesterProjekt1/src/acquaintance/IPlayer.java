@@ -9,6 +9,5 @@ public interface IPlayer {
     int getDayToken();
     int getScore();
     int getTimeToken();
-    boolean getHasWon();
     
 }

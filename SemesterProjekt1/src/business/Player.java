@@ -12,7 +12,6 @@ public class Player implements IPlayer {
     private int score = 1500;
     private int timeToken = 30;
     private int dayToken = 7;
-    private boolean hasWon = false;
     
     public Player(String name){
         this.name = name;
@@ -31,11 +30,6 @@ public class Player implements IPlayer {
      */
     public void setName(String name) {
         this.name = name;
-    }
-    
-    @Override
-    public boolean getHasWon(){
-        return hasWon;
     }
     
     /**

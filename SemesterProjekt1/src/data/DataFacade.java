@@ -12,14 +12,14 @@ import java.util.Arrays;
  * @author Gruppe 20
  */
 public class DataFacade implements IData {
-    Highscore highscorelist;
-    Gamestate gameSave;
+    private Highscore highscorelist;
+    private Gamestate gameSave = new Gamestate();
     
-    IPlayer player;
-    IInventory inventory;
-    IRat rat;
+    private IPlayer player;
+    private IInventory inventory;
+    private IRat rat;
     
-    JSONObject savestate;
+    private JSONObject savestate;
     
     @Override
     public void injectPlayer(IPlayer player){
@@ -34,6 +34,22 @@ public class DataFacade implements IData {
     @Override
     public void injectRat(IRat rat){
         this.rat = rat;
+    }
+    
+    private JSONObject createSaveState(){
+        savestate = new JSONObject();
+        this.savestate
+                .put("playerName", player.getName())
+                .put("playerScore", player.getScore())
+                .put("timeToken", player.getTimeToken())
+                .put("dayToken", player.getDayToken())
+                .put("RatRoom", rat.getCurrentRoom())
+                .put("ratIsDead", rat.getIsDead())
+                .put("invetoryHouse", inventory.getInventoryHouse())
+                .put("inventoryRoom", inventory.getInventoryRoom())
+                .put("inventoryPlayer", inventory.getInventoryPlayer())
+                .put("inventoryComputer", inventory.getInventoryComputer());
+        return savestate;
     }
     
     private String sortScores(IPlayer player){
@@ -81,7 +97,7 @@ public class DataFacade implements IData {
    
     @Override
     public void saveGame(){
-        
+        gameSave.save(createSaveState());
     }
     
 }
