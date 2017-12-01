@@ -78,7 +78,7 @@
                      <children>
                         <ImageView fx:id="MapView" fitHeight="600.0" fitWidth="600.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@home%20ms.png" />
+                              <Image url="@images/home%20ms.png" />
                            </image>
                         </ImageView>
                         <Button fx:id="GoNorthButton" disable="true" layoutX="259.0" layoutY="1.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go North" />
@@ -110,7 +110,7 @@
                   <TextArea fx:id="TextAreaStatus" editable="false" layoutX="57.0" layoutY="210.0" prefHeight="246.0" prefWidth="200.0" wrapText="true" />
                   <ImageView fx:id="MinimapView" fitHeight="170.0" fitWidth="160.0" layoutX="77.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@MiniMap_Home.png" />
+                        <Image url="@images/MiniMap_Home.png" />
                      </image>
                   </ImageView>
                   <Button fx:id="BuildButton" layoutX="26.0" layoutY="522.0" mnemonicParsing="false" onAction="#BuildButtonHandler" text="Build" />
