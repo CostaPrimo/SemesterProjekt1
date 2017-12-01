@@ -11,6 +11,7 @@ package business;
  */
 public class ChallengeNPC extends NPC {
     private boolean isActive;
+    private int encountered;
     private Room currentRoom;
     private Challenge challenge;
     public ChallengeNPC(String name, String description, Room room) {
@@ -18,6 +19,7 @@ public class ChallengeNPC extends NPC {
         isActive = false;
         currentRoom = room;
         challenge = new Challenge();
+        encountered = 0;
     }
 
     /**
@@ -51,6 +53,20 @@ public class ChallengeNPC extends NPC {
      */
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
+    }
+
+    /**
+     * @return the encountered
+     */
+    public int isEncountered() {
+        return encountered;
+    }
+
+    /**
+     * @param encountered the encountered to set
+     */
+    public void setEncountered(int encountered) {
+        this.encountered = encountered;
     }
     
     

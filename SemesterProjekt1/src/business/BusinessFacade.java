@@ -471,7 +471,7 @@ public class BusinessFacade implements IBusiness {
                         output += "You went west\n";
                     }
                     player1.setTimeToken(player1.getTimeToken()-1);
-                    if(player1.getDayToken() == 7){
+                    if(player1.getDayToken() == 5 && valutaMan.isEncountered() == 0){
                         valutaMan.setIsActive(true);
                         if(getCurrentRoom() == valutaMan.getCurrentRoom()){
                           output += "Valutaman approaches you and gives you the following question";
@@ -483,7 +483,22 @@ public class BusinessFacade implements IBusiness {
                               output += "Ludoman is dissapointed and steals half your money";
                               player1.setScore(player1.getScore()/2);
                           }
-                          
+                            valutaMan.setEncountered(1);
+                        }
+                    }
+                    if(player1.getDayToken() == 2 && valutaMan.isEncountered() == 1){
+                        valutaMan.setIsActive(true);
+                        if(getCurrentRoom() == valutaMan.getCurrentRoom()){
+                          output += "Valutaman approaches you and gives you the following question";
+                          if (valutaMan.getQuestion(player1.getDayToken(), parser)){
+                              output += "Ludoman is proud of you and doubles your money";
+                              player1.setScore(player1.getScore()*2);
+                          }
+                          else{
+                              output += "Ludoman is dissapointed and steals half your money";
+                              player1.setScore(player1.getScore()/2);
+                          }
+                            valutaMan.setEncountered(2);
                         }
                     }
                     else{
@@ -491,7 +506,6 @@ public class BusinessFacade implements IBusiness {
                     }
                     System.out.println(player1.getTimeToken());
                     if (rat.getIsDead()!=true){
-                        output+= ratMove();
                     }
                     System.out.println(getCurrentRoom().getLongDescription());
                     if (getCurrentRoom().getShortDescription() == "at the center of the scrapyard") {
