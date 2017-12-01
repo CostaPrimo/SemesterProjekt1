@@ -8,6 +8,8 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -29,7 +31,7 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Pane fx:id="IntroPane" prefHeight="602.0" prefWidth="907.0" GridPane.columnSpan="2">
+            <Pane fx:id="IntroPane" prefHeight="602.0" prefWidth="907.0" visible="false" GridPane.columnSpan="2">
                <children>
                   <ImageView fx:id="IntroScreen" fitHeight="602.0" fitWidth="913.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -38,31 +40,67 @@
                      <rotationAxis>
                         <Point3D x="1.0" y="1.0" z="1.0" />
                      </rotationAxis>
+                     <effect>
+                        <InnerShadow choke="0.1" color="#222020" height="30.0" radius="14.5" width="30.0" />
+                     </effect>
                   </ImageView>
-                  <Button fx:id="NewGameButton" layoutX="395.0" layoutY="214.0" mnemonicParsing="false" text="New game">
+                  <Button fx:id="NewGameButton" layoutX="395.0" layoutY="214.0" mnemonicParsing="false" onAction="#NewGameButtonHandler" text="New game">
                      <font>
                         <Font size="20.0" />
                      </font>
+                     <effect>
+                        <DropShadow height="30.0" radius="14.5" width="30.0" />
+                     </effect>
                   </Button>
-                  <Button layoutX="393.0" layoutY="279.0" mnemonicParsing="false" text="Load game">
+                  <Button fx:id="LoadGameButton" layoutX="393.0" layoutY="279.0" mnemonicParsing="false" onAction="#LoadGameButtonHandler" text="Load game">
                      <font>
                         <Font size="20.0" />
                      </font>
+                     <effect>
+                        <DropShadow height="30.0" radius="14.5" width="30.0" />
+                     </effect>
                   </Button>
-                  <Button layoutX="393.0" layoutY="347.0" mnemonicParsing="false" text="Highscores">
+                  <Button fx:id="HighScoreButton" layoutX="393.0" layoutY="347.0" mnemonicParsing="false" onAction="#HighScoresButtonHandler" text="Highscores">
                      <font>
                         <Font size="20.0" />
                      </font>
+                     <effect>
+                        <DropShadow height="30.0" radius="14.5" width="30.0" />
+                     </effect>
                   </Button>
                </children>
             </Pane>
-            <Pane fx:id="OutroPane" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnSpan="2">
+            <Pane fx:id="OutroPane" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2">
                <children>
                   <ImageView fx:id="OutroScreen" fitHeight="602.0" fitWidth="913.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/OutrOPic.jpg" />
                      </image>
                   </ImageView>
+                  <Button fx:id="TryAgainButton" layoutX="399.0" layoutY="236.0" mnemonicParsing="false" onAction="#TryAgainButtonHandler" text="Try Again">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <effect>
+                        <DropShadow height="30.0" radius="14.5" width="30.0" />
+                     </effect>
+                  </Button>
+                  <Button fx:id="SaveGameButton" layoutX="393.0" layoutY="301.0" mnemonicParsing="false" onAction="#SaveGameButtonHandler" text="Save game">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <effect>
+                        <DropShadow height="30.0" radius="14.5" width="30.0" />
+                     </effect>
+                  </Button>
+                  <Button fx:id="QuitButton" layoutX="423.0" layoutY="365.0" mnemonicParsing="false" onAction="#QuitButtonHandler" text="Quit">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Button>
                </children>
             </Pane>
             <StackPane fx:id="Stackpane" prefHeight="602.0" prefWidth="784.0" visible="false">

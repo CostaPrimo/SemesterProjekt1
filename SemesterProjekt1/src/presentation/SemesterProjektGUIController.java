@@ -148,7 +148,7 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private MenuItem AboutButton;
     @FXML
-    private MenuItem QuitButton;
+    private Button QuitButton;
     @FXML
     private Pane HomePane;
     @FXML
@@ -199,6 +199,14 @@ public class SemesterProjektGUIController implements Initializable {
     private ImageView OutroScreen;
     @FXML
     private Button NewGameButton;
+    @FXML
+    private Button LoadGameButton;
+    @FXML
+    private Button HighScoreButton;
+    @FXML
+    private Button TryAgainButton;
+    @FXML
+    private Button SaveGameButton;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
@@ -593,6 +601,26 @@ public class SemesterProjektGUIController implements Initializable {
         TextAreaStatus.appendText(output + "\n");
         DayCounterLabel.setText(Integer.toString(game.getDayToken()));
         StepCounterLabel.setText(Integer.toString(game.getTimeToken()));
+    }
+
+    @FXML
+    private void NewGameButtonHandler(ActionEvent event) {
+    }
+
+    @FXML
+    private void LoadGameButtonHandler(ActionEvent event) {
+    }
+
+    @FXML
+    private void HighScoresButtonHandler(ActionEvent event) {
+    }
+
+    @FXML
+    private void TryAgainButtonHandler(ActionEvent event) {
+    }
+
+    @FXML
+    private void SaveGameButtonHandler(ActionEvent event) {
     }
         
 }
