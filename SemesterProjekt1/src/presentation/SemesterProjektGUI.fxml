@@ -28,7 +28,7 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Pane fx:id="IntroPane" prefHeight="602.0" prefWidth="907.0" GridPane.columnSpan="2">
+            <Pane fx:id="IntroPane" prefHeight="602.0" prefWidth="907.0" visible="false" GridPane.columnSpan="2">
                <children>
                   <ImageView fx:id="IntroScreen" fitHeight="602.0" fitWidth="913.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -40,9 +40,13 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="OutroPane" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnSpan="2">
+            <Pane fx:id="OutroPane" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2">
                <children>
-                  <ImageView fitHeight="602.0" fitWidth="913.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="OutroScreen" fitHeight="602.0" fitWidth="913.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Desktop/OutrOPic.jpg" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
             <StackPane fx:id="Stackpane" prefHeight="602.0" prefWidth="784.0" visible="false">
