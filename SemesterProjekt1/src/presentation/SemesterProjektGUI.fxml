@@ -107,7 +107,7 @@
                   <Label fx:id="CurrentRoomLabel" layoutX="14.0" layoutY="49.0" text="CurrentRoom" />
                   <Button fx:id="InspectButton" layoutX="25.0" layoutY="470.0" mnemonicParsing="false" onAction="#InspectButtonHandler" text="Inspect" />
                   <Label fx:id="MoneyLabel" layoutY="6.0" text="Money" />
-                  <TextArea fx:id="TextAreaStatus" editable="false" layoutX="57.0" layoutY="210.0" prefHeight="246.0" prefWidth="200.0" />
+                  <TextArea fx:id="TextAreaStatus" editable="false" layoutX="57.0" layoutY="210.0" prefHeight="246.0" prefWidth="200.0" wrapText="true" />
                   <ImageView fx:id="MinimapView" fitHeight="170.0" fitWidth="160.0" layoutX="77.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@MiniMap_Home.png" />
