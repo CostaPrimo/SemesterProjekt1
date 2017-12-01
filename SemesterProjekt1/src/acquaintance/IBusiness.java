@@ -43,5 +43,7 @@ public interface IBusiness {
     String addParts(int itemNumber);
     String removeparts(int itemNumber);
     boolean buildComputer();
+    boolean requiredPartsChecker();
+    boolean timeToBuild();
     boolean quit();
 }

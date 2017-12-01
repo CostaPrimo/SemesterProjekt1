@@ -781,6 +781,26 @@ public class BusinessFacade implements IBusiness {
         }
         return  true;
     }
+    @Override
+    public boolean requiredPartsChecker(){
+        if(inventoryRoom.getInventoryTotal().contains(RAM) && inventoryRoom.getInventoryTotal().contains(GPU) && inventoryRoom.getInventoryTotal().contains(CPU) ){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+   
+    @Override
+    public boolean timeToBuild(){
+        if(player1.getDayToken() == 0 && player1.getTimeToken() == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
     
 
     
