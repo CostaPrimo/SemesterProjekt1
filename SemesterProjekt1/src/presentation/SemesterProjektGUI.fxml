@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 
-<BorderPane prefHeight="602.0" prefWidth="913.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.SemesterProjektGUIController">
+<BorderPane prefHeight="602.0" prefWidth="913.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.SemesterProjektGUIController">
    <center>
       <GridPane prefHeight="723.0" prefWidth="993.0" BorderPane.alignment="CENTER">
          <columnConstraints>
@@ -104,7 +104,6 @@
                     </menus>
                   </MenuBar>
                   <Button fx:id="InventoryButton" layoutX="216.0" layoutY="470.0" mnemonicParsing="false" onAction="#InventoryButtonHandler" text="Inventory" />
-                  <Label fx:id="CurrentRoomLabel" layoutX="14.0" layoutY="49.0" text="CurrentRoom" />
                   <Button fx:id="InspectButton" layoutX="25.0" layoutY="470.0" mnemonicParsing="false" onAction="#InspectButtonHandler" text="Inspect" />
                   <Label fx:id="MoneyLabel" layoutY="6.0" text="Money" />
                   <TextArea fx:id="TextAreaStatus" editable="false" layoutX="57.0" layoutY="210.0" prefHeight="246.0" prefWidth="200.0" wrapText="true" />

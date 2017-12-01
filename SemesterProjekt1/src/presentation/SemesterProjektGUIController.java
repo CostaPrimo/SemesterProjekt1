@@ -53,8 +53,6 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private Label MoneyLabel;
     private IBusiness game;
-    @FXML
-    private Label CurrentRoomLabel;
     
    // private ObservableList<Item> itemName;
     /**
@@ -207,7 +205,7 @@ public class SemesterProjektGUIController implements Initializable {
         PlayerInventoryListview2.setItems(playerInventory);
         TotalInventoryListView.setItems(inventoryTotal);
         BuildComputerListView.setItems(inventoryComputer);
-        MoneyLabel.setText("Money: " + (Integer.toString(game.wallet())));
+        MoneyLabel.setText("$ " +(Integer.toString(game.wallet())));
     }   
     @FXML
     private void GoButtonHandler(ActionEvent event) {
@@ -382,7 +380,7 @@ public class SemesterProjektGUIController implements Initializable {
         }
         DayCounterLabel.setText(Integer.toString(game.getDayToken()));
         StepCounterLabel.setText(Integer.toString(game.getTimeToken()));
-        MoneyLabel.setText(Integer.toString(game.wallet()));
+        MoneyLabel.setText("$ " +(Integer.toString(game.wallet())));
     }
 
     @FXML
@@ -406,7 +404,7 @@ public class SemesterProjektGUIController implements Initializable {
             output = game.buyItem(i);
             TextAreaStatus.appendText(output + "\n");
             playerInventory.setAll(game.getItemPlayer());
-            MoneyLabel.setText(Integer.toString(game.wallet()));
+            MoneyLabel.setText("$ " +(Integer.toString(game.wallet())));
     }
 
     @FXML
@@ -441,7 +439,7 @@ public class SemesterProjektGUIController implements Initializable {
         output = game.sellItem(i);
         TextAreaStatus.appendText(output + "\n");
         playerInventory.setAll(game.getItemPlayer());
-        MoneyLabel.setText(Integer.toString(game.wallet()));
+        MoneyLabel.setText("$ " +(Integer.toString(game.wallet())));
     }
 
     @FXML
