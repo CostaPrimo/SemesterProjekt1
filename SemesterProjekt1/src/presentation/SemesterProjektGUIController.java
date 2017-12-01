@@ -189,6 +189,14 @@ public class SemesterProjektGUIController implements Initializable {
     private Label DayCounterLabel;
     @FXML
     private Label StepCounterLabel;
+    @FXML
+    private Pane IntroPane;
+    @FXML
+    private ImageView IntroScreen;
+    @FXML
+    private Pane OutroPane;
+    @FXML
+    private ImageView OutroScreen;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
