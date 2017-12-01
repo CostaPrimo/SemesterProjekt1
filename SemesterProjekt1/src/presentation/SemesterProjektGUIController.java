@@ -195,6 +195,8 @@ public class SemesterProjektGUIController implements Initializable {
     private ImageView IntroScreen;
     @FXML
     private Pane OutroPane;
+    @FXML
+    private ImageView OutroScreen;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
