@@ -620,11 +620,16 @@ public class BusinessFacade implements IBusiness {
     public String sleep(){
         String output = "";
         if(getCurrentRoom().getShortDescription()=="at your home"){
+            if(player1.getDayToken() !=0){
             player1.setDayToken(player1.getDayToken()-1);
             player1.setTimeToken(30);
             output = "You slept and woke up feeling refreshed";
             if(rat.getIsDead()){
                 rat.setIsDead(false);
+            }
+            }
+            else{
+                output = "This is your last day. You cannot sleep";
             }
         }
         else{

@@ -503,10 +503,15 @@ public class SemesterProjektGUIController implements Initializable {
         TextAreaStatus.clear();
         String output;
         int i= RoomInventoryListview.getSelectionModel().getSelectedIndex();
+        if(!RoomInventoryListview.getSelectionModel().isEmpty()){
             output = game.addItem(i);
             TextAreaStatus.appendText(output + "\n");
             roomInventory.setAll(game.getItemRoom());
             playerInventory.setAll(game.getItemPlayer());
+        }
+        else{
+            TextAreaStatus.appendText("You need to select an item"); //Make this other places too tomorrow.
+        }
     }
 
     @FXML
@@ -515,13 +520,13 @@ public class SemesterProjektGUIController implements Initializable {
         String output;
         int i;
         System.out.println(Stackpane.getChildren());
-        if(Stackpane.getChildren().get(7) == InspectPane){
+        if(Stackpane.getChildren().get(Stackpane.getChildren().size()-1) == InspectPane){
             i= PlayerInventoryListview2.getSelectionModel().getSelectedIndex();
             output = game.dropItem(i);
             TextAreaStatus.appendText(output + "\n");
             playerInventory.setAll(game.getItemPlayer());
         }
-        if(Stackpane.getChildren().get(7) == InventoryPane){
+        if(Stackpane.getChildren().get(Stackpane.getChildren().size()-1)== InventoryPane){
             TextAreaStatus.clear();
             i = PlayerInventoryListview.getSelectionModel().getSelectedIndex();
             output = game.dropItem(i);
@@ -572,10 +577,18 @@ public class SemesterProjektGUIController implements Initializable {
         OutroPane.setVisible(true);
         MenuPane.setVisible(false);
         Item1BuildPCLabel.setText(output[0]);
-        Item2BuildPCLabel.setText(output[1]);
-        Item3BuildPCLabel.setText(output[2]);
-        TotalScoreBuildPCLabel.setText(output[3]);
-        WinOrLoseBuildPCLabel.setText(output[4] + "\n" +  output[5]);
+        if(output[1] != null){
+            Item2BuildPCLabel.setText(output[1]);
+            Item3BuildPCLabel.setText(output[2]);
+            TotalScoreBuildPCLabel.setText(output[3]);
+            WinOrLoseBuildPCLabel.setText(output[4] + "\n" +  output[5]);
+        }
+        else{
+            Item2BuildPCLabel.setVisible(false);
+            Item3BuildPCLabel.setVisible(false);
+            TotalScoreBuildPCLabel.setVisible(false);
+            WinOrLoseBuildPCLabel.setVisible(false);
+        }
     }
 
     @FXML
