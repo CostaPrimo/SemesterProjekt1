@@ -53,58 +53,57 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private Label MoneyLabel;
     private IBusiness game;
-    @FXML
-    private Label CurrentRoomLabel;
     
    // private ObservableList<Item> itemName;
     /**
      * Initializes the controller class.
      */
-    Image mapHomeImage = new Image(getClass().getResource("home ms.png").toExternalForm());
-    Image mapDowntoImage = new Image(getClass().getResource("downtown us.png").toExternalForm());
-    Image mapDowntownMSImage = new Image(getClass().getResource("downtown ms.png").toExternalForm());
-    Image mapMerchantImage = new Image(getClass().getResource("ali ms.png").toExternalForm());
-    Image mapGamestopImage = new Image(getClass().getResource("gamestop ms.png").toExternalForm());
-    Image mapEntranceLockedImage = new Image(getClass().getResource("yard entrance låst ms.png").toExternalForm());
-    Image mapEntranceOpenImage = new Image(getClass().getResource("yard entrance åben ms.png").toExternalForm());
-    Image mapMiddleImage = new Image (getClass().getResource("yard middle ms.png").toExternalForm());
-    Image mapSouthImage = new Image(getClass().getResource("yard south ms.png").toExternalForm());
-    Image mapNorthEastImage = new Image(getClass().getResource("yard northeast ms.png").toExternalForm());
-    Image mapNorthWestImage = new Image(getClass().getResource("yard northvest ms.png").toExternalForm());
-    Image mapSouthEastImage = new Image(getClass().getResource("yard southeast ms.png").toExternalForm());
-    Image mapSouthWestImage = new Image(getClass().getResource("yard southvest ms.png").toExternalForm());
+    Image mapHomeImage = new Image(getClass().getResource("images/home ms.png").toExternalForm());
+    Image mapDowntoImage = new Image(getClass().getResource("images/downtown us.png").toExternalForm());
+    Image mapDowntownMSImage = new Image(getClass().getResource("images/downtown ms.png").toExternalForm());
+    Image mapMerchantImage = new Image(getClass().getResource("images/ali ms.png").toExternalForm());
+    Image mapGamestopImage = new Image(getClass().getResource("images/gamestop ms.png").toExternalForm());
+    Image mapEntranceLockedImage = new Image(getClass().getResource("images/yard entrance låst ms.png").toExternalForm());
+    Image mapEntranceOpenImage = new Image(getClass().getResource("images/yard entrance åben ms.png").toExternalForm());
+    Image mapMiddleImage = new Image (getClass().getResource("images/yard middle ms.png").toExternalForm());
+    Image mapSouthImage = new Image(getClass().getResource("images/yard south ms.png").toExternalForm());
+    Image mapNorthEastImage = new Image(getClass().getResource("images/yard northeast ms.png").toExternalForm());
+    Image mapNorthWestImage = new Image(getClass().getResource("images/yard northvest ms.png").toExternalForm());
+    Image mapSouthEastImage = new Image(getClass().getResource("images/yard southeast ms.png").toExternalForm());
+    Image mapSouthWestImage = new Image(getClass().getResource("images/yard southvest ms.png").toExternalForm());
     
-    Image minimapHomeImage = new Image(getClass().getResource("MiniMap_Home.png").toExternalForm());
-    Image minimapDowntownImage = new Image(getClass().getResource("MiniMap_DownTown.png").toExternalForm());
-    Image minimapGamestopImage = new Image(getClass().getResource("MiniMap_GameStop.png").toExternalForm());
-    Image minimapMerchantImage = new Image(getClass().getResource("MiniMap_Merchant.png").toExternalForm());
-    Image minimapScrapyardEntranceImage = new Image(getClass().getResource("MiniMap_ScrapyardEntrance.png").toExternalForm());
-    Image minimapScrapyardMiddleImage = new Image(getClass().getResource("MiniMap_ScrapyardMiddle.png").toExternalForm());
-    Image minimapScrapyardWestImage = new Image(getClass().getResource("MiniMap_ScrapyardWest.png").toExternalForm());
-    Image minimapScrapyardEastImage = new Image(getClass().getResource("MiniMap_ScrapyardEast.png").toExternalForm());
-    Image minimapScrapyardSouthImage = new Image(getClass().getResource("MiniMap_ScrapyardSouth.png").toExternalForm());
-    Image minimapScrapyardSouthWestImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthWest.png").toExternalForm());
-    Image minimapScrapyardSouthEastImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthEast.png").toExternalForm());
-    Image minimapScrapyardMiddleRatSouthImage = new Image(getClass().getResource("MiniMap_ScrapyardMiddleRat3.png").toExternalForm());
-    Image minimapScrapyardMiddleRatWestImage = new Image(getClass().getResource("MiniMap_ScrapyardMiddleRat2.png").toExternalForm());
-    Image minimapScrapyardMiddleRatEastImage = new Image(getClass().getResource("MiniMap_ScrapyardMiddleRat1.png").toExternalForm());
-    Image minimapScrapyardMiddleRatMiddleImage = new Image(getClass().getResource("MiniMap_ScrapyardMiddleRat4.png").toExternalForm());
-    Image minimapScrapyardWestRatSouthImage = new Image(getClass().getResource("MiniMap_ScrapyardWestRat2.png").toExternalForm());
-    Image minimapScrapyardWestRatEastImage = new Image(getClass().getResource("MiniMap_ScrapyardWestRat1.png").toExternalForm());
-    Image minimapScrapyardWestRatWestImage = new Image(getClass().getResource("MiniMap_ScrapyardWestRat3.png").toExternalForm());
-    Image minimapScrapyardEastRatSouthImage = new Image(getClass().getResource("MiniMap_ScrapyardEastRat2.png").toExternalForm());
-    Image minimapScrapyardEastRatWestImage = new Image(getClass().getResource("MiniMap_ScrapyardEastRat1.png").toExternalForm());
-    Image minimapScrapyardEastRatEastImage = new Image(getClass().getResource("MiniMap_ScrapyardEastRat3.png").toExternalForm());
-    Image minimapScrapyardSouthRatNorthImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthRat3.png").toExternalForm());
-    Image minimapScrapyardSouthRatEastImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthRat1.png").toExternalForm());
-    Image minimapScrapyardSouthRatWestImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthRat2.png").toExternalForm());
-    Image minimapScrapyardSouthRatSouthImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthRat4.png").toExternalForm());
-    Image minimapScrapyardSouthEastRatNorthImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthEastRat3.png").toExternalForm());
-    Image minimapScrapyardSouthEastRatWestImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthEastRat2.png").toExternalForm());
-    Image minimapScrapyardSouthEastRatSouthEastImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthEastRat1.png").toExternalForm());
-    Image minimapScrapyardSouthWestRatNorthImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthWestRat2.png").toExternalForm());
-    Image minimapScrapyardSouthWestRatEastImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthWestRat1.png").toExternalForm());
-    Image minimapScrapyardSouthWestRatSouthWestImage = new Image(getClass().getResource("MiniMap_ScrapyardSouthWestRat3.png").toExternalForm());
+    Image minimapHomeImage = new Image(getClass().getResource("images/MiniMap_Home.png").toExternalForm());
+    Image minimapDowntownImage = new Image(getClass().getResource("images/MiniMap_DownTown.png").toExternalForm());
+    Image minimapGamestopImage = new Image(getClass().getResource("images/MiniMap_GameStop.png").toExternalForm());
+    Image minimapMerchantImage = new Image(getClass().getResource("images/MiniMap_Merchant.png").toExternalForm());
+    Image minimapScrapyardEntranceImage = new Image(getClass().getResource("images/MiniMap_ScrapyardEntrance.png").toExternalForm());
+    Image minimapScrapyardMiddleImage = new Image(getClass().getResource("images/MiniMap_ScrapyardMiddle.png").toExternalForm());
+    Image minimapScrapyardWestImage = new Image(getClass().getResource("images/MiniMap_ScrapyardWest.png").toExternalForm());
+    Image minimapScrapyardEastImage = new Image(getClass().getResource("images/MiniMap_ScrapyardEast.png").toExternalForm());
+    Image minimapScrapyardSouthImage = new Image(getClass().getResource("images/MiniMap_ScrapyardSouth.png").toExternalForm());
+    Image minimapScrapyardSouthWestImage = new Image(getClass().getResource("images/MiniMap_ScrapyardSouthWest.png").toExternalForm());
+    Image minimapScrapyardSouthEastImage = new Image(getClass().getResource("images/MiniMap_ScrapyardSouthEast.png").toExternalForm());
+    Image minimapScrapyardMiddleRatSouthImage = new Image(getClass().getResource("images/MiniMap_ScrapyardMiddleRat3.png").toExternalForm());
+    Image minimapScrapyardMiddleRatWestImage = new Image(getClass().getResource("images/MiniMap_ScrapyardMiddleRat2.png").toExternalForm());
+    Image minimapScrapyardMiddleRatEastImage = new Image(getClass().getResource("images/MiniMap_ScrapyardMiddleRat1.png").toExternalForm());
+    Image minimapScrapyardMiddleRatMiddleImage = new Image(getClass().getResource("images/MiniMap_ScrapyardMiddleRat4.png").toExternalForm());
+    Image minimapScrapyardWestRatSouthImage = new Image(getClass().getResource("images/MiniMap_ScrapyardWestRat2.png").toExternalForm());
+    Image minimapScrapyardWestRatEastImage = new Image(getClass().getResource("images/MiniMap_ScrapyardWestRat1.png").toExternalForm());
+    Image minimapScrapyardWestRatWestImage = new Image(getClass().getResource("images/MiniMap_ScrapyardWestRat3.png").toExternalForm());
+    Image minimapScrapyardEastRatSouthImage = new Image(getClass().getResource("images/MiniMap_ScrapyardEastRat2.png").toExternalForm());
+    Image minimapScrapyardEastRatWestImage = new Image(getClass().getResource("images/MiniMap_ScrapyardEastRat1.png").toExternalForm());
+    Image minimapScrapyardEastRatEastImage = new Image(getClass().getResource("images/MiniMap_ScrapyardEastRat3.png").toExternalForm());
+    Image minimapScrapyardSouthRatNorthImage = new Image(getClass().getResource("images/MiniMap_ScrapyardSouthRat3.png").toExternalForm());
+    Image minimapScrapyardSouthRatEastImage = new Image(getClass().getResource("images/MiniMap_ScrapyardSouthRat1.png").toExternalForm());
+    Image minimapScrapyardSouthRatWestImage = new Image(getClass().getResource("images/MiniMap_ScrapyardSouthRat2.png").toExternalForm());
+    Image minimapScrapyardSouthRatSouthImage = new Image(getClass().getResource("images/MiniMap_ScrapyardSouthRat4.png").toExternalForm());
+    Image minimapScrapyardSouthEastRatNorthImage = new Image(getClass().getResource("images/MiniMap_ScrapyardSouthEastRat3.png").toExternalForm());
+    Image minimapScrapyardSouthEastRatWestImage = new Image(getClass().getResource("images/MiniMap_ScrapyardSouthEastRat2.png").toExternalForm());
+    Image minimapScrapyardSouthEastRatSouthEastImage = new Image(getClass().getResource("images/MiniMap_ScrapyardSouthEastRat1.png").toExternalForm());
+    Image minimapScrapyardSouthWestRatNorthImage = new Image(getClass().getResource("images/MiniMap_ScrapyardSouthWestRat2.png").toExternalForm());
+    Image minimapScrapyardSouthWestRatEastImage = new Image(getClass().getResource("images/MiniMap_ScrapyardSouthWestRat1.png").toExternalForm());
+    Image minimapScrapyardSouthWestRatSouthWestImage = new Image(getClass().getResource("images/MiniMap_ScrapyardSouthWestRat3.png").toExternalForm());
+    
     @FXML
     private Button UseButton;
     @FXML
@@ -206,7 +205,7 @@ public class SemesterProjektGUIController implements Initializable {
         PlayerInventoryListview2.setItems(playerInventory);
         TotalInventoryListView.setItems(inventoryTotal);
         BuildComputerListView.setItems(inventoryComputer);
-        MoneyLabel.setText("Money: " + (Integer.toString(game.wallet())));
+        MoneyLabel.setText("$ " +(Integer.toString(game.wallet())));
     }   
     @FXML
     private void GoButtonHandler(ActionEvent event) {
@@ -381,7 +380,7 @@ public class SemesterProjektGUIController implements Initializable {
         }
         DayCounterLabel.setText(Integer.toString(game.getDayToken()));
         StepCounterLabel.setText(Integer.toString(game.getTimeToken()));
-        MoneyLabel.setText(Integer.toString(game.wallet()));
+        MoneyLabel.setText("$ " +(Integer.toString(game.wallet())));
     }
 
     @FXML
@@ -405,7 +404,7 @@ public class SemesterProjektGUIController implements Initializable {
             output = game.buyItem(i);
             TextAreaStatus.appendText(output + "\n");
             playerInventory.setAll(game.getItemPlayer());
-            MoneyLabel.setText(Integer.toString(game.wallet()));
+            MoneyLabel.setText("$ " +(Integer.toString(game.wallet())));
     }
 
     @FXML
@@ -440,7 +439,7 @@ public class SemesterProjektGUIController implements Initializable {
         output = game.sellItem(i);
         TextAreaStatus.appendText(output + "\n");
         playerInventory.setAll(game.getItemPlayer());
-        MoneyLabel.setText(Integer.toString(game.wallet()));
+        MoneyLabel.setText("$ " +(Integer.toString(game.wallet())));
     }
 
     @FXML

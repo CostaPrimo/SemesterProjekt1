@@ -10,15 +10,8 @@ import java.io.IOException;
  * @author Jeppe Enevold
  */
 public class Gamestate {
-    private JSONObject savestate;
     private FileWriter writer;
     private JSONStringer savewriter;
-
-    
-    public static void main(String[] args){
-        Gamestate test = new Gamestate();
-        test.save();
-    }
     
     public Gamestate() {
         try{
@@ -28,24 +21,10 @@ public class Gamestate {
         catch(IOException ex){
             System.out.println("git gut\n"+ex);
         }
-        
-        this.savestate = new JSONObject()
-                .put("playerName", "null")
-                .put("currentRoom", "null")
-                .put("score", 1500)
-                .put("timeToken", 14)
-                .put("dayToken", 7)
-                .put("hasWon", false)
-                .put("inventoryHouse", "test")
-                .put("invetoryRoom", "test")
-                .put("iventoryPlayer", "test")
-                .put("currentRoom", "null")
-                .put("isDead", false)
-                .put("isLocked", true);
                 
     }
     
-    private void save(){
+    public void save(JSONObject savestate){
         try{
             //savestate.write(writer);
             this.writer.write(
