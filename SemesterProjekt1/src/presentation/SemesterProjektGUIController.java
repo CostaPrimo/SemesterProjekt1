@@ -202,6 +202,16 @@ public class SemesterProjektGUIController implements Initializable {
     private Button NewGameButton;
     @FXML
     private TextField PlayerNameTextField;
+    @FXML
+    private Label Item1BuildPCLabel;
+    @FXML
+    private Label Item2BuildPCLabel;
+    @FXML
+    private Label Item3BuildPCLabel;
+    @FXML
+    private Label TotalScoreBuildPCLabel;
+    @FXML
+    private Label WinOrLoseBuildPCLabel;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
@@ -246,6 +256,7 @@ public class SemesterProjektGUIController implements Initializable {
                 OutroPane.toFront();
             }
         }
+        TextAreaStatus.clear();
         if(event.getSource() == GoNorthButton){
             output = game.goRoom("north");
             TextAreaStatus.appendText(output + "\n");
@@ -417,6 +428,7 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void UseButtonHandler(ActionEvent event) {
+        TextAreaStatus.clear();
         int i= PlayerInventoryListview.getSelectionModel().getSelectedIndex();
         String output;
             output = game.use(i);
@@ -431,6 +443,7 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void BuyItemsButtonHandler(ActionEvent event) {
+        TextAreaStatus.clear();
         String output;
         int i= MerchantListViewBuy.getSelectionModel().getSelectedIndex();
             output = game.buyItem(i);
@@ -441,6 +454,7 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void ExitStoreButtonHandler(ActionEvent event) {
+        TextAreaStatus.clear();
         if(game.getCurrentRoom().getShortDescription() == "at the merchant"){
             game.goRoom("west");
             GoNorthButton.setDisable(false);
@@ -452,6 +466,7 @@ public class SemesterProjektGUIController implements Initializable {
             StepCounterLabel.setText(Integer.toString(game.getTimeToken()));
         }
         else{
+            TextAreaStatus.clear();
             game.goRoom("east");
             GoNorthButton.setDisable(false);
             GoSouthButton.setDisable(false);
@@ -466,6 +481,7 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void SellitemsButtonHandler(ActionEvent event) {
+        TextAreaStatus.clear();
         int i= MerchantListViewSell.getSelectionModel().getSelectedIndex();
         String output;
         output = game.sellItem(i);
@@ -476,6 +492,7 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void InspectButtonHandler(ActionEvent event) {
+        TextAreaStatus.clear();
         roomInventory.setAll(game.getItemRoom());
         playerInventory.setAll(game.getItemPlayer());
         InspectPane.toFront();
@@ -483,6 +500,7 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void PickupButtonHandler(ActionEvent event) {
+        TextAreaStatus.clear();
         String output;
         int i= RoomInventoryListview.getSelectionModel().getSelectedIndex();
             output = game.addItem(i);
@@ -493,6 +511,7 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void DropButtonHandler(ActionEvent event) {
+        TextAreaStatus.clear();
         String output;
         int i;
         System.out.println(Stackpane.getChildren());
@@ -503,6 +522,7 @@ public class SemesterProjektGUIController implements Initializable {
             playerInventory.setAll(game.getItemPlayer());
         }
         if(Stackpane.getChildren().get(5) == InventoryPane){
+            TextAreaStatus.clear();
             i = PlayerInventoryListview.getSelectionModel().getSelectedIndex();
             output = game.dropItem(i);
             TextAreaStatus.appendText(output + "\n");
@@ -534,6 +554,7 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void AddPartHandler(ActionEvent event) {
+        TextAreaStatus.clear();
         String output;
         int i= TotalInventoryListView.getSelectionModel().getSelectedIndex();
         output = game.addParts(i);
@@ -544,7 +565,17 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void BuildComputerHandler(ActionEvent event) {
-        game.buildComputer();
+        TextAreaStatus.clear();
+        String[] output = new String[6];
+        output = game.buildComputer();
+        OutroPane.toFront();
+        OutroPane.setVisible(true);
+        MenuPane.setVisible(false);
+        Item1BuildPCLabel.setText(output[0]);
+        Item2BuildPCLabel.setText(output[1]);
+        Item3BuildPCLabel.setText(output[2]);
+        TotalScoreBuildPCLabel.setText(output[3]);
+        WinOrLoseBuildPCLabel.setText(output[4] + "\n" +  output[5]);
     }
 
     @FXML
@@ -559,6 +590,7 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void BuildButtonHandler(ActionEvent event) {
+        TextAreaStatus.clear();
         inventoryTotal.setAll(game.getInventoryTotal());
         inventoryComputer.setAll(game.getInventoryComputer());
         HomePane.toFront();
@@ -567,6 +599,7 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void RemovePartButtonHandler(ActionEvent event) {
+        TextAreaStatus.clear();
         String output;
         int i= BuildComputerListView.getSelectionModel().getSelectedIndex();
         output = game.removeparts(i);
@@ -577,12 +610,14 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void InventoryButtonHandler(ActionEvent event) {
+        TextAreaStatus.clear();
         playerInventory.setAll(game.getItemPlayer());
         InventoryPane.toFront();
     }
 
     @FXML
     private void HomeStorageButtonHandler(ActionEvent event) {
+        TextAreaStatus.clear();
         houseInventory.setAll(game.getInventoryHouse());
         playerInventory.setAll(game.getItemPlayer());
         HomeStoragePane.toFront();
@@ -590,6 +625,7 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void AddToHomeButtonHandler(ActionEvent event) {
+        TextAreaStatus.clear();
         String output;
         int i= PlayerInventoryListview1.getSelectionModel().getSelectedIndex();
         output = game.storeItems(i);
@@ -600,6 +636,7 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void AddToPlayerInventoryButtonHandler(ActionEvent event) {
+        TextAreaStatus.clear();
         String output;
         int i= HomeStorageListView.getSelectionModel().getSelectedIndex();
         output = game.addItem(i);
@@ -610,6 +647,7 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void SleepButtonHandler(ActionEvent event) {
+        TextAreaStatus.clear();
         String output;
         output = game.sleep();
         TextAreaStatus.appendText(output + "\n");
@@ -619,8 +657,13 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void NewGameButtonHandler(ActionEvent event) {
-        PlayerNameTextField.setVisible(true);
-        
+        MenuPane.setVisible(true);
+        GoNorthButton.setDisable(true);
+        GoWestButton.setDisable(true);
+        GoEastButton.setDisable(true);
+        MapPane.toFront();
+        IntroPane.setVisible(false);
+        game.setPlayerName(PlayerNameTextField.getText());
     }
 
         

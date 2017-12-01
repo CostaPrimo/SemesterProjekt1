@@ -204,7 +204,7 @@ public class BusinessFacade implements IBusiness {
 
     private void createPlayerName(){
         System.out.println("Please enter your name");
-        Playername = nameInputTest.next();
+        //Playername = nameInputTest.next();
     }
     
     private void createPlayer(){
@@ -511,6 +511,7 @@ public class BusinessFacade implements IBusiness {
                     }
                     System.out.println(player1.getTimeToken());
                     if (rat.getIsDead()!=true){
+                        ratMove();
                     }
                     System.out.println(getCurrentRoom().getLongDescription());
                     if (getCurrentRoom().getShortDescription() == "at the center of the scrapyard") {
@@ -765,26 +766,28 @@ public class BusinessFacade implements IBusiness {
         return output;
     }
     @Override
-    public boolean buildComputer(){
+    public String[] buildComputer(){
+        String[] output = new String[6];
         if(inventoryRoom.getInventoryComputerSize()==3){
             player1.setScore(0);
             for (int j = 0; j < inventoryRoom.getInventoryComputerSize(); j++) {
                 player1.setScore(player1.getScore() + inventoryRoom.getComputerItem(j).getBuyPrice());
-                System.out.println("Your added item is " + inventoryRoom.getComputerItem(j).getName() + " with the value of " + inventoryRoom.getComputerItem(j).getBuyPrice());
+                output[j] = "Your added item is " + inventoryRoom.getComputerItem(j).getName() + " with the value of " + inventoryRoom.getComputerItem(j).getBuyPrice();
             }
-            System.out.println("Your total score is " + player1.getScore());
+            output[3] = ("Your total score is " + player1.getScore());
             if(player1.getScore()>scoreToBeat){
-                System.out.println("You won the game!");
+                output[4] = ("Your computer is better than Mr.MountainDew's PC");
+                output[5] = ("You won the game!");
             }
             else{
-                System.out.println("Your computer is not better than Mr.MountainDew's pc");
-                System.out.println("You lose!");
+                output[4] = ("Your computer is not better than Mr.MountainDew's pc");
+                output[5] = ("You lose!");
             }
         }
         else{
-            return false;
+        output[0] = "You could not build your PC because you missed some components. You had no computer to bring to the LAN, and you lose";
         }
-        return  true;
+        return output;
     }
     @Override
     public boolean requiredPartsChecker(){
@@ -868,5 +871,10 @@ public class BusinessFacade implements IBusiness {
     @Override
     public int getTimeToken(){
         return this.player1.getTimeToken();
+    }
+    
+    @Override
+    public void setPlayerName(String playerName){
+        this.player1.setName(playerName);
     }
 }

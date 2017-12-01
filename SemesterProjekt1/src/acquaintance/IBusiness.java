@@ -42,7 +42,8 @@ public interface IBusiness {
     ArrayList<IItem> getInventoryHouse();
     String addParts(int itemNumber);
     String removeparts(int itemNumber);
-    boolean buildComputer();
+    void setPlayerName(String playerName);
+    String[] buildComputer();
     boolean requiredPartsChecker();
     boolean timeToBuild();
     boolean quit();
