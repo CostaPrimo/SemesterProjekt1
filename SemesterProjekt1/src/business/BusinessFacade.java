@@ -442,7 +442,7 @@ public class BusinessFacade implements IBusiness {
                 output = "This room is locked, you need to break the lock first";
             }
             else{
-                if (player1.getTimeToken() <= 0){
+                if (player1.getTimeToken() <= 0 && timeToBuild()== false){
                     output = "you have no moves left today\nYou wake up at home but you've been robbed half your money ";
                     setCurrentRoom(home);
                     player1.setTimeToken(20);
@@ -455,6 +455,9 @@ public class BusinessFacade implements IBusiness {
                 else{
                     if(rat.getCurrentRoom()==getCurrentRoom() && rat.getIsDead()!=true){
                         output = "The rat attacked you!\n";
+                        if(player1.getTimeToken() == 1){
+                            player1.setTimeToken(player1.getTimeToken()-1);
+                        }
                         player1.setTimeToken(player1.getTimeToken()-2);
                     }
                     setCurrentRoom(nextRoom);
@@ -470,7 +473,9 @@ public class BusinessFacade implements IBusiness {
                     else if (direction2 == "west"){
                         output += "You went west\n";
                     }
+                    if(timeToBuild() == false){
                     player1.setTimeToken(player1.getTimeToken()-1);
+                    }
                     if(player1.getDayToken() == 5 && valutaMan.isEncountered() == 0){
                         valutaMan.setIsActive(true);
                         if(getCurrentRoom() == valutaMan.getCurrentRoom()){
@@ -794,6 +799,7 @@ public class BusinessFacade implements IBusiness {
     @Override
     public boolean timeToBuild(){
         if(player1.getDayToken() == 0 && player1.getTimeToken() == 0){
+            setCurrentRoom(home);
             return true;
         }
         else{

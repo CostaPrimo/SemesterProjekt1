@@ -21,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -148,7 +149,7 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private MenuItem AboutButton;
     @FXML
-    private Button QuitButton;
+    private MenuItem QuitButton;
     @FXML
     private Pane HomePane;
     @FXML
@@ -200,17 +201,7 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private Button NewGameButton;
     @FXML
-    private Button LoadGameButton;
-    @FXML
-    private Button HighScoreButton;
-    @FXML
-    private Button TryAgainButton;
-    @FXML
-    private Button SaveGameButton;
-    @FXML
-    private Label WinOrLoseLabel;
-    @FXML
-    private Label HighscoreLabel;
+    private TextField PlayerNameTextField;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
@@ -236,6 +227,25 @@ public class SemesterProjektGUIController implements Initializable {
         GoWestButton.setDisable(false);
         GoEastButton.setDisable(false);
         GoSouthButton.setDisable(false);
+         if(game.timeToBuild()){
+            HomePane.toFront();
+            
+            GoNorthButton.setVisible(false);
+            GoWestButton.setVisible(false);
+            GoEastButton.setVisible(false);
+            GoSouthButton.setVisible(false);
+            InventoryButton.setVisible(false);
+            InspectButton.setVisible(false);
+            SleepButton.setVisible(false);
+            BuildButton.setVisible(false);
+            HomeStorageButton.setVisible(false);
+            CancelBuildButton.setDisable(true);
+            inventoryTotal.setAll(game.getInventoryTotal());
+            inventoryComputer.setAll(game.getInventoryComputer());
+            if(game.requiredPartsChecker() == false){
+                OutroPane.toFront();
+            }
+        }
         if(event.getSource() == GoNorthButton){
             output = game.goRoom("north");
             TextAreaStatus.appendText(output + "\n");
@@ -264,7 +274,7 @@ public class SemesterProjektGUIController implements Initializable {
         if (game.getCurrentRoom().getExit("south") == null){
             GoSouthButton.setDisable(true);
         }
-        if(game.getCurrentRoom().getShortDescription() == "at your home"){
+        if(game.getCurrentRoom().getShortDescription() == "at your home" && game.timeToBuild() == false){
             BuildButton.setVisible(true);
             HomeStorageButton.setVisible(true);
             SleepButton.setVisible(true);
@@ -609,22 +619,9 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void NewGameButtonHandler(ActionEvent event) {
+        PlayerNameTextField.setVisible(true);
+        
     }
 
-    @FXML
-    private void LoadGameButtonHandler(ActionEvent event) {
-    }
-
-    @FXML
-    private void HighScoresButtonHandler(ActionEvent event) {
-    }
-
-    @FXML
-    private void TryAgainButtonHandler(ActionEvent event) {
-    }
-
-    @FXML
-    private void SaveGameButtonHandler(ActionEvent event) {
-    }
         
 }
