@@ -101,6 +101,16 @@
                         <DropShadow />
                      </effect>
                   </Button>
+                  <Label fx:id="WinOrLoseLabel" layoutX="301.0" layoutY="84.0" text="WinOrLose" wrapText="true">
+                     <font>
+                        <Font size="64.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="HighscoreLabel" layoutX="301.0" layoutY="448.0" text="Highscore" wrapText="true">
+                     <font>
+                        <Font size="64.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
             <StackPane fx:id="Stackpane" prefHeight="602.0" prefWidth="784.0" visible="false">

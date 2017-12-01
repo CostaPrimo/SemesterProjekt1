@@ -207,6 +207,10 @@ public class SemesterProjektGUIController implements Initializable {
     private Button TryAgainButton;
     @FXML
     private Button SaveGameButton;
+    @FXML
+    private Label WinOrLoseLabel;
+    @FXML
+    private Label HighscoreLabel;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
