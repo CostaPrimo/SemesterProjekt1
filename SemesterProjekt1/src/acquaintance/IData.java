@@ -14,6 +14,7 @@ public interface IData {
     void injectInventory(IInventory inventory);
     void injectRat(IRat rat);
     void saveGame();
+    void loadGame();
     void saveHighscore();
     String loadHighscore();
     

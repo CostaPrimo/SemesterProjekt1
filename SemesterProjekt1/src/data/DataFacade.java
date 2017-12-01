@@ -20,6 +20,7 @@ public class DataFacade implements IData {
     private IRat rat;
     
     private JSONObject savestate;
+    private JSONObject loadedState;
     
     @Override
     public void injectPlayer(IPlayer player){
@@ -43,6 +44,7 @@ public class DataFacade implements IData {
                 .put("playerScore", player.getScore())
                 .put("timeToken", player.getTimeToken())
                 .put("dayToken", player.getDayToken())
+                //.put("currentRoom", player.getCurrentRoom())
                 .put("RatRoom", rat.getCurrentRoom())
                 .put("ratIsDead", rat.getIsDead())
                 .put("invetoryHouse", inventory.getInventoryHouse())
@@ -98,6 +100,11 @@ public class DataFacade implements IData {
     @Override
     public void saveGame(){
         gameSave.save(createSaveState());
+    }
+    
+    @Override
+    public void loadGame(){
+        loadedState = gameSave.load();
     }
     
 }
