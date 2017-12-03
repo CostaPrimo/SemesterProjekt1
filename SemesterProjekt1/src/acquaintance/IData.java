@@ -5,6 +5,8 @@
  */
 package acquaintance;
 
+import org.json.JSONObject;
+
 /**
  *
  * @author Kim Christensen
@@ -14,7 +16,7 @@ public interface IData {
     void injectInventory(IInventory inventory);
     void injectRat(IRat rat);
     void saveGame();
-    void loadGame();
+    JSONObject loadGame();
     void saveHighscore();
     String loadHighscore();
     

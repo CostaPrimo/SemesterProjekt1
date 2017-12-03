@@ -103,8 +103,9 @@ public class DataFacade implements IData {
     }
     
     @Override
-    public void loadGame(){
+    public JSONObject loadGame(){
         loadedState = gameSave.load();
+        return loadedState;
     }
     
 }
