@@ -1,12 +1,13 @@
 package business;
 
+import acquaintance.INPC;
 import acquaintance.IRat;
 
 /**
  *
  * @author gruppe20
  */
-public class Rat extends NPC implements IRat{
+public class Rat extends NPC implements IRat,INPC{
     private Room currentRoom;
     private boolean isDead;
     
@@ -33,6 +34,11 @@ public class Rat extends NPC implements IRat{
     @Override
     public Room getCurrentRoom(){
         return this.currentRoom;
+    }
+
+    @Override
+    public String encounterMessage() {
+        return "GRRRR\n";
     }
     
 }

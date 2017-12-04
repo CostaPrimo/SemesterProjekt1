@@ -1,6 +1,7 @@
 package business;
 
 import acquaintance.IItem;
+import acquaintance.INPC;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -8,7 +9,7 @@ import java.util.Collection;
  *
  * @author Gruppe 20
  */
-public class Merchant extends NPC {
+public class Merchant extends NPC implements INPC{
     private ArrayList<IItem>inventoryMerchant;
     
     public Merchant(String name, String description) {
@@ -46,5 +47,10 @@ public class Merchant extends NPC {
      */
     public ArrayList<IItem> getInventoryMerchant() {
         return inventoryMerchant;
+    }
+
+    @Override
+    public String encounterMessage() {
+        return "Welcome to the store, please take a look around\n";
     }
 }

@@ -1,10 +1,12 @@
 package business;
 
+import acquaintance.INPC;
+
 /**
  *
  * @author gruppe 20
  */
-public class NPC {
+public class NPC implements INPC{
     private String description;
     private String name;
     
@@ -28,6 +30,11 @@ public class NPC {
      */
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String encounterMessage() {
+        return "Generic NPC encounter message";
     }
     
 }

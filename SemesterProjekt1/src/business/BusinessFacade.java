@@ -481,7 +481,7 @@ public class BusinessFacade implements IBusiness {
                     if(player1.getDayToken() == 5 && valutaMan.isEncountered() == 0){
                         valutaMan.setIsActive(true);
                         if(getCurrentRoom() == valutaMan.getCurrentRoom()){
-                          output += "Valutaman approaches you and gives you the following question";
+                          output += valutaMan.encounterMessage();
                           if (valutaMan.getQuestion(player1.getDayToken(), parser)){
                               output += "Ludoman is proud of you and doubles your money";
                               player1.setScore(player1.getScore()*2);
@@ -496,7 +496,7 @@ public class BusinessFacade implements IBusiness {
                     if(player1.getDayToken() == 2 && valutaMan.isEncountered() == 1){
                         valutaMan.setIsActive(true);
                         if(getCurrentRoom() == valutaMan.getCurrentRoom()){
-                          output += "Valutaman approaches you and gives you the following question";
+                          output += valutaMan.encounterMessage();
                           if (valutaMan.getQuestion(player1.getDayToken(), parser)){
                               output += "Ludoman is proud of you and doubles your money";
                               player1.setScore(player1.getScore()*2);
@@ -513,7 +513,7 @@ public class BusinessFacade implements IBusiness {
                     }
                     System.out.println(player1.getTimeToken());
                     if (rat.getIsDead()!=true){
-                        ratMove();
+                        output += ratMove();
                     }
                     System.out.println(getCurrentRoom().getLongDescription());
                     if (getCurrentRoom().getShortDescription() == "at the center of the scrapyard") {
@@ -547,11 +547,12 @@ public class BusinessFacade implements IBusiness {
                         setRoomRarity(inventoryRoom);
                     }
                     else if (getCurrentRoom().getShortDescription() == "at the merchant") {
-                        output+= "Ali: Welcome to my store, I have special prize just for you my friend take a look\n";
+                        output+= merchantShop.encounterMessage();
                         output+= "Ali shows you the following items";
                         //System.out.println(merchantShop.showMerchantInventory());
                     } 
                     else if (getCurrentRoom().getShortDescription() == "at gamestop") {
+                        output+= merchantShop.encounterMessage();
                         output+= "Mr. MountainDew: Hey, hows your pc doing? Oh wait... nvm. I broke it\n";
                         output+= "Mr. MountainDew shows you the following items";
                         //System.out.println(merchantGamestop.showMerchantInventory());
@@ -590,9 +591,9 @@ public class BusinessFacade implements IBusiness {
             rat.setCurrentRoom(scrapyardmiddle);
             
         }
-        output = "The rat is at " + rat.getCurrentRoom().getShortDescription();
         if(rat.getCurrentRoom()==getCurrentRoom()){
             output = "The rat is in this room";
+            output+= rat.encounterMessage();
         }
         return output;
     }

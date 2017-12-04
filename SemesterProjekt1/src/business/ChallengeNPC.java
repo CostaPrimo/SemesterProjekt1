@@ -5,11 +5,13 @@
  */
 package business;
 
+import acquaintance.INPC;
+
 /**
  *
  * @author Kim Christensen
  */
-public class ChallengeNPC extends NPC {
+public class ChallengeNPC extends NPC implements INPC{
     private boolean isActive;
     private int encountered;
     private Room currentRoom;
@@ -68,7 +70,9 @@ public class ChallengeNPC extends NPC {
     public void setEncountered(int encountered) {
         this.encountered = encountered;
     }
-    
-    
-    
+
+    @Override
+    public String encounterMessage() {
+        return "Win or lose, what do you choose? Time to test your knowledge!\n";
+    }
 }
