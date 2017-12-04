@@ -7,6 +7,7 @@ import java.util.Locale; //I need help with using this.
 import javafx.scene.chart.Chart;
 import javafx.scene.control.PopupControl;
 import java.util.Scanner;
+import org.json.JSONObject;
 // Creating public "game" class 
 public class BusinessFacade implements IBusiness {
     private IData data;
@@ -17,6 +18,7 @@ public class BusinessFacade implements IBusiness {
     private Parser parser;
     private Room currentRoom;
     private Inventory inventoryRoom;
+    private JSONObject loadedState;
     private String Playername;
     private Player player1;
     private Merchant merchantGamestop, merchantShop;
@@ -881,5 +883,25 @@ public class BusinessFacade implements IBusiness {
     @Override
     public void setPlayerName(String playerName){
         this.player1.setName(playerName);
+    }
+    
+    @Override
+    public void saveGame(){
+        data.saveGame();
+    }
+    
+    @Override
+    public void loadGame(){
+        loadedState = data.loadGame();
+        rat.setIsDead(loadedState.getBoolean("ratIsDead"));
+        rat.setCurrentRoom((Room)loadedState.get("ratCurrentRoom"));
+        player1.setName(loadedState.getString("playerName"));
+        player1.setScore(loadedState.getInt("playerScore"));
+        player1.setDayToken(loadedState.getInt("dayToken"));
+        player1.setTimeToken(loadedState.getInt("timeToken"));
+        inventoryRoom.setInventoryPlayer((ArrayList)loadedState.get("inventoryPlayer"));
+        inventoryRoom.setInventoryRoom((ArrayList)loadedState.get("inventoryRoom"));
+        inventoryRoom.setInventoryHouse((ArrayList)loadedState.get("inventoryHouse"));
+        inventoryRoom.setInventoryComputer((ArrayList)loadedState.get("inventoryComputer"));
     }
 }

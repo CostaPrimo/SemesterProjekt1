@@ -22,7 +22,9 @@ public interface IBusiness {
     String dropItem(int itemNumber);
     String goRoom(String direction2);
     void inspectRoom();
+    void loadGame();
     void printHelp();
+    void saveGame();
     String sellItem(int itemNumber);
     String sleep();
     String storeItems(int itemNumber);

@@ -363,4 +363,25 @@ public class Inventory implements IInventory {
     public ArrayList<IItem> getInventoryHouse() {
         return inventoryHouse;
     }
+    
+    public void setInventoryRoom(ArrayList c){
+        inventoryRoom.clear();
+        inventoryRoom.addAll(c);
+    }
+    
+    public void setInventoryPlayer(ArrayList c){
+        inventoryPlayer.clear();
+        inventoryPlayer.addAll(c);
+    }
+    
+    public void setInventoryHouse(ArrayList c){
+        inventoryHouse.clear();
+        inventoryHouse.addAll(c);
+    }
+    
+    public void setInventoryComputer(ArrayList c){
+        inventoryComputer.clear();
+        inventoryComputer.addAll(c);
+    }
+    
 }
