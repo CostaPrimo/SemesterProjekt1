@@ -21,10 +21,12 @@ public interface IBusiness {
     String buyItem(int itemNumber);
     String dropItem(int itemNumber);
     String goRoom(String direction2);
+    String loadHighscore();
     void inspectRoom();
     void loadGame();
     void printHelp();
     void saveGame();
+    void saveHighscore();
     String sellItem(int itemNumber);
     String sleep();
     String storeItems(int itemNumber);

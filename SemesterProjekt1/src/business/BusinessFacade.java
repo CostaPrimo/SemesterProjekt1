@@ -904,4 +904,14 @@ public class BusinessFacade implements IBusiness {
         inventoryRoom.setInventoryHouse((ArrayList)loadedState.get("inventoryHouse"));
         inventoryRoom.setInventoryComputer((ArrayList)loadedState.get("inventoryComputer"));
     }
+    
+    @Override
+    public void saveHighscore(){
+        data.saveHighscore();
+    }
+    
+    @Override
+    public String loadHighscore(){
+        return data.loadHighscore();
+    }
 }
