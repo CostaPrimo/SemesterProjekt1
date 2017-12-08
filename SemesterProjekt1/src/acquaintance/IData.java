@@ -12,10 +12,9 @@ import org.json.JSONObject;
  * @author Kim Christensen
  */
 public interface IData {
-    void injectPlayer(IPlayer player);
     void saveGame(JSONObject object);
     JSONObject loadGame();
-    void saveHighscore();
+    void saveHighscore(String string);
     String loadHighscore();
     
 }

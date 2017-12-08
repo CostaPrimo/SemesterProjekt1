@@ -1,9 +1,7 @@
 package data;
 
 import acquaintance.IData;
-import acquaintance.IPlayer;
 import org.json.JSONObject;
-import java.util.Arrays;
 
 /**
  *
@@ -13,16 +11,8 @@ public class DataFacade implements IData {
     private Highscore highscorelist;
     private Gamestate gameSave = new Gamestate();
     
-    private IPlayer player;
-    
     private JSONObject savestate;
     private JSONObject loadedState;
-    
-    @Override
-    public void injectPlayer(IPlayer player){
-        this.player = player;
-    }
-    
     
     /*
     private JSONObject createSaveState(){
@@ -41,7 +31,6 @@ public class DataFacade implements IData {
                 .put("inventoryComputer", inventory.getInventoryComputer());
         return savestate;
     }
-    */
     
     private String sortScores(IPlayer player){
         
@@ -75,10 +64,12 @@ public class DataFacade implements IData {
         
         return newScores;
     }
+    */
+    
     
     @Override
-    public void saveHighscore(){
-        highscorelist.save(sortScores(player));
+    public void saveHighscore(String highscoreList){
+        highscorelist.save(highscoreList);
     }
     
     @Override

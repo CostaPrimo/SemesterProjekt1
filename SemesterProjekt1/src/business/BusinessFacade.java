@@ -3,6 +3,7 @@ import acquaintance.IItem;
 import acquaintance.IBusiness;
 import acquaintance.IData;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale; //I need help with using this.
 import javafx.scene.chart.Chart;
 import javafx.scene.control.PopupControl;
@@ -888,7 +889,38 @@ public class BusinessFacade implements IBusiness {
     }
     
     
-    
+    private String sortScores(Player player){
+        
+        String newEntry = player.getName()+ " " + player.getScore()+"\n";
+        String currentScores = loadHighscore()+newEntry;
+        String newScores = "";
+        
+        String[]scoreEntries = currentScores.split("\n");
+        int[]entryPoints = new int[scoreEntries.length];
+        String[]tempArray;
+        
+        for(int i = 0; i<scoreEntries.length;i++){
+            tempArray = scoreEntries[i].split(" ");
+            entryPoints[i]= Integer.parseInt(tempArray[1]);
+        }
+        
+        Arrays.sort(entryPoints, 0, entryPoints.length);
+        
+        
+        for(int j = 0; j<scoreEntries.length;j++){
+            int k = scoreEntries.length-1;
+            while(k>=0){
+                tempArray = scoreEntries[j].split(" ");
+                if(Integer.parseInt(tempArray[1])== entryPoints[k]){
+                    newScores += scoreEntries[j]+"\n";
+                    k++;
+                    j=0;
+                }
+            }
+        }
+        
+        return newScores;
+    }
     
     private JSONObject createSaveState(){
     this.loadedState
@@ -931,7 +963,7 @@ public class BusinessFacade implements IBusiness {
     
     @Override
     public void saveHighscore(){
-        data.saveHighscore();
+        data.saveHighscore(sortScores(player1));
     }
     
     @Override
