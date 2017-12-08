@@ -12,11 +12,13 @@ import java.io.IOException;
  * @author Jeppe Enevold
  */
 public class Gamestate {
+    /*
     private FileWriter writer;
     private FileReader reader;
     private BufferedReader saveReader;
     private JSONStringer savewriter;
     private JSONObject savedState;
+    
     
     public Gamestate() {
         try{
@@ -30,17 +32,24 @@ public class Gamestate {
         }
                 
     }
+    */
+    
+    public Gamestate(){
+        
+    }
     
     public void save(JSONObject savestate){
         try{
-            this.writer.write(
-                this.savewriter
+            FileWriter writer = new FileWriter("src/data/gamesave.json");
+            JSONStringer savewriter = new JSONStringer();
+            writer.write(
+                savewriter
                     .object()
                         .key("savestate")
                         .value(savestate)
                     .endObject()
             .toString());
-            this.writer.close();
+            writer.close();
             System.out.println("success");
             
         }
@@ -57,19 +66,23 @@ public class Gamestate {
         String jsontext = "";
         
         try{
+            FileReader reader = new FileReader("src/data/gamesave.json");
+            BufferedReader saveReader = new BufferedReader(reader);
             while (getLine != null){
                 jsontext += getLine;
                 getLine = saveReader.readLine();
             }
             saveReader.close();
+            /*
             this.writer.write(jsontext);
             this.writer.close();
+            */
         }
         catch(IOException ex){
             System.out.println("Error\n"+ex);
         }
         
-        this.savedState = new JSONObject(jsontext);
-        return this.savedState;
+        JSONObject savedState = new JSONObject(jsontext);
+        return savedState;
     }
 }

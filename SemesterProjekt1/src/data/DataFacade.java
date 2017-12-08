@@ -8,7 +8,7 @@ import org.json.JSONObject;
  * @author Gruppe 20
  */
 public class DataFacade implements IData {
-    private Highscore highscorelist;
+    private Highscore highscorelist = new Highscore();
     private Gamestate gameSave = new Gamestate();
     
     private JSONObject savestate;

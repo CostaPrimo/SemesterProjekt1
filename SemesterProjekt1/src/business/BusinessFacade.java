@@ -161,17 +161,17 @@ public class BusinessFacade implements IBusiness {
 
     //Creating a conctructor called "createRoom" where we name all the rooms and give them a description
     private void createRooms() {
-        home = new Room("at your home");
-        downtown = new Room("at downtown");
-        gamestop = new Room("at gamestop");
-        merchant = new Room("at the merchant");
-        scrapyardentrance = new Room("at the entrance to the scrapyard");
+        home = new Room("home", "at your home");
+        downtown = new Room("downtown", "at downtown");
+        gamestop = new Room("gamestop", "at gamestop");
+        merchant = new Room("merchant", "at the merchant");
+        scrapyardentrance = new Room("scrapyardentrance", "at the entrance to the scrapyard");
         scrapyardmiddle = new Room("at the center of the scrapyard", true);
-        scrapyardwest = new Room("at the west part of the scrapyard");
-        scrapyardeast = new Room("at the east part of the scrapyard");
-        scrapyardsouth = new Room("at the south part of the scrapyard");
-        scrapyardsoutheast = new Room("at the southeast part of the scrapyard");
-        scrapyardsouthwest = new Room("at the southwest part of the scrapyard");
+        scrapyardwest = new Room("scrapyardwest", "at the west part of the scrapyard");
+        scrapyardeast = new Room("scrapyardeast", "at the east part of the scrapyard");
+        scrapyardsouth = new Room("scrapyardsouth", "at the south part of the scrapyard");
+        scrapyardsoutheast = new Room("scrapyardsoutheast", "at the southeast part of the scrapyard");
+        scrapyardsouthwest = new Room("scrapyardsouthwest", "at the southwest part of the scrapyard");
 
 //      Setting all the available exits from each of the rooms above
         home.setExit("south", downtown);
@@ -946,9 +946,9 @@ public class BusinessFacade implements IBusiness {
     
     @Override
     public void loadGame(){
-        loadedState = data.loadGame();
+        loadedState = (JSONObject)data.loadGame().get("savestate");
         rat.setIsDead(loadedState.getBoolean("ratIsDead"));
-        rat.setCurrentRoom((Room)loadedState.get("ratCurrentRoom"));
+        rat.setCurrentRoom((Room)loadedState.get("RatRoom"));
         player1.setName(loadedState.getString("playerName"));
         player1.setScore(loadedState.getInt("playerScore"));
         player1.setDayToken(loadedState.getInt("dayToken"));

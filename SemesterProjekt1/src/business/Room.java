@@ -15,12 +15,14 @@ import java.util.HashMap;
 public class Room 
 {
         //Defining datatypes.
+    private String name;
     private String description;
     private HashMap<String, Room> exits;
     private boolean isLocked;
         // Making our constructor that takes a string argument called description. The argument is renamed to this.decsription.
         // exits is constructed and is defined as a new hashmap object
-    public Room(String description){
+    public Room(String name, String description){
+        this.name = name;
         this.description = description;
         exits = new HashMap<String, Room>();
     }
@@ -79,6 +81,13 @@ public class Room
      */
     public void setIsLocked(boolean isLocked) {
         this.isLocked = isLocked;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
     }
     
 }
