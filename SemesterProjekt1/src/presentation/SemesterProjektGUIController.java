@@ -542,6 +542,7 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void SaveButtonHandler(ActionEvent event) {
+        game.saveGame();
     }
 
     @FXML
@@ -677,6 +678,11 @@ public class SemesterProjektGUIController implements Initializable {
         MapPane.toFront();
         IntroPane.setVisible(false);
         game.setPlayerName(PlayerNameTextField.getText());
+    }
+
+    @FXML
+    private void LoadButtonHandler(ActionEvent event) {
+        game.loadGame();
     }
 
         

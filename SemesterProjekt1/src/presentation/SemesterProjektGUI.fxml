@@ -139,7 +139,7 @@
                               <Font size="20.0" />
                            </font>
                         </Button>
-                        <Button layoutX="393.0" layoutY="290.0" mnemonicParsing="false" text="Load game">
+                        <Button layoutX="393.0" layoutY="290.0" mnemonicParsing="false" onAction="#LoadButtonHandler" text="Load game">
                            <font>
                               <Font size="20.0" />
                            </font>

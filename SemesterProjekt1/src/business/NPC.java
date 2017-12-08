@@ -6,7 +6,7 @@ import acquaintance.INPC;
  *
  * @author gruppe 20
  */
-public class NPC implements INPC{
+public abstract class NPC implements INPC{
     private String description;
     private String name;
     
