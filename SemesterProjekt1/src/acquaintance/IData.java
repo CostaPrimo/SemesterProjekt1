@@ -13,9 +13,7 @@ import org.json.JSONObject;
  */
 public interface IData {
     void injectPlayer(IPlayer player);
-    void injectInventory(IInventory inventory);
-    void injectRat(IRat rat);
-    void saveGame();
+    void saveGame(JSONObject object);
     JSONObject loadGame();
     void saveHighscore();
     String loadHighscore();

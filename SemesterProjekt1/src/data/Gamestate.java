@@ -53,19 +53,20 @@ public class Gamestate {
     }
     
     public JSONObject load(){
-        String getLine;
+        String getLine="";
         String jsontext = "";
         
         try{
-            getLine = saveReader.readLine();
             while (getLine != null){
                 jsontext += getLine;
                 getLine = saveReader.readLine();
             }
             saveReader.close();
+            this.writer.write(jsontext);
+            this.writer.close();
         }
         catch(IOException ex){
-            System.out.println("");
+            System.out.println("Error\n"+ex);
         }
         
         this.savedState = new JSONObject(jsontext);

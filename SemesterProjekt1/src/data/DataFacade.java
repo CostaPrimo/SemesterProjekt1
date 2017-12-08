@@ -1,9 +1,7 @@
 package data;
 
 import acquaintance.IData;
-import acquaintance.IInventory;
 import acquaintance.IPlayer;
-import acquaintance.IRat;
 import org.json.JSONObject;
 import java.util.Arrays;
 
@@ -16,8 +14,6 @@ public class DataFacade implements IData {
     private Gamestate gameSave = new Gamestate();
     
     private IPlayer player;
-    private IInventory inventory;
-    private IRat rat;
     
     private JSONObject savestate;
     private JSONObject loadedState;
@@ -27,16 +23,8 @@ public class DataFacade implements IData {
         this.player = player;
     }
     
-    @Override
-    public void injectInventory(IInventory inventory){
-        this.inventory = inventory;
-    }
     
-    @Override
-    public void injectRat(IRat rat){
-        this.rat = rat;
-    }
-    
+    /*
     private JSONObject createSaveState(){
         savestate = new JSONObject();
         this.savestate
@@ -53,6 +41,7 @@ public class DataFacade implements IData {
                 .put("inventoryComputer", inventory.getInventoryComputer());
         return savestate;
     }
+    */
     
     private String sortScores(IPlayer player){
         
@@ -98,8 +87,8 @@ public class DataFacade implements IData {
     }
    
     @Override
-    public void saveGame(){
-        gameSave.save(createSaveState());
+    public void saveGame(JSONObject saveState){
+        gameSave.save(saveState);
     }
     
     @Override

@@ -45,6 +45,7 @@ public class BusinessFacade implements IBusiness {
         createItemList();
         createItems();
         parser = new Parser();
+        loadedState = new JSONObject();
     }
 
     private void createNPCs() {
@@ -886,9 +887,29 @@ public class BusinessFacade implements IBusiness {
         this.player1.setName(playerName);
     }
     
+    
+    
+    
+    private JSONObject createSaveState(){
+    this.loadedState
+        .put("playerName", player1.getName())
+        .put("playerScore", player1.getScore())
+        .put("timeToken", player1.getTimeToken())
+        .put("dayToken", player1.getDayToken())
+        .put("currentRoom", currentRoom)
+        .put("RatRoom", rat.getCurrentRoom())
+        .put("ratIsDead", rat.getIsDead())
+        .put("isLocked", scrapyardmiddle.getIsLocked())
+        .put("invetoryHouse", inventoryRoom.getInventoryHouse())
+        .put("inventoryRoom", inventoryRoom.getInventoryRoom())
+        .put("inventoryPlayer", inventoryRoom.getInventoryPlayer())
+    .put("inventoryComputer", inventoryRoom.getInventoryComputer());
+    return loadedState;
+    }
+    
     @Override
     public void saveGame(){
-        data.saveGame();
+        data.saveGame(createSaveState());
     }
     
     @Override
@@ -900,6 +921,8 @@ public class BusinessFacade implements IBusiness {
         player1.setScore(loadedState.getInt("playerScore"));
         player1.setDayToken(loadedState.getInt("dayToken"));
         player1.setTimeToken(loadedState.getInt("timeToken"));
+        currentRoom = (Room)loadedState.get("currentRoom");
+        scrapyardmiddle.setIsLocked(loadedState.getBoolean("isLocked"));
         inventoryRoom.setInventoryPlayer((ArrayList)loadedState.get("inventoryPlayer"));
         inventoryRoom.setInventoryRoom((ArrayList)loadedState.get("inventoryRoom"));
         inventoryRoom.setInventoryHouse((ArrayList)loadedState.get("inventoryHouse"));

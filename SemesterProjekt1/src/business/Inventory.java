@@ -1,12 +1,11 @@
 package business;
-import acquaintance.IInventory;
 import acquaintance.IItem;
 import java.util.ArrayList;
 /**
  *
  * @author Gruppe 20
  */
-public class Inventory implements IInventory {
+public class Inventory {
     //Creating Arraylists for different Inventories/Storage units
     private ArrayList<IItem> inventoryPlayer;
     private ArrayList<IItem> inventoryHouse;
@@ -335,12 +334,10 @@ public class Inventory implements IInventory {
     /**
      * @return the inventoryPlayer
      */
-    @Override
     public ArrayList<IItem> getInventoryPlayer() {
         return inventoryPlayer;
     }
     
-    @Override
     public ArrayList<IItem> getInventoryRoom(){
         return inventoryRoom;
     }
@@ -351,7 +348,6 @@ public class Inventory implements IInventory {
         return inventoryTotal;
     }
     
-    @Override
     public ArrayList<IItem> getInventoryComputer(){
         return inventoryComputer;
     }
@@ -359,7 +355,6 @@ public class Inventory implements IInventory {
     /**
      * @return the inventoryHouse
      */
-    @Override
     public ArrayList<IItem> getInventoryHouse() {
         return inventoryHouse;
     }
