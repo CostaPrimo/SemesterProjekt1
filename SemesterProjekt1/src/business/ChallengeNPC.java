@@ -27,8 +27,8 @@ public class ChallengeNPC extends NPC implements INPC{
     /**
      * @return the isActive
      */
-    public boolean isIsActive() {
-        return isActive;
+    public boolean getIsActive(){
+        return this.isActive;
     }
 
     /**
@@ -38,8 +38,8 @@ public class ChallengeNPC extends NPC implements INPC{
         this.isActive = isActive;
     }
     
-    public boolean getQuestion(int i, Parser ind){
-        return challenge.selectAnswer(i, ind);
+    public boolean getQuestion(int i, char choice){
+        return challenge.selectAnswer(i, choice);
         
     }
 
@@ -75,4 +75,8 @@ public class ChallengeNPC extends NPC implements INPC{
     public String encounterMessage() {
         return "Win or lose, what do you choose? Time to test your knowledge!\n";
     }
+
+    /**
+     * @return the isActive
+     */
 }

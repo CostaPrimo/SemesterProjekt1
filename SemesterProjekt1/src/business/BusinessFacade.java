@@ -34,6 +34,7 @@ public class BusinessFacade implements IBusiness {
     ArrayList<Item> junk, normal, rare, epic, legendary, CPU, GPU, RAM;
     private int scoreToBeat = 9499;
     private Scanner nameInputTest = new Scanner(System.in);
+    private char choice = 'a';
 
     
     public BusinessFacade() {
@@ -484,7 +485,9 @@ public class BusinessFacade implements IBusiness {
                         valutaMan.setIsActive(true);
                         if(getCurrentRoom() == valutaMan.getCurrentRoom()){
                           output += valutaMan.encounterMessage();
-                          if (valutaMan.getQuestion(player1.getDayToken(), parser)){
+                          char choice;
+                          choice = getChoice();
+                          if (valutaMan.getQuestion(player1.getDayToken(), choice)){
                               output += "Ludoman is proud of you and doubles your money";
                               player1.setScore(player1.getScore()*2);
                           }
@@ -499,7 +502,8 @@ public class BusinessFacade implements IBusiness {
                         valutaMan.setIsActive(true);
                         if(getCurrentRoom() == valutaMan.getCurrentRoom()){
                           output += valutaMan.encounterMessage();
-                          if (valutaMan.getQuestion(player1.getDayToken(), parser)){
+                            getChoice();
+                          if (valutaMan.getQuestion(player1.getDayToken(), getChoice())){
                               output += "Ludoman is proud of you and doubles your money";
                               player1.setScore(player1.getScore()*2);
                           }
@@ -511,7 +515,7 @@ public class BusinessFacade implements IBusiness {
                         }
                     }
                     else{
-                        valutaMan.setIsActive(false);
+                        //valutaMan.setIsActive(false);
                     }
                     System.out.println(player1.getTimeToken());
                     if (rat.getIsDead()!=true){
@@ -969,5 +973,25 @@ public class BusinessFacade implements IBusiness {
     @Override
     public String loadHighscore(){
         return data.loadHighscore();
+    }
+
+    /**
+     * @return the choice
+     */
+    @Override
+    public char getChoice() {
+        return choice;
+    }
+
+    /**
+     * @param choice the choice to set
+     */
+    @Override
+    public void setChoice(char choice) {
+        this.choice = choice;
+    }
+    @Override
+    public boolean getIsActive(){
+        return valutaMan.getIsActive();
     }
 }

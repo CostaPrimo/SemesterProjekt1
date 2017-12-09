@@ -212,6 +212,16 @@ public class SemesterProjektGUIController implements Initializable {
     private Label TotalScoreBuildPCLabel;
     @FXML
     private Label WinOrLoseBuildPCLabel;
+    @FXML
+    private Pane ValutaManPane;
+    @FXML
+    private Button ChoiceAButton;
+    @FXML
+    private Button ChoiceBButton;
+    @FXML
+    private Button ChoiceCButton;
+    @FXML
+    private Button ChoiceDButton;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
@@ -393,6 +403,9 @@ public class SemesterProjektGUIController implements Initializable {
         }
         else if (game.getCurrentRoom().getShortDescription() == "at the southeast part of the scrapyard"){
             MapView.setImage(mapSouthEastImage);
+            if(game.getIsActive()){
+                ValutaManPane.toFront();
+            }
             if(game.getRatCurrentRoom().getShortDescription() == "at the east part of the scrapyard"){
                  MinimapView.setImage(minimapScrapyardSouthEastRatNorthImage);
             }
@@ -683,6 +696,23 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private void LoadButtonHandler(ActionEvent event) {
         game.loadGame();
+    }
+
+    @FXML
+    private void ChoiceButtonHandler(ActionEvent event) {
+        if(event.getSource() == ChoiceAButton){
+            game.setChoice('a');
+        }
+        else if(event.getSource() == ChoiceBButton){
+            game.setChoice('b');
+        }
+        else if (event.getSource() == ChoiceCButton){
+            game.setChoice('c');
+        }
+        else if (event.getSource() == ChoiceDButton){
+            game.setChoice('d');
+        }
+        
     }
 
         

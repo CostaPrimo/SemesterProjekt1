@@ -51,4 +51,7 @@ public interface IBusiness {
     boolean requiredPartsChecker();
     boolean timeToBuild();
     boolean quit();
+    char getChoice();
+    void setChoice(char choice);
+    boolean getIsActive();
 }

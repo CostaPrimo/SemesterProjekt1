@@ -32,6 +32,14 @@
          <children>
             <StackPane fx:id="Stackpane" prefHeight="602.0" prefWidth="784.0">
                <children>
+                  <Pane fx:id="ValutaManPane" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="ChoiceAButton" layoutX="268.0" layoutY="157.0" mnemonicParsing="false" onAction="#ChoiceButtonHandler" text="Choice A" />
+                        <Button fx:id="ChoiceBButton" layoutX="269.0" layoutY="231.0" mnemonicParsing="false" onAction="#ChoiceButtonHandler" text="Choice B" />
+                        <Button fx:id="ChoiceCButton" layoutX="269.0" layoutY="301.0" mnemonicParsing="false" onAction="#ChoiceButtonHandler" text="Choice C" />
+                        <Button fx:id="ChoiceDButton" layoutX="268.0" layoutY="369.0" mnemonicParsing="false" onAction="#ChoiceButtonHandler" text="Choice D" />
+                     </children>
+                  </Pane>
                   <Pane fx:id="HomeStoragePane" prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <ListView fx:id="PlayerInventoryListview1" layoutX="50.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" />
