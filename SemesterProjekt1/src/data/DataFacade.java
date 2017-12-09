@@ -11,27 +11,9 @@ public class DataFacade implements IData {
     private Highscore highscorelist = new Highscore();
     private Gamestate gameSave = new Gamestate();
     
-    private JSONObject savestate;
     private JSONObject loadedState;
     
     /*
-    private JSONObject createSaveState(){
-        savestate = new JSONObject();
-        this.savestate
-                .put("playerName", player.getName())
-                .put("playerScore", player.getScore())
-                .put("timeToken", player.getTimeToken())
-                .put("dayToken", player.getDayToken())
-                //.put("currentRoom", player.getCurrentRoom())
-                .put("RatRoom", rat.getCurrentRoom())
-                .put("ratIsDead", rat.getIsDead())
-                .put("invetoryHouse", inventory.getInventoryHouse())
-                .put("inventoryRoom", inventory.getInventoryRoom())
-                .put("inventoryPlayer", inventory.getInventoryPlayer())
-                .put("inventoryComputer", inventory.getInventoryComputer());
-        return savestate;
-    }
-    
     private String sortScores(IPlayer player){
         
         String newEntry = player.getName()+ " " + player.getScore()+"\n";

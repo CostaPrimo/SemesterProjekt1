@@ -19,7 +19,7 @@ public class BusinessFacade implements IBusiness {
     private Parser parser;
     private Room currentRoom;
     private Inventory inventoryRoom;
-    private JSONObject loadedState;
+    private JSONObject saveState;
     private String Playername;
     private Player player1;
     private Merchant merchantGamestop, merchantShop;
@@ -46,7 +46,7 @@ public class BusinessFacade implements IBusiness {
         createItemList();
         createItems();
         parser = new Parser();
-        loadedState = new JSONObject();
+        saveState = new JSONObject();
     }
 
     private void createNPCs() {
@@ -923,7 +923,7 @@ public class BusinessFacade implements IBusiness {
     }
     
     private JSONObject createSaveState(){
-    this.loadedState
+    this.saveState
         .put("playerName", player1.getName())
         .put("playerScore", player1.getScore())
         .put("timeToken", player1.getTimeToken())
@@ -936,7 +936,7 @@ public class BusinessFacade implements IBusiness {
         .put("inventoryRoom", inventoryRoom.getInventoryRoom())
         .put("inventoryPlayer", inventoryRoom.getInventoryPlayer())
     .put("inventoryComputer", inventoryRoom.getInventoryComputer());
-    return loadedState;
+    return saveState;
     }
     
     @Override
@@ -946,19 +946,19 @@ public class BusinessFacade implements IBusiness {
     
     @Override
     public void loadGame(){
-        loadedState = (JSONObject)data.loadGame().get("savestate");
-        rat.setIsDead(loadedState.getBoolean("ratIsDead"));
-        rat.setCurrentRoom((Room)loadedState.get("RatRoom"));
-        player1.setName(loadedState.getString("playerName"));
-        player1.setScore(loadedState.getInt("playerScore"));
-        player1.setDayToken(loadedState.getInt("dayToken"));
-        player1.setTimeToken(loadedState.getInt("timeToken"));
-        currentRoom = (Room)loadedState.get("currentRoom");
-        scrapyardmiddle.setIsLocked(loadedState.getBoolean("isLocked"));
-        inventoryRoom.setInventoryPlayer((ArrayList)loadedState.get("inventoryPlayer"));
-        inventoryRoom.setInventoryRoom((ArrayList)loadedState.get("inventoryRoom"));
-        inventoryRoom.setInventoryHouse((ArrayList)loadedState.get("inventoryHouse"));
-        inventoryRoom.setInventoryComputer((ArrayList)loadedState.get("inventoryComputer"));
+        saveState = (JSONObject)data.loadGame().get("savestate");
+        rat.setIsDead(saveState.getBoolean("ratIsDead"));
+        rat.setCurrentRoom((Room)saveState.get("RatRoom"));
+        player1.setName(saveState.getString("playerName"));
+        player1.setScore(saveState.getInt("playerScore"));
+        player1.setDayToken(saveState.getInt("dayToken"));
+        player1.setTimeToken(saveState.getInt("timeToken"));
+        currentRoom = (Room)saveState.get("currentRoom");
+        scrapyardmiddle.setIsLocked(saveState.getBoolean("isLocked"));
+        inventoryRoom.setInventoryPlayer((ArrayList)saveState.get("inventoryPlayer"));
+        inventoryRoom.setInventoryRoom((ArrayList)saveState.get("inventoryRoom"));
+        inventoryRoom.setInventoryHouse((ArrayList)saveState.get("inventoryHouse"));
+        inventoryRoom.setInventoryComputer((ArrayList)saveState.get("inventoryComputer"));
     }
     
     @Override

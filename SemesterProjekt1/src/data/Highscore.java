@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  *
@@ -12,25 +11,13 @@ import java.io.PrintWriter;
  */
 public class Highscore {        
     
-    
-    //FileWriter saveFile;
-    private FileWriter scoreWriter;
-    private FileReader loadFile;
-    private BufferedReader scoreReader;    
-
     public Highscore(){
-        try{
-            scoreWriter = new FileWriter("src/data/Highscores.txt");
-            loadFile = new FileReader("src/data/Highscores.txt");
-            scoreReader = new BufferedReader(loadFile);
-        }
-        catch(IOException ex){
-            System.out.println("Error: " + ex);
-        }
+
     }
     
     public String save(String scores){
         try{
+            FileWriter scoreWriter = new FileWriter("src/data/Highscores.txt");
             scoreWriter.write(scores);
             scoreWriter.close();
             return "Game Saved";
@@ -45,6 +32,8 @@ public class Highscore {
         String outputLine = "";
         
         try{
+            FileReader loadFile = new FileReader("src/data/Highscores.txt");
+            BufferedReader scoreReader = new BufferedReader(loadFile);
             getLine = scoreReader.readLine();
             while (getLine != null){
                 outputLine += getLine;
