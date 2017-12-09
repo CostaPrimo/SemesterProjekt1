@@ -932,8 +932,8 @@ public class BusinessFacade implements IBusiness {
         .put("playerScore", player1.getScore())
         .put("timeToken", player1.getTimeToken())
         .put("dayToken", player1.getDayToken())
-        .put("currentRoom", currentRoom)
-        .put("RatRoom", rat.getCurrentRoom())
+        .put("currentRoom", currentRoom.getName())
+        .put("RatRoom", rat.getCurrentRoom().getName())
         .put("ratIsDead", rat.getIsDead())
         .put("isLocked", scrapyardmiddle.getIsLocked())
         .put("invetoryHouse", inventoryRoom.getInventoryHouse())
@@ -948,16 +948,107 @@ public class BusinessFacade implements IBusiness {
         data.saveGame(createSaveState());
     }
     
+    private Room filterRoom(String roomName){
+        switch(roomName){
+            case "home":
+                return home;
+            case "downtown":
+                return downtown;
+            case "merchant":
+                return merchant;
+            case "gamestop":
+                return gamestop;
+            case "scrapyardentrance":
+                return scrapyardentrance;
+            case "scrapyardmiddle":
+                return scrapyardmiddle;
+            case "scrapyardeast":
+                return scrapyardeast;
+            case "scrapyardwest":
+                return scrapyardwest;
+            case "scrapyardsouth":
+                return scrapyardsouth;
+            case "scrapyardsoutheast":
+                return scrapyardsoutheast;
+            case "scrapyardsouthwest":
+                return scrapyardsouthwest;
+            default:
+                return home;
+        }
+    }
+    
+    private Item filterItem(String itemName){
+        switch(itemName){
+            case "GTX 550ti":
+                return JGPU;
+            case "GTX 760":
+                return NGPU;
+            case "GTX 960":
+                return RGPU;
+            case "GTX 1070":
+                return EGPU;
+            case "GTX Titan XP":
+                return LGPU;
+            case "DDR 512 MB":
+                return JRAM;
+            case "DDR2 2 GB":
+                return NRAM;
+            case "DDR3 4 GB":
+                return RRAM;
+            case "DDR3 8 GB":
+                return ERAM;
+            case "DDR4 16 GB":
+                return LRAM;
+            case "i3 1.8 GHz":
+                return JCPU;
+            case "i5 2.5 GHz":
+                return NCPU;
+            case "i7 3.7 GHz":
+                return RCPU;
+            case "Threadripper 4 GHz":
+                return ECPU;
+            case "i9 6 GHz":
+                return LCPU;
+            case "GameMagazine":
+                return gameMagazine;
+            case "BIG FUCKING STONE!":
+                return BFS;
+            case "an old scooter":
+                return scooter;
+            case "an empty container":
+                return container;
+            case "an old abandoned Blockbuster?":
+                return blockbuster;
+            case "a Siemens washing machine":
+                return washingMachine;
+            case "a fried IBM server (it's still burning)":
+                return IBMserver;
+            case "a pile of scrap":
+                return scrap;
+            case "a burnt car":
+                return burntCar;
+            case "ratpoison":
+                return ratPoison;
+            case "crowbar":
+                return crowBar;
+            case "MonsterBullBooster":
+                return monsterBullBooster;
+            default:
+                return JRAM;
+        }
+    }
+    
+    
     @Override
     public void loadGame(){
         saveState = (JSONObject)data.loadGame().get("savestate");
         rat.setIsDead(saveState.getBoolean("ratIsDead"));
-        rat.setCurrentRoom((Room)saveState.get("RatRoom"));
+        rat.setCurrentRoom(filterRoom(saveState.getString("RatRoom")));
         player1.setName(saveState.getString("playerName"));
         player1.setScore(saveState.getInt("playerScore"));
         player1.setDayToken(saveState.getInt("dayToken"));
         player1.setTimeToken(saveState.getInt("timeToken"));
-        currentRoom = (Room)saveState.get("currentRoom");
+        currentRoom = filterRoom(saveState.getString("currentRoom"));
         scrapyardmiddle.setIsLocked(saveState.getBoolean("isLocked"));
         inventoryRoom.setInventoryPlayer((ArrayList)saveState.get("inventoryPlayer"));
         inventoryRoom.setInventoryRoom((ArrayList)saveState.get("inventoryRoom"));
