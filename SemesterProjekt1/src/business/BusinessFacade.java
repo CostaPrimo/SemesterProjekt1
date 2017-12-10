@@ -979,59 +979,59 @@ public class BusinessFacade implements IBusiness {
     
     private Item filterItem(String itemName){
         switch(itemName){
-            case "GTX 550ti":
+            case "\"GTX 550ti\"":
                 return JGPU;
-            case "GTX 760":
+            case "\"GTX 760\"":
                 return NGPU;
-            case "GTX 960":
+            case "\"GTX 960\"":
                 return RGPU;
-            case "GTX 1070":
+            case "\"GTX 1070\"":
                 return EGPU;
-            case "GTX Titan XP":
+            case "\"GTX Titan XP\"":
                 return LGPU;
-            case "DDR 512 MB":
+            case "\"DDR 512 MB\"":
                 return JRAM;
-            case "DDR2 2 GB":
+            case "\"DDR2 2 GB\"":
                 return NRAM;
-            case "DDR3 4 GB":
+            case "\"DDR3 4 GB\"":
                 return RRAM;
-            case "DDR3 8 GB":
+            case "\"DDR3 8 GB\"":
                 return ERAM;
-            case "DDR4 16 GB":
+            case "\"DDR4 16 GB\"":
                 return LRAM;
-            case "i3 1.8 GHz":
+            case "\"i3 1.8 GHz\"":
                 return JCPU;
-            case "i5 2.5 GHz":
+            case "\"i5 2.5 GHz\"":
                 return NCPU;
-            case "i7 3.7 GHz":
+            case "\"i7 3.7 GHz\"":
                 return RCPU;
-            case "Threadripper 4 GHz":
+            case "\"Threadripper 4 GHz\"":
                 return ECPU;
-            case "i9 6 GHz":
+            case "\"i9 6 GHz\"":
                 return LCPU;
-            case "GameMagazine":
+            case "\"GameMagazine\"":
                 return gameMagazine;
-            case "BIG FUCKING STONE!":
+            case "\"BIG FUCKING STONE!\"":
                 return BFS;
-            case "an old scooter":
+            case "\"an old scooter\"":
                 return scooter;
-            case "an empty container":
+            case "\"an empty container\"":
                 return container;
-            case "an old abandoned Blockbuster?":
+            case "\"an old abandoned Blockbuster?\"":
                 return blockbuster;
-            case "a Siemens washing machine":
+            case "\"a Siemens washing machine\"":
                 return washingMachine;
-            case "a fried IBM server (it's still burning)":
+            case "\"a fried IBM server (it's still burning)\"":
                 return IBMserver;
-            case "a pile of scrap":
+            case "\"a pile of scrap\"":
                 return scrap;
-            case "a burnt car":
+            case "\"a burnt car\"":
                 return burntCar;
-            case "ratpoison":
+            case "\"ratpoison\"":
                 return ratPoison;
-            case "crowbar":
+            case "\"crowbar\"":
                 return crowBar;
-            case "MonsterBullBooster":
+            case "\"MonsterBullBooster\"":
                 return monsterBullBooster;
             default:
                 return JRAM;
