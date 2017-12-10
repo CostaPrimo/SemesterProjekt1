@@ -36,7 +36,7 @@ public class Highscore {
             BufferedReader scoreReader = new BufferedReader(loadFile);
             getLine = scoreReader.readLine();
             while (getLine != null){
-                outputLine += getLine;
+                outputLine += getLine+"\n";
                 getLine = scoreReader.readLine();
             }
             scoreReader.close();
