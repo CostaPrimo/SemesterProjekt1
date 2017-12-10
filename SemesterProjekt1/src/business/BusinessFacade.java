@@ -936,7 +936,7 @@ public class BusinessFacade implements IBusiness {
         .put("RatRoom", rat.getCurrentRoom().getName())
         .put("ratIsDead", rat.getIsDead())
         .put("isLocked", scrapyardmiddle.getIsLocked())
-        .put("invetoryHouse", inventoryRoom.getInventoryHouse())
+        .put("inventoryHouse", inventoryRoom.getInventoryHouse())
         .put("inventoryRoom", inventoryRoom.getInventoryRoom())
         .put("inventoryPlayer", inventoryRoom.getInventoryPlayer())
     .put("inventoryComputer", inventoryRoom.getInventoryComputer());
@@ -1042,6 +1042,7 @@ public class BusinessFacade implements IBusiness {
     @Override
     public void loadGame(){
         saveState = (JSONObject)data.loadGame().get("savestate");
+        ArrayList<Item> placeHolder = new ArrayList<Item>();
         rat.setIsDead(saveState.getBoolean("ratIsDead"));
         rat.setCurrentRoom(filterRoom(saveState.getString("RatRoom")));
         player1.setName(saveState.getString("playerName"));
@@ -1050,10 +1051,38 @@ public class BusinessFacade implements IBusiness {
         player1.setTimeToken(saveState.getInt("timeToken"));
         currentRoom = filterRoom(saveState.getString("currentRoom"));
         scrapyardmiddle.setIsLocked(saveState.getBoolean("isLocked"));
-        inventoryRoom.setInventoryPlayer((ArrayList)saveState.get("inventoryPlayer"));
-        inventoryRoom.setInventoryRoom((ArrayList)saveState.get("inventoryRoom"));
-        inventoryRoom.setInventoryHouse((ArrayList)saveState.get("inventoryHouse"));
-        inventoryRoom.setInventoryComputer((ArrayList)saveState.get("inventoryComputer"));
+        placeHolder.clear();
+        for(int i =0; i<saveState.getJSONArray("inventoryPlayer").length();i++){
+            String[]cuts = saveState.getJSONArray("inventoryPlayer").get(i).toString().split(",");
+            String[]name = cuts[1].split(":");
+            System.out.println(name[1]);
+            placeHolder.add(filterItem(name[1]));
+        }
+        inventoryRoom.loadInventoryPlayer(placeHolder);
+        placeHolder.clear();
+        for(int i =0; i<saveState.getJSONArray("inventoryRoom").length();i++){
+            String[]cuts = saveState.getJSONArray("inventoryRoom").get(i).toString().split(",");
+            String[]name = cuts[1].split(":");
+            System.out.println(name[1]);
+            placeHolder.add(filterItem(name[1]));
+        }
+        inventoryRoom.loadInventoryRoom(placeHolder);
+        placeHolder.clear();
+        for(int i =0; i<saveState.getJSONArray("inventoryHouse").length();i++){
+            String[]cuts = saveState.getJSONArray("inventoryHouse").get(i).toString().split(",");
+            String[]name = cuts[1].split(":");
+            System.out.println(name[1]);
+            placeHolder.add(filterItem(name[1]));
+        }
+        inventoryRoom.loadInventoryHouse(placeHolder);
+        placeHolder.clear();
+        for(int i =0; i<saveState.getJSONArray("inventoryComputer").length();i++){
+            String[]cuts = saveState.getJSONArray("inventoryComputer").get(i).toString().split(",");
+            String[]name = cuts[1].split(":");
+            System.out.println(name[1]);
+            placeHolder.add(filterItem(name[1]));
+        }
+        inventoryRoom.loadInventoryComputer(placeHolder);
     }
     
     @Override

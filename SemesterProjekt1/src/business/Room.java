@@ -87,7 +87,7 @@ public class Room
      * @return the name
      */
     public String getName() {
-        return name;
+        return this.name;
     }
     
 }

@@ -359,23 +359,31 @@ public class Inventory {
         return inventoryHouse;
     }
     
-    public void setInventoryRoom(ArrayList c){
-        inventoryRoom.clear();
+    public void loadInventoryRoom(ArrayList c){
+        if (!inventoryRoom.isEmpty()){
+            inventoryRoom.clear();
+        }
         inventoryRoom.addAll(c);
     }
     
-    public void setInventoryPlayer(ArrayList c){
-        inventoryPlayer.clear();
+    public void loadInventoryPlayer(ArrayList c){
+        if (!inventoryPlayer.isEmpty()){
+            inventoryPlayer.clear();
+        }
         inventoryPlayer.addAll(c);
     }
     
-    public void setInventoryHouse(ArrayList c){
-        inventoryHouse.clear();
+    public void loadInventoryHouse(ArrayList c){
+        if (!inventoryHouse.isEmpty()){
+            inventoryHouse.clear();
+        }
         inventoryHouse.addAll(c);
     }
     
-    public void setInventoryComputer(ArrayList c){
-        inventoryComputer.clear();
+    public void loadInventoryComputer(ArrayList c){
+        if (!inventoryComputer.isEmpty()){
+            inventoryComputer.clear();
+        }
         inventoryComputer.addAll(c);
     }
     
