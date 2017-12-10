@@ -21,7 +21,7 @@ public interface IBusiness {
     String buyItem(int itemNumber);
     String dropItem(int itemNumber);
     String goRoom(String direction2);
-    String loadHighscore();
+    String[] loadHighscore();
     void inspectRoom();
     void loadGame();
     void printHelp();

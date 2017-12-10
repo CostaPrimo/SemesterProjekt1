@@ -24,6 +24,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
@@ -222,6 +223,30 @@ public class SemesterProjektGUIController implements Initializable {
     private Button ChoiceCButton;
     @FXML
     private Button ChoiceDButton;
+    @FXML
+    private Button HighscoresButton;
+    @FXML
+    private GridPane HighscorePane;
+    @FXML
+    private Label HighscoreLabel9;
+    @FXML
+    private Label HighscoreLabel8;
+    @FXML
+    private Label HighscoreLabel7;
+    @FXML
+    private Label HighscoreLabel6;
+    @FXML
+    private Label HighscoreLabel5;
+    @FXML
+    private Label HighscoreLabel4;
+    @FXML
+    private Label HighscoreLabel3;
+    @FXML
+    private Label HighscoreLabel2;
+    @FXML
+    private Label HighscoreLabel1;
+    @FXML
+    private Label HighscoreLabel0;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
@@ -696,6 +721,11 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private void LoadButtonHandler(ActionEvent event) {
         game.loadGame();
+        GoButtonHandler(event);
+        roomInventory.setAll(game.getItemRoom());
+        MenuPane.setVisible(true);
+        MapPane.toFront();
+        IntroPane.setVisible(false);
     }
 
     @FXML
@@ -713,6 +743,21 @@ public class SemesterProjektGUIController implements Initializable {
             game.setChoice('d');
         }
         
+    }
+
+    @FXML
+    private void HighscoresButtonHandler(ActionEvent event) {
+        HighscorePane.toFront();
+        HighscoreLabel0.setText(game.loadHighscore()[0]);
+        HighscoreLabel1.setText(game.loadHighscore()[1]);
+        HighscoreLabel2.setText(game.loadHighscore()[2]);
+        HighscoreLabel3.setText(game.loadHighscore()[3]);
+        HighscoreLabel4.setText(game.loadHighscore()[4]);
+        HighscoreLabel5.setText(game.loadHighscore()[5]);
+        HighscoreLabel6.setText(game.loadHighscore()[6]);
+        HighscoreLabel7.setText(game.loadHighscore()[7]);
+        HighscoreLabel8.setText(game.loadHighscore()[8]);
+        HighscoreLabel9.setText(game.loadHighscore()[9]);
     }
 
         

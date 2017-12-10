@@ -289,65 +289,6 @@ public class BusinessFacade implements IBusiness {
         }
     }
     
-    
-//  Creating a boolean that prints a message when an unknown command occurs
-//    @Override
-//    private boolean processCommand(Command command) {
-//        boolean wantToQuit = false;
-//
-//        CommandWord commandWord = command.getCommandWord();
-//
-//        if (commandWord == CommandWord.UNKNOWN) {
-//            System.out.println("YOU CANT DO THAT \nTRY: ");
-//            parser.showCommands();
-//            return false;
-//        }
-//
-//        if (commandWord == CommandWord.HELP) {
-//            printHelp();
-//        } 
-//        else if (commandWord == CommandWord.GO) {
-//            goRoom(command);
-//        } 
-//        else if (commandWord == CommandWord.QUIT) {
-//            wantToQuit = quit(command);
-//        } 
-//        else if (commandWord == CommandWord.DROP) {
-//            dropItem(command);
-//        } 
-//        else if (commandWord == CommandWord.PICKUP) {
-//            addItem(command);
-//        } 
-//        else if (commandWord == CommandWord.INSPECT) {
-//            inspectRoom(command);
-//        } 
-//        else if (commandWord == CommandWord.STORE) {
-//            storeItems(command);
-//        } 
-//        else if (commandWord == CommandWord.BUILD) {
-//            wantToQuit = buildComputer(command);
-//        } 
-//        else if (commandWord == CommandWord.BUY) {
-//            buyItem(command);
-//        } 
-//        else if (commandWord == CommandWord.SELL){
-//            sellItem(command);
-//        }
-//        else if (commandWord == commandWord.USE){
-//            use(command);
-//        }
-//        else if (commandWord == commandWord.WALLET){
-//            wallet(command);
-//        }
-//        else if (commandWord == commandWord.SLEEP){
-//            sleep(command);
-//        }
-//          
-//        
-//        return wantToQuit;
-//
-//    }
-
     @Override
     public String addItem(int itemNumber) {
         String output = "";
@@ -798,9 +739,11 @@ public class BusinessFacade implements IBusiness {
                 output[5] = ("You lose!");
             }
         }
+        
         else{
         output[0] = "You could not build your PC because you missed some components. You had no computer to bring to the LAN, and you lose";
         }
+        saveHighscore();
         return output;
     }
     @Override
@@ -1091,7 +1034,7 @@ public class BusinessFacade implements IBusiness {
     }
     
     @Override
-    public String loadHighscore(){
+    public String[] loadHighscore(){
         return data.loadHighscore();
     }
 
