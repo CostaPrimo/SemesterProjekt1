@@ -40,6 +40,7 @@ public class Highscore {
                 getLine = scoreReader.readLine();
             }
             scoreReader.close();
+            loadFile.close();
             return outputLine;
         }
         catch(IOException ex){

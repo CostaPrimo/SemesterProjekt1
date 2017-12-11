@@ -837,31 +837,40 @@ public class BusinessFacade implements IBusiness {
     
     
     private String sortScores(Player player){
-        
-        String newEntry = player.getName()+ " " + player.getScore()+"\n";
-        String currentScores = loadHighscore()+newEntry;
+        String newEntry = player.getName() + " " + player.getScore();
+        String currentScores = data.loadHighscore() + newEntry;
         String newScores = "";
         
         String[]scoreEntries = currentScores.split("\n");
+        ArrayList<String> entryNames = new ArrayList<>();
         int[]entryPoints = new int[scoreEntries.length];
         String[]tempArray;
+        String[]tempArray2;
         
         for(int i = 0; i<scoreEntries.length;i++){
             tempArray = scoreEntries[i].split(" ");
+            entryNames.add(tempArray[0]);
             entryPoints[i]= Integer.parseInt(tempArray[1]);
         }
         
         Arrays.sort(entryPoints, 0, entryPoints.length);
         
-        
-        for(int j = 0; j<scoreEntries.length;j++){
-            int k = scoreEntries.length-1;
-            while(k>=0){
-                tempArray = scoreEntries[j].split(" ");
-                if(Integer.parseInt(tempArray[1])== entryPoints[k]){
-                    newScores += scoreEntries[j]+"\n";
-                    k++;
-                    j=0;
+        int k = scoreEntries.length-1;
+        while(k>=0){
+            System.out.println(k);
+            for(int j = 0; j<scoreEntries.length;j++){
+                if(k<0){
+                    break;
+                }
+                tempArray2 = scoreEntries[j].split(" ");
+                System.out.println("checked value "+tempArray2[1]+"\nrequired value "+entryPoints[k]);
+                if(Integer.parseInt(tempArray2[1])== entryPoints[k]){
+                    if(entryNames.contains(tempArray2[0])){
+                        newScores += scoreEntries[j]+"\n";
+                        entryNames.remove(tempArray2[0]);
+                        k--;
+                        j=-1;
+                    }
                 }
             }
         }
@@ -1035,7 +1044,7 @@ public class BusinessFacade implements IBusiness {
     
     @Override
     public String[] loadHighscore(){
-        return data.loadHighscore();
+        return data.loadHighscore().split("\n");
     }
 
     /**

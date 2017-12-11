@@ -55,8 +55,8 @@ public class DataFacade implements IData {
     }
     
     @Override
-    public String[] loadHighscore(){
-        return highscorelist.load().split("\n");
+    public String loadHighscore(){
+        return highscorelist.load();
     }
    
     @Override

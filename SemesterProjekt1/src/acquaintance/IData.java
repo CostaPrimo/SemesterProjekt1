@@ -15,6 +15,6 @@ public interface IData {
     void saveGame(JSONObject object);
     JSONObject loadGame();
     void saveHighscore(String string);
-    String[] loadHighscore();
+    String loadHighscore();
     
 }
