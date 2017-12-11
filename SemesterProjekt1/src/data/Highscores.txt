@@ -1,5 +1,3 @@
 Hobo 6200
+kimte 3700
 test 1300
-der 1250
-der 1250
-test2 1250

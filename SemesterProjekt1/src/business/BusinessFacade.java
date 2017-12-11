@@ -333,7 +333,7 @@ public class BusinessFacade implements IBusiness {
                 if(player1.getScore() >= merchantShop.getItemMerchant(itemNumber).getBuyPrice()){
                     inventoryRoom.addItem(merchantShop.getItemMerchant(itemNumber));
                     player1.setScore(player1.getScore()-merchantShop.getItemMerchant(itemNumber).getBuyPrice());
-                    output = "Item bought";
+                    output = inventoryRoom.getPlayerItem(itemNumber).getName() + " Bought";
                     }
                 else{
                     output = "Need more money";
@@ -348,7 +348,7 @@ public class BusinessFacade implements IBusiness {
                 if(player1.getScore() >= merchantGamestop.getItemMerchant(itemNumber).getBuyPrice()){
                     inventoryRoom.addItem(merchantGamestop.getItemMerchant(itemNumber));
                     player1.setScore(player1.getScore()-merchantGamestop.getItemMerchant(itemNumber).getBuyPrice());
-                    output = "Item bought";
+                    output = inventoryRoom.getPlayerItem(itemNumber).getName() + " Bought";
                 }
                 else{
                     output = "Need more money";

@@ -55,56 +55,57 @@
                               <Font name="System Bold" size="27.0" />
                            </font>
                         </Label>
-                        <Label fx:id="HighscoreLabel0" text="Label" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                        <Label fx:id="HighscoreLabel0" text="1" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <font>
                               <Font size="27.0" />
                            </font>
                         </Label>
-                        <Label fx:id="HighscoreLabel1" text="Label" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                        <Label fx:id="HighscoreLabel1" text="2" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                            <font>
                               <Font size="27.0" />
                            </font>
                         </Label>
-                        <Label fx:id="HighscoreLabel2" text="Label" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                        <Label fx:id="HighscoreLabel2" text="3" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                            <font>
                               <Font size="27.0" />
                            </font>
                         </Label>
-                        <Label fx:id="HighscoreLabel3" text="Label" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                        <Label fx:id="HighscoreLabel3" text="4" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                            <font>
                               <Font size="27.0" />
                            </font>
                         </Label>
-                        <Label fx:id="HighscoreLabel4" text="Label" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                        <Label fx:id="HighscoreLabel4" text="5" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                            <font>
                               <Font size="27.0" />
                            </font>
                         </Label>
-                        <Label fx:id="HighscoreLabel5" text="Label" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                        <Label fx:id="HighscoreLabel5" text="6" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                            <font>
                               <Font size="27.0" />
                            </font>
                         </Label>
-                        <Label fx:id="HighscoreLabel6" text="Label" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                        <Label fx:id="HighscoreLabel6" text="7" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                            <font>
                               <Font size="27.0" />
                            </font>
                         </Label>
-                        <Label fx:id="HighscoreLabel7" text="Label" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                        <Label fx:id="HighscoreLabel7" text="8" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                            <font>
                               <Font size="27.0" />
                            </font>
                         </Label>
-                        <Label fx:id="HighscoreLabel8" text="Label" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                        <Label fx:id="HighscoreLabel8" text="9" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
                            <font>
                               <Font size="27.0" />
                            </font>
                         </Label>
-                        <Label fx:id="HighscoreLabel9" text="Label" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                        <Label fx:id="HighscoreLabel9" text="10" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
                            <font>
                               <Font size="27.0" />
                            </font>
                         </Label>
+                        <Button fx:id="ReturnMenubutton" mnemonicParsing="false" onAction="#ReturnMenuButtonHandler" text="Return to menu" GridPane.halignment="RIGHT" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
                   <Pane fx:id="ValutaManPane" prefHeight="200.0" prefWidth="200.0">

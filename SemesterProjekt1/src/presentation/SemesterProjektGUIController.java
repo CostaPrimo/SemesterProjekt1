@@ -247,6 +247,8 @@ public class SemesterProjektGUIController implements Initializable {
     private Label HighscoreLabel1;
     @FXML
     private Label HighscoreLabel0;
+    @FXML
+    private Button ReturnMenubutton;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
@@ -748,16 +750,42 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private void HighscoresButtonHandler(ActionEvent event) {
         HighscorePane.toFront();
-        HighscoreLabel0.setText(game.loadHighscore()[0]);
-        HighscoreLabel1.setText(game.loadHighscore()[1]);
-        HighscoreLabel2.setText(game.loadHighscore()[2]);
-        HighscoreLabel3.setText(game.loadHighscore()[3]);
-        HighscoreLabel4.setText(game.loadHighscore()[4]);
-        HighscoreLabel5.setText(game.loadHighscore()[5]);
-        HighscoreLabel6.setText(game.loadHighscore()[6]);
-        HighscoreLabel7.setText(game.loadHighscore()[7]);
-        HighscoreLabel8.setText(game.loadHighscore()[8]);
-        HighscoreLabel9.setText(game.loadHighscore()[9]);
+        int i;
+        i = game.loadHighscore().length;
+        String[] output = new String[10];
+        output = game.loadHighscore();
+        HighscoreLabel0.setText(output[0]);
+        if(i >= 2){
+        HighscoreLabel1.setText(output[1]);
+        }
+        if(i>=3){
+        HighscoreLabel2.setText(output[2]);
+        }
+        if(i>=4)
+        HighscoreLabel3.setText(output[3]);
+        if(i>=5){
+        HighscoreLabel4.setText(output[4]);
+        }
+        if(i>=6){
+        HighscoreLabel5.setText(output[5]);
+        }
+        if(i>=7){
+        HighscoreLabel6.setText(output[6]);
+        }
+        if(i>=8){
+        HighscoreLabel7.setText(output[7]);
+        }
+        if(i>=9){
+        HighscoreLabel8.setText(output[8]);
+        }
+        if(i>=10){
+        HighscoreLabel9.setText(output[9]);
+        }
+    }
+
+    @FXML
+    private void ReturnMenuButtonHandler(ActionEvent event) {
+        IntroPane.toFront();
     }
 
         
