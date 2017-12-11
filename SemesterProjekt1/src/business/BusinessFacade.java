@@ -333,7 +333,7 @@ public class BusinessFacade implements IBusiness {
                 if(player1.getScore() >= merchantShop.getItemMerchant(itemNumber).getBuyPrice()){
                     inventoryRoom.addItem(merchantShop.getItemMerchant(itemNumber));
                     player1.setScore(player1.getScore()-merchantShop.getItemMerchant(itemNumber).getBuyPrice());
-                    output = inventoryRoom.getPlayerItem(itemNumber).getName() + " Bought";
+                    output = merchantShop.getItemMerchant(itemNumber).getName() + " Bought";
                     }
                 else{
                     output = "Need more money";
@@ -348,7 +348,7 @@ public class BusinessFacade implements IBusiness {
                 if(player1.getScore() >= merchantGamestop.getItemMerchant(itemNumber).getBuyPrice()){
                     inventoryRoom.addItem(merchantGamestop.getItemMerchant(itemNumber));
                     player1.setScore(player1.getScore()-merchantGamestop.getItemMerchant(itemNumber).getBuyPrice());
-                    output = inventoryRoom.getPlayerItem(itemNumber).getName() + " Bought";
+                    output = merchantGamestop.getItemMerchant(itemNumber).getName() + " Bought";
                 }
                 else{
                     output = "Need more money";
@@ -377,6 +377,7 @@ public class BusinessFacade implements IBusiness {
         //creating a string named direction which is then used to define nextRoom with the getExit method
         String direction = direction2;
         String output = "";
+        String [] questionOutput;
         Room nextRoom = getCurrentRoom().getExit(direction);
 
         //If there isnt an exit defined for the given direction he program will let you know
@@ -422,42 +423,10 @@ public class BusinessFacade implements IBusiness {
                     if(timeToBuild() == false){
                     player1.setTimeToken(player1.getTimeToken()-1);
                     }
-                    if(player1.getDayToken() == 5 && valutaMan.isEncountered() == 0){
-                        valutaMan.setIsActive(true);
-                        if(getCurrentRoom() == valutaMan.getCurrentRoom()){
+                    if(getCurrentRoom() == valutaMan.getCurrentRoom() && questionTime()){
                           output += valutaMan.encounterMessage();
-                          char choice;
-                          choice = getChoice();
-                          if (valutaMan.getQuestion(player1.getDayToken(), choice)){
-                              output += "Ludoman is proud of you and doubles your money";
-                              player1.setScore(player1.getScore()*2);
-                          }
-                          else{
-                              output += "Ludoman is dissapointed and steals half your money";
-                              player1.setScore(player1.getScore()/2);
-                          }
-                            valutaMan.setEncountered(1);
-                        }
                     }
-                    if(player1.getDayToken() == 2 && valutaMan.isEncountered() == 1){
-                        valutaMan.setIsActive(true);
-                        if(getCurrentRoom() == valutaMan.getCurrentRoom()){
-                          output += valutaMan.encounterMessage();
-                            getChoice();
-                          if (valutaMan.getQuestion(player1.getDayToken(), getChoice())){
-                              output += "Ludoman is proud of you and doubles your money";
-                              player1.setScore(player1.getScore()*2);
-                          }
-                          else{
-                              output += "Ludoman is dissapointed and steals half your money";
-                              player1.setScore(player1.getScore()/2);
-                          }
-                            valutaMan.setEncountered(2);
-                        }
-                    }
-                    else{
-                        //valutaMan.setIsActive(false);
-                    }
+                    
                     System.out.println(player1.getTimeToken());
                     if (rat.getIsDead()!=true){
                         output += ratMove();
@@ -766,6 +735,7 @@ public class BusinessFacade implements IBusiness {
             return false;
         }
     }
+
     
     
 
@@ -1065,5 +1035,63 @@ public class BusinessFacade implements IBusiness {
     @Override
     public boolean getIsActive(){
         return valutaMan.getIsActive();
+    }
+    @Override
+    public String[] printQuestion(){
+        return valutaMan.printQuestion(getDayToken());
+    }
+    @Override
+    public char questionChoice(char qChoice){
+        return qChoice;
+    }
+    @Override
+    public boolean questionTime(){
+        if (valutaMan.getIsActive() && (getDayToken() == 5 && valutaMan.getEncountered() == 0)){
+            return true;
+        }
+        
+        if (valutaMan.getIsActive() && (getDayToken() == 2 && (valutaMan.getEncountered() == 0 || valutaMan.getEncountered() == 1))){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    @Override
+    public String answerQuestion(char choice){
+        String output = "";
+        if(player1.getDayToken() == 5 && valutaMan.getEncountered() == 0){
+            valutaMan.setIsActive(true);
+            if(getCurrentRoom() == valutaMan.getCurrentRoom()){
+                if (valutaMan.getQuestion(player1.getDayToken(), choice)){
+                    output += "Ludoman is proud of you and doubles your money";
+                    player1.setScore(player1.getScore()*2);
+                }
+                    else{
+                        output += "Ludoman is dissapointed and steals half your money";
+                        player1.setScore(player1.getScore()/2);
+                    }
+                valutaMan.setEncountered(1);
+            }
+         }
+                    
+                    if(player1.getDayToken() == 2 && (valutaMan.getEncountered() == 1 || valutaMan.getEncountered() == 0)){
+                        valutaMan.setIsActive(true);
+                        if(getCurrentRoom() == valutaMan.getCurrentRoom()){
+                          if (valutaMan.getQuestion(player1.getDayToken(), choice)){
+                              output += "Ludoman is proud of you and doubles your money";
+                              player1.setScore(player1.getScore()*2);
+                          }
+                          else{
+                              output += "Ludoman is dissapointed and steals half your money";
+                              player1.setScore(player1.getScore()/2);
+                          }
+                            valutaMan.setEncountered(2);
+                        }
+                    }
+                    else{
+                       // valutaMan.setIsActive(false);
+                    }
+                    return output;
     }
 }

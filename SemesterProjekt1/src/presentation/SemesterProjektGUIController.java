@@ -270,6 +270,7 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private void GoButtonHandler(ActionEvent event) {
         String output = "";
+        String[] questionOutput;
         GoNorthButton.setDisable(false);
         GoWestButton.setDisable(false);
         GoEastButton.setDisable(false);
@@ -430,8 +431,20 @@ public class SemesterProjektGUIController implements Initializable {
         }
         else if (game.getCurrentRoom().getShortDescription() == "at the southeast part of the scrapyard"){
             MapView.setImage(mapSouthEastImage);
-            if(game.getIsActive()){
+            if(game.questionTime()){
                 ValutaManPane.toFront();
+                ValutaManPane.setVisible(true);
+                questionOutput = game.printQuestion();
+                TextAreaStatus.appendText(questionOutput[0]);
+                ChoiceAButton.setText(questionOutput[1]);
+                ChoiceBButton.setText(questionOutput[2]);
+                TextAreaStatus.appendText(questionOutput[1]);
+                ChoiceCButton.setText(questionOutput[3]);
+                TextAreaStatus.appendText(questionOutput[2]);
+                ChoiceDButton.setText(questionOutput[4]);
+                TextAreaStatus.appendText(questionOutput[3]);
+                TextAreaStatus.appendText(questionOutput[4]);
+            
             }
             if(game.getRatCurrentRoom().getShortDescription() == "at the east part of the scrapyard"){
                  MinimapView.setImage(minimapScrapyardSouthEastRatNorthImage);
@@ -732,18 +745,25 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void ChoiceButtonHandler(ActionEvent event) {
+        String output = "";
         if(event.getSource() == ChoiceAButton){
-            game.setChoice('a');
+            output = game.answerQuestion('a');
+            TextAreaStatus.appendText(output);
         }
         else if(event.getSource() == ChoiceBButton){
-            game.setChoice('b');
+            output = game.answerQuestion('b');
+            TextAreaStatus.appendText(output);
         }
         else if (event.getSource() == ChoiceCButton){
-            game.setChoice('c');
+            output = game.answerQuestion('c');
+            TextAreaStatus.appendText(output);
         }
         else if (event.getSource() == ChoiceDButton){
-            game.setChoice('d');
+            output = game.answerQuestion('d');
+            TextAreaStatus.appendText(output);
         }
+        ValutaManPane.setVisible(false);
+        MapPane.toFront();
         
     }
 

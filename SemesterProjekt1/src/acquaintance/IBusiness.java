@@ -31,6 +31,7 @@ public interface IBusiness {
     String sleep();
     String storeItems(int itemNumber);
     String use(int itemNumber);
+    String answerQuestion(char choice);
     int wallet();
     int getDayToken();
     int getTimeToken();
@@ -48,10 +49,13 @@ public interface IBusiness {
     String removeparts(int itemNumber);
     void setPlayerName(String playerName);
     String[] buildComputer();
+    String[] printQuestion();
     boolean requiredPartsChecker();
     boolean timeToBuild();
+    boolean questionTime();
     boolean quit();
     char getChoice();
+    char questionChoice(char qChoice);
     void setChoice(char choice);
     boolean getIsActive();
 }

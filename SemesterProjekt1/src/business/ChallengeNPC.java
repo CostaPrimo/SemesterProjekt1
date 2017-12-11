@@ -18,7 +18,7 @@ public class ChallengeNPC extends NPC implements INPC{
     private Challenge challenge;
     public ChallengeNPC(String name, String description, Room room) {
         super(name, description);
-        isActive = false;
+        isActive = true;
         currentRoom = room;
         challenge = new Challenge();
         encountered = 0;
@@ -42,6 +42,10 @@ public class ChallengeNPC extends NPC implements INPC{
         return challenge.selectAnswer(i, choice);
         
     }
+    
+    public String[] printQuestion(int i){
+        return challenge.printQuestion(i);
+    }
 
     /**
      * @return the currentRoom
@@ -60,7 +64,7 @@ public class ChallengeNPC extends NPC implements INPC{
     /**
      * @return the encountered
      */
-    public int isEncountered() {
+    public int getEncountered() {
         return encountered;
     }
 
@@ -73,7 +77,8 @@ public class ChallengeNPC extends NPC implements INPC{
 
     @Override
     public String encounterMessage() {
-        return "Win or lose, what do you choose? Time to test your knowledge!\n";
+        return "A stranger approaches you and introduces himself as Ludoman. He then says\n"
+                + "Win or lose, what do you choose? Time to test your knowledge!\n";
     }
 
     /**
