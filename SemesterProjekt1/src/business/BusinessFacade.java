@@ -348,7 +348,7 @@ public class BusinessFacade implements IBusiness {
                 if(player1.getScore() >= merchantGamestop.getItemMerchant(itemNumber).getBuyPrice()){
                     inventoryRoom.addItem(merchantGamestop.getItemMerchant(itemNumber));
                     player1.setScore(player1.getScore()-merchantGamestop.getItemMerchant(itemNumber).getBuyPrice());
-                    output = merchantGamestop.getItemMerchant(itemNumber).getName() + " Bought";
+                    output = merchantGamestop.getItemMerchant(itemNumber).getName() + " bought";
                 }
                 else{
                     output = "Need more money";
@@ -363,8 +363,8 @@ public class BusinessFacade implements IBusiness {
     @Override
     public String dropItem(int itemNumber) {
         String output;
+        output = inventoryRoom.getInventoryPlayer().get(itemNumber).getName() + " dropped";
         inventoryRoom.dropItem(itemNumber); 
-        output = "Item dropped";
         return output;
     }
         
@@ -640,8 +640,10 @@ public class BusinessFacade implements IBusiness {
                 output = "You drank a MonsterBullBooster and gained more moves!";
                 player1.setTimeToken(player1.getTimeToken()+4);
                 inventoryRoom.dropItem(i);
-
         }
+            else{
+                output = "This item is not usable";
+            }
             return output;
     }
     @Override

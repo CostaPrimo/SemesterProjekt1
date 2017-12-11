@@ -120,7 +120,7 @@
                      <children>
                         <ListView fx:id="PlayerInventoryListview1" layoutX="50.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" />
                         <ListView fx:id="HomeStorageListView" layoutX="350.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" />
-                        <Button fx:id="CloseButton" layoutX="272.0" layoutY="445.0" mnemonicParsing="false" onAction="#CloseButtonHandler" text="Close" />
+                        <Button fx:id="CloseHomeStorageButton" layoutX="272.0" layoutY="445.0" mnemonicParsing="false" onAction="#CloseButtonHandler" text="Close" />
                         <Button fx:id="AddToHomeButton" layoutX="69.0" layoutY="379.0" mnemonicParsing="false" onAction="#AddToHomeButtonHandler" text="Add to home storage" />
                         <Button fx:id="AddToPlayerInventoryButton" layoutX="362.0" layoutY="379.0" mnemonicParsing="false" onAction="#AddToPlayerInventoryButtonHandler" text="Add to player inventory" />
                      </children>
@@ -140,7 +140,7 @@
                         <ListView fx:id="RoomInventoryListview" layoutX="50.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" />
                         <Button fx:id="PickupButton" layoutX="138.0" layoutY="427.0" mnemonicParsing="false" onAction="#PickupButtonHandler" text="Pick up" />
                         <Button fx:id="DropButton" layoutX="401.0" layoutY="427.0" mnemonicParsing="false" onAction="#DropButtonHandler" text="Drop" />
-                        <Button fx:id="CloseButton" layoutX="272.0" layoutY="427.0" mnemonicParsing="false" onAction="#CloseButtonHandler" text="Close" />
+                        <Button fx:id="CloseInspectButton" layoutX="272.0" layoutY="427.0" mnemonicParsing="false" onAction="#CloseButtonHandler" text="Close" />
                      </children>
                   </Pane>
                   <Pane fx:id="HomePane" prefHeight="200.0" prefWidth="200.0">
@@ -156,7 +156,7 @@
                   <Pane fx:id="InventoryPane" prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <ListView fx:id="PlayerInventoryListview" layoutX="200.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" />
-                        <Button fx:id="CloseButton" layoutX="272.0" layoutY="398.0" mnemonicParsing="false" onAction="#CloseButtonHandler" text="Close" />
+                        <Button fx:id="CloseInventoryButton" layoutX="272.0" layoutY="398.0" mnemonicParsing="false" onAction="#CloseButtonHandler" text="Close" />
                         <Button fx:id="UseButton" layoutX="178.0" layoutY="398.0" mnemonicParsing="false" onAction="#UseButtonHandler" text="Use" />
                         <Button fx:id="DropButton" layoutX="373.0" layoutY="398.0" mnemonicParsing="false" onAction="#DropButtonHandler" text="Drop" />
                      </children>
@@ -178,34 +178,35 @@
                      <children>
                         <ImageView fx:id="OutroScreen" fitHeight="602.0" fitWidth="913.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/OutrOPic.jpg" />
+                              <Image url="@images/IntroPaneRS.jpeg" />
                            </image>
                         </ImageView>
-                        <Label fx:id="Item1BuildPCLabel" layoutX="407.0" layoutY="90.0" text="Item 1">
+                        <Label fx:id="Item1BuildPCLabel" layoutX="347.0" layoutY="89.0" text="Item 1" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="Item2BuildPCLabel" layoutX="407.0" layoutY="214.0" text="Item 2">
+                        <Label fx:id="Item2BuildPCLabel" layoutX="347.0" layoutY="188.0" text="Item 2" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="Item3BuildPCLabel" layoutX="407.0" layoutY="331.0" text="Item 3">
+                        <Label fx:id="Item3BuildPCLabel" layoutX="347.0" layoutY="280.0" text="Item 3" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="TotalScoreBuildPCLabel" layoutX="369.0" layoutY="414.0" text="Total Score">
+                        <Label fx:id="TotalScoreBuildPCLabel" layoutX="347.0" layoutY="373.0" text="Total Score" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="WinOrLoseBuildPCLabel" layoutX="371.0" layoutY="516.0" text="WinOrLose">
+                        <Label fx:id="WinOrLoseBuildPCLabel" layoutX="347.0" layoutY="423.0" text="WinOrLose" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
+                        <Button fx:id="QuitGameButton" layoutX="349.0" layoutY="495.0" mnemonicParsing="false" onAction="#QuitButtonHandler" text="Quit Game" />
                      </children>
                   </Pane>
                   <Pane fx:id="IntroPane" prefHeight="602.0" prefWidth="907.0">
@@ -223,7 +224,7 @@
                               <Font size="20.0" />
                            </font>
                         </Button>
-                        <Button layoutX="393.0" layoutY="290.0" mnemonicParsing="false" onAction="#LoadButtonHandler" text="Load game">
+                        <Button fx:id="LoadGameButton" layoutX="393.0" layoutY="290.0" mnemonicParsing="false" onAction="#LoadButtonHandler" text="Load game">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -253,7 +254,7 @@
                     </menus>
                   </MenuBar>
                   <Button fx:id="InventoryButton" layoutX="216.0" layoutY="470.0" mnemonicParsing="false" onAction="#InventoryButtonHandler" text="Inventory" />
-                  <Button fx:id="InspectButton" layoutX="25.0" layoutY="470.0" mnemonicParsing="false" onAction="#InspectButtonHandler" text="Inspect" />
+                  <Button fx:id="InspectButton" layoutX="25.0" layoutY="470.0" mnemonicParsing="false" onAction="#InspectButtonHandler" text="Inspect" visible="false" />
                   <Label fx:id="MoneyLabel" layoutY="6.0" text="Money" />
                   <TextArea fx:id="TextAreaStatus" editable="false" layoutX="57.0" layoutY="210.0" prefHeight="246.0" prefWidth="200.0" wrapText="true" />
                   <ImageView fx:id="MinimapView" fitHeight="170.0" fitWidth="160.0" layoutX="77.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
