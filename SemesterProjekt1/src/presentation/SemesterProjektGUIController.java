@@ -677,10 +677,15 @@ public class SemesterProjektGUIController implements Initializable {
         TextAreaStatus.clear();
         String output;
         int i= TotalInventoryListView.getSelectionModel().getSelectedIndex();
+        if(!TotalInventoryListView.getSelectionModel().isEmpty()){
         output = game.addParts(i);
         TextAreaStatus.appendText(output + "\n");
         inventoryTotal.setAll(game.getInventoryTotal());
         inventoryComputer.setAll(game.getInventoryComputer());
+    }
+        else{
+            TextAreaStatus.appendText("You need to select an item");
+        }
     }
 
     @FXML
@@ -730,18 +735,23 @@ public class SemesterProjektGUIController implements Initializable {
         SleepButton.setVisible(false);
         HomeStorageButton.setVisible(false);
         InventoryButton.setVisible(false);
-        
+        BuildButton.setVisible(false);
     }
 
     @FXML
     private void RemovePartButtonHandler(ActionEvent event) {
         TextAreaStatus.clear();
         String output;
+        if(!BuildComputerListView.getSelectionModel().isEmpty()){
         int i= BuildComputerListView.getSelectionModel().getSelectedIndex();
         output = game.removeparts(i);
         TextAreaStatus.appendText(output + "\n");
         inventoryTotal.setAll(game.getInventoryTotal());
         inventoryComputer.setAll(game.getInventoryComputer());
+    }
+        else{
+            TextAreaStatus.appendText("You need to select an item");
+        }
     }
 
     @FXML

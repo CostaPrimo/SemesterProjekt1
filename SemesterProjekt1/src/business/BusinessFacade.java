@@ -709,12 +709,12 @@ public class BusinessFacade implements IBusiness {
                 output[4] = ("Your computer is not better than Mr.MountainDew's pc");
                 output[5] = ("You lose!");
             }
+            saveHighscore();
         }
         
         else{
-        output[0] = "You could not build your PC because you missed some components. You had no computer to bring to the LAN, and you lose";
+        output[0] = "You could not build your PC because you missed some components.\n You had no computer to bring to the LAN, and you lose";
         }
-        saveHighscore();
         return output;
     }
     @Override
