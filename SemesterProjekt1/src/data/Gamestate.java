@@ -9,13 +9,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 /**
  *
- * @author Jeppe Enevold
+ * @author Gruppe 20
  */
 public class Gamestate {
     
-    public Gamestate(){
-        
-    }
+    public Gamestate(){}
     
     public void save(JSONObject savestate){
         try{
@@ -30,7 +28,6 @@ public class Gamestate {
             .toString());
             writer.close();
             System.out.println("success");
-            
         }
         catch(JSONException ex){
             System.out.println("Error\n"+ex);
@@ -52,10 +49,6 @@ public class Gamestate {
                 getLine = saveReader.readLine();
             }
             saveReader.close();
-            /*
-            this.writer.write(jsontext);
-            this.writer.close();
-            */
         }
         catch(IOException ex){
             System.out.println("Error\n"+ex);

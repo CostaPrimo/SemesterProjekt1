@@ -7,13 +7,11 @@ import java.io.IOException;
 
 /**
  *
- * @author Jeppe Enevold
+ * @author Gruppe 20
  */
 public class Highscore {        
     
-    public Highscore(){
-
-    }
+    public Highscore(){}
     
     public String save(String scores){
         try{
@@ -46,9 +44,7 @@ public class Highscore {
         catch(IOException ex){
             return "Error loading file\nError:\n" + ex;
         }
-        
     }
-
 }
 
 
