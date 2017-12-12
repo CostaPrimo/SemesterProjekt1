@@ -8,10 +8,14 @@ package acquaintance;
 import org.json.JSONObject;
 
 /**
- *
- * @author Kim Christensen
+ * The interface for the data layer
+ * @author Gruppe 20
  */
 public interface IData {
+    /**
+     * All the methods from the data layer to be used in the buisness layer
+     * @see DataFacade for description of methods 
+     */
     void saveGame(JSONObject object);
     JSONObject loadGame();
     void saveHighscore(String string);

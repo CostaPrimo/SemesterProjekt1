@@ -7,14 +7,19 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
+
 /**
- *
+ * The class that manages I/O for the gamesave.json file
  * @author Gruppe 20
  */
 public class Gamestate {
     
     public Gamestate(){}
     
+    /**
+     * The method that saves the gamestate for the game
+     * @param savestate the JSONObject to be saved to the gamesave.json file 
+     */
     public void save(JSONObject savestate){
         try{
             FileWriter writer = new FileWriter("src/data/gamesave.json");
@@ -37,6 +42,10 @@ public class Gamestate {
         }
     }
     
+    /**
+     * The method that loads the saved gamestate from gamesave.json
+     * @return the saved gamestate from gamesave.json
+     */
     public JSONObject load(){
         String getLine="";
         String jsontext = "";

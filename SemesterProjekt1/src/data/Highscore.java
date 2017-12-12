@@ -6,25 +6,30 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- *
+ * The class that manages I/O for the Highscores.txt file
  * @author Gruppe 20
  */
 public class Highscore {        
-    
     public Highscore(){}
     
-    public String save(String scores){
+    /**
+     * The method that saves to Highscores.txt
+     * @param scores a string containing all the scores to be saved to Highscores.txt  
+     */
+    public void save(String scores){
         try{
             FileWriter scoreWriter = new FileWriter("src/data/Highscores.txt");
             scoreWriter.write(scores);
             scoreWriter.close();
-            return "Game Saved";
         }
         catch(IOException ex){
-            return "Save Error\nError: " + ex;
         }
     }
     
+    /**
+    * The method that loads the data in Highscores.txt
+    * @return the saved Highscore 
+    */
     public String load(){
         String getLine;
         String outputLine = "";
