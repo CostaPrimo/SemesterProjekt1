@@ -988,7 +988,7 @@ public class BusinessFacade implements IBusiness {
     
     /**
      * Saves a JSONObject created from the createSaveState method
-     * @see createSaveState
+     * @see BusinessFacade#createSaveState()
      */
     @Override
     public void saveGame(){
@@ -1099,8 +1099,8 @@ public class BusinessFacade implements IBusiness {
      * Takes the JSONObject loaded from the gamesave.json file and updates gamerelated variables to the loaded variables
      * Use set methods for the different variables to place the loaded data
      * Place loaded items into the correct inventories
-     * @see filterItem for convertion of item name to Item object
-     * @see filterRoom for convertion of room name to Room object
+     * @see BusinessFacade#filterItem(java.lang.String) for convertion of item name to Item object
+     * @see BusinessFacade#filterRoom(java.lang.String) for convertion of room name to Room object
      */
     @Override
     public void loadGame(){
@@ -1150,7 +1150,7 @@ public class BusinessFacade implements IBusiness {
     
     /**
      * Saves the highscore for the player using the sortScores method
-     * @see sortScores
+     * @see BusinessFacade#sortScores(business.Player) 
      */
     @Override
     public void saveHighscore(){

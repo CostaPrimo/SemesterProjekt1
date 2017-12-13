@@ -14,8 +14,8 @@ import org.json.JSONObject;
 public interface IData {
     /**
      * All the methods from the data layer to be used in the buisness layer
-     * @see DataFacade for description of methods 
      */
+    
     void saveGame(JSONObject object);
     JSONObject loadGame();
     void saveHighscore(String string);
