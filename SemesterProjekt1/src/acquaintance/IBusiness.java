@@ -54,7 +54,5 @@ public interface IBusiness {
     boolean timeToBuild();
     boolean questionTime();
     char getChoice();
-    char questionChoice(char qChoice);
-    void setChoice(char choice);
     boolean getIsActive();
 }

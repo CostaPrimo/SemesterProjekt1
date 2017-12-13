@@ -12,11 +12,11 @@ import org.json.JSONObject;
 
 public class BusinessFacade implements IBusiness {
     private IData data;
-    @Override
     /**
-    * @param dataLayer This is the parameter used in the method.
-    * Injecting our datalayer so it can be used in this class to communicate with the datalayer.
-    */
+     * Injecting our datalayer so it can be used in this class to communicate with the datalayer.
+     * @param dataLayer This is the parameter used in the method. 
+     */
+    @Override
     public void injectData(IData dataLayer) {
         data = dataLayer;
     }
@@ -824,11 +824,11 @@ public class BusinessFacade implements IBusiness {
         }
         return output;
     }
-    @Override
     /**
      * This method is used to make sure the player when forced to build actually can build.
-     @return boolean
+     * @return boolean
      */
+    @Override
     public boolean requiredPartsChecker(){
         if(inventoryRoom.getInventoryTotal().contains(RAM) && inventoryRoom.getInventoryTotal().contains(GPU) && inventoryRoom.getInventoryTotal().contains(CPU) ){
             return true;
@@ -839,7 +839,7 @@ public class BusinessFacade implements IBusiness {
     }
    /**
     * This method checks if it is time to build. If that is the case, the player will get teleported to his/her home.
-    * @return 
+    * @return boolean
     */
     @Override
     public boolean timeToBuild(){
@@ -1174,27 +1174,21 @@ public class BusinessFacade implements IBusiness {
         return choice;
     }
 
-    /**
-     * @param choice the choice to set
-     */
-    @Override
-    public void setChoice(char choice) {
-        this.choice = choice;
-    }
     @Override
     public boolean getIsActive(){
         return valutaMan.getIsActive();
     }
+    /**
+     * This method is used to print the questions in the presentation layer.
+     * @return String[] This is used to print the questions in the presentation layer.
+     */
     @Override
     public String[] printQuestion(){
         return valutaMan.printQuestion(getDayToken());
     }
-    @Override
-    public char questionChoice(char qChoice){
-        return qChoice;
-    }
     /**
-     * @return boolean This returns true or false depending on whether conditions are met.
+     * This method returns true or false depending on whether conditions are met.
+     * @return boolean
      */
     @Override
     public boolean questionTime(){
