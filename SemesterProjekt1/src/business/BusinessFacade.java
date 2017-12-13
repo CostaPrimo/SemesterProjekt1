@@ -919,9 +919,9 @@ public class BusinessFacade implements IBusiness {
     }
     
     /**
-     * 
-     * @param player This takes the current 
-     * @return String This returns a string used in the presentation layer to create output.
+     * This method sort the entries on the highscore list in descending order
+     * @param player The entry to be added to the highscore list
+     * @return a string containing the sorted highscores with the new entry added.
      */
     private String sortScores(Player player){
         String newEntry = player.getName() + " " + player.getScore();
@@ -965,6 +965,10 @@ public class BusinessFacade implements IBusiness {
         return newScores;
     }
     
+    /**
+     * Creates a JSONObject that represents the current state of the game
+     * @return the created JSONObject
+     */
     private JSONObject createSaveState(){
     this.saveState
         .put("playerName", player1.getName())
@@ -982,11 +986,20 @@ public class BusinessFacade implements IBusiness {
     return saveState;
     }
     
+    /**
+     * Saves a JSONObject created from the createSaveState method
+     * @see createSaveState
+     */
     @Override
     public void saveGame(){
         data.saveGame(createSaveState());
     }
     
+    /**
+     * Converts a room name into a Room object
+     * @param roomName name of room to be converted
+     * @return Room object
+     */
     private Room filterRoom(String roomName){
         switch(roomName){
             case "home":
@@ -1016,6 +1029,11 @@ public class BusinessFacade implements IBusiness {
         }
     }
     
+    /**
+     * Converts an item name to an Item object
+     * @param itemName name of item to be converted
+     * @return Item object
+     */
     private Item filterItem(String itemName){
         switch(itemName){
             case "\"GTX 550ti\"":
@@ -1077,7 +1095,13 @@ public class BusinessFacade implements IBusiness {
         }
     }
     
-    
+    /**
+     * Takes the JSONObject loaded from the gamesave.json file and updates gamerelated variables to the loaded variables
+     * Use set methods for the different variables to place the loaded data
+     * Place loaded items into the correct inventories
+     * @see filterItem for convertion of item name to Item object
+     * @see filterRoom for convertion of room name to Room object
+     */
     @Override
     public void loadGame(){
         saveState = (JSONObject)data.loadGame().get("savestate");
@@ -1124,11 +1148,19 @@ public class BusinessFacade implements IBusiness {
         inventoryRoom.loadInventoryComputer(placeHolder);
     }
     
+    /**
+     * Saves the highscore for the player using the sortScores method
+     * @see sortScores
+     */
     @Override
     public void saveHighscore(){
         data.saveHighscore(sortScores(player1));
     }
     
+    /**
+     * Takes the loaded highscores and turn it into a string Array
+     * @return all saved highscores in form of a string array
+     */
     @Override
     public String[] loadHighscore(){
         return data.loadHighscore().split("\n");
