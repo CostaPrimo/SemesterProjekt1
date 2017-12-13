@@ -161,6 +161,17 @@
                         <Button fx:id="DropButton" layoutX="373.0" layoutY="398.0" mnemonicParsing="false" onAction="#DropButtonHandler" text="Drop" />
                      </children>
                   </Pane>
+                  <Pane fx:id="GameMagazinePane" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="MagazineView" fitHeight="416.0" fitWidth="569.0" layoutX="14.0" layoutY="49.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@images/gamemagazine.jpg" />
+                           </image>
+                        </ImageView>
+                        <TextArea fx:id="TextAreaMagazine" layoutX="48.0" layoutY="82.0" prefHeight="366.0" prefWidth="229.0" wrapText="true" />
+                        <Button fx:id="CloseMagazineButton" layoutX="268.0" layoutY="480.0" mnemonicParsing="false" onAction="#CloseButtonHandler" text="Close" />
+                     </children>
+                  </Pane>
                   <Pane fx:id="MapPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0">
                      <children>
                         <ImageView fx:id="MapView" fitHeight="600.0" fitWidth="600.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
@@ -174,7 +185,7 @@
                         <Button fx:id="GoEastButton" layoutX="524.0" layoutY="273.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go East" />
                      </children>
                   </Pane>
-                  <Pane fx:id="OutroPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <Pane fx:id="OutroPane" prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <ImageView fx:id="OutroScreen" fitHeight="602.0" fitWidth="913.0" pickOnBounds="true" preserveRatio="true">
                            <image>

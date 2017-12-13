@@ -105,6 +105,7 @@ public class SemesterProjektGUIController implements Initializable {
     Image minimapScrapyardSouthWestRatNorthImage = new Image(getClass().getResource("images/MiniMap_ScrapyardSouthWestRat2.png").toExternalForm());
     Image minimapScrapyardSouthWestRatEastImage = new Image(getClass().getResource("images/MiniMap_ScrapyardSouthWestRat1.png").toExternalForm());
     Image minimapScrapyardSouthWestRatSouthWestImage = new Image(getClass().getResource("images/MiniMap_ScrapyardSouthWestRat3.png").toExternalForm());
+    Image magazineImage = new Image(getClass().getResource("images/gamemagazine.jpg").toExternalForm());
     
     @FXML
     private Button UseButton;
@@ -253,6 +254,18 @@ public class SemesterProjektGUIController implements Initializable {
     private Button CloseInspectButton;
     @FXML
     private Button CloseInventoryButton;
+    @FXML
+    private Button QuitGameButton;
+    @FXML
+    private Button LoadGameButton;
+    @FXML
+    private Pane GameMagazinePane;
+    @FXML
+    private ImageView MagazineView;
+    @FXML
+    private TextArea TextAreaMagazine;
+    @FXML
+    private Button CloseMagazineButton;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
@@ -509,6 +522,11 @@ public class SemesterProjektGUIController implements Initializable {
             TextAreaStatus.appendText(output + "\n");
         if (game.getCurrentRoom().getShortDescription() == "at the entrance to the scrapyard" && game.getCurrentRoom().getExit("south").getIsLocked() == false){
             MapView.setImage(mapEntranceOpenImage);
+        }
+        if(output.contains("GameMagazine 13.37th. edition ’17.")){
+            TextAreaStatus.clear();
+            TextAreaMagazine.appendText(output);
+            GameMagazinePane.toFront();
         }
         playerInventory.setAll(game.getItemPlayer());
         DayCounterLabel.setText(Integer.toString(game.getDayToken()));

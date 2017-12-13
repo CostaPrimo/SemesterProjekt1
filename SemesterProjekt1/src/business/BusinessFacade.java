@@ -635,20 +635,20 @@ public class BusinessFacade implements IBusiness {
              * Reads the magazine.
              */
             if (useableitem==gameMagazine){
-                System.out.println("Opening the Magazine you read the following:\n");
-                System.out.println("GameMagazine 13.37th. edition ’17. 150 kr.");
-                System.out.println("Rumors of people rushing to the local scrapyard, you won’t believe what they found!!!\n");
-                System.out.println("Reportings of people rushing toward the scrapyard in order to find valuable items, has just been confirmed."
-                        + "\nOld aswell as new computer parts are scattered all over the huge scrapyard just a few minutes away from downtown.\n");
-                System.out.println("According to the people we interviewed, there seems to be a difference in the quality aswell as year produced of the parts."
-                        + "\nSome parts date back to as early as the start of the 90’ies. And some look brand new."
-                        + "\nThe rare part however, as way more rare to find, which means only those who really look well might have a chance of finding a very valuable part.\n");
-                System.out.println("One of the people we interviewed said the following:\n");
-                System.out.println("“Yeah, I just got back from the scrapyard, and oh gees, look at these shiny parts."
-                        + "\nI hit the jackpot, the two new GPU’s should easily be able to run Crysis on the highest settings, and if not, I can just go to the local GameStop and sell the parts I found."
-                        + "\nBeware of the mutant rats though, I noticed a couple of them guarding some of the parts I wanted to pick and saw a poor guy get his WHOLE arm bit off. “\n");
-                System.out.println("We recommend that everyone who thinks about going scavenging for parts equip themselves with rat poison which can be bought in Ali’s shop.");
-                System.out.println("However, reportings say that the police has locked the scrapyard to keep scavengers away. Proceed with caution");
+                output = "GameMagazine 13.37th. edition ’17.\n\n" +
+                "Rumors of people rushing to the local scrapyard, you won’t believe what they found!!!\n" +
+                "Reportings of people rushing toward the scrapyard in order to find valuable items, has just been confirmed." +
+                "\nOld aswell as new computer parts are scattered all over the huge scrapyard just a few minutes away from downtown.\n" +
+                "According to the people we interviewed, there seems to be a difference in the quality aswell as year produced of the parts." +
+                "\nSome parts date back to as early as the start of the 90’ies. And some look brand new." +
+                "\nThe rare part however, as way more rare to find, which means only those who really look well might have a chance of finding a very valuable part.\n" +
+                "One of the people we interviewed said the following:\n" +
+                "“Yeah, I just got back from the scrapyard, and oh gees, look at these shiny parts." +
+                "\nI hit the jackpot, the two new GPU’s should easily be able to run Crysis on the highest settings, and if not, I can just go to the local GameStop and sell the parts I found." +
+                "\nBeware of the mutant rats though, I noticed a couple of them guarding some of the parts I wanted to pick and saw a poor guy get his WHOLE arm bit off. “\n" +
+                "We recommend that everyone who thinks about going scavenging for parts equip themselves with rat poison which can be bought in Ali’s shop." +
+                "However, reportings say that the police has locked the scrapyard to keep scavengers away. Proceed with caution";
+                return output;
             }
             /**
              * Uses ratpoison if the rat is in the same room as the player. The rat can be killed multiple times.
