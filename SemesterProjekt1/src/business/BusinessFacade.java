@@ -4,18 +4,25 @@ import acquaintance.IBusiness;
 import acquaintance.IData;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Locale; //I need help with using this.
-import javafx.scene.chart.Chart;
-import javafx.scene.control.PopupControl;
-import java.util.Scanner;
 import org.json.JSONObject;
-// Creating public "game" class 
+/**
+* <h1>Business Facade!</h1>
+* @author Gruppe 20
+*/
+
 public class BusinessFacade implements IBusiness {
     private IData data;
     @Override
+    /**
+    * @param dataLayer This is the parameter used in the method.
+    * Injecting our datalayer so it can be used in this class to communicate with the datalayer.
+    */
     public void injectData(IData dataLayer) {
         data = dataLayer;
     }
+    /**
+    * Declaration of variables used in the businessfacade aswell as a single initialization. 
+    */
     private Parser parser;
     private Room currentRoom;
     private Inventory inventoryRoom;
@@ -32,21 +39,19 @@ public class BusinessFacade implements IBusiness {
     Item burntCar, BFS, scrap, container, washingMachine, blockbuster, IBMserver, scooter;
     Room home, downtown, gamestop, merchant, scrapyardentrance, scrapyardmiddle, scrapyardwest, scrapyardeast, scrapyardsouth, scrapyardsoutheast, scrapyardsouthwest;
     ArrayList<Item> junk, normal, rare, epic, legendary, CPU, GPU, RAM;
-    private int scoreToBeat = 9499;
-    private Scanner nameInputTest = new Scanner(System.in);
-    private char choice = 'a';
+    private int scoreToBeat = 7499;
+    private char choice;
 
-    
+    /**
+    * Constructing the BusinessFacade which initializes each code in the methods.
+    */
     public BusinessFacade() {
         createRooms();
         createNPCs();
-        nameInputTest.locale();
-        createPlayerName();
         createPlayer();
         createInventories();
         createItemList();
         createItems();
-        parser = new Parser();
         saveState = new JSONObject();
     }
 
@@ -97,7 +102,9 @@ public class BusinessFacade implements IBusiness {
         crowBar = new Item("crowbar", "normal", 450, 100);
         monsterBullBooster = new Item("MonsterBullBooster", "normal", 400, 120);
         
-
+    /**
+    * Adding the different items to each rarity-tier ArrayList.
+    */
         junk.add(JGPU);
         junk.add(JRAM);
         junk.add(JCPU);
@@ -153,14 +160,16 @@ public class BusinessFacade implements IBusiness {
         RAM.add(ERAM);
         RAM.add(LRAM);
     }
-
+    /**
+    * Creating an inventory object to allow access to inventory methods in this class.
+    */
     private void createInventories() {
-
-        inventoryRoom = new Inventory("nothing"); //Why do we set a default value here?? It broke the game because no rarity room = junk = 3 storage
-
+        inventoryRoom = new Inventory("nothing");
     }
-
-    //Creating a conctructor called "createRoom" where we name all the rooms and give them a description
+    
+    /**
+    * Name all the rooms and give them a description aswell as locked status if that constructor is used.
+    */
     private void createRooms() {
         home = new Room("home", "at your home");
         downtown = new Room("downtown", "at downtown");
@@ -174,20 +183,18 @@ public class BusinessFacade implements IBusiness {
         scrapyardsoutheast = new Room("scrapyardsoutheast", "at the southeast part of the scrapyard");
         scrapyardsouthwest = new Room("scrapyardsouthwest", "at the southwest part of the scrapyard");
 
-//      Setting all the available exits from each of the rooms above
+    /**
+    * Setting the exits for each room.
+    */
         home.setExit("south", downtown);
-
         downtown.setExit("north", home);
         downtown.setExit("east", merchant);
         downtown.setExit("west", gamestop);
         downtown.setExit("south", scrapyardentrance);
-
         merchant.setExit("west", downtown);
         gamestop.setExit("east", downtown);
-
         scrapyardentrance.setExit("north", downtown);
         scrapyardentrance.setExit("south", scrapyardmiddle);
-
         scrapyardeast.setExit("west", scrapyardmiddle);
         scrapyardeast.setExit("south", scrapyardsoutheast);
         scrapyardwest.setExit("south", scrapyardsouthwest);
@@ -203,29 +210,19 @@ public class BusinessFacade implements IBusiness {
         scrapyardmiddle.setExit("south", scrapyardsouth);
         scrapyardmiddle.setExit("east", scrapyardeast);
         scrapyardmiddle.setExit("west", scrapyardwest);
-
         setCurrentRoom(home);
     }
 
-    private void createPlayerName(){
-        System.out.println("Please enter your name");
-        //Playername = nameInputTest.next();
-    }
-    
+    /**
+    * Creating an object of player to be used in this class.
+    */   
     private void createPlayer(){
          player1 = new Player(Playername);
-         System.out.println(player1.getName());
     }
-//  Creating a constructor for the end message using boolean when game is finished
+    /**
+    * Creating a method for a welcome message when starting the game.
+    */
     @Override
-    public void play() {
-        printWelcome();
-        boolean finished = false;
-        System.out.println("Thanks for playing the game");
-    }
-
-    
-//  Creating a method for a welcome message when starting the game and adding in a commands
     public String printWelcome() {
         String output;
         output = "THIS IS THE SCRAPYARD GAME\nA WORLD OF SCRAP, FUN, AND ADVENTURES\n Click the help button if you don't know what to do\n"
@@ -233,6 +230,11 @@ public class BusinessFacade implements IBusiness {
         output += (getCurrentRoom().getLongDescription());
         return output;
     }
+    /**
+    * 
+    * @param command This is the input from the user after a command, for instance GO "north".
+    * @return boolean This returns true or false and is used in the text-based interface during phase 1.
+    */    
     private boolean catchUserInput(Command command){
         char[] charArray = command.getSecondWord().toCharArray();
             
@@ -256,6 +258,10 @@ public class BusinessFacade implements IBusiness {
             return true;
         }
     }
+    /**
+     * This method takes in an inventory for a room, and adds the correct amount and types of items.
+     * @param inventory This parameter is the inventory the method receives and manipulates.
+     */
     private void setRoomRarity(Inventory inventory){
         if (inventory.getRarity() == "junk") {
             for (int i = 0; i < inventory.getMaxStorageRoom(); i++) {
@@ -288,7 +294,11 @@ public class BusinessFacade implements IBusiness {
             }
         }
     }
-    
+    /**
+     * This method makes the player able to pick up an item if certain conditions are met.
+     * @param itemNumber This parameter is called itemNumber and is an int. This is used in the presentation layer and works together with listviews.
+     * @return String This returns a string used in the presentation layer to create output.
+     */
     @Override
     public String addItem(int itemNumber) {
         String output = "";
@@ -324,7 +334,11 @@ public class BusinessFacade implements IBusiness {
         }
         return output;
     }
-    
+    /**
+     * This method makes it possible to buy an item from different shops.
+     * @param itemNumber This parameter is called itemNumber and is an int. This is used in the presentation layer and works together with listviews.
+     * @return String This returns a string used in the presentation layer to create output. 
+     */
     @Override
     public String buyItem(int itemNumber) {
         String output = "";
@@ -360,6 +374,11 @@ public class BusinessFacade implements IBusiness {
         }
         return output;
     }
+    /**
+     * This method drops an item.
+     * @param itemNumber This parameter is called itemNumber and is an int. This is used in the presentation layer and works together with listviews.
+     * @return String This returns a string used in the presentation layer to create output.
+     */
     @Override
     public String dropItem(int itemNumber) {
         String output;
@@ -370,25 +389,38 @@ public class BusinessFacade implements IBusiness {
         
     
     
-    //Creating a method goRoom along with a Command variable named command
+    /**
+     * This method enables the player to walk around in the game. This method also keeps track of various events in the game.
+     * This method also spawns items in the various room each time the player walks from room to room.
+     * This method subtracts one time token each time the player walks.
+     * @param direction2 This parameter decides which direction to go. 
+     * @return String This returns a string used in the presentation layer to create output.
+     */
     @Override
     public String goRoom(String direction2) {
         
-        //creating a string named direction which is then used to define nextRoom with the getExit method
         String direction = direction2;
         String output = "";
         String [] questionOutput;
         Room nextRoom = getCurrentRoom().getExit(direction);
 
-        //If there isnt an exit defined for the given direction he program will let you know
+        /**
+         * Check is the next room exists. If not it will output that.
+         */
         if (nextRoom == null) {
             output = "CANT GO THAT WAY";
-        } //If there is an exit in that given directionn set the CurrentRoom as nextRoom and print out room description
+        } 
+        /**
+         * Checks whether the room is locked. If it is, the player cannot go there.
+         */
         else {
             if(nextRoom.getIsLocked()){
                 output = "This room is locked, you need to break the lock first";
             }
             else{
+                /**
+                 * Checks if the player has run out of time. If true, it will give a punishment.
+                 */
                 if (player1.getTimeToken() <= 0 && timeToBuild()== false){
                     output = "you have no moves left today\nYou wake up at home but you've been robbed half your money ";
                     setCurrentRoom(home);
@@ -400,6 +432,9 @@ public class BusinessFacade implements IBusiness {
                     }
                 }
                 else{
+                    /**
+                     * If the condition below is met. The rat will attack.
+                     */
                     if(rat.getCurrentRoom()==getCurrentRoom() && rat.getIsDead()!=true){
                         output = "The rat attacked you!\n";
                         if(player1.getTimeToken() == 1){
@@ -465,13 +500,11 @@ public class BusinessFacade implements IBusiness {
                     else if (getCurrentRoom().getShortDescription() == "at the merchant") {
                         output+= merchantShop.encounterMessage();
                         output+= "Ali shows you the following items";
-                        //System.out.println(merchantShop.showMerchantInventory());
                     } 
                     else if (getCurrentRoom().getShortDescription() == "at gamestop") {
                         output+= merchantShop.encounterMessage();
                         output+= "Mr. MountainDew: Hey, hows your pc doing? Oh wait... nvm. I broke it\n";
                         output+= "Mr. MountainDew shows you the following items";
-                        //System.out.println(merchantGamestop.showMerchantInventory());
                     } 
                     else {
                         inventoryRoom.emptyRoom();
@@ -482,17 +515,24 @@ public class BusinessFacade implements IBusiness {
         }
         return output;
     }
+    /**
+     * This method shows the rooms currently stored items.
+     */
     @Override
     public void inspectRoom() {
         inventoryRoom.showRoomInventory();
     }
     
-    //Making a method that prints our help messages when using the command "printHelp"
+    /**
+     * Making a method that prints out the help message.
+     */
     public void printHelp() {
-        System.out.println("Please use the following commands:");
-        parser.showCommands();
+        
     }
-
+    /**
+     * This method makes sure the rat moves around and won't leave the scrapyard. 
+     * @return String This returns a string used in the presentation layer to create output.
+     */
     public String ratMove(){
         String output = "";
         String[] temp;
@@ -513,28 +553,34 @@ public class BusinessFacade implements IBusiness {
         }
         return output;
     }
-    
+    /**
+     * This method enables the player to sell an item in the shops only.
+     * @param itemNumber This parameter is called itemNumber and is an int. This is used in the presentation layer and works together with listviews.
+     * @return String This returns a string used in the presentation layer to create output.
+     */
     @Override
     public String sellItem(int itemNumber){
         String output = "";
         if(getCurrentRoom().getShortDescription() == "at gamestop" || getCurrentRoom().getShortDescription() == "at the merchant"){
-            
-                    if(inventoryRoom.getInventoryPlayerSize() >= itemNumber){
-                        player1.setScore(player1.getScore()+ inventoryRoom.getPlayerItem(itemNumber).getSellPrice());
-                        output = inventoryRoom.getPlayerItem(itemNumber).getName() + " sold";
-                        inventoryRoom.dropItem(itemNumber);
-                    }
-                    else{
-                        System.out.println("You do not have that item");
-                    }
-                
-            
+            if(inventoryRoom.getInventoryPlayerSize() >= itemNumber){
+                player1.setScore(player1.getScore()+ inventoryRoom.getPlayerItem(itemNumber).getSellPrice());
+                output = inventoryRoom.getPlayerItem(itemNumber).getName() + " sold";
+                inventoryRoom.dropItem(itemNumber);
+            }
+            else{
+                System.out.println("You do not have that item");
+            }
         }
         else{
             output = "Can't sell here";
         }
         return output;
     }
+    /**
+     * This method allows the player to sleep if at home. One day will pass and the player will get 30 moves.
+     * This method also revives the rat.
+     * @return String This returns a string used in the presentation layer to create output.
+     */
     @Override
     public String sleep(){
         String output = "";
@@ -556,6 +602,11 @@ public class BusinessFacade implements IBusiness {
         }
         return output;
     }
+    /**
+     * This method allows the player to use his/her house to store all the items he/she want.
+     * @param itemNumber This parameter is called itemNumber and is an int. This is used in the presentation layer and works together with listviews.
+     * @return String This returns a string used in the presentation layer to create output.
+     */
     @Override
     public String storeItems(int itemNumber) {
         String output = "";
@@ -568,12 +619,21 @@ public class BusinessFacade implements IBusiness {
         }
         return output;
     }
+    /**
+     * This method allows the player to use specified items. Each item has its own action and conditions.
+     * This method subtracts one time token per use. It also punishes the player if he/she ran out of moves.
+     * @param itemNumber This parameter is called itemNumber and is an int. This is used in the presentation layer and works together with listviews.
+     * @return String This returns a string used in the presentation layer to create output.
+     */
     @Override
     public String use(int itemNumber){
         String output = "";
         int i = itemNumber;
 
             IItem useableitem = inventoryRoom.getPlayerItem(i);
+            /**
+             * Reads the magazine.
+             */
             if (useableitem==gameMagazine){
                 System.out.println("Opening the Magazine you read the following:\n");
                 System.out.println("GameMagazine 13.37th. edition ’17. 150 kr.");
@@ -590,6 +650,9 @@ public class BusinessFacade implements IBusiness {
                 System.out.println("We recommend that everyone who thinks about going scavenging for parts equip themselves with rat poison which can be bought in Ali’s shop.");
                 System.out.println("However, reportings say that the police has locked the scrapyard to keep scavengers away. Proceed with caution");
             }
+            /**
+             * Uses ratpoison if the rat is in the same room as the player. The rat can be killed multiple times.
+             */
             else if (useableitem==ratPoison){
                 if(getCurrentRoom()==rat.getCurrentRoom() && rat.getIsDead()==false){
                     if(player1.getTimeToken() <= 0 ){
@@ -614,6 +677,10 @@ public class BusinessFacade implements IBusiness {
                     output = "There is no rat in this room";
                 }
             }
+            /**
+             * Uses the crowbar if the current room is at the entrance to the scrapyard.
+             * Upon use it unlocks scrapyard middle since it is south from the entrance.
+             */
             else if (useableitem==crowBar){
                 if(getCurrentRoom().getShortDescription() == "at the entrance to the scrapyard"){
                     if(player1.getTimeToken() <= 0){
@@ -636,6 +703,9 @@ public class BusinessFacade implements IBusiness {
                     }
                 }
             }
+            /**
+             * Upon use gives the player 4 extra moves.
+             */
             else if (useableitem==monsterBullBooster){
                 output = "You drank a MonsterBullBooster and gained more moves!";
                 player1.setTimeToken(player1.getTimeToken()+4);
@@ -646,11 +716,20 @@ public class BusinessFacade implements IBusiness {
             }
             return output;
     }
+    /**
+     * Wallet method.
+     * @return int This returns the players current score.
+     */
     @Override
     public int wallet(){
         return this.player1.getScore();
     }
-    
+    /**
+     * This method allows the player to add a part to the computer when building it.
+     * This method demands the items in a specific order.
+     * @param itemNumber This parameter is called itemNumber and is an int. This is used in the presentation layer and works together with listviews.
+     * @return String This returns a string used in the presentation layer to create output.
+     */ 
     @Override
     public String addParts(int itemNumber) {
         int i = itemNumber;
@@ -684,13 +763,41 @@ public class BusinessFacade implements IBusiness {
     }
         return output;
 }
+    /**
+     * This method allows the player to remove parts from the computer. It likewise has to be done in a specific order. 
+     * @param itemNumber This parameter is called itemNumber and is an int. This is used in the presentation layer and works together with listviews.
+     * @return String This returns a string used in the presentation layer to create output.
+     */
     @Override
     public String removeparts(int itemNumber){
-        String output;
+        String output = "";
         int i = itemNumber;
-        output = inventoryRoom.computerRemoveItem(inventoryRoom.getComputerItem(i));
+        if(inventoryRoom.getInventoryComputerSize() == 3){
+            if(RAM.contains(inventoryRoom.getComputerItem(i))){
+                output = inventoryRoom.computerRemoveItem(inventoryRoom.getComputerItem(i));
+            }
+            else{
+                output = "Please remove your RAM first";
+            }
+        }
+        else if(inventoryRoom.getInventoryComputerSize() == 2){
+            if(GPU.contains(inventoryRoom.getComputerItem(i))){
+                output = inventoryRoom.computerRemoveItem(inventoryRoom.getComputerItem(i));
+            }
+            else{
+                output = "Please remove your GPU first";
+            }
+        }
+        else if(inventoryRoom.getInventoryComputerSize() == 1){
+                output = inventoryRoom.computerRemoveItem(inventoryRoom.getComputerItem(i));
+        }
         return output;
     }
+    /**
+     * This method will loop through all the items in the computerInventory and add the together to a score.
+     * This method then evaluates whether thhe player has won or not.
+     * @return String[] This returns a stringarray used for labels in the presentation layer to present score.
+     */
     @Override
     public String[] buildComputer(){
         String[] output = new String[6];
@@ -718,6 +825,10 @@ public class BusinessFacade implements IBusiness {
         return output;
     }
     @Override
+    /**
+     * This method is used to make sure the player when forced to build actually can build.
+     @return boolean
+     */
     public boolean requiredPartsChecker(){
         if(inventoryRoom.getInventoryTotal().contains(RAM) && inventoryRoom.getInventoryTotal().contains(GPU) && inventoryRoom.getInventoryTotal().contains(CPU) ){
             return true;
@@ -726,7 +837,10 @@ public class BusinessFacade implements IBusiness {
             return false;
         }
     }
-   
+   /**
+    * This method checks if it is time to build. If that is the case, the player will get teleported to his/her home.
+    * @return 
+    */
     @Override
     public boolean timeToBuild(){
         if(player1.getDayToken() == 0 && player1.getTimeToken() == 0){
@@ -738,29 +852,22 @@ public class BusinessFacade implements IBusiness {
         }
     }
 
-    
-    
-
-    
-    //Creating a method that return a boolean for quitting the game, the method makes use of a Command variable named command
-    @Override
-    public boolean quit() {
-        return true;
-    }
-
     /**
-     * @return the currentRoom
+     * @return The currentRoom
      */
     public Room getCurrentRoom() {
         return currentRoom;
     }
+    /**
+     * @return Arraylist This returns the ArrayList for the merchant.
+     */
     @Override
     public ArrayList<IItem> getItemMerchant(){
         return merchantShop.getInventoryMerchant();
     }
 
     /**
-     * @param currentRoom the currentRoom to set
+     * @param currentRoom The currentRoom to set
      */
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
@@ -797,6 +904,10 @@ public class BusinessFacade implements IBusiness {
     public int getDayToken(){
         return this.player1.getDayToken();
     }
+    /**
+     * 
+     * @return int This retur
+     */
     @Override
     public int getTimeToken(){
         return this.player1.getTimeToken();
@@ -807,7 +918,11 @@ public class BusinessFacade implements IBusiness {
         this.player1.setName(playerName);
     }
     
-    
+    /**
+     * 
+     * @param player This takes the current 
+     * @return String This returns a string used in the presentation layer to create output.
+     */
     private String sortScores(Player player){
         String newEntry = player.getName() + " " + player.getScore();
         String currentScores = data.loadHighscore() + newEntry;
@@ -1046,6 +1161,9 @@ public class BusinessFacade implements IBusiness {
     public char questionChoice(char qChoice){
         return qChoice;
     }
+    /**
+     * @return boolean This returns true or false depending on whether conditions are met.
+     */
     @Override
     public boolean questionTime(){
         if (valutaMan.getIsActive() && (getDayToken() == 5 && valutaMan.getEncountered() == 0)){
@@ -1059,6 +1177,12 @@ public class BusinessFacade implements IBusiness {
             return false;
         }
     }
+    /**
+     * This method evaluates whether the player answered correctly or not. And punishes or rewards the player accordingly.
+     * This method also keeps track of how many times the player has encountered a specific NPC to balance the game.
+     * @param choice This parameter is the answer the player gave from the presentation layer.
+     * @return String This returns a string used in the presentation layer to create output.
+     */
     @Override
     public String answerQuestion(char choice){
         String output = "";
@@ -1073,7 +1197,7 @@ public class BusinessFacade implements IBusiness {
                         output += "Ludoman is dissapointed and steals half your money";
                         player1.setScore(player1.getScore()/2);
                     }
-                valutaMan.setEncountered(1);
+            valutaMan.setEncountered(1);
             }
          }
                     
@@ -1090,9 +1214,6 @@ public class BusinessFacade implements IBusiness {
                           }
                             valutaMan.setEncountered(2);
                         }
-                    }
-                    else{
-                       // valutaMan.setIsActive(false);
                     }
                     return output;
     }

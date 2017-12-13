@@ -821,6 +821,7 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void NewGameButtonHandler(ActionEvent event) {
+        String output = "";
         MenuPane.setVisible(true);
         GoNorthButton.setDisable(true);
         GoWestButton.setDisable(true);
@@ -828,6 +829,8 @@ public class SemesterProjektGUIController implements Initializable {
         MapPane.toFront();
         IntroPane.setVisible(false);
         game.setPlayerName(PlayerNameTextField.getText());
+        output = game.printWelcome();
+        TextAreaStatus.appendText(output);
     }
 
     @FXML

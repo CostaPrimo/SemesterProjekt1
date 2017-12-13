@@ -15,7 +15,6 @@ import java.util.ArrayList;
  */
 public interface IBusiness {
     void injectData(IData dataLayer);
-    void play();
     //boolean processCommand();
     String addItem(int itemNumber);
     String buyItem(int itemNumber);
@@ -47,13 +46,13 @@ public interface IBusiness {
     ArrayList<IItem> getInventoryHouse();
     String addParts(int itemNumber);
     String removeparts(int itemNumber);
+    String printWelcome();
     void setPlayerName(String playerName);
     String[] buildComputer();
     String[] printQuestion();
     boolean requiredPartsChecker();
     boolean timeToBuild();
     boolean questionTime();
-    boolean quit();
     char getChoice();
     char questionChoice(char qChoice);
     void setChoice(char choice);
