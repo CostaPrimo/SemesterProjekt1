@@ -12,6 +12,11 @@ import org.json.JSONObject;
 
 public class BusinessFacade implements IBusiness {
     private IData data;
+
+    /**
+     *
+     * @param dataLayer
+     */
     @Override
     /**
     * @param dataLayer This is the parameter used in the method.
@@ -221,6 +226,7 @@ public class BusinessFacade implements IBusiness {
     }
     /**
     * Creating a method for a welcome message when starting the game.
+     * @return 
     */
     @Override
     public String printWelcome() {
@@ -824,6 +830,11 @@ public class BusinessFacade implements IBusiness {
         }
         return output;
     }
+
+    /**
+     *
+     * @return
+     */
     @Override
     /**
      * This method is used to make sure the player when forced to build actually can build.
@@ -872,34 +883,74 @@ public class BusinessFacade implements IBusiness {
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
     }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public ArrayList<IItem> getItemPlayer(){
         return inventoryRoom.getInventoryPlayer();
     }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public ArrayList<IItem> getItemGamestop(){
         return merchantGamestop.getInventoryMerchant();
     }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public ArrayList<IItem> getItemRoom(){
         return inventoryRoom.getInventoryRoom();
     }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public ArrayList<IItem> getInventoryTotal(){
         return inventoryRoom.getInventoryTotal();
     }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public ArrayList<IItem> getInventoryComputer(){
         return inventoryRoom.getInventoryComputer();
     }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public ArrayList<IItem> getInventoryHouse(){
         return inventoryRoom.getInventoryHouse();
     }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public Room getRatCurrentRoom(){
         return rat.getCurrentRoom();
     }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public int getDayToken(){
         return this.player1.getDayToken();
@@ -913,6 +964,10 @@ public class BusinessFacade implements IBusiness {
         return this.player1.getTimeToken();
     }
     
+    /**
+     *
+     * @param playerName
+     */
     @Override
     public void setPlayerName(String playerName){
         this.player1.setName(playerName);
@@ -982,6 +1037,9 @@ public class BusinessFacade implements IBusiness {
     return saveState;
     }
     
+    /**
+     *
+     */
     @Override
     public void saveGame(){
         data.saveGame(createSaveState());
@@ -1077,7 +1135,9 @@ public class BusinessFacade implements IBusiness {
         }
     }
     
-    
+    /**
+     *
+     */
     @Override
     public void loadGame(){
         saveState = (JSONObject)data.loadGame().get("savestate");
@@ -1124,11 +1184,18 @@ public class BusinessFacade implements IBusiness {
         inventoryRoom.loadInventoryComputer(placeHolder);
     }
     
+    /**
+     *
+     */
     @Override
     public void saveHighscore(){
         data.saveHighscore(sortScores(player1));
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     public String[] loadHighscore(){
         return data.loadHighscore().split("\n");
@@ -1149,14 +1216,30 @@ public class BusinessFacade implements IBusiness {
     public void setChoice(char choice) {
         this.choice = choice;
     }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean getIsActive(){
         return valutaMan.getIsActive();
     }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public String[] printQuestion(){
         return valutaMan.printQuestion(getDayToken());
     }
+
+    /**
+     *
+     * @param qChoice
+     * @return
+     */
     @Override
     public char questionChoice(char qChoice){
         return qChoice;
