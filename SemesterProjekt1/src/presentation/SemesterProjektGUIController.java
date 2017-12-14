@@ -541,10 +541,14 @@ public class SemesterProjektGUIController implements Initializable {
         TextAreaStatus.clear();
         String output;
         int i= MerchantListViewBuy.getSelectionModel().getSelectedIndex();
+        if(!MerchantListViewBuy.getSelectionModel().isEmpty()){
             output = game.buyItem(i);
             TextAreaStatus.appendText(output + "\n");
             playerInventory.setAll(game.getItemPlayer());
             MoneyLabel.setText("$ " +(Integer.toString(game.wallet())));
+        }
+        else
+            TextAreaStatus.appendText("Please select an item");
     }
 
     @FXML
@@ -590,11 +594,16 @@ public class SemesterProjektGUIController implements Initializable {
     private void SellitemsButtonHandler(ActionEvent event) {
         TextAreaStatus.clear();
         int i= MerchantListViewSell.getSelectionModel().getSelectedIndex();
+        if(!MerchantListViewSell.getSelectionModel().isEmpty()){
         String output;
         output = game.sellItem(i);
         TextAreaStatus.appendText(output + "\n");
         playerInventory.setAll(game.getItemPlayer());
         MoneyLabel.setText("$ " +(Integer.toString(game.wallet())));
+        }
+        else{
+            TextAreaStatus.appendText("You need to select an item");
+        }
     }
 
     @FXML

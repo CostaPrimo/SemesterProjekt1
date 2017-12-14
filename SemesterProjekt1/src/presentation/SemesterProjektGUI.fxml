@@ -185,7 +185,7 @@
                         <Button fx:id="GoEastButton" layoutX="524.0" layoutY="273.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go East" />
                      </children>
                   </Pane>
-                  <Pane fx:id="OutroPane" prefHeight="200.0" prefWidth="200.0">
+                  <Pane fx:id="OutroPane" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <children>
                         <ImageView fx:id="OutroScreen" fitHeight="602.0" fitWidth="913.0" pickOnBounds="true" preserveRatio="true">
                            <image>

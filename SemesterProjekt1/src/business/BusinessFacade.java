@@ -91,7 +91,7 @@ public class BusinessFacade implements IBusiness {
         LCPU = new Item("i9 6 GHz", "legendary", 7000, 2300);
         gameMagazine = new Item("GameMagazine", "normal", 150, 10);
         BFS = new Item("BIG FUCKING STONE!");
-        scooter = new Item("an old scooter");
+        scooter = new Item("an old Dr. Big scooter");
         container = new Item("an empty container");
         blockbuster = new Item("an old abandoned Blockbuster?");
         washingMachine = new Item("a Siemens washing machine");
@@ -810,7 +810,7 @@ public class BusinessFacade implements IBusiness {
             output[3] = ("Your total score is " + player1.getScore());
             if(player1.getScore()>scoreToBeat){
                 output[4] = ("Your computer is better than Mr.MountainDew's PC");
-                output[5] = ("You won the game!");
+                output[5] = ("You won the game! You have finally ascended to godhood");
             }
             else{
                 output[4] = ("Your computer is not better than Mr.MountainDew's pc");
