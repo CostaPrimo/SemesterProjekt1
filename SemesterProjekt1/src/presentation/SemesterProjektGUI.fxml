@@ -226,19 +226,20 @@
                            <image>
                               <Image url="@images/help.png" />
                            </image></ImageView>
-                        <Label fx:id="TutorialLabel" layoutX="379.0" layoutY="68.0" text="Tutorial">
+                        <Label fx:id="TutorialLabel" layoutX="379.0" layoutY="68.0" text="Tutorial" textFill="WHITE">
                            <font>
                               <Font name="Californian FB" size="40.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="TutorialText1" layoutX="96.0" layoutY="159.0" prefHeight="25.0" prefWidth="659.0" text="You move around clicking either Go North/South/East/West" />
-                        <TextField fx:id="TutorialText2" layoutX="96.0" layoutY="289.0" prefHeight="25.0" prefWidth="575.0" text="Everytime you move or use an item you spend energy" />
-                        <TextField fx:id="TutorialText3" layoutX="96.0" layoutY="204.0" prefHeight="25.0" prefWidth="559.0" text="To use items open your inventory, click on the item you wish to use, then click &quot;use&quot;" />
-                        <TextField fx:id="TutorialText4" layoutX="96.0" layoutY="250.0" prefHeight="25.0" prefWidth="719.0" text="To buy items simply click on the prefered item and then click &quot;buy&quot;, same goes for sell except you click &quot;sell&quot; instead of buy" />
-                        <TextField fx:id="TutorialText5" layoutX="96.0" layoutY="329.0" prefHeight="25.0" prefWidth="713.0" text="To store items in your house, go to home click &quot;home storage&quot;, click the item in your inventory you wish to store then click &quot;store&quot;" />
-                        <TextField fx:id="TutorialText6" layoutX="96.0" layoutY="366.0" prefHeight="25.0" prefWidth="721.0" text="To pickup new items click &quot;inspect&quot;, then click the prefered item, then click &quot;pickup&quot;" />
-                        <TextField fx:id="TutorialText7" layoutX="96.0" layoutY="400.0" prefHeight="25.0" prefWidth="721.0" text="For more help checkout the help section" />
-                        <Button fx:id="CloseTutorialButton" layoutX="350.0" layoutY="496.0" mnemonicParsing="false" onAction="#CloseTutorialButtonHandler" text="Close" />
+                        <TextField fx:id="TutorialText1" layoutX="96.0" layoutY="160.0" prefHeight="25.0" prefWidth="344.0" text="You move around clicking either Go North/South/East/West" />
+                        <TextField fx:id="TutorialText2" layoutX="96.0" layoutY="265.0" prefHeight="25.0" prefWidth="306.0" text="Everytime you move or use an item you spend energy" />
+                        <TextField fx:id="TutorialText3" layoutX="96.0" layoutY="195.0" prefHeight="25.0" prefWidth="463.0" text="To use items open your inventory, click on the item you wish to use, then click &quot;use&quot;" />
+                        <TextField fx:id="TutorialText4" layoutX="96.0" layoutY="230.0" prefHeight="25.0" prefWidth="669.0" text="To buy items simply click on the prefered item and then click &quot;buy&quot;, same goes for sell except you click &quot;sell&quot; instead of buy" />
+                        <TextField fx:id="TutorialText5" layoutX="96.0" layoutY="300.0" prefHeight="25.0" prefWidth="713.0" text="To store items in your house, go to home click &quot;home storage&quot;, click the item in your inventory you wish to store then click &quot;store&quot;" />
+                        <TextField fx:id="TutorialText6" layoutX="96.0" layoutY="335.0" prefHeight="25.0" prefWidth="458.0" text="To pickup new items click &quot;inspect&quot;, then click the prefered item, then click &quot;pickup&quot;" />
+                        <TextField fx:id="TutorialText7" layoutX="96.0" layoutY="405.0" prefHeight="25.0" prefWidth="235.0" text="For more help checkout the help section" />
+                        <Button fx:id="CloseTutorialButton" layoutX="441.0" layoutY="498.0" mnemonicParsing="false" onAction="#CloseTutorialButtonHandler" text="Close" />
+                        <TextField layoutX="96.0" layoutY="370.0" prefHeight="25.0" prefWidth="273.0" text="If you get attacked by the rats you loose energy" />
                      </children>
                   </Pane>
                   <Pane fx:id="AboutPane" prefHeight="200.0" prefWidth="200.0">
@@ -247,13 +248,13 @@
                            <image>
                               <Image url="@images/help.png" />
                            </image></ImageView>
-                        <Label fx:id="AboutLabel" layoutX="414.0" layoutY="45.0" text="About">
+                        <Label fx:id="AboutLabel" layoutX="414.0" layoutY="45.0" text="About" textFill="WHITE">
                            <font>
                               <Font name="Californian FB" size="40.0" />
                            </font>
                         </Label>
                         <TextArea fx:id="AboutTextArea" layoutX="300.0" layoutY="130.0" prefHeight="404.0" prefWidth="330.0" />
-                        <Button fx:id="CloseAboutButton" layoutX="439.0" layoutY="555.0" mnemonicParsing="false" onAction="#CloseAboutButtonHandler" text="Close " />
+                        <Button fx:id="CloseAboutButton" layoutX="441.0" layoutY="555.0" mnemonicParsing="false" onAction="#CloseAboutButtonHandler" text="Close " />
                      </children>
                   </Pane>
                   <Pane fx:id="HelpPane" prefHeight="200.0" prefWidth="200.0">
@@ -262,24 +263,24 @@
                            <image>
                               <Image url="@images/help.png" />
                            </image></ImageView>
-                        <Label fx:id="HelpLabel" layoutX="373.0" layoutY="64.0" text="Help">
+                        <Label fx:id="HelpLabel" layoutX="416.0" layoutY="64.0" text="Help" textFill="WHITE">
                            <font>
                               <Font name="Californian FB" size="40.0" />
                            </font>
                         </Label>
-                        <Label fx:id="Hint1Label" layoutX="135.0" layoutY="182.0" text="Hint #1" />
-                        <Label fx:id="Hint2Label" layoutX="135.0" layoutY="222.0" text="Hint #2" />
-                        <Label fx:id="Hint3Label" layoutX="135.0" layoutY="262.0" text="Hint #3" />
-                        <Label fx:id="Hint4Label" layoutX="135.0" layoutY="302.0" text="Hint #4" />
-                        <Label fx:id="Hint5Label" layoutX="135.0" layoutY="342.0" text="Hint #5" />
-                        <Label fx:id="Hint6Label" layoutX="135.0" layoutY="382.0" text="Hint #6" />
+                        <Label fx:id="Hint1Label" layoutX="135.0" layoutY="182.0" text="Hint #1" textFill="WHITE" />
+                        <Label fx:id="Hint2Label" layoutX="135.0" layoutY="222.0" text="Hint #2" textFill="WHITE" />
+                        <Label fx:id="Hint3Label" layoutX="135.0" layoutY="262.0" text="Hint #3" textFill="WHITE" />
+                        <Label fx:id="Hint4Label" layoutX="135.0" layoutY="302.0" text="Hint #4" textFill="WHITE" />
+                        <Label fx:id="Hint5Label" layoutX="135.0" layoutY="342.0" text="Hint #5" textFill="WHITE" />
+                        <Label fx:id="Hint6Label" layoutX="135.0" layoutY="382.0" text="Hint #6" textFill="WHITE" />
                         <TextField fx:id="TextHint1" editable="false" layoutX="207.0" layoutY="178.0" prefHeight="25.0" prefWidth="540.0" text="Watch out for the rats! (bring something to neutralise them)" />
                         <TextField fx:id="TextHint2" editable="false" layoutX="207.0" layoutY="218.0" prefHeight="25.0" prefWidth="540.0" text="Be sure to answer correctly to any strangers questions or it might cost half your fortune!" />
                         <TextField fx:id="TextHint3" editable="false" layoutX="207.0" layoutY="258.0" prefHeight="25.0" prefWidth="540.0" text="Remember you only have 3 slot in your inventory, but your house inventory is unlimited!" />
                         <TextField fx:id="TextHint4" editable="false" layoutX="207.0" layoutY="298.0" prefHeight="25.0" prefWidth="540.0" text="Beating Mr.MountainDew is a though task, and you only have 7 days to do so!" />
                         <TextField fx:id="TextHint5" editable="false" layoutX="207.0" layoutY="338.0" prefHeight="25.0" prefWidth="540.0" text="Be sure to get home before you run out of energy else it will cost you greatly!" />
                         <TextField fx:id="TextHint6" editable="false" layoutX="207.0" layoutY="378.0" prefHeight="25.0" prefWidth="540.0" text="For more help check out the GameMagazine sold in one of the shops!" />
-                        <Button fx:id="CloseHelpButton" layoutX="451.0" layoutY="502.0" mnemonicParsing="false" onAction="#CloseHelpButtonHandler" text="Close" />
+                        <Button fx:id="CloseHelpButton" layoutX="441.0" layoutY="498.0" mnemonicParsing="false" onAction="#CloseHelpButtonHandler" text="Close" />
                      </children>
                   </Pane>
                   <Pane fx:id="IntroPane" prefHeight="602.0" prefWidth="907.0">
