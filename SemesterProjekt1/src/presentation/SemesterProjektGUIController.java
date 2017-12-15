@@ -253,6 +253,60 @@ public class SemesterProjektGUIController implements Initializable {
     private TextArea TextAreaMagazine;
     @FXML
     private Button CloseMagazineButton;
+    @FXML
+    private Pane HelpPane;
+    @FXML
+    private Label HelpLabel;
+    @FXML
+    private Label Hint1Label;
+    @FXML
+    private Label Hint2Label;
+    @FXML
+    private Label Hint3Label;
+    @FXML
+    private Label Hint4Label;
+    @FXML
+    private Label Hint5Label;
+    @FXML
+    private Label Hint6Label;
+    @FXML
+    private TextField TextHint1;
+    @FXML
+    private TextField TextHint2;
+    @FXML
+    private TextField TextHint3;
+    @FXML
+    private TextField TextHint4;
+    @FXML
+    private TextField TextHint5;
+    @FXML
+    private TextField TextHint6;
+    @FXML
+    private Pane TutorialPane;
+    @FXML
+    private Label TutorialLabel;
+    @FXML
+    private TextField TutorialText1;
+    @FXML
+    private TextField TutorialText2;
+    @FXML
+    private TextField TutorialText3;
+    @FXML
+    private TextField TutorialText4;
+    @FXML
+    private TextField TutorialText5;
+    @FXML
+    private TextField TutorialText6;
+    @FXML
+    private TextField TutorialText7;
+    @FXML
+    private Button CloseTutorialButton;
+    @FXML
+    private Pane AboutPane;
+    @FXML
+    private Label AboutLabel;
+    @FXML
+    private TextArea AboutTextArea;
     /**
      * This method initializes and assigns observablelists to listviews.
      * This method also gets an instance of the business class with UI.
