@@ -94,6 +94,11 @@ public class SemesterProjektGUIController implements Initializable {
     Image minimapScrapyardSouthWestRatEastImage = new Image(getClass().getResource("images/MiniMap_ScrapyardSouthWestRat1.png").toExternalForm());
     Image minimapScrapyardSouthWestRatSouthWestImage = new Image(getClass().getResource("images/MiniMap_ScrapyardSouthWestRat3.png").toExternalForm());
     Image magazineImage = new Image(getClass().getResource("images/gamemagazine.jpg").toExternalForm());
+    Image PcScoreJunk = new Image(getClass().getResource("images/junk.png").toExternalForm());
+    Image PcScoreNormal = new Image(getClass().getResource("images/normal.png").toExternalForm());
+    Image PcScoreRare = new Image(getClass().getResource("images/rare.png").toExternalForm());
+    Image PcScoreEpic = new Image(getClass().getResource("images/epic.png").toExternalForm());
+    Image PcScoreLegendary = new Image(getClass().getResource("images/legendary.png").toExternalForm());
     @FXML
     private Button UseButton;
     @FXML
@@ -841,6 +846,21 @@ public class SemesterProjektGUIController implements Initializable {
             Item3BuildPCLabel.setVisible(false);
             TotalScoreBuildPCLabel.setVisible(false);
             WinOrLoseBuildPCLabel.setVisible(false);
+        }
+         if(game.wallet()<1600){
+            OutroScreen.setImage(PcScoreJunk);
+        }
+        else if(game.wallet()<3000){
+            OutroScreen.setImage(PcScoreNormal);
+        }
+        else if(game.wallet()<7500){
+            OutroScreen.setImage(PcScoreRare);
+        }
+        else if(game.wallet()<12500){
+            OutroScreen.setImage(PcScoreEpic);
+        }
+        else if(game.wallet()>=12500){
+            OutroScreen.setImage(PcScoreLegendary);
         }
     }
     /**

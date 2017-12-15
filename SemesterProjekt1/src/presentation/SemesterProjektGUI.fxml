@@ -313,7 +313,7 @@
                   </Pane>
                </children>
             </StackPane>
-            <Pane fx:id="MenuPane" prefHeight="602.0" prefWidth="388.0" GridPane.columnIndex="1">
+            <Pane fx:id="MenuPane" prefHeight="602.0" prefWidth="388.0" visible="false" GridPane.columnIndex="1">
                <children>
                   <MenuBar layoutX="234.0">
                     <menus>
