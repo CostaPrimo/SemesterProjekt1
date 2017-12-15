@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package acquaintance;
 
 /**
- *
- * @author Kim
+ *<h1>INPC Interface!</h1>
+ * @author Gruppe 20
+ * This will be an interface used for NPC's which has to implement this method below if implemented.
  */
 public interface INPC {
     

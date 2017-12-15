@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentation;
 import acquaintance.IBusiness;
 import acquaintance.IItem;
-import acquaintance.IPlayer;
-import business.Rat;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,9 +21,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 /**
- * FXML Controller class
- *
- * @author Kim Christensen
+ * <h1>FXML Controller class!</h1>
+ * @author Gruppe 20
  */
 public class SemesterProjektGUIController implements Initializable {
     @FXML
@@ -55,10 +46,8 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private Label MoneyLabel;
     private IBusiness game;
-    
-   // private ObservableList<Item> itemName;
     /**
-     * Initializes the controller class.
+     * Initializes the controller image objects
      */
     Image mapHomeImage = new Image(getClass().getResource("images/home ms.png").toExternalForm());
     Image mapDowntoImage = new Image(getClass().getResource("images/downtown us.png").toExternalForm());
@@ -73,7 +62,6 @@ public class SemesterProjektGUIController implements Initializable {
     Image mapNorthWestImage = new Image(getClass().getResource("images/yard northvest ms.png").toExternalForm());
     Image mapSouthEastImage = new Image(getClass().getResource("images/yard southeast ms.png").toExternalForm());
     Image mapSouthWestImage = new Image(getClass().getResource("images/yard southvest ms.png").toExternalForm());
-    
     Image minimapHomeImage = new Image(getClass().getResource("images/MiniMap_Home.png").toExternalForm());
     Image minimapDowntownImage = new Image(getClass().getResource("images/MiniMap_DownTown.png").toExternalForm());
     Image minimapGamestopImage = new Image(getClass().getResource("images/MiniMap_GameStop.png").toExternalForm());
@@ -106,7 +94,6 @@ public class SemesterProjektGUIController implements Initializable {
     Image minimapScrapyardSouthWestRatEastImage = new Image(getClass().getResource("images/MiniMap_ScrapyardSouthWestRat1.png").toExternalForm());
     Image minimapScrapyardSouthWestRatSouthWestImage = new Image(getClass().getResource("images/MiniMap_ScrapyardSouthWestRat3.png").toExternalForm());
     Image magazineImage = new Image(getClass().getResource("images/gamemagazine.jpg").toExternalForm());
-    
     @FXML
     private Button UseButton;
     @FXML
@@ -266,6 +253,12 @@ public class SemesterProjektGUIController implements Initializable {
     private TextArea TextAreaMagazine;
     @FXML
     private Button CloseMagazineButton;
+    /**
+     * This method initializes and assigns observablelists to listviews.
+     * This method also gets an instance of the business class with UI.
+     * @param url
+     * @param rb 
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getBusiness();
@@ -283,7 +276,15 @@ public class SemesterProjektGUIController implements Initializable {
         TotalInventoryListView.setItems(inventoryTotal);
         BuildComputerListView.setItems(inventoryComputer);
         MoneyLabel.setText("$ " +(Integer.toString(game.wallet())));
-    }   
+    }
+    /**
+     * This method is invoked each time any go button is pressed.
+     * It will call the go room method and assign the direction depending on which button was clicked.
+     * It will also update statuses on the right buttons. 
+     * It will furthermore handle most events, update maps, minimaps, panes. This is the core of the controller.
+     * It will handle various events from the business layer, and show different graphical scenarious depending on what happens.
+     * @param event 
+     */
     @FXML
     private void GoButtonHandler(ActionEvent event) {
         String output = "";
@@ -511,7 +512,12 @@ public class SemesterProjektGUIController implements Initializable {
         StepCounterLabel.setText(Integer.toString(game.getTimeToken()));
         MoneyLabel.setText("$ " +(Integer.toString(game.wallet())));
     }
-
+    /**
+     * This method will be invoked when the use button is pressed in the playerinventory section.
+     * It will make sure a graphical change occurs corresponding to the impact from the business layer.
+     * Furthermore is theree a check to make sure the player has selected an item.
+     * @param event 
+     */
     @FXML
     private void UseButtonHandler(ActionEvent event) {
         TextAreaStatus.clear();
@@ -536,6 +542,12 @@ public class SemesterProjektGUIController implements Initializable {
             TextAreaStatus.appendText("You need to select an item");
         }
     }
+    /**
+     * This method will be invoked once the buy item button is pressed.
+     * It will send a request to the businessfacade and that will take care of the logic performed.
+     * It also makes sure an item is selected.
+     * @param event 
+     */
     @FXML
     private void BuyItemsButtonHandler(ActionEvent event) {
         TextAreaStatus.clear();
@@ -550,7 +562,11 @@ public class SemesterProjektGUIController implements Initializable {
         else
             TextAreaStatus.appendText("Please select an item");
     }
-
+    /**
+     * This method is invoked whhen the exit store button is pressed.
+     * It will change the status of the right buttons and move the player out of the store depending on which store the player is in.
+     * @param event 
+     */
     @FXML
     private void ExitStoreButtonHandler(ActionEvent event) {
         TextAreaStatus.clear();
@@ -589,7 +605,11 @@ public class SemesterProjektGUIController implements Initializable {
         }
         MapPane.toFront();
     }
-
+    /**
+     * This method is invoked once the sell item button is pressed.
+     * It will sell an item and make sure an item is selected.
+     * @param event 
+     */
     @FXML
     private void SellitemsButtonHandler(ActionEvent event) {
         TextAreaStatus.clear();
@@ -605,7 +625,11 @@ public class SemesterProjektGUIController implements Initializable {
             TextAreaStatus.appendText("You need to select an item");
         }
     }
-
+    /**
+     * This method is invoked when the inspect button is pressed.
+     * It will show the items in the room and the player inventory.
+     * @param event 
+     */
     @FXML
     private void InspectButtonHandler(ActionEvent event) {
         TextAreaStatus.clear();
@@ -614,7 +638,12 @@ public class SemesterProjektGUIController implements Initializable {
         InventoryButton.setVisible(false);
         InspectPane.toFront();
     }
-
+    /**
+     * This method is invoked when the pickup button is pressed.
+     * This will pick up an item from the room by calling methods in the business-layer.
+     * It also makes sure an item was selected.
+     * @param event 
+     */
     @FXML
     private void PickupButtonHandler(ActionEvent event) {
         TextAreaStatus.clear();
@@ -627,10 +656,15 @@ public class SemesterProjektGUIController implements Initializable {
             playerInventory.setAll(game.getItemPlayer());
         }
         else{
-            TextAreaStatus.appendText("You need to select an item"); //Make this other places too tomorrow.
+            TextAreaStatus.appendText("You need to select an item");
         }
     }
-
+    /**
+     * This method will be invoked when the drop button is presed.
+     * Two differnt panes uses the same button, inspect and inventory. Each case is made here.
+     * Both cases will make sure an item was selected.
+     * @param event 
+     */
     @FXML
     private void DropButtonHandler(ActionEvent event) {
         TextAreaStatus.clear();
@@ -662,7 +696,11 @@ public class SemesterProjektGUIController implements Initializable {
             TextAreaStatus.appendText("You need to select an item");
         }
     }
-
+    /**
+     * This method will be invoked when the close button is pressed
+     * It will deepend on which exact closebutton was pressed, each case has a different outcome.
+     * @param event 
+     */
     @FXML
     private void CloseButtonHandler(ActionEvent event) {
         MapPane.toFront();
@@ -684,7 +722,10 @@ public class SemesterProjektGUIController implements Initializable {
             InventoryButton.setVisible(true);
         }
     }
-
+    /**
+     * Saves the game.
+     * @param event 
+     */
     @FXML
     private void SaveButtonHandler(ActionEvent event) {
         game.saveGame();
@@ -698,7 +739,11 @@ public class SemesterProjektGUIController implements Initializable {
     private void AboutButtonHandler(ActionEvent event) {
     }
 
-
+    /**
+     * This method will be invoked when the add part button is pressed.
+     * It will make sure an item was selecteed, and then add a part by callng the method from the businesslayer.
+     * @param event 
+     */
     @FXML
     private void AddPartHandler(ActionEvent event) {
         TextAreaStatus.clear();
@@ -714,7 +759,10 @@ public class SemesterProjektGUIController implements Initializable {
             TextAreaStatus.appendText("You need to select an item");
         }
     }
-
+    /**
+     * This method will be invoked when the Build Computer button is pressed. It will build the computer and show the win or lose screen.
+     * @param event 
+     */
     @FXML
     private void BuildComputerHandler(ActionEvent event) {
         TextAreaStatus.clear();
@@ -737,7 +785,10 @@ public class SemesterProjektGUIController implements Initializable {
             WinOrLoseBuildPCLabel.setVisible(false);
         }
     }
-
+    /**
+     * This method will be invoked when the cancel button is pressed in the build computer section.
+     * @param event 
+     */
     @FXML
     private void CancelBuildButtonHandler(ActionEvent event) {
         MapPane.toFront();
@@ -746,12 +797,20 @@ public class SemesterProjektGUIController implements Initializable {
         BuildButton.setVisible(true);
         InventoryButton.setVisible(true);
     }
-
+    /**
+     * This method is invoked once the quit button or quit game button is pressed.
+     * This method will close the application.
+     * @param event 
+     */
     @FXML
     private void QuitButtonHandler(ActionEvent event) {
         System.exit(0);
     }
-
+    /**
+     * This method will be invoked when the build button from the menu pane is pressed.
+     * This will open the build computer pane.
+     * @param event 
+     */
     @FXML
     private void BuildButtonHandler(ActionEvent event) {
         TextAreaStatus.clear();
@@ -764,7 +823,10 @@ public class SemesterProjektGUIController implements Initializable {
         InventoryButton.setVisible(false);
         BuildButton.setVisible(false);
     }
-
+    /**
+     * This method is invoked when the remove part button is pressed. It will remove a part from the computer if allowed by the business layer. 
+     * @param event 
+     */
     @FXML
     private void RemovePartButtonHandler(ActionEvent event) {
         TextAreaStatus.clear();
@@ -780,7 +842,11 @@ public class SemesterProjektGUIController implements Initializable {
             TextAreaStatus.appendText("You need to select an item");
         }
     }
-
+    /**
+     * This method will be invoked when the inventory button is pressed.
+     * It will show the inventory pane of the player where he can use or drop items.
+     * @param event 
+     */
     @FXML
     private void InventoryButtonHandler(ActionEvent event) {
         TextAreaStatus.clear();
@@ -791,7 +857,11 @@ public class SemesterProjektGUIController implements Initializable {
         HomeStorageButton.setVisible(false);
         BuildButton.setVisible(false);
     }
-
+    /**
+     * This method is invoked if the home storage button is pressed.
+     * It will show the inventory of the home and the player. The player can now transfer items as seen fit.
+     * @param event 
+     */
     @FXML
     private void HomeStorageButtonHandler(ActionEvent event) {
         TextAreaStatus.clear();
@@ -803,7 +873,11 @@ public class SemesterProjektGUIController implements Initializable {
         InventoryButton.setVisible(false);
         BuildButton.setVisible(false);
     }
-
+    /**
+     * This method is invoked when the add to home button is pressed in the home storage pane.
+     * This method will make the player able to transfer an item from his/her inventory to the home storage.
+     * @param event 
+     */
     @FXML
     private void AddToHomeButtonHandler(ActionEvent event) {
         TextAreaStatus.clear();
@@ -819,7 +893,11 @@ public class SemesterProjektGUIController implements Initializable {
             TextAreaStatus.appendText("You need to select an item");
         }
     }
-
+    /**
+     * This method is invoked when the add to player button is pressed.
+     * This method will transfer an item from the home storage to the player.
+     * @param event 
+     */
     @FXML
     private void AddToPlayerInventoryButtonHandler(ActionEvent event) {
         TextAreaStatus.clear();
@@ -835,7 +913,11 @@ public class SemesterProjektGUIController implements Initializable {
             TextAreaStatus.appendText("You need to select an item");
         }
     }
-
+    /**
+     * This method is invoked when the sleep button is pressed.
+     * This method will simply call the sleep method from the business layer.
+     * @param event 
+     */
     @FXML
     private void SleepButtonHandler(ActionEvent event) {
         TextAreaStatus.clear();
@@ -845,7 +927,11 @@ public class SemesterProjektGUIController implements Initializable {
         DayCounterLabel.setText(Integer.toString(game.getDayToken()));
         StepCounterLabel.setText(Integer.toString(game.getTimeToken()));
     }
-
+    /**
+     * This method is invoked whenever the new game button is pressed.
+     * This method will prepare the game to look as it should graphical wise and allow the player to enter a name.
+     * @param event 
+     */
     @FXML
     private void NewGameButtonHandler(ActionEvent event) {
         String output = "";
@@ -859,7 +945,11 @@ public class SemesterProjektGUIController implements Initializable {
         output = game.printWelcome();
         TextAreaStatus.appendText(output);
     }
-
+    /**
+     * This method is invoked when the player clicks the load game button.
+     * This method will call the load game method and then call the goButtonHandler to update the graphics accordingly depending on location and so on.
+     * @param event 
+     */
     @FXML
     private void LoadButtonHandler(ActionEvent event) {
         game.loadGame();
@@ -869,7 +959,11 @@ public class SemesterProjektGUIController implements Initializable {
         MapPane.toFront();
         IntroPane.setVisible(false);
     }
-
+    /**
+     * This method is invoked when the player selects a choice when meeting the ludoman NPC.
+     * This method will check which button was pressed and send it down to the business layer which handles the logic.
+     * @param event 
+     */
     @FXML
     private void ChoiceButtonHandler(ActionEvent event) {
         String output = "";
@@ -893,7 +987,12 @@ public class SemesterProjektGUIController implements Initializable {
         MapPane.toFront();
         
     }
-
+    /**
+     * This method is invoked when the Highscore button is pressed.
+     * This method will use a StringArray to present the scres on different labels.
+     * This method makes sure only to demand scores as long as there is a score in the array.
+     * @param event 
+     */
     @FXML
     private void HighscoresButtonHandler(ActionEvent event) {
         HighscorePane.toFront();
@@ -929,7 +1028,10 @@ public class SemesterProjektGUIController implements Initializable {
         HighscoreLabel9.setText(output[9]);
         }
     }
-
+    /**
+     * This method is invoked when the return to menu button is pressed on the Highscore pane. 
+     * @param event 
+     */
     @FXML
     private void ReturnMenuButtonHandler(ActionEvent event) {
         IntroPane.toFront();

@@ -1,18 +1,16 @@
 package starter;
-
 import acquaintance.IBusiness;
 import acquaintance.IData;
 import business.BusinessFacade;
-import business.BusinessFacade;
 import data.DataFacade;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import acquaintance.IUI;
 import presentation.UI;
-
+/**
+ * <h1>Main class!</h1>
+ * @author Gruppe 20 - With inspiration from Mads Due Kristensen, recommended by our professor Daniel Bjerring Jørgensen.
+ * This class will act as our glue code and knows about all the layers through interfaces.
+ * It will inject and create new instances of the layers.
+ */
 public class Main{
     
     public static void main(String[] args) {

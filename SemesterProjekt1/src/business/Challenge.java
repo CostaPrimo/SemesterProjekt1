@@ -1,7 +1,7 @@
 package business;
 
 /**
- *
+ *<h1>Challenge class!</h1>
  * @author Gruppe 20
  */
 public class Challenge {
@@ -10,7 +10,9 @@ public class Challenge {
    private String[] multipleChoice;
    private String userSelect1;
    private String[] output1Question;
-   
+   /**
+    * Constructing our challenge class which initializes our questions in the StringArray
+    */
    public Challenge(){
     multipleChoice = new String[10];
     multipleChoice[0] = "Question 1?";
@@ -21,7 +23,11 @@ public class Challenge {
     multipleChoice[5] = "What is the name of the shopkeeper who sell crowbars, rat poison and other sorts of items?\n";
     output1Question = new String[5];
    }
-   
+   /**
+    * This method will print the question and possible answers.
+    * @param i This parameter is used to compare the int i (daytoken) and then pick the right question to present.
+    * @return String[] This will be used in the challengeNPC class.
+    */
    public String[] printQuestion(int i){
        if(i == 5){
         output1Question[0] = multipleChoice[5];           
@@ -39,6 +45,12 @@ public class Challenge {
        }
        return output1Question;
    }
+   /**
+    * This method will evaluate whether the player answered the question correct or not.
+    * @param i Thie current question to evaluate. 
+    * @param choice The choice the user clicked.
+    * @return boolean True or false whether the answer was correct or not.
+    */
    public boolean selectAnswer(int i, char choice){
         userSelect1 = multipleChoice[i];
         boolean iscorrect = false;

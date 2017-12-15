@@ -2,7 +2,7 @@ package business;
 import acquaintance.IItem;
 import java.util.ArrayList;
 /**
- *
+ *<h1>Inventory class!</h1>
  * @author Gruppe 20
  */
 public class Inventory {
@@ -54,7 +54,7 @@ public class Inventory {
                         break;
                     default:
                         this.rarity = "nothing";
-                        this.maxStorageRoom = 0; //Show the new one I created and how/why it worked. - REMOVE AFTER
+                        this.maxStorageRoom = 0;
                         break;
                         
         }
@@ -62,8 +62,12 @@ public class Inventory {
     }
     
     
-    //Creates a method for adding items to the player inventory
-    public String addItem(IItem item){
+    /**
+     * This method adds an item to the player inventory if there is space for it.
+     * @param item Takes in an item.
+     * @return String This returns a string used in the presentation layer to create output.
+     */
+    protected String addItem(IItem item){
         String output = "";
         //The item is only added if the inventory isnt full
         if (getInventoryPlayer().size()<getMaxStoragePlayer()){
@@ -75,12 +79,12 @@ public class Inventory {
         return output;
     }
     
-//    public void buildInventoryTotal(){
-//        inventoryTotal.addAll(getInventoryPlayer());
-//        inventoryTotal.addAll(getInventoryHouse());
-//    }
-    
-    public String computerAddItem(IItem item){
+    /**
+     * This method adds an item to the computer inventory from inventoryTotal.
+     * @param item Takes in an item.
+     * @return String This returns a string used in the presentation layer to create output.
+     */
+    protected String computerAddItem(IItem item){
         String output = "";
         if(inventoryTotal.contains(item)){
             if(inventoryComputer.size() < maxStorageComputer){
@@ -90,13 +94,17 @@ public class Inventory {
                 output = "Item added to computer";
             }
             else{
-                output = "Stop being a pleb and get a larger motherboard";
+                output = "You need a larger motherboard";
             }
         }
         return output;
     }
-    
-    public String computerRemoveItem(IItem item){
+    /**
+     * This method removes an item from the computer inventory and places it in the house inventory
+     * @param item Takes in an item to remove and add to the house inventory.
+     * @return String This returns a string used in the presentation layer to create output.
+     */
+    protected String computerRemoveItem(IItem item){
         String output;
         inventoryHouse.add(inventoryComputer.get(inventoryComputer.indexOf(item)));
         getInventoryComputer().remove(item);
@@ -104,8 +112,12 @@ public class Inventory {
         return output;
     }
     
-    //Method for removing an item from the player inventory
-    public boolean dropItem(int i){
+    /**
+     * This method removes an item from the player inventroy.
+     * @param i takes in an int that drops an item from a specific index in the inventory.
+     * @return boolean.
+     */
+    protected boolean dropItem(int i){
         //The method only accepts numbers within the size of the inventory
         if(getInventoryPlayer().size()>=i){
             getInventoryPlayer().remove(i);
@@ -116,13 +128,20 @@ public class Inventory {
             return false;
         }
     }
-    
-    public void emptyRoom(){
+    /**
+     * This method clears the inventory of the room. Used together with the rarity and add item method.
+     * @see #roomAddItem(acquaintance.IItem) 
+     */
+    protected void emptyRoom(){
         inventoryRoom.clear();
     }
     
-    //Method for adding an item from the player inventory to the house storage
-    public String houseAddItem(IItem item){
+    /**
+     * This method adds an item from the player inventory to the house storage
+     * @param item Takes an item in its parameter
+     * @return String This returns a string used in the presentation layer to create output.
+     */
+    protected String houseAddItem(IItem item){
         //The item is only added to the house storage if its contained within the player inventory, the stored item is removed from the player inventory
         String output = "";
         if (getInventoryPlayer().contains(item)){
@@ -135,9 +154,12 @@ public class Inventory {
         }
         return output;
     }
-    
-    //Method for adding an item from the house storage to the player inventory
-    public String housePickItem(IItem item){
+    /**
+     * This method adds an item from the house to the player inventory
+     * @param item Takes an item in its parameter
+     * @return String This returns a string used in the presentation layer to create output.
+     */
+    protected String housePickItem(IItem item){
         String output = "";
         //The item is only added to the player inventory if its contained within the house storage, the recieved item is removed from the house storage
         if (getInventoryHouse().contains(item)){
@@ -157,13 +179,21 @@ public class Inventory {
     }
     
     //Method for adding an item to the room inventory from the randomizer
-    public void roomAddItem(IItem item){
+    /**
+     * This method adds an item to the room as long there is space
+     * @param item The specific item is determined by the random generator in the business facade
+     */
+    protected void roomAddItem(IItem item){
         if (inventoryRoom.size() < this.getMaxStorageRoom()){
             inventoryRoom.add(item);
         }
     }
-    
-    public String roomPickItem(IItem item){
+    /**
+     * 
+     * @param item The item is the one to pick up. It is then checked to see if the room has that item, and then what index to add the item from.
+     * @return String This returns a string used in the presentation layer to create output.
+     */
+    protected String roomPickItem(IItem item){
         String output = "";
         if (inventoryRoom.contains(item)){
             if (getInventoryPlayer().size() < maxStoragePlayer){
@@ -177,8 +207,11 @@ public class Inventory {
         }
         return output;
     }
-    
-    public void setRarity(String rarity){
+    /**
+     * This method changes the rarity of a room and the max storage that follows that rarity.
+     * @param rarity This parameter will decide which changes the room should get depending on rarity.
+     */
+    protected void setRarity(String rarity){
         switch (rarity.toLowerCase()){ 
                     case "junk":
                         this.rarity = rarity;
@@ -208,12 +241,15 @@ public class Inventory {
     }
     
     
-    public String getRarity(){
+    protected String getRarity(){
         return this.rarity;
     }
-    
-    //Creating a rarity randomizer
-    public String roomRandomizer() {
+    /**
+     * This method will use a random self made generator that ultimately will return a rarity depending on which randomNum that gets rolled.
+     * @return String Returns a String that is used as a rarity indicator used in other methods.
+     * @see #setRarity(java.lang.String) 
+     */
+    protected String roomRandomizer() {
         int randomNum = (int)(1+Math.random()*1000);
         String rarity;
         //junk
@@ -238,8 +274,11 @@ public class Inventory {
         }
         return rarity;
     }
-    
-    public String showPlayerInventory(){
+    /**
+     * This method shows the players inventory and returns it. This was used in the text based interface
+     * @return String
+     */
+    protected String showPlayerInventory(){
         
         String contains = "";
         int count = 1;
@@ -250,8 +289,11 @@ public class Inventory {
         }
         return contains;
     }
-    
-    public String showRoomInventory(){
+    /**
+     * This method shows the room inventory.
+     * @return String
+     */
+    protected String showRoomInventory(){
         
         String contains = "";
         int count = 1;
@@ -262,8 +304,11 @@ public class Inventory {
         }
         return contains;
     }
-    
-    public String showHouseInventory(){
+    /**
+     * This method shows the house inventory.
+     * @return String
+     */
+    protected String showHouseInventory(){
         
         String contains = "";
         int count = 1;
@@ -273,8 +318,11 @@ public class Inventory {
         }
         return contains;
     }
-    
-    public String showInventoryTotal(){
+    /**
+     * This method shows the total inventory which is house + player combined.
+     * @return String.
+     */
+    protected String showInventoryTotal(){
         String contains = "";
         int count = 1;
         for(int i = 0; i < inventoryTotal.size();i++){
@@ -286,101 +334,101 @@ public class Inventory {
     }    
     
 
-    public int getInventoryComputerSize(){
+    protected int getInventoryComputerSize(){
         return inventoryComputer.size();
     }
     
-    public int getInventoryPlayerSize(){
+    protected int getInventoryPlayerSize(){
         return getInventoryPlayer().size();
     }
     
-    public int getInventoryTotalSize(){
+    protected int getInventoryTotalSize(){
         return inventoryTotal.size();
     }
     /**
      * @return the maxStorageRoom
      */
-    public int getMaxStorageRoom() {
+    protected int getMaxStorageRoom() {
         return maxStorageRoom;
     }
 
     /**
      * @return the maxStoragePlayer
      */
-    public int getMaxStoragePlayer() {
+    protected int getMaxStoragePlayer() {
         return maxStoragePlayer;
     }
 
     
-    public IItem getComputerItem(int i){
+    protected IItem getComputerItem(int i){
         return inventoryComputer.get(i);
     }
     
-    public IItem getHouseitem(int i){
+    protected IItem getHouseitem(int i){
         return getInventoryHouse().get(i);
     }
-    public IItem getInventoryTotalItem(int i){
+    protected IItem getInventoryTotalItem(int i){
         return inventoryTotal.get(i);
     }
     
-    public IItem getPlayerItem(int i){
+    protected IItem getPlayerItem(int i){
         return getInventoryPlayer().get(i);
     }
     
-    public IItem getRoomItem(int i) {
+    protected IItem getRoomItem(int i) {
         return inventoryRoom.get(i);
     }
 
     /**
      * @return the inventoryPlayer
      */
-    public ArrayList<IItem> getInventoryPlayer() {
+    protected ArrayList<IItem> getInventoryPlayer() {
         return inventoryPlayer;
     }
     
-    public ArrayList<IItem> getInventoryRoom(){
+    protected ArrayList<IItem> getInventoryRoom(){
         return inventoryRoom;
     }
-    public ArrayList<IItem> getInventoryTotal(){
+    protected ArrayList<IItem> getInventoryTotal(){
         inventoryTotal.clear();
         inventoryTotal.addAll(inventoryPlayer);
         inventoryTotal.addAll(getInventoryHouse());
         return inventoryTotal;
     }
     
-    public ArrayList<IItem> getInventoryComputer(){
+    protected ArrayList<IItem> getInventoryComputer(){
         return inventoryComputer;
     }
 
     /**
      * @return the inventoryHouse
      */
-    public ArrayList<IItem> getInventoryHouse() {
+    protected ArrayList<IItem> getInventoryHouse() {
         return inventoryHouse;
     }
     
-    public void loadInventoryRoom(ArrayList c){
+    protected void loadInventoryRoom(ArrayList c){
         if (!inventoryRoom.isEmpty()){
             inventoryRoom.clear();
         }
         inventoryRoom.addAll(c);
     }
     
-    public void loadInventoryPlayer(ArrayList c){
+    protected void loadInventoryPlayer(ArrayList c){
         if (!inventoryPlayer.isEmpty()){
             inventoryPlayer.clear();
         }
         inventoryPlayer.addAll(c);
     }
     
-    public void loadInventoryHouse(ArrayList c){
+    protected void loadInventoryHouse(ArrayList c){
         if (!inventoryHouse.isEmpty()){
             inventoryHouse.clear();
         }
         inventoryHouse.addAll(c);
     }
     
-    public void loadInventoryComputer(ArrayList c){
+    protected void loadInventoryComputer(ArrayList c){
         if (!inventoryComputer.isEmpty()){
             inventoryComputer.clear();
         }

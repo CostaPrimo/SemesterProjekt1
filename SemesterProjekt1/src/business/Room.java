@@ -8,10 +8,11 @@ import java.util.HashMap;
 
 
 /**
- * @author  Gruppe 20
+ * <h1>Room class!</h1>
+ * @author Gruppe 20
  */
 
-        //Our public class is named Room.
+
 public class Room 
 {
         //Defining datatypes.
@@ -21,12 +22,22 @@ public class Room
     private boolean isLocked;
         // Making our constructor that takes a string argument called description. The argument is renamed to this.decsription.
         // exits is constructed and is defined as a new hashmap object
+    /**
+     * Making our constructor that takes a string argument called description. The argument is renamed to this.decsription.
+     * Exits is constructed and is defined as a new hashmap object
+     * @param name This parameter is the name of the room.
+     * @param description This parameter is thhe description
+     */
     public Room(String name, String description){
         this.name = name;
         this.description = description;
         exits = new HashMap<String, Room>();
     }
-    
+    /**
+     * Alternative constructor. The difference is that this room can be locked or unlocked.
+     * @param description
+     * @param isLocked 
+     */
         public Room(String description, boolean isLocked){
         this.description = description;
         this.isLocked = isLocked;
@@ -35,7 +46,11 @@ public class Room
       
     
     
-        //Creating a setExit method which takes a String argument named direction and a Room object named neighbor 
+    /**
+     * This method takes a String argument named direction and a Room object named neighbor 
+     * @param direction Which direction a specific exit is located.
+     * @param neighbor which room is the room next to this room in the exit direction.
+     */
     public void setExit(String direction, Room neighbor){
         //Values and keys are put in the hashmap defined earlier. Direction is the key and the value is neighbour. 
         exits.put(direction, neighbor);
@@ -43,6 +58,10 @@ public class Room
         
     
         //The getExitString method is created.
+    /**
+     * This method will get all the possible exits and combine it into a string. For instance south, west, and so on.
+     * @return String which shows the possible exits. It uses a loop to loop through all the exit and the keys, which is the direction.
+     */
     public String getExitString(){
         //Exits are printed out using the hashmap, it loops through all exits and adds it to a returnstring until all exits have been printed.
         String returnString = "Exits: ";
@@ -54,6 +73,11 @@ public class Room
     }
     
         //Creating a string method that returns the description, aswell as the possible exists for a specific room using the method on line 45.
+    /**
+     * This method will show the description of the room aswell as the exits.
+     * @see #getExitString() 
+     * @return String 
+     */
     public String getLongDescription(){
         return "You are " + description + ".\n" + getExitString();
     }
@@ -62,9 +86,12 @@ public class Room
     public String getShortDescription(){
         return description;
     }
-        
     
-        //A method that shows exits based on location when invoked.
+    /**
+     * This method shows exits based on location when invoked.
+     * @param direction which direction the exit should be shown from the map.
+     * @return This will return the room in the direction specified. For instance the room name to the south.
+     */
     public Room getExit(String direction){
         return exits.get(direction);
     }

@@ -3,8 +3,8 @@ package business;
 import acquaintance.IPlayer;
 
 /**
- *
- * @author Kim
+ *<h1>Player class!</h1>
+ * @author Gruppe 20
  */
 public class Player implements IPlayer {
     

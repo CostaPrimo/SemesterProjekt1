@@ -1,21 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package acquaintance;
-
 import business.Room;
 import java.util.ArrayList;
-
-
 /**
- *
+ *<h1>IBusiness Interface!</h1>
  * @author Gruppe 20
+ * This Interface makes it possible for the injected businesslayer in the presentation layer to call methods from the businessFacade.
+ * These methods are those that needs to be able to be called throughout different layers. When the game needs to be saved, or when the user clicks a button.
  */
 public interface IBusiness {
     void injectData(IData dataLayer);
-    //boolean processCommand();
     String addItem(int itemNumber);
     String buyItem(int itemNumber);
     String dropItem(int itemNumber);

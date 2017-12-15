@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- *
+ *<h1>Merchant class!</h1>
  * @author Gruppe 20
  */
 public class Merchant extends NPC implements INPC{
@@ -17,16 +17,25 @@ public class Merchant extends NPC implements INPC{
         inventoryMerchant = new ArrayList<IItem>();
     }
    
-    
+    /**
+     * This method will add all the items from the parameter to the inventorymerchant inventory.
+     * @param allItems This parameter is a collection datatype.
+     */
     public void addAllItems(Collection allItems){
         getInventoryMerchant().addAll(allItems);
     }
-    
+    /**
+     * This method adds a single item to an inventory.
+     * @param item 
+     */
     public void addItem(Item item){
         getInventoryMerchant().add(item);
     }
     
-    
+    /**
+     * This method shows the merchant inventory as a string. This was used in the text-based interface.
+     * @return The String used to present the result.
+     */
     public String showMerchantInventory(){
         String contains = "";
         int count = 1;
@@ -48,7 +57,10 @@ public class Merchant extends NPC implements INPC{
     public ArrayList<IItem> getInventoryMerchant() {
         return inventoryMerchant;
     }
-
+    /**
+     * This method will show the encounter message for a store.
+     * @return String This string is used in the presentation layer.
+     */
     @Override
     public String encounterMessage() {
         return "Welcome to the store, please take a look around\n";
