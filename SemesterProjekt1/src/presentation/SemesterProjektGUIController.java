@@ -307,6 +307,10 @@ public class SemesterProjektGUIController implements Initializable {
     private Label AboutLabel;
     @FXML
     private TextArea AboutTextArea;
+    @FXML
+    private Button CloseAboutButton;
+    @FXML
+    private Button CloseHelpButton;
     /**
      * This method initializes and assigns observablelists to listviews.
      * This method also gets an instance of the business class with UI.
@@ -1089,6 +1093,18 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private void ReturnMenuButtonHandler(ActionEvent event) {
         IntroPane.toFront();
+    }
+
+    @FXML
+    private void CloseTutorialButtonHandler(ActionEvent event) {
+    }
+
+    @FXML
+    private void CloseAboutButtonHandler(ActionEvent event) {
+    }
+
+    @FXML
+    private void CloseHelpButtonHandler(ActionEvent event) {
     }
 
         
