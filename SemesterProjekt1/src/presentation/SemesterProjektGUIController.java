@@ -341,7 +341,7 @@ public class SemesterProjektGUIController implements Initializable {
         MoneyLabel.setText("$ " +(Integer.toString(game.wallet())));
         AboutTextArea.setText("Who are we?"
                 + "\nWe're a group of 6 students, \nwho was given the task to create a simple game."
-                + "\nAll we were given was the base of the game,\n which barely worked."
+                + "\nAll we were given was the base of the game,\nwhich barely worked."
                 + "\nWe all had litlle to no programming expertise at the beginning.\n"
                 + "\nWe hope you like the game"
                 + "\nSincerely Group 20");

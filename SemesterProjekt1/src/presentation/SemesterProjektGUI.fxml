@@ -253,7 +253,7 @@
                               <Font name="Californian FB" size="40.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="AboutTextArea" editable="false" layoutX="300.0" layoutY="130.0" prefHeight="404.0" prefWidth="352.0" />
+                        <TextArea fx:id="AboutTextArea" editable="false" layoutX="300.0" layoutY="130.0" prefHeight="176.0" prefWidth="352.0" />
                         <Button fx:id="CloseAboutButton" layoutX="441.0" layoutY="555.0" mnemonicParsing="false" onAction="#CloseAboutButtonHandler" text="Close " />
                      </children>
                   </Pane>
