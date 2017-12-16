@@ -176,7 +176,7 @@ public class BusinessFacade implements IBusiness {
         gamestop = new Room("gamestop", "at gamestop");
         merchant = new Room("merchant", "at the merchant");
         scrapyardentrance = new Room("scrapyardentrance", "at the entrance to the scrapyard");
-        scrapyardmiddle = new Room("at the center of the scrapyard", true);
+        scrapyardmiddle = new Room("scrapyardmiddle","at the center of the scrapyard", true);
         scrapyardwest = new Room("scrapyardwest", "at the west part of the scrapyard");
         scrapyardeast = new Room("scrapyardeast", "at the east part of the scrapyard");
         scrapyardsouth = new Room("scrapyardsouth", "at the south part of the scrapyard");

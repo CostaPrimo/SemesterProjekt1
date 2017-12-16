@@ -31,12 +31,14 @@ public class Room implements IRoom {
         this.description = description;
         exits = new HashMap<String, Room>();
     }
+    
     /**
      * Alternative constructor. The difference is that this room can be locked or unlocked.
      * @param description
      * @param isLocked 
      */
-        public Room(String description, boolean isLocked){
+        public Room(String name, String description, boolean isLocked){
+        this.name = name;
         this.description = description;
         this.isLocked = isLocked;
         exits = new HashMap<String, Room>();
@@ -106,6 +108,7 @@ public class Room implements IRoom {
     /**
      * @param isLocked the isLocked to set
      */
+    @Override
     public void setIsLocked(boolean isLocked) {
         this.isLocked = isLocked;
     }
