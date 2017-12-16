@@ -339,6 +339,14 @@ public class SemesterProjektGUIController implements Initializable {
         TotalInventoryListView.setItems(inventoryTotal);
         BuildComputerListView.setItems(inventoryComputer);
         MoneyLabel.setText("$ " +(Integer.toString(game.wallet())));
+        AboutTextArea.setText("Who are we?"
+                + "\nWe're a group of 6 students, \nwho was given the task to create a simple game."
+                + "\nAll we were given was the base of the game,\n which barely worked."
+                + "\nWe all had litlle to no programming expertise at the beginning\n"
+                + "\nWe hope you like the game"
+                + "\nSincerely Group 20"
+                + "\nCredits:\n \nProgrammers: \nKim Christensen \nAdrian Navntoft \nSimon Mon \nJeppe Jensen \nNikolaj Jensen \nMartin Skytt \n"
+                + "\nGraphic designers: \nAdrian Navntoft \nMartin Skytt");
     }
     /**
      * This method is invoked each time any go button is pressed.
@@ -796,10 +804,18 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void HelpButtonHandler(ActionEvent event) {
+        HelpPane.toFront();
+        HelpPane.setVisible(true);
+        MapPane.toBack();
+        MenuPane.setVisible(false);
     }
 
     @FXML
     private void AboutButtonHandler(ActionEvent event) {
+        AboutPane.toFront();
+        AboutPane.setVisible(true);
+        MapPane.toBack();
+        MenuPane.setVisible(false);
     }
 
     /**
@@ -1013,15 +1029,18 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private void NewGameButtonHandler(ActionEvent event) {
         String output = "";
-        MenuPane.setVisible(true);
         GoNorthButton.setDisable(true);
         GoWestButton.setDisable(true);
         GoEastButton.setDisable(true);
         MapPane.toFront();
         IntroPane.setVisible(false);
+        OutroPane.setVisible(false);
+        HelpPane.setVisible(false);
+        AboutPane.setVisible(false);
         game.setPlayerName(PlayerNameTextField.getText());
         output = game.printWelcome();
         TextAreaStatus.appendText(output);
+        TutorialPane.toFront();
     }
     /**
      * This method is invoked when the player clicks the load game button.
@@ -1117,14 +1136,26 @@ public class SemesterProjektGUIController implements Initializable {
 
     @FXML
     private void CloseTutorialButtonHandler(ActionEvent event) {
+        TutorialPane.toBack();
+        TutorialPane.setVisible(false);
+        MapPane.toFront();
+        MenuPane.setVisible(true);
     }
 
     @FXML
     private void CloseAboutButtonHandler(ActionEvent event) {
+        AboutPane.toBack();
+        AboutPane.setVisible(false);
+        MapPane.toFront();
+        MenuPane.setVisible(true);
     }
 
     @FXML
     private void CloseHelpButtonHandler(ActionEvent event) {
+        HelpPane.toBack();
+        HelpPane.setVisible(false);
+        MapPane.toFront();
+        MenuPane.setVisible(true);
     }
 
         

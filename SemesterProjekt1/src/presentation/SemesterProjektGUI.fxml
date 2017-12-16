@@ -116,6 +116,41 @@
                         <Button fx:id="ChoiceDButton" layoutX="268.0" layoutY="369.0" mnemonicParsing="false" onAction="#ChoiceButtonHandler" text="Choice D" />
                      </children>
                   </Pane>
+                  <Pane fx:id="OutroPane" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="OutroScreen" fitHeight="602.0" fitWidth="913.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/IntroPaneRS.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="Item1BuildPCLabel" layoutX="347.0" layoutY="89.0" text="Item 1" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Item2BuildPCLabel" layoutX="347.0" layoutY="188.0" text="Item 2" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Item3BuildPCLabel" layoutX="347.0" layoutY="280.0" text="Item 3" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="TotalScoreBuildPCLabel" layoutX="347.0" layoutY="373.0" text="Total Score" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="WinOrLoseBuildPCLabel" layoutX="347.0" layoutY="423.0" text="WinOrLose" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="QuitGameButton" layoutX="349.0" layoutY="495.0" mnemonicParsing="false" onAction="#QuitButtonHandler" text="Quit Game" />
+                     </children>
+                  </Pane>
                   <Pane fx:id="HomeStoragePane" prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <ListView fx:id="PlayerInventoryListview1" layoutX="50.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" />
@@ -183,41 +218,6 @@
                         <Button fx:id="GoWestButton" layoutY="273.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go West" />
                         <Button fx:id="GoSouthButton" layoutX="258.0" layoutY="571.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go South" />
                         <Button fx:id="GoEastButton" layoutX="524.0" layoutY="273.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go East" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="OutroPane" prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <ImageView fx:id="OutroScreen" fitHeight="602.0" fitWidth="913.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/IntroPaneRS.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="Item1BuildPCLabel" layoutX="347.0" layoutY="89.0" text="Item 1" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="Item2BuildPCLabel" layoutX="347.0" layoutY="188.0" text="Item 2" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="Item3BuildPCLabel" layoutX="347.0" layoutY="280.0" text="Item 3" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="TotalScoreBuildPCLabel" layoutX="347.0" layoutY="373.0" text="Total Score" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="WinOrLoseBuildPCLabel" layoutX="347.0" layoutY="423.0" text="WinOrLose" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="QuitGameButton" layoutX="349.0" layoutY="495.0" mnemonicParsing="false" onAction="#QuitButtonHandler" text="Quit Game" />
                      </children>
                   </Pane>
                   <Pane fx:id="TutorialPane" prefHeight="200.0" prefWidth="200.0">
