@@ -1,5 +1,4 @@
 package acquaintance;
-import business.Room;
 import java.util.ArrayList;
 /**
  *<h1>IBusiness Interface!</h1>
@@ -27,9 +26,9 @@ public interface IBusiness {
     int wallet();
     int getDayToken();
     int getTimeToken();
-    Room getCurrentRoom();
-    Room getRatCurrentRoom();
-    void setCurrentRoom(Room currentRoom);
+    IRoom getCurrentRoom();
+    IRoom getRatCurrentRoom();
+    void setCurrentRoom(IRoom currentRoom);
     ArrayList<IItem> getItemMerchant();
     ArrayList<IItem> getItemPlayer();
     ArrayList<IItem> getItemGamestop();

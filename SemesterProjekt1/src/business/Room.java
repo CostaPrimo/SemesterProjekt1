@@ -2,6 +2,7 @@ package business;
         // Importing Hashmap and Set which are both datastructures. 
         // Set won't allow duplicates, and hashmap maps keys and values.
         // Iterator is an iterator in a collection to go through data.
+import acquaintance.IRoom;
 import java.util.Set;
 import java.util.HashMap;
 //import java.util.Iterator;
@@ -13,15 +14,12 @@ import java.util.HashMap;
  */
 
 
-public class Room 
-{
+public class Room implements IRoom {
         //Defining datatypes.
     private String name;
     private String description;
     private HashMap<String, Room> exits;
     private boolean isLocked;
-        // Making our constructor that takes a string argument called description. The argument is renamed to this.decsription.
-        // exits is constructed and is defined as a new hashmap object
     /**
      * Making our constructor that takes a string argument called description. The argument is renamed to this.decsription.
      * Exits is constructed and is defined as a new hashmap object
@@ -57,7 +55,6 @@ public class Room
     }
         
     
-        //The getExitString method is created.
     /**
      * This method will get all the possible exits and combine it into a string. For instance south, west, and so on.
      * @return String which shows the possible exits. It uses a loop to loop through all the exit and the keys, which is the direction.
@@ -72,7 +69,6 @@ public class Room
         return returnString;
     }
     
-        //Creating a string method that returns the description, aswell as the possible exists for a specific room using the method on line 45.
     /**
      * This method will show the description of the room aswell as the exits.
      * @see #getExitString() 
@@ -83,6 +79,7 @@ public class Room
     }
     
         // Creating a method that returns the description.
+    @Override
     public String getShortDescription(){
         return description;
     }
@@ -92,6 +89,7 @@ public class Room
      * @param direction which direction the exit should be shown from the map.
      * @return This will return the room in the direction specified. For instance the room name to the south.
      */
+    @Override
     public Room getExit(String direction){
         return exits.get(direction);
     }
@@ -99,6 +97,7 @@ public class Room
     /**
      * @return the isLocked
      */
+    @Override
     public boolean getIsLocked() {
         return isLocked;
     }
@@ -113,6 +112,7 @@ public class Room
     /**
      * @return the name
      */
+    @Override
     public String getName() {
         return this.name;
     }

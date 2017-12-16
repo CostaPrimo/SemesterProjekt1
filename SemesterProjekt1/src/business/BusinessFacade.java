@@ -2,6 +2,7 @@ package business;
 import acquaintance.IItem;
 import acquaintance.IBusiness;
 import acquaintance.IData;
+import acquaintance.IRoom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.json.JSONObject;
@@ -23,7 +24,6 @@ public class BusinessFacade implements IBusiness {
     /**
     * Declaration of variables used in the businessfacade aswell as a single initialization. 
     */
-    private Parser parser;
     private Room currentRoom;
     private Inventory inventoryRoom;
     private JSONObject saveState;
@@ -869,8 +869,9 @@ public class BusinessFacade implements IBusiness {
     /**
      * @param currentRoom The currentRoom to set
      */
-    public void setCurrentRoom(Room currentRoom) {
-        this.currentRoom = currentRoom;
+    @Override
+    public void setCurrentRoom(IRoom currentRoom) {
+        this.currentRoom = filterRoom(currentRoom.getName());
     }
     @Override
     public ArrayList<IItem> getItemPlayer(){
