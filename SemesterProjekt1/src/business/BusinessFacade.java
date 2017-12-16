@@ -402,7 +402,7 @@ public class BusinessFacade implements IBusiness {
         String direction = direction2;
         String output = "";
         String [] questionOutput;
-        Room nextRoom = getCurrentRoom().getExit(direction);
+        IRoom nextRoom = getCurrentRoom().getExit(direction);
 
         /**
          * Check is the next room exists. If not it will output that.
@@ -466,7 +466,7 @@ public class BusinessFacade implements IBusiness {
                     if (rat.getIsDead()!=true){
                         output += ratMove();
                     }
-                    System.out.println(getCurrentRoom().getLongDescription());
+                    //System.out.println(getCurrentRoom().getLongDescription());
                     if (getCurrentRoom().getShortDescription() == "at the center of the scrapyard") {
                         inventoryRoom.emptyRoom();
                         inventoryRoom.setRarity(inventoryRoom.roomRandomizer());
@@ -855,7 +855,7 @@ public class BusinessFacade implements IBusiness {
     /**
      * @return The currentRoom
      */
-    public Room getCurrentRoom() {
+    public IRoom getCurrentRoom() {
         return currentRoom;
     }
     /**
@@ -898,7 +898,7 @@ public class BusinessFacade implements IBusiness {
         return inventoryRoom.getInventoryHouse();
     }
     @Override
-    public Room getRatCurrentRoom(){
+    public IRoom getRatCurrentRoom(){
         return rat.getCurrentRoom();
     }
     @Override

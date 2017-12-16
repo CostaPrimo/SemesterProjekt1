@@ -74,6 +74,7 @@ public class Room implements IRoom {
      * @see #getExitString() 
      * @return String 
      */
+    @Override
     public String getLongDescription(){
         return "You are " + description + ".\n" + getExitString();
     }
