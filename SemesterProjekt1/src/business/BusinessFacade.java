@@ -855,7 +855,6 @@ public class BusinessFacade implements IBusiness {
     /**
      * @return The currentRoom
      */
-    @Override
     public Room getCurrentRoom() {
         return currentRoom;
     }
