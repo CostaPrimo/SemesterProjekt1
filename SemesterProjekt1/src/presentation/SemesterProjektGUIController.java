@@ -342,11 +342,9 @@ public class SemesterProjektGUIController implements Initializable {
         AboutTextArea.setText("Who are we?"
                 + "\nWe're a group of 6 students, \nwho was given the task to create a simple game."
                 + "\nAll we were given was the base of the game,\n which barely worked."
-                + "\nWe all had litlle to no programming expertise at the beginning\n"
+                + "\nWe all had litlle to no programming expertise at the beginning.\n"
                 + "\nWe hope you like the game"
-                + "\nSincerely Group 20"
-                + "\nCredits:\n \nProgrammers: \nKim Christensen \nAdrian Navntoft \nSimon Mon \nJeppe Jensen \nNikolaj Jensen \nMartin Skytt \n"
-                + "\nGraphic designers: \nAdrian Navntoft \nMartin Skytt");
+                + "\nSincerely Group 20");
     }
     /**
      * This method is invoked each time any go button is pressed.
