@@ -220,7 +220,7 @@
                         <Button fx:id="GoEastButton" layoutX="524.0" layoutY="273.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go East" />
                      </children>
                   </Pane>
-                  <Pane fx:id="TutorialPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <Pane fx:id="TutorialPane" prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <ImageView fitHeight="602.0" fitWidth="913.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -242,7 +242,7 @@
                         <Button fx:id="CloseTutorialButton" layoutX="441.0" layoutY="498.0" mnemonicParsing="false" onAction="#CloseTutorialButtonHandler" text="Close" />
                      </children>
                   </Pane>
-                  <Pane fx:id="AboutPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <Pane fx:id="AboutPane" prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <ImageView fitHeight="602.0" fitWidth="913.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -257,7 +257,7 @@
                         <Button fx:id="CloseAboutButton" layoutX="441.0" layoutY="555.0" mnemonicParsing="false" onAction="#CloseAboutButtonHandler" text="Close " />
                      </children>
                   </Pane>
-                  <Pane fx:id="HelpPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <Pane fx:id="HelpPane" prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <ImageView fitHeight="602.0" fitWidth="913.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -283,7 +283,7 @@
                         <Button fx:id="CloseHelpButton" layoutX="441.0" layoutY="498.0" mnemonicParsing="false" onAction="#CloseHelpButtonHandler" text="Close" />
                      </children>
                   </Pane>
-                  <Pane fx:id="IntroPane" prefHeight="602.0" prefWidth="907.0" visible="false">
+                  <Pane fx:id="IntroPane" prefHeight="602.0" prefWidth="907.0">
                      <children>
                         <ImageView fx:id="IntroScreen" fitHeight="602.0" fitWidth="913.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                            <image>
