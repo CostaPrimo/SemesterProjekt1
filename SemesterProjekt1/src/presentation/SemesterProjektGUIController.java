@@ -1058,6 +1058,10 @@ public class SemesterProjektGUIController implements Initializable {
         MenuPane.setVisible(true);
         MapPane.toFront();
         IntroPane.setVisible(false);
+        OutroPane.setVisible(false);
+        HelpPane.setVisible(false);
+        AboutPane.setVisible(false);
+        TutorialPane.setVisible(false);
     }
     /**
      * This method is invoked when the player selects a choice when meeting the ludoman NPC.
