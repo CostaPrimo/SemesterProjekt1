@@ -247,8 +247,6 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private Button CloseInventoryButton;
     @FXML
-    private Button QuitGameButton;
-    @FXML
     private Button LoadGameButton;
     @FXML
     private Pane GameMagazinePane;
@@ -316,6 +314,14 @@ public class SemesterProjektGUIController implements Initializable {
     private Button CloseAboutButton;
     @FXML
     private Button CloseHelpButton;
+    @FXML
+    private Button OutroHighscorePane;
+    @FXML
+    private Button HighscoresButton1;
+    @FXML
+    private TextField TutorialText8;
+    @FXML
+    private Button HighscoreQuitButton;
     /**
      * This method initializes and assigns observablelists to listviews.
      * This method also gets an instance of the business class with UI.
@@ -1100,6 +1106,7 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private void HighscoresButtonHandler(ActionEvent event) {
         HighscorePane.toFront();
+        HighscoreQuitButton.setVisible(false);
         int i;
         i = game.loadHighscore().length;
         String[] output = new String[10];
@@ -1130,6 +1137,19 @@ public class SemesterProjektGUIController implements Initializable {
         }
         if(i>=10){
         HighscoreLabel9.setText(output[9]);
+        }
+        if(event.getSource() == HighscoresButton1){
+            ReturnMenubutton.setVisible(false);
+            OutroPane.setVisible(false);
+            IntroPane.toFront();
+            IntroPane.setVisible(true);
+            MenuPane.setVisible(false);
+            HighscorePane.toFront();
+            NewGameButton.setVisible(false);
+            LoadGameButton.setVisible(false);
+            HighscoresButton.setVisible(false);
+            PlayerNameTextField.setVisible(false);
+            HighscoreQuitButton.setVisible(true);
         }
     }
     /**
