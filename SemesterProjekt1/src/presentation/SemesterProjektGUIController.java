@@ -1027,6 +1027,7 @@ public class SemesterProjektGUIController implements Initializable {
     @FXML
     private void NewGameButtonHandler(ActionEvent event) {
         String output = "";
+        if(!PlayerNameTextField.getText().contains("\n") && !PlayerNameTextField.getText().contains(" ")){
         GoNorthButton.setDisable(true);
         GoWestButton.setDisable(true);
         GoEastButton.setDisable(true);
@@ -1039,6 +1040,10 @@ public class SemesterProjektGUIController implements Initializable {
         output = game.printWelcome();
         TextAreaStatus.appendText(output);
         TutorialPane.toFront();
+        }
+        else{
+            PlayerNameTextField.setText("No spaces in name");
+        }
     }
     /**
      * This method is invoked when the player clicks the load game button.
