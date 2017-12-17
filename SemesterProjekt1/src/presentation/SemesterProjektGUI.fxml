@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="602.0" prefWidth="913.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.SemesterProjektGUIController">
+<BorderPane prefHeight="602.0" prefWidth="913.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.SemesterProjektGUIController">
    <center>
       <GridPane prefHeight="723.0" prefWidth="993.0" BorderPane.alignment="CENTER">
          <columnConstraints>
@@ -216,11 +216,11 @@
                         </ImageView>
                         <Button fx:id="GoNorthButton" disable="true" layoutX="259.0" layoutY="1.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go North" />
                         <Button fx:id="GoWestButton" layoutY="273.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go West" />
-                        <Button fx:id="GoSouthButton" layoutX="258.0" layoutY="571.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go South" />
+                        <Button fx:id="GoSouthButton" layoutX="258.0" layoutY="568.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go South" />
                         <Button fx:id="GoEastButton" layoutX="524.0" layoutY="273.0" mnemonicParsing="false" onAction="#GoButtonHandler" text="Go East" />
                      </children>
                   </Pane>
-                  <Pane fx:id="TutorialPane" prefHeight="200.0" prefWidth="200.0">
+                  <Pane fx:id="TutorialPane" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <children>
                         <ImageView fitHeight="602.0" fitWidth="913.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -231,18 +231,18 @@
                               <Font name="Californian FB" size="40.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="TutorialText1" editable="false" layoutX="96.0" layoutY="160.0" prefHeight="25.0" prefWidth="770.0" scaleShape="false" text="You move around clicking either Go North/South/East/West" />
-                        <TextField fx:id="TutorialText2" editable="false" layoutX="96.0" layoutY="265.0" prefHeight="25.0" prefWidth="770.0" scaleShape="false" text="Everytime you move or use an item you spend energy" />
-                        <TextField fx:id="TutorialText3" editable="false" layoutX="96.0" layoutY="195.0" prefHeight="25.0" prefWidth="770.0" scaleShape="false" text="To use items open your inventory, click on the item you wish to use, then click &quot;use&quot;" />
-                        <TextField fx:id="TutorialText4" editable="false" layoutX="96.0" layoutY="230.0" prefHeight="25.0" prefWidth="770.0" scaleShape="false" text="To buy items simply click on the prefered item and then click &quot;buy&quot;, same goes for sell except you click &quot;sell&quot; instead of buy" />
-                        <TextField fx:id="TutorialText5" editable="false" layoutX="96.0" layoutY="300.0" prefHeight="25.0" prefWidth="770.0" scaleShape="false" text="To store items in your house, go to home click &quot;home storage&quot;, click the item in your inventory you wish to store then click &quot;store&quot;" />
-                        <TextField fx:id="TutorialText6" editable="false" layoutX="96.0" layoutY="335.0" prefHeight="25.0" prefWidth="770.0" scaleShape="false" text="To pickup new items click &quot;inspect&quot;, then click the prefered item, then click &quot;pickup&quot;" />
-                        <TextField fx:id="TutorialText7" editable="false" layoutX="96.0" layoutY="405.0" prefHeight="25.0" prefWidth="770.0" scaleShape="false" text="For more help checkout the help section" />
-                        <TextField fx:id="TutorialText8" editable="false" layoutX="96.0" layoutY="370.0" prefHeight="25.0" prefWidth="770.0" scaleShape="false" text="If you get attacked by the rats you loose energy" />
+                        <TextField fx:id="TutorialText1" editable="false" layoutX="96.0" layoutY="160.0" prefHeight="25.0" prefWidth="344.0" text="You move around clicking either Go North/South/East/West" />
+                        <TextField fx:id="TutorialText2" editable="false" layoutX="96.0" layoutY="265.0" prefHeight="25.0" prefWidth="306.0" text="Everytime you move or use an item you spend energy" />
+                        <TextField fx:id="TutorialText3" editable="false" layoutX="96.0" layoutY="195.0" prefHeight="25.0" prefWidth="463.0" text="To use items open your inventory, click on the item you wish to use, then click &quot;use&quot;" />
+                        <TextField fx:id="TutorialText4" editable="false" layoutX="96.0" layoutY="230.0" prefHeight="25.0" prefWidth="669.0" text="To buy items simply click on the prefered item and then click &quot;buy&quot;, same goes for sell except you click &quot;sell&quot; instead of buy" />
+                        <TextField fx:id="TutorialText5" editable="false" layoutX="96.0" layoutY="300.0" prefHeight="25.0" prefWidth="713.0" text="To store items in your house, go to home click &quot;home storage&quot;, click the item in your inventory you wish to store then click &quot;store&quot;" />
+                        <TextField fx:id="TutorialText6" editable="false" layoutX="96.0" layoutY="335.0" prefHeight="25.0" prefWidth="458.0" text="To pickup new items click &quot;inspect&quot;, then click the prefered item, then click &quot;pickup&quot;" />
+                        <TextField fx:id="TutorialText7" editable="false" layoutX="96.0" layoutY="405.0" prefHeight="25.0" prefWidth="235.0" text="For more help checkout the help section" />
+                        <TextField fx:id="TutorialText8" editable="false" layoutX="96.0" layoutY="370.0" prefHeight="25.0" prefWidth="273.0" text="If you get attacked by the rats you loose energy" />
                         <Button fx:id="CloseTutorialButton" layoutX="441.0" layoutY="498.0" mnemonicParsing="false" onAction="#CloseTutorialButtonHandler" text="Close" />
                      </children>
                   </Pane>
-                  <Pane fx:id="AboutPane" prefHeight="200.0" prefWidth="200.0">
+                  <Pane fx:id="AboutPane" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <children>
                         <ImageView fitHeight="602.0" fitWidth="913.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -257,7 +257,7 @@
                         <Button fx:id="CloseAboutButton" layoutX="441.0" layoutY="555.0" mnemonicParsing="false" onAction="#CloseAboutButtonHandler" text="Close " />
                      </children>
                   </Pane>
-                  <Pane fx:id="HelpPane" prefHeight="200.0" prefWidth="200.0">
+                  <Pane fx:id="HelpPane" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <children>
                         <ImageView fitHeight="602.0" fitWidth="913.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -283,7 +283,7 @@
                         <Button fx:id="CloseHelpButton" layoutX="441.0" layoutY="498.0" mnemonicParsing="false" onAction="#CloseHelpButtonHandler" text="Close" />
                      </children>
                   </Pane>
-                  <Pane fx:id="IntroPane" prefHeight="602.0" prefWidth="907.0">
+                  <Pane fx:id="IntroPane" prefHeight="602.0" prefWidth="907.0" visible="false">
                      <children>
                         <ImageView fx:id="IntroScreen" fitHeight="602.0" fitWidth="913.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                            <image>
